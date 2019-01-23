@@ -1,0 +1,9 @@
+from .hkReferencedObject import hkReferencedObject
+from .hkaiNavMeshClearanceCacheManagerRegistration import hkaiNavMeshClearanceCacheManagerRegistration
+from .hkaiNavMeshClearanceCacheManagerCacheInfo import hkaiNavMeshClearanceCacheManagerCacheInfo
+
+
+class hkaiNavMeshClearanceCacheManager(hkReferencedObject):
+	registrations: hkaiNavMeshClearanceCacheManagerRegistration
+	cacheInfos: hkaiNavMeshClearanceCacheManagerCacheInfo
+	defaultOption: any

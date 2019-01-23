@@ -1,0 +1,17 @@
+from .hkpSetLocalTransformsConstraintAtom import hkpSetLocalTransformsConstraintAtom
+from .hkpLinMotorConstraintAtom import hkpLinMotorConstraintAtom
+from .hkpLinFrictionConstraintAtom import hkpLinFrictionConstraintAtom
+from .hkpAngConstraintAtom import hkpAngConstraintAtom
+from .hkpLinConstraintAtom import hkpLinConstraintAtom
+from .hkpLinConstraintAtom import hkpLinConstraintAtom
+from .hkpLinLimitConstraintAtom import hkpLinLimitConstraintAtom
+
+
+class hkpPrismaticConstraintDataAtoms(object):
+	transforms: hkpSetLocalTransformsConstraintAtom
+	motor: hkpLinMotorConstraintAtom
+	friction: hkpLinFrictionConstraintAtom
+	ang: hkpAngConstraintAtom
+	lin0: hkpLinConstraintAtom
+	lin1: hkpLinConstraintAtom
+	linLimit: hkpLinLimitConstraintAtom

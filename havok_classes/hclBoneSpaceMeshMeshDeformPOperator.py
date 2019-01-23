@@ -1,0 +1,8 @@
+from .hclBoneSpaceMeshMeshDeformOperator import hclBoneSpaceMeshMeshDeformOperator
+from .hclBoneSpaceDeformerLocalBlockP import hclBoneSpaceDeformerLocalBlockP
+from .hclBoneSpaceDeformerLocalBlockUnpackedP import hclBoneSpaceDeformerLocalBlockUnpackedP
+
+
+class hclBoneSpaceMeshMeshDeformPOperator(hclBoneSpaceMeshMeshDeformOperator):
+	localPs: hclBoneSpaceDeformerLocalBlockP
+	localUnpackedPs: hclBoneSpaceDeformerLocalBlockUnpackedP

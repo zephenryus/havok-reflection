@@ -1,0 +1,5 @@
+from .hkaiPointCloudSilhouetteGenerator import hkaiPointCloudSilhouetteGenerator
+
+
+class hkaiPhysicsBodySilhouetteGeneratorBase(hkaiPointCloudSilhouetteGenerator):
+	linearVelocityAndThreshold: any

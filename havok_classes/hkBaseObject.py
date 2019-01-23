@@ -1,0 +1,3 @@
+
+
+class hkBaseObject(object):

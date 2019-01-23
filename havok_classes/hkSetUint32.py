@@ -1,0 +1,4 @@
+from .hkSetunsignedinthkContainerHeapAllocatorhkMapOperationsunsignedint import hkSetunsignedinthkContainerHeapAllocatorhkMapOperationsunsignedint
+
+
+class hkSetUint32(hkSetunsignedinthkContainerHeapAllocatorhkMapOperationsunsignedint):

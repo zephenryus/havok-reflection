@@ -1,0 +1,8 @@
+from .hclObjectSpaceMeshMeshDeformOperator import hclObjectSpaceMeshMeshDeformOperator
+from .hclObjectSpaceDeformerLocalBlockPN import hclObjectSpaceDeformerLocalBlockPN
+from .hclObjectSpaceDeformerLocalBlockUnpackedPN import hclObjectSpaceDeformerLocalBlockUnpackedPN
+
+
+class hclObjectSpaceMeshMeshDeformPNOperator(hclObjectSpaceMeshMeshDeformOperator):
+	localPNs: hclObjectSpaceDeformerLocalBlockPN
+	localUnpackedPNs: hclObjectSpaceDeformerLocalBlockUnpackedPN

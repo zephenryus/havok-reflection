@@ -1,0 +1,17 @@
+from .hkReferencedObject import hkReferencedObject
+from .hkaiAgentTraversalInfo import hkaiAgentTraversalInfo
+from .hkaiNavMeshPathSearchParameters import hkaiNavMeshPathSearchParameters
+from .hkaiSearchParametersSearchBuffers import hkaiSearchParametersSearchBuffers
+from .hkaiSearchParametersSearchBuffers import hkaiSearchParametersSearchBuffers
+
+
+class hkaiPathfindingUtilFindPathInput(hkReferencedObject):
+	startPoint: any
+	goalPoints: any
+	startFaceKey: int
+	goalFaceKeys: any
+	maxNumberOfIterations: int
+	agentInfo: hkaiAgentTraversalInfo
+	searchParameters: hkaiNavMeshPathSearchParameters
+	searchBuffers: hkaiSearchParametersSearchBuffers
+	hierarchySearchBuffers: hkaiSearchParametersSearchBuffers

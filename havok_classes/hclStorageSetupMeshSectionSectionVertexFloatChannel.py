@@ -1,0 +1,5 @@
+from .hclStorageSetupMeshSectionSectionVertexChannel import hclStorageSetupMeshSectionSectionVertexChannel
+
+
+class hclStorageSetupMeshSectionSectionVertexFloatChannel(hclStorageSetupMeshSectionSectionVertexChannel):
+	vertexFloats: any

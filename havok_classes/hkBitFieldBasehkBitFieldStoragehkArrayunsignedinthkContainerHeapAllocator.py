@@ -1,0 +1,5 @@
+from .hkBitFieldStoragehkArrayunsignedinthkContainerHeapAllocator import hkBitFieldStoragehkArrayunsignedinthkContainerHeapAllocator
+
+
+class hkBitFieldBasehkBitFieldStoragehkArrayunsignedinthkContainerHeapAllocator(object):
+	storage: hkBitFieldStoragehkArrayunsignedinthkContainerHeapAllocator

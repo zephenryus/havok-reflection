@@ -1,0 +1,16 @@
+from .hclBoneSpaceDeformerFourBlendEntryBlock import hclBoneSpaceDeformerFourBlendEntryBlock
+from .hclBoneSpaceDeformerThreeBlendEntryBlock import hclBoneSpaceDeformerThreeBlendEntryBlock
+from .hclBoneSpaceDeformerTwoBlendEntryBlock import hclBoneSpaceDeformerTwoBlendEntryBlock
+from .hclBoneSpaceDeformerOneBlendEntryBlock import hclBoneSpaceDeformerOneBlendEntryBlock
+
+
+class hclBoneSpaceDeformer(object):
+	fourBlendEntries: hclBoneSpaceDeformerFourBlendEntryBlock
+	threeBlendEntries: hclBoneSpaceDeformerThreeBlendEntryBlock
+	twoBlendEntries: hclBoneSpaceDeformerTwoBlendEntryBlock
+	oneBlendEntries: hclBoneSpaceDeformerOneBlendEntryBlock
+	controlBytes: any
+	startVertexIndex: int
+	endVertexIndex: int
+	batchSizeSpu: int
+	partialWrite: bool

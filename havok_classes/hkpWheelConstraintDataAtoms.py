@@ -1,0 +1,17 @@
+from .hkpSetLocalTransformsConstraintAtom import hkpSetLocalTransformsConstraintAtom
+from .hkpLinLimitConstraintAtom import hkpLinLimitConstraintAtom
+from .hkpLinSoftConstraintAtom import hkpLinSoftConstraintAtom
+from .hkpLinConstraintAtom import hkpLinConstraintAtom
+from .hkpLinConstraintAtom import hkpLinConstraintAtom
+from .hkpSetLocalRotationsConstraintAtom import hkpSetLocalRotationsConstraintAtom
+from .hkp2dAngConstraintAtom import hkp2dAngConstraintAtom
+
+
+class hkpWheelConstraintDataAtoms(object):
+	suspensionBase: hkpSetLocalTransformsConstraintAtom
+	lin0Limit: hkpLinLimitConstraintAtom
+	lin0Soft: hkpLinSoftConstraintAtom
+	lin1: hkpLinConstraintAtom
+	lin2: hkpLinConstraintAtom
+	steeringBase: hkpSetLocalRotationsConstraintAtom
+	2dAng: hkp2dAngConstraintAtom

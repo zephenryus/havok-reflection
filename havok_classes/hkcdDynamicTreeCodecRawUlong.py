@@ -1,0 +1,4 @@
+from .hkcdDynamicTreeCodecRawunsignedlong import hkcdDynamicTreeCodecRawunsignedlong
+
+
+class hkcdDynamicTreeCodecRawUlong(hkcdDynamicTreeCodecRawunsignedlong):

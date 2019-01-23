@@ -1,0 +1,9 @@
+from .hclRuntimeConversionInfoSlotConversion import hclRuntimeConversionInfoSlotConversion
+from .hclRuntimeConversionInfoElementConversion import hclRuntimeConversionInfoElementConversion
+
+
+class hclRuntimeConversionInfo(object):
+	slotConversions: hclRuntimeConversionInfoSlotConversion
+	elementConversions: hclRuntimeConversionInfoElementConversion
+	numSlotsConverted: int
+	numElementsConverted: int

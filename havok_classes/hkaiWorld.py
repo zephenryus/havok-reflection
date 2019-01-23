@@ -1,0 +1,44 @@
+from .hkReferencedObject import hkReferencedObject
+from .hkaiStreamingCollection import hkaiStreamingCollection
+from .hkaiNavMeshCutter import hkaiNavMeshCutter
+from .hkaiNavMeshClearanceCacheManager import hkaiNavMeshClearanceCacheManager
+from .hkaiDynamicNavMeshQueryMediator import hkaiDynamicNavMeshQueryMediator
+from .hkaiDynamicNavVolumeMediator import hkaiDynamicNavVolumeMediator
+from .hkaiOverlapManager import hkaiOverlapManager
+from .hkaiSilhouetteGenerationParameters import hkaiSilhouetteGenerationParameters
+from .hkaiSilhouetteGenerator import hkaiSilhouetteGenerator
+from .hkaiObstacleGenerator import hkaiObstacleGenerator
+from .hkaiAvoidancePairProperties import hkaiAvoidancePairProperties
+from .hkaiPathfindingUtilFindPathInput import hkaiPathfindingUtilFindPathInput
+from .hkaiVolumePathfindingUtilFindPathInput import hkaiVolumePathfindingUtilFindPathInput
+
+
+class hkaiWorld(hkReferencedObject):
+	up: any
+	streamingCollection: hkaiStreamingCollection
+	cutter: hkaiNavMeshCutter
+	clearanceCacheManager: hkaiNavMeshClearanceCacheManager
+	performValidationChecks: bool
+	dynamicNavMeshMediator: hkaiDynamicNavMeshQueryMediator
+	dynamicNavVolumeMediator: hkaiDynamicNavVolumeMediator
+	overlapManager: hkaiOverlapManager
+	silhouetteGenerationParameters: hkaiSilhouetteGenerationParameters
+	silhouetteExtrusion: float
+	forceSilhouetteUpdates: bool
+	listeners: any
+	silhouetteGenerators: hkaiSilhouetteGenerator
+	obstacleGenerators: hkaiObstacleGenerator
+	avoidancePairProps: hkaiAvoidancePairProperties
+	navMeshPathRequests: any
+	navVolumePathRequests: any
+	isPathRequestArrayLocked: bool
+	maxRequestsPerStep: int
+	maxEstimatedIterationsPerStep: int
+	priorityThreshold: int
+	numPathRequestsPerTask: int
+	numBehaviorUpdatesPerTask: int
+	numCharactersPerAvoidanceTask: int
+	maxPathSearchEdgesOut: int
+	maxPathSearchPointsOut: int
+	defaultPathfindingInput: hkaiPathfindingUtilFindPathInput
+	defaultVolumePathfindingInput: hkaiVolumePathfindingUtilFindPathInput

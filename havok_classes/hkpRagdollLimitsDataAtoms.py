@@ -1,0 +1,11 @@
+from .hkpSetLocalRotationsConstraintAtom import hkpSetLocalRotationsConstraintAtom
+from .hkpTwistLimitConstraintAtom import hkpTwistLimitConstraintAtom
+from .hkpConeLimitConstraintAtom import hkpConeLimitConstraintAtom
+from .hkpConeLimitConstraintAtom import hkpConeLimitConstraintAtom
+
+
+class hkpRagdollLimitsDataAtoms(object):
+	rotations: hkpSetLocalRotationsConstraintAtom
+	twistLimit: hkpTwistLimitConstraintAtom
+	coneLimit: hkpConeLimitConstraintAtom
+	planesLimit: hkpConeLimitConstraintAtom

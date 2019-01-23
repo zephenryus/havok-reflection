@@ -1,0 +1,7 @@
+from .hkcdDynamicTreeAnisotropicMetric import hkcdDynamicTreeAnisotropicMetric
+from .hkcdDynamicTreeCodecRawUint import hkcdDynamicTreeCodecRawUint
+
+
+class hkcdDynamicTreeDynamicStorage0hkcdDynamicTreeAnisotropicMetrichkcdDynamicTreeCodecRawUint(hkcdDynamicTreeAnisotropicMetric):
+	nodes: hkcdDynamicTreeCodecRawUint
+	firstFree: int

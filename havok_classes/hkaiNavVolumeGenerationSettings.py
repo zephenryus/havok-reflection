@@ -1,0 +1,34 @@
+from .hkReferencedObject import hkReferencedObject
+from .hkAabb import hkAabb
+from .hkaiNavVolumeGenerationSettingsChunkSettings import hkaiNavVolumeGenerationSettingsChunkSettings
+from .hkaiNavVolumeGenerationSettingsMergingSettings import hkaiNavVolumeGenerationSettingsMergingSettings
+from .hkaiNavVolumeGenerationSettingsMaterialConstructionInfo import hkaiNavVolumeGenerationSettingsMaterialConstructionInfo
+from .hkaiNavVolumeGenerationSettingsMaterialConstructionInfo import hkaiNavVolumeGenerationSettingsMaterialConstructionInfo
+from .hkaiCarver import hkaiCarver
+from .hkaiMaterialPainter import hkaiMaterialPainter
+
+
+class hkaiNavVolumeGenerationSettings(hkReferencedObject):
+	volumeAabb: hkAabb
+	maxHorizontalRange: float
+	maxVerticalRange: float
+	up: any
+	characterHeight: float
+	characterDepth: float
+	characterWidth: float
+	cellWidth: float
+	resolutionRoundingMode: any
+	chunkSettings: hkaiNavVolumeGenerationSettingsChunkSettings
+	chunkDomainCallback: any
+	border: float
+	useBorderCells: bool
+	mergingSettings: hkaiNavVolumeGenerationSettingsMergingSettings
+	minRegionVolume: float
+	minDistanceToSeedPoints: float
+	regionSeedPoints: any
+	defaultConstructionInfo: hkaiNavVolumeGenerationSettingsMaterialConstructionInfo
+	materialMap: hkaiNavVolumeGenerationSettingsMaterialConstructionInfo
+	carvers: hkaiCarver
+	painters: hkaiMaterialPainter
+	saveInputSnapshot: bool
+	snapshotFilename: any

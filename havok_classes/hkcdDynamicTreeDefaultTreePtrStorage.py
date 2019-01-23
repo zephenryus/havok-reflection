@@ -1,0 +1,4 @@
+from .hkcdDynamicTreeTreehkcdDynamicTreeDynamicStoragePtr import hkcdDynamicTreeTreehkcdDynamicTreeDynamicStoragePtr
+
+
+class hkcdDynamicTreeDefaultTreePtrStorage(hkcdDynamicTreeTreehkcdDynamicTreeDynamicStoragePtr):

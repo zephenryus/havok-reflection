@@ -1,0 +1,6 @@
+from .hkpConstraintData import hkpConstraintData
+from .hkpBallAndSocketConstraintDataAtoms import hkpBallAndSocketConstraintDataAtoms
+
+
+class hkpBallAndSocketConstraintData(hkpConstraintData):
+	atoms: hkpBallAndSocketConstraintDataAtoms

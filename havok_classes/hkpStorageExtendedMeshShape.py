@@ -1,0 +1,8 @@
+from .hkpExtendedMeshShape import hkpExtendedMeshShape
+from .hkpStorageExtendedMeshShapeMeshSubpartStorage import hkpStorageExtendedMeshShapeMeshSubpartStorage
+from .hkpStorageExtendedMeshShapeShapeSubpartStorage import hkpStorageExtendedMeshShapeShapeSubpartStorage
+
+
+class hkpStorageExtendedMeshShape(hkpExtendedMeshShape):
+	meshstorage: hkpStorageExtendedMeshShapeMeshSubpartStorage
+	shapestorage: hkpStorageExtendedMeshShapeShapeSubpartStorage

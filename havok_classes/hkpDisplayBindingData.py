@@ -1,0 +1,8 @@
+from .hkReferencedObject import hkReferencedObject
+from .hkpDisplayBindingDataRigidBody import hkpDisplayBindingDataRigidBody
+from .hkpDisplayBindingDataPhysicsSystem import hkpDisplayBindingDataPhysicsSystem
+
+
+class hkpDisplayBindingData(hkReferencedObject):
+	rigidBodyBindings: hkpDisplayBindingDataRigidBody
+	physicsSystemBindings: hkpDisplayBindingDataPhysicsSystem

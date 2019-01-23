@@ -1,0 +1,7 @@
+from .hkReferencedObject import hkReferencedObject
+from .hkaiSilhouetteGeneratorSectionContext import hkaiSilhouetteGeneratorSectionContext
+
+
+class hkaiOverlapManagerSectionGeneratorData(hkReferencedObject):
+	context: hkaiSilhouetteGeneratorSectionContext
+	overlappedFaces: any

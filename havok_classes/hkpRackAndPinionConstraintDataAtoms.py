@@ -1,0 +1,7 @@
+from .hkpSetLocalTransformsConstraintAtom import hkpSetLocalTransformsConstraintAtom
+from .hkpRackAndPinionConstraintAtom import hkpRackAndPinionConstraintAtom
+
+
+class hkpRackAndPinionConstraintDataAtoms(object):
+	transforms: hkpSetLocalTransformsConstraintAtom
+	rackAndPinion: hkpRackAndPinionConstraintAtom

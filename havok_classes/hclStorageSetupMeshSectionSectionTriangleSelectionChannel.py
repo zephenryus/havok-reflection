@@ -1,0 +1,5 @@
+from .hkReferencedObject import hkReferencedObject
+
+
+class hclStorageSetupMeshSectionSectionTriangleSelectionChannel(hkReferencedObject):
+	triangleIndices: any

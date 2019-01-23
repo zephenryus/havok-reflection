@@ -1,0 +1,8 @@
+from .hclObjectSpaceSkinOperator import hclObjectSpaceSkinOperator
+from .hclObjectSpaceDeformerLocalBlockPNT import hclObjectSpaceDeformerLocalBlockPNT
+from .hclObjectSpaceDeformerLocalBlockUnpackedPNT import hclObjectSpaceDeformerLocalBlockUnpackedPNT
+
+
+class hclObjectSpaceSkinPNTOperator(hclObjectSpaceSkinOperator):
+	localPNTs: hclObjectSpaceDeformerLocalBlockPNT
+	localUnpackedPNTs: hclObjectSpaceDeformerLocalBlockUnpackedPNT

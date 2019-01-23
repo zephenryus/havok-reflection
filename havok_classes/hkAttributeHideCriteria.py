@@ -1,0 +1,3 @@
+
+
+class hkAttributeHideCriteria(object):

@@ -1,0 +1,12 @@
+from .hkcdStaticTreeTreehkcdStaticTreeDynamicStorage5 import hkcdStaticTreeTreehkcdStaticTreeDynamicStorage5
+from .hkcdStaticMeshTreeBaseSection import hkcdStaticMeshTreeBaseSection
+from .hkcdStaticMeshTreeBasePrimitive import hkcdStaticMeshTreeBasePrimitive
+
+
+class hkcdStaticMeshTreeBase(hkcdStaticTreeTreehkcdStaticTreeDynamicStorage5):
+	numPrimitiveKeys: int
+	bitsPerKey: int
+	maxKeyValue: int
+	sections: hkcdStaticMeshTreeBaseSection
+	primitives: hkcdStaticMeshTreeBasePrimitive
+	sharedVerticesIndex: any

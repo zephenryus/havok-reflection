@@ -1,0 +1,7 @@
+from .hkaiPhysicsBodySilhouetteGeneratorBase import hkaiPhysicsBodySilhouetteGeneratorBase
+from .hkpRigidBody import hkpRigidBody
+
+
+class hkaiPhysics2012BodySilhouetteGenerator(hkaiPhysicsBodySilhouetteGeneratorBase):
+	rigidBody: hkpRigidBody
+	physicsWorldListener: any

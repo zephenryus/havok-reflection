@@ -1,0 +1,6 @@
+from .hkReferencedObject import hkReferencedObject
+from .hkaiAvoidancePairPropertiesPairData import hkaiAvoidancePairPropertiesPairData
+
+
+class hkaiAvoidancePairProperties(hkReferencedObject):
+	avoidancePairDataMap: hkaiAvoidancePairPropertiesPairData

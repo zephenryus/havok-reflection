@@ -1,0 +1,48 @@
+from .hkReferencedObject import hkReferencedObject
+from .hkaiNavMeshEdgeMatchingParameters import hkaiNavMeshEdgeMatchingParameters
+from .hkaiNavMeshGenerationSettingsRegionPruningSettings import hkaiNavMeshGenerationSettingsRegionPruningSettings
+from .hkaiNavMeshGenerationSettingsWallClimbingSettings import hkaiNavMeshGenerationSettingsWallClimbingSettings
+from .hkAabb import hkAabb
+from .hkaiCarver import hkaiCarver
+from .hkaiMaterialPainter import hkaiMaterialPainter
+from .hkaiNavMeshGenerationSettingsMaterialConstructionPair import hkaiNavMeshGenerationSettingsMaterialConstructionPair
+from .hkaiOverlappingTrianglesSettings import hkaiOverlappingTrianglesSettings
+from .hkaiNavMeshSimplificationUtilsSettings import hkaiNavMeshSimplificationUtilsSettings
+from .hkaiNavMeshGenerationSettingsOverrideSettings import hkaiNavMeshGenerationSettingsOverrideSettings
+
+
+class hkaiNavMeshGenerationSettings(hkReferencedObject):
+	characterHeight: float
+	up: any
+	quantizationGridSize: float
+	maxWalkableSlope: float
+	triangleWinding: any
+	degenerateAreaThreshold: float
+	degenerateWidthThreshold: float
+	convexThreshold: float
+	maxNumEdgesPerFace: int
+	edgeMatchingParams: hkaiNavMeshEdgeMatchingParameters
+	edgeMatchingMetric: any
+	edgeConnectionIterations: int
+	regionPruningSettings: hkaiNavMeshGenerationSettingsRegionPruningSettings
+	wallClimbingSettings: hkaiNavMeshGenerationSettingsWallClimbingSettings
+	boundsAabb: hkAabb
+	carvers: hkaiCarver
+	painters: hkaiMaterialPainter
+	painterOverlapCallback: any
+	defaultConstructionProperties: any
+	materialMap: hkaiNavMeshGenerationSettingsMaterialConstructionPair
+	fixupOverlappingTriangles: bool
+	overlappingTrianglesSettings: hkaiOverlappingTrianglesSettings
+	weldInputVertices: bool
+	weldThreshold: float
+	minCharacterWidth: float
+	characterWidthUsage: any
+	enableSimplification: bool
+	simplificationSettings: hkaiNavMeshSimplificationUtilsSettings
+	carvedMaterialDeprecated: int
+	carvedCuttingMaterialDeprecated: int
+	checkEdgeGeometryConsistency: bool
+	saveInputSnapshot: bool
+	snapshotFilename: any
+	overrideSettings: hkaiNavMeshGenerationSettingsOverrideSettings

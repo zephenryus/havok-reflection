@@ -1,0 +1,5 @@
+from .hkaParameterizedReferenceFrame import hkaParameterizedReferenceFrame
+
+
+class hkaDirectionalReferenceFrame(hkaParameterizedReferenceFrame):
+	movementDir: any

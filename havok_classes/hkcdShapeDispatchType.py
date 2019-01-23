@@ -1,0 +1,3 @@
+
+
+class hkcdShapeDispatchType(object):

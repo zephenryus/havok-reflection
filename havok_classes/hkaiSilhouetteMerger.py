@@ -1,0 +1,7 @@
+from .hkReferencedObject import hkReferencedObject
+from .hkaiSilhouetteGenerationParameters import hkaiSilhouetteGenerationParameters
+
+
+class hkaiSilhouetteMerger(hkReferencedObject):
+	mergeType: any
+	mergeParams: hkaiSilhouetteGenerationParameters

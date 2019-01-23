@@ -1,0 +1,7 @@
+from .hkReferencedObject import hkReferencedObject
+from .hkpBreakableMultiMaterialInverseMappingDescriptor import hkpBreakableMultiMaterialInverseMappingDescriptor
+
+
+class hkpBreakableMultiMaterialInverseMapping(hkReferencedObject):
+	descriptors: hkpBreakableMultiMaterialInverseMappingDescriptor
+	subShapeIds: any

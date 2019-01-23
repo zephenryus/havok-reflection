@@ -1,0 +1,14 @@
+from .hclOperatorSetupObject import hclOperatorSetupObject
+from .hclBufferSetupObject import hclBufferSetupObject
+from .hclTriangleSelectionInput import hclTriangleSelectionInput
+from .hclTransformSetSetupObject import hclTransformSetSetupObject
+
+
+class hclMeshBoneDeformSetupObject(hclOperatorSetupObject):
+	name: any
+	inputBufferSetupObject: hclBufferSetupObject
+	inputTriangleSelection: hclTriangleSelectionInput
+	outputTransformSetSetupObject: hclTransformSetSetupObject
+	deformedBones: any
+	maxTrianglesPerBone: int
+	minimumTriangleWeight: float

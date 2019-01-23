@@ -1,0 +1,3 @@
+
+
+class hkaiSearchParameters(object):

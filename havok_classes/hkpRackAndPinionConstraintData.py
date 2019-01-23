@@ -1,0 +1,6 @@
+from .hkpConstraintData import hkpConstraintData
+from .hkpRackAndPinionConstraintDataAtoms import hkpRackAndPinionConstraintDataAtoms
+
+
+class hkpRackAndPinionConstraintData(hkpConstraintData):
+	atoms: hkpRackAndPinionConstraintDataAtoms

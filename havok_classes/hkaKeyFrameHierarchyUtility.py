@@ -1,0 +1,3 @@
+
+
+class hkaKeyFrameHierarchyUtility(object):

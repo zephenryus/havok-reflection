@@ -1,0 +1,12 @@
+from .hkaiVolume import hkaiVolume
+from .hkaiNavMeshEdgeMatchingParameters import hkaiNavMeshEdgeMatchingParameters
+from .hkaiNavMeshSimplificationUtilsSettings import hkaiNavMeshSimplificationUtilsSettings
+
+
+class hkaiNavMeshGenerationSettingsOverrideSettings(object):
+	volume: hkaiVolume
+	material: int
+	characterWidthUsage: any
+	maxWalkableSlope: float
+	edgeMatchingParams: hkaiNavMeshEdgeMatchingParameters
+	simplificationSettings: hkaiNavMeshSimplificationUtilsSettings

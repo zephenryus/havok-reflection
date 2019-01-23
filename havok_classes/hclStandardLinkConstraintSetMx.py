@@ -1,0 +1,8 @@
+from .hclConstraintSet import hclConstraintSet
+from .hclStandardLinkConstraintSetMxBatch import hclStandardLinkConstraintSetMxBatch
+from .hclStandardLinkConstraintSetMxSingle import hclStandardLinkConstraintSetMxSingle
+
+
+class hclStandardLinkConstraintSetMx(hclConstraintSet):
+	batches: hclStandardLinkConstraintSetMxBatch
+	singles: hclStandardLinkConstraintSetMxSingle

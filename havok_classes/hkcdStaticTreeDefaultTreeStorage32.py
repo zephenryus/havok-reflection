@@ -1,0 +1,4 @@
+from .hkcdStaticTreeTreehkcdStaticTreeDynamicStorage32 import hkcdStaticTreeTreehkcdStaticTreeDynamicStorage32
+
+
+class hkcdStaticTreeDefaultTreeStorage32(hkcdStaticTreeTreehkcdStaticTreeDynamicStorage32):

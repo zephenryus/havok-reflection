@@ -1,0 +1,8 @@
+from .hclConstraintSet import hclConstraintSet
+from .hclCompressibleLinkConstraintSetMxBatch import hclCompressibleLinkConstraintSetMxBatch
+from .hclCompressibleLinkConstraintSetMxSingle import hclCompressibleLinkConstraintSetMxSingle
+
+
+class hclCompressibleLinkConstraintSetMx(hclConstraintSet):
+	batches: hclCompressibleLinkConstraintSetMxBatch
+	singles: hclCompressibleLinkConstraintSetMxSingle

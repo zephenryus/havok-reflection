@@ -1,0 +1,8 @@
+from .hclBoneSpaceSkinOperator import hclBoneSpaceSkinOperator
+from .hclBoneSpaceDeformerLocalBlockPNT import hclBoneSpaceDeformerLocalBlockPNT
+from .hclBoneSpaceDeformerLocalBlockUnpackedPNT import hclBoneSpaceDeformerLocalBlockUnpackedPNT
+
+
+class hclBoneSpaceSkinPNTOperator(hclBoneSpaceSkinOperator):
+	localPNTs: hclBoneSpaceDeformerLocalBlockPNT
+	localUnpackedPNTs: hclBoneSpaceDeformerLocalBlockUnpackedPNT

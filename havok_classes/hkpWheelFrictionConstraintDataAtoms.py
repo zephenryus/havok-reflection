@@ -1,0 +1,7 @@
+from .hkpSetLocalTransformsConstraintAtom import hkpSetLocalTransformsConstraintAtom
+from .hkpWheelFrictionConstraintAtom import hkpWheelFrictionConstraintAtom
+
+
+class hkpWheelFrictionConstraintDataAtoms(object):
+	transforms: hkpSetLocalTransformsConstraintAtom
+	friction: hkpWheelFrictionConstraintAtom

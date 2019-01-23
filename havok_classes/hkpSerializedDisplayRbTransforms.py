@@ -1,0 +1,6 @@
+from .hkReferencedObject import hkReferencedObject
+from .hkpSerializedDisplayRbTransformsDisplayTransformPair import hkpSerializedDisplayRbTransformsDisplayTransformPair
+
+
+class hkpSerializedDisplayRbTransforms(hkReferencedObject):
+	transforms: hkpSerializedDisplayRbTransformsDisplayTransformPair

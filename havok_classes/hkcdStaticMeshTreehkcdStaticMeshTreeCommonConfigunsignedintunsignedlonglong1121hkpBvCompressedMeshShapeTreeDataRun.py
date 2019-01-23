@@ -1,0 +1,8 @@
+from .hkcdStaticMeshTreeBase import hkcdStaticMeshTreeBase
+from .hkpBvCompressedMeshShapeTreeDataRun import hkpBvCompressedMeshShapeTreeDataRun
+
+
+class hkcdStaticMeshTreehkcdStaticMeshTreeCommonConfigunsignedintunsignedlonglong1121hkpBvCompressedMeshShapeTreeDataRun(hkcdStaticMeshTreeBase):
+	packedVertices: any
+	sharedVertices: any
+	primitiveDataRuns: hkpBvCompressedMeshShapeTreeDataRun

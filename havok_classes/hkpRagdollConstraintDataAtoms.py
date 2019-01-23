@@ -1,0 +1,19 @@
+from .hkpSetLocalTransformsConstraintAtom import hkpSetLocalTransformsConstraintAtom
+from .hkpSetupStabilizationAtom import hkpSetupStabilizationAtom
+from .hkpRagdollMotorConstraintAtom import hkpRagdollMotorConstraintAtom
+from .hkpAngFrictionConstraintAtom import hkpAngFrictionConstraintAtom
+from .hkpTwistLimitConstraintAtom import hkpTwistLimitConstraintAtom
+from .hkpConeLimitConstraintAtom import hkpConeLimitConstraintAtom
+from .hkpConeLimitConstraintAtom import hkpConeLimitConstraintAtom
+from .hkpBallSocketConstraintAtom import hkpBallSocketConstraintAtom
+
+
+class hkpRagdollConstraintDataAtoms(object):
+	transforms: hkpSetLocalTransformsConstraintAtom
+	setupStabilization: hkpSetupStabilizationAtom
+	ragdollMotors: hkpRagdollMotorConstraintAtom
+	angFriction: hkpAngFrictionConstraintAtom
+	twistLimit: hkpTwistLimitConstraintAtom
+	coneLimit: hkpConeLimitConstraintAtom
+	planesLimit: hkpConeLimitConstraintAtom
+	ballSocket: hkpBallSocketConstraintAtom
