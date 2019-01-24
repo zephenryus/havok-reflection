@@ -3,5 +3,5 @@ from .hkpBridgeAtoms import hkpBridgeAtoms
 
 
 class hkpMalleableConstraintData(hkpWrappedConstraintData):
-	atoms: hkpBridgeAtoms
-	strength: float
+    atoms: hkpBridgeAtoms
+    strength: float

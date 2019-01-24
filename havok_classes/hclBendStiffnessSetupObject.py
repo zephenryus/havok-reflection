@@ -5,8 +5,8 @@ from .hclVertexFloatInput import hclVertexFloatInput
 
 
 class hclBendStiffnessSetupObject(hclConstraintSetSetupObject):
-	name: any
-	simulationMesh: hclSimulationSetupMesh
-	vertexSelection: hclVertexSelectionInput
-	bendStiffness: hclVertexFloatInput
-	useRestPoseConfig: bool
+    name: str
+    simulationMesh: hclSimulationSetupMesh
+    vertexSelection: hclVertexSelectionInput
+    bendStiffness: hclVertexFloatInput
+    useRestPoseConfig: bool

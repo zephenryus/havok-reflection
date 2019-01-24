@@ -3,4 +3,4 @@ from .hkpFixedConstraintDataAtoms import hkpFixedConstraintDataAtoms
 
 
 class hkpFixedConstraintData(hkpConstraintData):
-	atoms: hkpFixedConstraintDataAtoms
+    atoms: hkpFixedConstraintDataAtoms

@@ -2,5 +2,5 @@ from .hkIntRealPair import hkIntRealPair
 
 
 class hkSethkIntRealPairhkContainerHeapAllocatorhkMapOperationshkIntRealPair(object):
-	elem: hkIntRealPair
-	numElems: int
+    elem: hkIntRealPair
+    numElems: int

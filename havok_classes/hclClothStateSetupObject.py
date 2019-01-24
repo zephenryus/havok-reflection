@@ -3,5 +3,5 @@ from .hclOperatorSetupObject import hclOperatorSetupObject
 
 
 class hclClothStateSetupObject(hkReferencedObject):
-	name: any
-	operatorSetupObjects: hclOperatorSetupObject
+    name: str
+    operatorSetupObjects: hclOperatorSetupObject

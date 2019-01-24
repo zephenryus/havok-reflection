@@ -4,5 +4,5 @@ from .hclVolumeConstraintApplyData import hclVolumeConstraintApplyData
 
 
 class hclVolumeConstraint(hclConstraintSet):
-	frameDatas: hclVolumeConstraintFrameData
-	applyDatas: hclVolumeConstraintApplyData
+    frameDatas: hclVolumeConstraintFrameData
+    applyDatas: hclVolumeConstraintApplyData

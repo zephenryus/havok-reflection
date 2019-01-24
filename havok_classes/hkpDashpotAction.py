@@ -1,8 +1,9 @@
 from .hkpBinaryAction import hkpBinaryAction
+from .common import vector4
 
 
 class hkpDashpotAction(hkpBinaryAction):
-	point: any
-	strength: float
-	damping: float
-	impulse: any
+    point: vector4
+    strength: float
+    damping: float
+    impulse: vector4

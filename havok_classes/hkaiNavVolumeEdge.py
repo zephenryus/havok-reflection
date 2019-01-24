@@ -1,5 +1,6 @@
+from .common import any
 
 
 class hkaiNavVolumeEdge(object):
-	flags: any
-	oppositeCell: int
+    flags: any
+    oppositeCell: int

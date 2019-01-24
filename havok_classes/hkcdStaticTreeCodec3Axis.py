@@ -1,4 +1,2 @@
-
-
 class hkcdStaticTreeCodec3Axis(object):
-	xyz: int
+    xyz: int

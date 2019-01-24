@@ -3,5 +3,5 @@ from .hkpMultiRayShapeRay import hkpMultiRayShapeRay
 
 
 class hkpMultiRayShape(hkpShape):
-	rays: hkpMultiRayShapeRay
-	rayPenetrationDistance: float
+    rays: hkpMultiRayShapeRay
+    rayPenetrationDistance: float

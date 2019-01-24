@@ -1,5 +1,3 @@
-
-
 class hclGatherSomeVerticesOperatorVertexPair(object):
-	indexInput: int
-	indexOutput: int
+    indexInput: int
+    indexOutput: int

@@ -1,8 +1,7 @@
 from .hkpBreakableMaterial import hkpBreakableMaterial
-from .hkpBreakableMaterial import hkpBreakableMaterial
 from .hkpBreakableMultiMaterialInverseMapping import hkpBreakableMultiMaterialInverseMapping
 
 
 class hkpBreakableMultiMaterial(hkpBreakableMaterial):
-	subMaterials: hkpBreakableMaterial
-	inverseMapping: hkpBreakableMultiMaterialInverseMapping
+    subMaterials: hkpBreakableMaterial
+    inverseMapping: hkpBreakableMultiMaterialInverseMapping

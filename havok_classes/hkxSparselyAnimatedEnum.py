@@ -3,4 +3,4 @@ from .hkxEnum import hkxEnum
 
 
 class hkxSparselyAnimatedEnum(hkxSparselyAnimatedInt):
-	enum: hkxEnum
+    enum: hkxEnum

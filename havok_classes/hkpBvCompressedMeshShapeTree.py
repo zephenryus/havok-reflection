@@ -2,3 +2,4 @@ from .hkcdStaticMeshTreehkcdStaticMeshTreeCommonConfigunsignedintunsignedlonglon
 
 
 class hkpBvCompressedMeshShapeTree(hkcdStaticMeshTreehkcdStaticMeshTreeCommonConfigunsignedintunsignedlonglong1121hkpBvCompressedMeshShapeTreeDataRun):
+    pass

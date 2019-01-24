@@ -1,5 +1,3 @@
-
-
 class hclSimpleMeshBoneDeformOperatorTriangleBonePair(object):
-	boneOffset: int
-	triangleOffset: int
+    boneOffset: int
+    triangleOffset: int

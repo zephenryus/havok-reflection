@@ -1,5 +1,3 @@
-
-
 class hkaSplineCompressedAnimationAnimationCompressionParams(object):
-	maxFramesPerBlock: int
-	enableSampleSingleTracks: bool
+    maxFramesPerBlock: int
+    enableSampleSingleTracks: bool

@@ -3,5 +3,5 @@ from .hkMonitorStreamColorTableColorPair import hkMonitorStreamColorTableColorPa
 
 
 class hkMonitorStreamColorTable(hkReferencedObject):
-	colorPairs: hkMonitorStreamColorTableColorPair
-	defaultColor: int
+    colorPairs: hkMonitorStreamColorTableColorPair
+    defaultColor: int

@@ -3,9 +3,9 @@ from .hclTransitionConstraintSetPerParticle import hclTransitionConstraintSetPer
 
 
 class hclTransitionConstraintSet(hclConstraintSet):
-	perParticleData: hclTransitionConstraintSetPerParticle
-	toAnimPeriod: float
-	toAnimPlusDelayPeriod: float
-	toSimPeriod: float
-	toSimPlusDelayPeriod: float
-	referenceMeshBufferIdx: int
+    perParticleData: hclTransitionConstraintSetPerParticle
+    toAnimPeriod: float
+    toAnimPlusDelayPeriod: float
+    toSimPeriod: float
+    toSimPlusDelayPeriod: float
+    referenceMeshBufferIdx: int

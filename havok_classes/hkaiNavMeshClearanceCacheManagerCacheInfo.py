@@ -1,4 +1,2 @@
-
-
 class hkaiNavMeshClearanceCacheManagerCacheInfo(object):
-	clearanceCeiling: float
+    clearanceCeiling: float

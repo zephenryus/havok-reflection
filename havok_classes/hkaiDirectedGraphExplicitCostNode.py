@@ -1,5 +1,3 @@
-
-
 class hkaiDirectedGraphExplicitCostNode(object):
-	startEdgeIndex: int
-	numEdges: int
+    startEdgeIndex: int
+    numEdges: int

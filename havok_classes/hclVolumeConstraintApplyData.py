@@ -1,6 +1,7 @@
+from .common import vector4
 
 
 class hclVolumeConstraintApplyData(object):
-	frameVector: any
-	particleIndex: int
-	stiffness: float
+    frameVector: vector4
+    particleIndex: int
+    stiffness: float

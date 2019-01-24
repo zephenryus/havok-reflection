@@ -1,7 +1,8 @@
+from .common import vector4
 
 
 class hclObjectSpaceDeformerLocalBlockUnpackedPNTB(object):
-	localPosition: any
-	localNormal: any
-	localTangent: any
-	localBiTangent: any
+    localPosition: vector4
+    localNormal: vector4
+    localTangent: vector4
+    localBiTangent: vector4

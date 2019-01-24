@@ -4,7 +4,7 @@ from .hkpBreakableShape import hkpBreakableShape
 
 
 class hkpBreakableBody(hkReferencedObject):
-	controller: hkpBreakableBodyController
-	breakableShape: hkpBreakableShape
-	bodyTypeAndFlags: int
-	constraintStrength: int
+    controller: hkpBreakableBodyController
+    breakableShape: hkpBreakableShape
+    bodyTypeAndFlags: int
+    constraintStrength: int

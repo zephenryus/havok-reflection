@@ -2,5 +2,5 @@ from .hkaParameterizedReferenceFrame import hkaParameterizedReferenceFrame
 
 
 class hkaAngularReferenceFrame(hkaParameterizedReferenceFrame):
-	topAngle: float
-	radius: float
+    topAngle: float
+    radius: float

@@ -1,5 +1,3 @@
-
-
 class hkIntRealPair(object):
-	key: int
-	value: float
+    key: int
+    value: float

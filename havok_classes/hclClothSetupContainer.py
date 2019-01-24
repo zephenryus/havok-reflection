@@ -5,6 +5,6 @@ from .hclNamedTransformSetSetupObject import hclNamedTransformSetSetupObject
 
 
 class hclClothSetupContainer(hkReferencedObject):
-	clothSetupDatas: hclClothSetupObject
-	namedSetupMeshWrappers: hclNamedSetupMesh
-	namedTransformSetWrappers: hclNamedTransformSetSetupObject
+    clothSetupDatas: hclClothSetupObject
+    namedSetupMeshWrappers: hclNamedSetupMesh
+    namedTransformSetWrappers: hclNamedTransformSetSetupObject

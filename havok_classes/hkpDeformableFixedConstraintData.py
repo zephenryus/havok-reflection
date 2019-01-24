@@ -3,4 +3,4 @@ from .hkpDeformableFixedConstraintDataAtoms import hkpDeformableFixedConstraintD
 
 
 class hkpDeformableFixedConstraintData(hkpConstraintData):
-	atoms: hkpDeformableFixedConstraintDataAtoms
+    atoms: hkpDeformableFixedConstraintDataAtoms

@@ -4,5 +4,5 @@ from .hclObjectSpaceDeformerLocalBlockUnpackedPNT import hclObjectSpaceDeformerL
 
 
 class hclObjectSpaceMeshMeshDeformPNTOperator(hclObjectSpaceMeshMeshDeformOperator):
-	localPNTs: hclObjectSpaceDeformerLocalBlockPNT
-	localUnpackedPNTs: hclObjectSpaceDeformerLocalBlockUnpackedPNT
+    localPNTs: hclObjectSpaceDeformerLocalBlockPNT
+    localUnpackedPNTs: hclObjectSpaceDeformerLocalBlockUnpackedPNT

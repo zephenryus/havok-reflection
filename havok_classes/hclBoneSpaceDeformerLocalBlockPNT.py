@@ -1,6 +1,7 @@
+from .common import vector4
 
 
 class hclBoneSpaceDeformerLocalBlockPNT(object):
-	localPosition: any
-	localNormal: int
-	localTangent: int
+    localPosition: vector4
+    localNormal: int
+    localTangent: int

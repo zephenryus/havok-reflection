@@ -1,5 +1,3 @@
-
-
 class hkpBreakableMultiMaterialInverseMappingDescriptor(object):
-	offset: int
-	numKeys: int
+    offset: int
+    numKeys: int

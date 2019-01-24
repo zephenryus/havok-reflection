@@ -2,3 +2,4 @@ from .hkcdDynamicTreeCodecRawunsignedint import hkcdDynamicTreeCodecRawunsignedi
 
 
 class hkcdDynamicTreeCodecRawUint(hkcdDynamicTreeCodecRawunsignedint):
+    pass

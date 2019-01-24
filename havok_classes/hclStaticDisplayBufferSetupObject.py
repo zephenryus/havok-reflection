@@ -3,5 +3,5 @@ from .hclSetupMesh import hclSetupMesh
 
 
 class hclStaticDisplayBufferSetupObject(hclBufferSetupObject):
-	setupMesh: hclSetupMesh
-	name: any
+    setupMesh: hclSetupMesh
+    name: str

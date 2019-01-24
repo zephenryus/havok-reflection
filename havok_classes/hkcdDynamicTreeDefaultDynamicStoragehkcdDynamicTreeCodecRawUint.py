@@ -2,3 +2,4 @@ from .hkcdDynamicTreeDynamicStorage0hkcdDynamicTreeAnisotropicMetrichkcdDynamicT
 
 
 class hkcdDynamicTreeDefaultDynamicStoragehkcdDynamicTreeCodecRawUint(hkcdDynamicTreeDynamicStorage0hkcdDynamicTreeAnisotropicMetrichkcdDynamicTreeCodecRawUint):
+    pass

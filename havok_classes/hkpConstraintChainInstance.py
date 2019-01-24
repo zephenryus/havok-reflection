@@ -4,6 +4,6 @@ from .hkpConstraintChainInstanceAction import hkpConstraintChainInstanceAction
 
 
 class hkpConstraintChainInstance(hkpConstraintInstance):
-	chainedEntities: hkpEntity
-	action: hkpConstraintChainInstanceAction
-	chainConnectedness: int
+    chainedEntities: hkpEntity
+    action: hkpConstraintChainInstanceAction
+    chainConnectedness: int

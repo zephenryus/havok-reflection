@@ -4,5 +4,5 @@ from .hclClothData import hclClothData
 
 
 class hclClothContainer(hkReferencedObject):
-	collidables: hclCollidable
-	clothDatas: hclClothData
+    collidables: hclCollidable
+    clothDatas: hclClothData

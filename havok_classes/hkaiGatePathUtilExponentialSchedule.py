@@ -1,4 +1,2 @@
-
-
 class hkaiGatePathUtilExponentialSchedule(object):
-	round: int
+    round: int

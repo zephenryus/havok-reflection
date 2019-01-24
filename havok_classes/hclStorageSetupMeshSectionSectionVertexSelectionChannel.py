@@ -1,5 +1,6 @@
 from .hclStorageSetupMeshSectionSectionVertexChannel import hclStorageSetupMeshSectionSectionVertexChannel
+from .common import any
 
 
 class hclStorageSetupMeshSectionSectionVertexSelectionChannel(hclStorageSetupMeshSectionSectionVertexChannel):
-	vertexIndices: any
+    vertexIndices: any

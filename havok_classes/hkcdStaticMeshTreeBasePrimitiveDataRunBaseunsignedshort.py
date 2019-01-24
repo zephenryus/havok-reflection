@@ -1,6 +1,4 @@
-
-
 class hkcdStaticMeshTreeBasePrimitiveDataRunBaseunsignedshort(object):
-	value: int
-	index: int
-	count: int
+    value: int
+    index: int
+    count: int

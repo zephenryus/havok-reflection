@@ -2,5 +2,5 @@ from .hkpShapeKeyTableBlock import hkpShapeKeyTableBlock
 
 
 class hkpShapeKeyTable(object):
-	lists: hkpShapeKeyTableBlock
-	occupancyBitField: int
+    lists: hkpShapeKeyTableBlock
+    occupancyBitField: int

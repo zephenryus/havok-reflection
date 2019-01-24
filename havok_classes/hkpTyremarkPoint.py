@@ -1,5 +1,6 @@
+from .common import vector4
 
 
 class hkpTyremarkPoint(object):
-	pointLeft: any
-	pointRight: any
+    pointLeft: vector4
+    pointRight: vector4

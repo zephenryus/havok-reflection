@@ -1,7 +1,5 @@
-
-
 class hkpGenericConstraintDataSchemeConstraintInfo(object):
-	maxSizeOfSchema: int
-	sizeOfSchemas: int
-	numSolverResults: int
-	numSolverElemTemps: int
+    maxSizeOfSchema: int
+    sizeOfSchemas: int
+    numSolverResults: int
+    numSolverElemTemps: int

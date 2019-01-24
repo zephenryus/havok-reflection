@@ -1,5 +1,3 @@
-
-
 class hkxEnumItem(object):
-	value: int
-	name: any
+    value: int
+    name: str

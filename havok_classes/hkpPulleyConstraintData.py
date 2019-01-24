@@ -3,4 +3,4 @@ from .hkpPulleyConstraintDataAtoms import hkpPulleyConstraintDataAtoms
 
 
 class hkpPulleyConstraintData(hkpConstraintData):
-	atoms: hkpPulleyConstraintDataAtoms
+    atoms: hkpPulleyConstraintDataAtoms

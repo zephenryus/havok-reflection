@@ -4,5 +4,5 @@ from .hkcdDynamicAabbTree import hkcdDynamicAabbTree
 
 
 class hkaiDynamicNavVolumeMediator(hkaiNavVolumeMediator):
-	collection: hkaiStreamingCollection
-	aabbTree: hkcdDynamicAabbTree
+    collection: hkaiStreamingCollection
+    aabbTree: hkcdDynamicAabbTree

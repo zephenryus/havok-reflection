@@ -6,7 +6,7 @@ from .hclVolumeConstraintMxApplySingleData import hclVolumeConstraintMxApplySing
 
 
 class hclVolumeConstraintMx(hclConstraintSet):
-	frameBatchDatas: hclVolumeConstraintMxFrameBatchData
-	frameSingleDatas: hclVolumeConstraintMxFrameSingleData
-	applyBatchDatas: hclVolumeConstraintMxApplyBatchData
-	applySingleDatas: hclVolumeConstraintMxApplySingleData
+    frameBatchDatas: hclVolumeConstraintMxFrameBatchData
+    frameSingleDatas: hclVolumeConstraintMxFrameSingleData
+    applyBatchDatas: hclVolumeConstraintMxApplyBatchData
+    applySingleDatas: hclVolumeConstraintMxApplySingleData

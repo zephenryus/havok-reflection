@@ -3,5 +3,5 @@ from .hkpAngConstraintAtom import hkpAngConstraintAtom
 
 
 class hkpRotationalConstraintDataAtoms(object):
-	rotations: hkpSetLocalRotationsConstraintAtom
-	ang: hkpAngConstraintAtom
+    rotations: hkpSetLocalRotationsConstraintAtom
+    ang: hkpAngConstraintAtom

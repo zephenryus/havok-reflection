@@ -1,5 +1,6 @@
+from .common import vector4
 
 
 class hkContactPoint(object):
-	position: any
-	separatingNormal: any
+    position: vector4
+    separatingNormal: vector4

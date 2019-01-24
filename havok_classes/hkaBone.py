@@ -1,5 +1,3 @@
-
-
 class hkaBone(object):
-	name: any
-	lockTranslation: bool
+    name: str
+    lockTranslation: bool

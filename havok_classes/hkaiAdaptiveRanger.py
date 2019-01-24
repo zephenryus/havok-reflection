@@ -1,4 +1,2 @@
-
-
 class hkaiAdaptiveRanger(object):
-	curRange: float
+    curRange: float

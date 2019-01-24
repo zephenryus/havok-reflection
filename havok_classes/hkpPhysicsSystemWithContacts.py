@@ -3,4 +3,4 @@ from .hkpSerializedAgentNnEntry import hkpSerializedAgentNnEntry
 
 
 class hkpPhysicsSystemWithContacts(hkpPhysicsSystem):
-	contacts: hkpSerializedAgentNnEntry
+    contacts: hkpSerializedAgentNnEntry

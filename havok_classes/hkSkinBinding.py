@@ -1,8 +1,8 @@
 from .hkMeshShape import hkMeshShape
-from .hkMeshShape import hkMeshShape
+from .common import any
 
 
 class hkSkinBinding(hkMeshShape):
-	skin: hkMeshShape
-	worldFromBoneTransforms: any
-	boneNames: any
+    skin: hkMeshShape
+    worldFromBoneTransforms: any
+    boneNames: any

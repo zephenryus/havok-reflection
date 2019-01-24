@@ -1,7 +1,5 @@
-
-
 class ShapeInfo(object):
-	ActorInfoIndex: int
-	InstanceId: int
-	BodyGroup: int
-	BodyLayerType: int
+    ActorInfoIndex: int
+    InstanceId: int
+    BodyGroup: int
+    BodyLayerType: int

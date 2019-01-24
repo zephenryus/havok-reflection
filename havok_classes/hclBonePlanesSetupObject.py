@@ -7,10 +7,10 @@ from .hclBonePlanesSetupObjectPerParticleAngle import hclBonePlanesSetupObjectPe
 
 
 class hclBonePlanesSetupObject(hclConstraintSetSetupObject):
-	name: any
-	simulationMesh: hclSimulationSetupMesh
-	transformSetSetup: hclTransformSetSetupObject
-	perParticlePlanes: hclBonePlanesSetupObjectPerParticlePlane
-	globalPlanes: hclBonePlanesSetupObjectGlobalPlane
-	perParticleAngle: hclBonePlanesSetupObjectPerParticleAngle
-	angleSpecifiedInDegrees: bool
+    name: str
+    simulationMesh: hclSimulationSetupMesh
+    transformSetSetup: hclTransformSetSetupObject
+    perParticlePlanes: hclBonePlanesSetupObjectPerParticlePlane
+    globalPlanes: hclBonePlanesSetupObjectGlobalPlane
+    perParticleAngle: hclBonePlanesSetupObjectPerParticleAngle
+    angleSpecifiedInDegrees: bool

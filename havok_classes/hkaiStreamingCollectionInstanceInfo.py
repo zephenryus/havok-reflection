@@ -6,9 +6,9 @@ from .hkaiNavVolumeMediator import hkaiNavVolumeMediator
 
 
 class hkaiStreamingCollectionInstanceInfo(object):
-	instancePtr: hkaiNavMeshInstance
-	volumeInstancePtr: hkaiNavVolumeInstance
-	clusterGraphInstance: hkaiDirectedGraphInstance
-	mediator: hkaiNavMeshQueryMediator
-	volumeMediator: hkaiNavVolumeMediator
-	treeNode: int
+    instancePtr: hkaiNavMeshInstance
+    volumeInstancePtr: hkaiNavVolumeInstance
+    clusterGraphInstance: hkaiDirectedGraphInstance
+    mediator: hkaiNavMeshQueryMediator
+    volumeMediator: hkaiNavVolumeMediator
+    treeNode: int

@@ -3,4 +3,4 @@ from .hkpEntity import hkpEntity
 
 
 class hkpDisableEntityCollisionFilter(hkpCollisionFilter):
-	disabledEntities: hkpEntity
+    disabledEntities: hkpEntity

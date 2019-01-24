@@ -3,5 +3,5 @@ from .hclBonePlanesConstraintSetBonePlane import hclBonePlanesConstraintSetBoneP
 
 
 class hclBonePlanesConstraintSet(hclConstraintSet):
-	bonePlanes: hclBonePlanesConstraintSetBonePlane
-	transformSetIndex: int
+    bonePlanes: hclBonePlanesConstraintSetBonePlane
+    transformSetIndex: int

@@ -1,5 +1,3 @@
-
-
 class hkMemoryResourceHandleExternalLink(object):
-	memberName: any
-	externalId: any
+    memberName: str
+    externalId: str

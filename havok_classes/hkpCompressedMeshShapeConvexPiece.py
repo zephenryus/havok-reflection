@@ -1,7 +1,8 @@
+from .common import vector4, any
 
 
 class hkpCompressedMeshShapeConvexPiece(object):
-	offset: any
-	vertices: any
-	reference: int
-	transformIndex: int
+    offset: vector4
+    vertices: any
+    reference: int
+    transformIndex: int

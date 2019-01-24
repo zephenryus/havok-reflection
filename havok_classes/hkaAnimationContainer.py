@@ -7,8 +7,8 @@ from .hkaMeshBinding import hkaMeshBinding
 
 
 class hkaAnimationContainer(hkReferencedObject):
-	skeletons: hkaSkeleton
-	animations: hkaAnimation
-	bindings: hkaAnimationBinding
-	attachments: hkaBoneAttachment
-	skins: hkaMeshBinding
+    skeletons: hkaSkeleton
+    animations: hkaAnimation
+    bindings: hkaAnimationBinding
+    attachments: hkaBoneAttachment
+    skins: hkaMeshBinding

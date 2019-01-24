@@ -1,5 +1,3 @@
-
-
 class hkaiNavMeshGenerationSettingsWallClimbingSettings(object):
-	enableWallClimbing: bool
-	excludeWalkableFaces: bool
+    enableWallClimbing: bool
+    excludeWalkableFaces: bool

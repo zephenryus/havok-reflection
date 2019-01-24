@@ -1,6 +1,4 @@
-
-
 class hclToolNamedObjectReference(object):
-	pluginName: any
-	objectName: any
-	hash: int
+    pluginName: str
+    objectName: str
+    hash: int

@@ -1,5 +1,6 @@
+from .common import vector4
 
 
 class hkaiGatePathTraversalState(object):
-	curPos: any
-	curCellIdx: int
+    curPos: vector4
+    curCellIdx: int

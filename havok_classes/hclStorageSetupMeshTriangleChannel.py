@@ -1,5 +1,6 @@
+from .enums import TriangleChannelType
 
 
 class hclStorageSetupMeshTriangleChannel(object):
-	name: any
-	type: any
+    name: str
+    type: TriangleChannelType

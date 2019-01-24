@@ -1,4 +1,2 @@
-
-
 class hkcdStaticMeshTreeBaseSectionSharedVertices(object):
-	data: int
+    data: int

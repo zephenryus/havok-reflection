@@ -3,4 +3,4 @@ from .hclStretchLinkConstraintSetLink import hclStretchLinkConstraintSetLink
 
 
 class hclStretchLinkConstraintSet(hclConstraintSet):
-	links: hclStretchLinkConstraintSetLink
+    links: hclStretchLinkConstraintSetLink

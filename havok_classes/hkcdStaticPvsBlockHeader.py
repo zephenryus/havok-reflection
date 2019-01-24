@@ -1,5 +1,3 @@
-
-
 class hkcdStaticPvsBlockHeader(object):
-	offset: int
-	length: int
+    offset: int
+    length: int

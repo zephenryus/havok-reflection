@@ -1,5 +1,6 @@
+from .common import vector4
 
 
 class hkAabb(object):
-	min: any
-	max: any
+    min: vector4
+    max: vector4

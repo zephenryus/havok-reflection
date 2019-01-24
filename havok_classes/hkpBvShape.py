@@ -1,8 +1,7 @@
 from .hkpShape import hkpShape
-from .hkpShape import hkpShape
 from .hkpSingleShapeContainer import hkpSingleShapeContainer
 
 
 class hkpBvShape(hkpShape):
-	boundingVolumeShape: hkpShape
-	childShape: hkpSingleShapeContainer
+    boundingVolumeShape: hkpShape
+    childShape: hkpSingleShapeContainer

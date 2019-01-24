@@ -1,6 +1,7 @@
+from .enums import DataUsage
 
 
 class hkxVertexAnimationUsageMap(object):
-	use: any
-	useIndexOrig: int
-	useIndexLocal: int
+    use: DataUsage
+    useIndexOrig: int
+    useIndexLocal: int

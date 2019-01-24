@@ -1,6 +1,4 @@
-
-
 class hclObjectSpaceDeformerThreeBlendEntryBlock(object):
-	vertexIndices: int
-	boneIndices: int
-	boneWeights: int
+    vertexIndices: int
+    boneIndices: int
+    boneWeights: int

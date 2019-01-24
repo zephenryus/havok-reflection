@@ -3,4 +3,4 @@ from .hkpSerializedDisplayRbTransformsDisplayTransformPair import hkpSerializedD
 
 
 class hkpSerializedDisplayRbTransforms(hkReferencedObject):
-	transforms: hkpSerializedDisplayRbTransformsDisplayTransformPair
+    transforms: hkpSerializedDisplayRbTransformsDisplayTransformPair

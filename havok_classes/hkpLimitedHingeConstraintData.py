@@ -3,4 +3,4 @@ from .hkpLimitedHingeConstraintDataAtoms import hkpLimitedHingeConstraintDataAto
 
 
 class hkpLimitedHingeConstraintData(hkpConstraintData):
-	atoms: hkpLimitedHingeConstraintDataAtoms
+    atoms: hkpLimitedHingeConstraintDataAtoms

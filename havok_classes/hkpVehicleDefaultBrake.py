@@ -3,5 +3,5 @@ from .hkpVehicleDefaultBrakeWheelBrakingProperties import hkpVehicleDefaultBrake
 
 
 class hkpVehicleDefaultBrake(hkpVehicleBrake):
-	wheelBrakingProperties: hkpVehicleDefaultBrakeWheelBrakingProperties
-	wheelsMinTimeToBlock: float
+    wheelBrakingProperties: hkpVehicleDefaultBrakeWheelBrakingProperties
+    wheelsMinTimeToBlock: float

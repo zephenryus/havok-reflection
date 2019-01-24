@@ -1,5 +1,3 @@
-
-
 class hclSkinOperatorBoneInfluence(object):
-	boneIndex: int
-	weight: int
+    boneIndex: int
+    weight: int

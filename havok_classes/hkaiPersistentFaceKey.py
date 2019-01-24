@@ -1,5 +1,3 @@
-
-
 class hkaiPersistentFaceKey(object):
-	key: int
-	offset: int
+    key: int
+    offset: int

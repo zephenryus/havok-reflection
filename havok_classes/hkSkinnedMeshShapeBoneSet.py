@@ -1,5 +1,3 @@
-
-
 class hkSkinnedMeshShapeBoneSet(object):
-	boneBufferOffset: int
-	numBones: int
+    boneBufferOffset: int
+    numBones: int

@@ -1,5 +1,6 @@
+from .common import any
 
 
 class hkaiSearchParametersSearchBuffers(object):
-	openSetBuffer: any
-	searchStateBuffer: any
+    openSetBuffer: any
+    searchStateBuffer: any

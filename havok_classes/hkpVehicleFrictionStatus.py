@@ -2,4 +2,4 @@ from .hkpVehicleFrictionStatusAxisStatus import hkpVehicleFrictionStatusAxisStat
 
 
 class hkpVehicleFrictionStatus(object):
-	axis: hkpVehicleFrictionStatusAxisStatus
+    axis: hkpVehicleFrictionStatusAxisStatus

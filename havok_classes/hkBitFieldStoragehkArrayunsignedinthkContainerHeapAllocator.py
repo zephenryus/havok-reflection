@@ -1,5 +1,6 @@
+from .common import any
 
 
 class hkBitFieldStoragehkArrayunsignedinthkContainerHeapAllocator(object):
-	words: any
-	numBits: int
+    words: any
+    numBits: int

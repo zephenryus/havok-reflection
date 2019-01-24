@@ -3,4 +3,4 @@ from .hkpCogWheelConstraintDataAtoms import hkpCogWheelConstraintDataAtoms
 
 
 class hkpCogWheelConstraintData(hkpConstraintData):
-	atoms: hkpCogWheelConstraintDataAtoms
+    atoms: hkpCogWheelConstraintDataAtoms

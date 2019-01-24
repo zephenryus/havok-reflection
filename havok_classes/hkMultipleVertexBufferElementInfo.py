@@ -1,5 +1,3 @@
-
-
 class hkMultipleVertexBufferElementInfo(object):
-	vertexBufferIndex: int
-	elementIndex: int
+    vertexBufferIndex: int
+    elementIndex: int

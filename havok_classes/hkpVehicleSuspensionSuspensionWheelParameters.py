@@ -1,6 +1,7 @@
+from .common import vector4
 
 
 class hkpVehicleSuspensionSuspensionWheelParameters(object):
-	hardpointChassisSpace: any
-	directionChassisSpace: any
-	length: float
+    hardpointChassisSpace: vector4
+    directionChassisSpace: vector4
+    length: float

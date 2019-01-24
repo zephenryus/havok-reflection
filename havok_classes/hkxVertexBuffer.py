@@ -4,5 +4,5 @@ from .hkxVertexDescription import hkxVertexDescription
 
 
 class hkxVertexBuffer(hkReferencedObject):
-	data: hkxVertexBufferVertexData
-	desc: hkxVertexDescription
+    data: hkxVertexBufferVertexData
+    desc: hkxVertexDescription

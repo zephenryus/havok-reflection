@@ -1,4 +1,2 @@
-
-
 class hkDataObjectTypeAttribute(object):
-	typeName: any
+    typeName: str

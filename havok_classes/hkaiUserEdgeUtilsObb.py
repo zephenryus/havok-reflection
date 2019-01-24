@@ -1,5 +1,6 @@
+from .common import any, vector4
 
 
 class hkaiUserEdgeUtilsObb(object):
-	transform: any
-	halfExtents: any
+    transform: any
+    halfExtents: vector4

@@ -1,0 +1,2340 @@
+from enum import Enum
+
+
+class Platform(Enum):
+    # enum id: 39007168
+
+    HCL_PLATFORM_INVALID = 0
+    HCL_PLATFORM_WIN32 = 1
+    HCL_PLATFORM_X64 = 2
+    HCL_PLATFORM_MACPPC = 4
+    HCL_PLATFORM_IOS = 8
+    HCL_PLATFORM_MAC386 = 16
+    HCL_PLATFORM_PS3 = 32
+    HCL_PLATFORM_XBOX360 = 64
+    HCL_PLATFORM_WII = 128
+    HCL_PLATFORM_LRB = 256
+    HCL_PLATFORM_LINUX = 512
+    HCL_PLATFORM_PSVITA = 1024
+    HCL_PLATFORM_ANDROID = 2048
+    HCL_PLATFORM_CTR = 4096
+    HCL_PLATFORM_WIIU = 8192
+    HCL_PLATFORM_PS4 = 16384
+    HCL_PLATFORM_XBOXONE = 32768
+    HCL_PLATFORM_MAC64 = 65536
+    HCL_PLATFORM_NX = 131072
+
+
+class SlotFlags(Enum):
+    # enum id: 39009048
+
+    SF_NO_ALIGNED_START = 0
+    SF_16BYTE_ALIGNED_START = 1
+    SF_64BYTE_ALIGNED_START = 3
+
+
+class TriangleFormat(Enum):
+    # enum id: 39009088
+
+    TF_THREE_INT32S = 0
+    TF_THREE_INT16S = 1
+    TF_OTHER = 2
+
+
+class Component(Enum):
+    # enum id: 39013536
+
+    COMPONENT_POSITION = 0
+    COMPONENT_NORMAL = 1
+    COMPONENT_TANGENT = 2
+    COMPONENT_BITANGENT = 3
+
+
+class InternalFlags(Enum):
+    # enum id: 39013576
+
+    USAGE_NONE = 0
+    USAGE_READ = 1
+    USAGE_WRITE = 2
+    USAGE_FULL_WRITE = 4
+    USAGE_READ_BEFORE_WRITE = 8
+
+
+class MaxConstraintSetSize(Enum):
+    # enum id: 39014608
+
+    MAX_CONSTRAINT_SET_SIZE = 128
+
+
+class Component(Enum):
+    # enum id: 39014872
+
+    COMPONENT_TRANSFORM = 0
+    COMPONENT_INVTRANSPOSE = 1
+    NUM_COMPONENTS = 2
+
+
+class InternalFlags(Enum):
+    # enum id: 39014912
+
+    USAGE_NONE = 0
+    USAGE_READ = 1
+    USAGE_WRITE = 2
+    USAGE_FULL_WRITE = 4
+    USAGE_READ_BEFORE_WRITE = 8
+
+
+class VectorConversion(Enum):
+    # enum id: 39015664
+
+    VC_FLOAT4 = 0
+    VC_FLOAT3 = 1
+    VC_BYTE4 = 2
+    VC_SHORT3 = 3
+    VC_HFLOAT3 = 4
+    VC_CUSTOM_A = 20
+    VC_CUSTOM_B = 21
+    VC_CUSTOM_C = 22
+    VC_CUSTOM_D = 23
+    VC_CUSTOM_E = 24
+    VC_NONE = 250
+
+
+class VertexChannelType(Enum):
+    # enum id: 39020408
+
+    HCL_VERTEX_CHANNEL_INVALID = 0
+    HCL_VERTEX_CHANNEL_FLOAT = 1
+    HCL_VERTEX_CHANNEL_DISTANCE = 2
+    HCL_VERTEX_CHANNEL_ANGLE = 3
+    HCL_VERTEX_CHANNEL_SELECTION = 4
+
+
+class TriangleChannelType(Enum):
+    # enum id: 39020448
+
+    HCL_TRIANGLE_CHANNEL_INVALID = 0
+    HCL_TRIANGLE_CHANNEL_SELECTION = 1
+
+
+class EdgeChannelType(Enum):
+    # enum id: 39020488
+
+    HCL_EDGE_CHANNEL_INVALID = 0
+    HCL_EDGE_CHANNEL_SELECTION = 1
+
+
+class VertexFloatType(Enum):
+    # enum id: 39023088
+
+    VERTEX_FLOAT_CONSTANT = 0
+    VERTEX_FLOAT_CHANNEL = 1
+
+
+class VertexSelectionType(Enum):
+    # enum id: 39023296
+
+    VERTEX_SELECTION_ALL = 0
+    VERTEX_SELECTION_NONE = 1
+    VERTEX_SELECTION_CHANNEL = 2
+    VERTEX_SELECTION_INVERSE_CHANNEL = 3
+
+
+class ConstraintSource(Enum):
+    # enum id: 39024720
+
+    NO_CONSTRAINTS = 0
+    REFERENCE_POSE = 1
+    CURRENT_POSE = 2
+
+
+class MappingType(Enum):
+    # enum id: 39025760
+
+    HK_RAGDOLL_MAPPING = 0
+    HK_RETARGETING_MAPPING = 1
+
+
+class BlendHint(Enum):
+    # enum id: 39026280
+
+    NORMAL = 0
+    ADDITIVE_DEPRECATED = 1
+    ADDITIVE = 2
+
+
+class AnimationType(Enum):
+    # enum id: 39026432
+
+    HK_UNKNOWN_ANIMATION = 0
+    HK_INTERLEAVED_ANIMATION = 1
+    HK_MIRRORED_ANIMATION = 2
+    HK_SPLINE_COMPRESSED_ANIMATION = 3
+    HK_QUANTIZED_COMPRESSED_ANIMATION = 4
+    HK_PREDICTIVE_COMPRESSED_ANIMATION = 5
+    HK_REFERENCE_POSE_ANIMATION = 6
+
+
+class hkaReferenceFrameTypeEnum(Enum):
+    # enum id: 39026928
+
+    REFERENCE_FRAME_UNKNOWN = 0
+    REFERENCE_FRAME_DEFAULT = 1
+    REFERENCE_FRAME_PARAMETRIC = 2
+
+
+class FaceFlagBits(Enum):
+    # enum id: 39029712
+
+    FACE_HIDDEN = 1
+    FACE_CUT = 2
+    FACE_STREAMING = 4
+
+
+class NavMeshFlagBits(Enum):
+    # enum id: 39029752
+
+    MESH_NONE = 0
+    MESH_CLIMBING = 1
+
+
+class Constants(Enum):
+    # enum id: 39029792
+
+    INVALID_REGION_INDEX = 4294967295
+    INVALID_FACE_INDEX = 4294967295
+    INVALID_EDGE_INDEX = 4294967295
+    INVALID_VERTEX_INDEX = 4294967295
+    MAX_DATA_PER_EDGE = 4
+    MAX_DATA_PER_FACE = 4
+
+
+class EdgeFlagBits(Enum):
+    # enum id: 39029832
+
+    EDGE_SILHOUETTE = 1
+    EDGE_RETRIANGULATED = 2
+    EDGE_ORIGINAL = 4
+    OPPOSITE_EDGE_UNLOADED_UNUSED = 8
+    EDGE_USER = 16
+    EDGE_BLOCKED = 32
+    EDGE_EXTERNAL_OPPOSITE = 64
+
+
+class Constants(Enum):
+    # enum id: 39033552
+
+    INVALID_NODE_INDEX = 4294967295
+    INVALID_EDGE_INDEX = 4294967295
+    INVALID_VERTEX_INDEX = 4294967295
+
+
+class EdgeBits(Enum):
+    # enum id: 39033592
+
+    EDGE_IS_USER = 2
+    EDGE_EXTERNAL_OPPOSITE = 64
+
+
+class FlagBits(Enum):
+    # enum id: 39035712
+
+    CARVER_ERODE_EDGES = 1
+
+
+class SplitAndGenerateOptions(Enum):
+    # enum id: 39036184
+
+    SIMPLIFY_INDIVIDUALLY = 0
+    SIMPLIFY_INDIVIDUALLY_BORDER_PRESERVE = 1
+    SIMPLIFY_ALL_AT_ONCE = 2
+    SIMPLIFY_TWO_PASS = 3
+
+
+class SplitMethod(Enum):
+    # enum id: 39036224
+
+    SPLIT_UNIFORM = 0
+    SPLIT_ADAPTIVE = 1
+
+
+class GeometryType(Enum):
+    # enum id: 39041712
+
+    GEOMETRY_STATIC = 0
+    GEOMETRY_DYNAMIC_VERTICES = 1
+
+
+class SpuCollisionCallbackEventFilter(Enum):
+    # enum id: 39060856
+
+    SPU_SEND_NONE = 0
+    SPU_SEND_CONTACT_POINT_ADDED = 1
+    SPU_SEND_CONTACT_POINT_PROCESS = 2
+    SPU_SEND_CONTACT_POINT_REMOVED = 4
+    SPU_SEND_CONTACT_POINT_ADDED_OR_PROCESS = 3
+
+
+class ConstraintPriority(Enum):
+    # enum id: 39062264
+
+    PRIORITY_INVALID = 0
+    PRIORITY_PSI = 1
+    PRIORITY_SIMPLIFIED_TOI_UNUSED = 2
+    PRIORITY_TOI = 3
+    PRIORITY_TOI_HIGHER = 4
+    PRIORITY_TOI_FORCED = 5
+    NUM_PRIORITIES = 6
+
+
+class InstanceType(Enum):
+    # enum id: 39062304
+
+    TYPE_NORMAL = 0
+    TYPE_CHAIN = 1
+    TYPE_DISABLE_SPU = 2
+
+
+class AddReferences(Enum):
+    # enum id: 39062344
+
+    DO_NOT_ADD_REFERENCES = 0
+    DO_ADD_REFERENCES = 1
+
+
+class CloningMode(Enum):
+    # enum id: 39062384
+
+    CLONE_SHALLOW_IF_NOT_CONSTRAINED_TO_WORLD = 0
+    CLONE_DATAS_WITH_MOTORS = 1
+    CLONE_FORCE_SHALLOW = 2
+
+
+class OnDestructionRemapInfo(Enum):
+    # enum id: 39062424
+
+    ON_DESTRUCTION_REMAP = 0
+    ON_DESTRUCTION_REMOVE = 1
+    ON_DESTRUCTION_RESET_REMOVE = 2
+
+
+class ResponseType(Enum):
+    # enum id: 39065168
+
+    RESPONSE_INVALID = 0
+    RESPONSE_SIMPLE_CONTACT = 1
+    RESPONSE_REPORTING = 2
+    RESPONSE_NONE = 3
+    RESPONSE_MAX_ID = 4
+
+
+class MotionType(Enum):
+    # enum id: 39066208
+
+    MOTION_INVALID = 0
+    MOTION_DYNAMIC = 1
+    MOTION_SPHERE_INERTIA = 2
+    MOTION_BOX_INERTIA = 3
+    MOTION_KEYFRAMED = 4
+    MOTION_FIXED = 5
+    MOTION_THIN_BOX_INERTIA = 6
+    MOTION_CHARACTER = 7
+    MOTION_MAX_ID = 8
+
+
+class MtChecks(Enum):
+    # enum id: 39066776
+
+    MULTI_THREADING_CHECKS_ENABLE = 0
+    MULTI_THREADING_CHECKS_IGNORE = 1
+
+
+class BroadPhaseType(Enum):
+    # enum id: 39066816
+
+    BROAD_PHASE_INVALID = 0
+    BROAD_PHASE_ENTITY = 1
+    BROAD_PHASE_PHANTOM = 2
+    BROAD_PHASE_BORDER = 3
+    BROAD_PHASE_MAX_ID = 4
+
+
+class VertexFloatDimensions(Enum):
+    # enum id: 39080080
+
+    FLOAT = 0
+    DISTANCE = 1
+    ANGLE = 2
+
+
+class LightType(Enum):
+    # enum id: 39081760
+
+    POINT_LIGHT = 0
+    DIRECTIONAL_LIGHT = 1
+    SPOT_LIGHT = 2
+
+
+class ControlType(Enum):
+    # enum id: 39082440
+
+    BEZIER_SMOOTH = 0
+    BEZIER_CORNER = 1
+    LINEAR = 2
+    CUSTOM = 3
+
+
+class TextureType(Enum):
+    # enum id: 39082688
+
+    TEX_UNKNOWN = 0
+    TEX_DIFFUSE = 1
+    TEX_REFLECTION = 2
+    TEX_BUMP = 3
+    TEX_NORMAL = 4
+    TEX_DISPLACEMENT = 5
+    TEX_SPECULAR = 6
+    TEX_SPECULARANDGLOSS = 7
+    TEX_OPACITY = 8
+    TEX_EMISSIVE = 9
+    TEX_REFRACTION = 10
+    TEX_GLOSS = 11
+    TEX_DOMINANTS = 12
+    TEX_NOTEXPORTED = 13
+
+
+class PropertyKey(Enum):
+    # enum id: 39082728
+
+    PROPERTY_MTL_TYPE_BLEND = 1
+    PROPERTY_MTL_UV_ID_STAGE0 = 256
+    PROPERTY_MTL_UV_ID_STAGE1 = 257
+    PROPERTY_MTL_UV_ID_STAGE2 = 258
+    PROPERTY_MTL_UV_ID_STAGE3 = 259
+    PROPERTY_MTL_UV_ID_STAGE4 = 260
+    PROPERTY_MTL_UV_ID_STAGE5 = 261
+    PROPERTY_MTL_UV_ID_STAGE6 = 262
+    PROPERTY_MTL_UV_ID_STAGE7 = 263
+    PROPERTY_MTL_UV_ID_STAGE8 = 264
+    PROPERTY_MTL_UV_ID_STAGE9 = 265
+    PROPERTY_MTL_UV_ID_STAGE10 = 266
+    PROPERTY_MTL_UV_ID_STAGE11 = 267
+    PROPERTY_MTL_UV_ID_STAGE12 = 268
+    PROPERTY_MTL_UV_ID_STAGE13 = 269
+    PROPERTY_MTL_UV_ID_STAGE14 = 270
+    PROPERTY_MTL_UV_ID_STAGE15 = 271
+    PROPERTY_MTL_UV_ID_STAGE_MAX = 272
+
+
+class UVMappingAlgorithm(Enum):
+    # enum id: 39082768
+
+    UVMA_SRT = 0
+    UVMA_TRS = 1
+    UVMA_3DSMAX_STYLE = 2
+    UVMA_MAYA_STYLE = 3
+
+
+class Transparency(Enum):
+    # enum id: 39082808
+
+    transp_none = 0
+    transp_alpha = 2
+    transp_additive = 3
+    transp_colorkey = 4
+    transp_subtractive = 9
+
+
+class IndexType(Enum):
+    # enum id: 39084608
+
+    INDEX_TYPE_INVALID = 0
+    INDEX_TYPE_TRI_LIST = 1
+    INDEX_TYPE_TRI_STRIP = 2
+    INDEX_TYPE_TRI_FAN = 3
+    INDEX_TYPE_MAX_ID = 4
+
+
+class Hint(Enum):
+    # enum id: 39086600
+
+    HINT_NONE = 0
+    HINT_IGNORE = 1
+    HINT_TRANSFORM = 2
+    HINT_SCALE = 4
+    HINT_TRANSFORM_AND_SCALE = 6
+    HINT_FLIP = 8
+
+
+class DataType(Enum):
+    # enum id: 39087152
+
+    HKX_DT_NONE = 0
+    HKX_DT_UINT8 = 1
+    HKX_DT_INT16 = 2
+    HKX_DT_UINT32 = 3
+    HKX_DT_FLOAT = 4
+
+
+class DataUsage(Enum):
+    # enum id: 39087192
+
+    HKX_DU_NONE = 0
+    HKX_DU_POSITION = 1
+    HKX_DU_COLOR = 2
+    HKX_DU_NORMAL = 4
+    HKX_DU_TANGENT = 8
+    HKX_DU_BINORMAL = 16
+    HKX_DU_TEXCOORD = 32
+    HKX_DU_BLENDWEIGHTS = 64
+    HKX_DU_BLENDINDICES = 128
+    HKX_DU_USERDATA = 256
+
+
+class ForceUpgrade610(Enum):
+    # enum id: 39122856
+
+    HCL_FORCE_UPGRADE610 = 0
+
+
+class ScaleNormalBehaviour(Enum):
+    # enum id: 39124792
+
+    SCALE_NORMAL_IGNORE = 0
+    SCALE_NORMAL_APPLY = 1
+    SCALE_NORMAL_INVERT = 2
+
+
+class VectorContext(Enum):
+    # enum id: 39128128
+
+    VEC_POSITION = 0
+    VEC_DIRECTION = 1
+
+
+class ScaleNormalBehaviour(Enum):
+    # enum id: 39128640
+
+    SCALE_NORMAL_IGNORE = 0
+    SCALE_NORMAL_APPLY = 1
+    SCALE_NORMAL_INVERT = 2
+
+
+class ScaleNormalBehaviour(Enum):
+    # enum id: 39130456
+
+    SCALE_NORMAL_IGNORE = 0
+    SCALE_NORMAL_APPLY = 1
+    SCALE_NORMAL_INVERT = 2
+
+
+class ShapeType(Enum):
+    # enum id: 39131512
+
+    SHAPE_SPHERE = 0
+    SHAPE_CYLINDER = 1
+
+
+class ForceUpgrade6(Enum):
+    # enum id: 39131552
+
+    HCL_FORCE_UPGRADE6 = 0
+
+
+class ControlByte(Enum):
+    # enum id: 39137360
+
+    FOUR_BLEND = 0
+    THREE_BLEND = 1
+    TWO_BLEND = 2
+    ONE_BLEND = 3
+    NEXT_SPU_BATCH = 4
+    EIGHT_BLEND = 5
+    SEVEN_BLEND = 6
+    SIX_BLEND = 7
+    FIVE_BLEND = 8
+
+
+class BONE_GROUP_SIZE(Enum):
+    # enum id: 39140624
+
+    GROUP_SIZE_1 = 1
+    GROUP_SIZE_4 = 4
+    GROUP_SIZE_8 = 8
+    GROUP_SIZE_16 = 16
+
+
+class ControlByte(Enum):
+    # enum id: 39141880
+
+    FOUR_BLEND = 0
+    THREE_BLEND = 1
+    TWO_BLEND = 2
+    ONE_BLEND = 3
+    NEXT_SPU_BATCH = 4
+
+
+class EdgeSelectionType(Enum):
+    # enum id: 39146816
+
+    EDGE_SELECTION_ALL = 0
+    EDGE_SELECTION_NONE = 1
+    EDGE_SELECTION_CHANNEL = 2
+    EDGE_SELECTION_INVERSE_CHANNEL = 3
+
+
+class TriangleSelectionType(Enum):
+    # enum id: 39149488
+
+    TRIANGLE_SELECTION_ALL = 0
+    TRIANGLE_SELECTION_NONE = 1
+    TRIANGLE_SELECTION_CHANNEL = 2
+    TRIANGLE_SELECTION_INVERSE_CHANNEL = 3
+
+
+class Type(Enum):
+    # enum id: 39151552
+
+    SIM_CLOTH_MESH_CURRENT_POSITIONS = 0
+    SIM_CLOTH_MESH_PREVIOUS_POSITIONS = 1
+    SIM_CLOTH_MESH_ORIGINAL_POSE = 2
+
+
+class Direction(Enum):
+    # enum id: 39152400
+
+    SIMULATION_TO_DISPLAY = 0
+    DISPLAY_TO_SIMULATION = 1
+
+
+class StorageClass(Enum):
+    # enum id: 39154768
+
+    STORAGE_STATIC = 0
+    STORAGE_REFERENCE = 1
+    STORAGE_DYNAMIC_RANGE = 2
+    STORAGE_DYNAMIC_FIXED = 3
+
+
+class IntArrayID(Enum):
+    # enum id: 39154808
+
+    BLOCK_OFFSETS = 0
+    FIRST_FLOAT_BLOCK_OFFSETS = 1
+    IS_ANIMATED_BITMAP = 2
+    IS_FIXED_RANGE_BITMAP = 3
+    DYNAMIC_BONE_TRACK_INDEX = 4
+    DYNAMIC_FLOAT_TRACK_INDEX = 5
+    STATIC_BONE_TRACK_INDEX = 6
+    STATIC_FLOAT_TRACK_INDEX = 7
+    RENORM_QUATERNION_INDEX = 8
+    NUM_INT_ARRAYS = 9
+
+
+class FloatArrayID(Enum):
+    # enum id: 39154848
+
+    STATIC_VALUES = 0
+    DYNAMIC_SCALES = 1
+    DYNAMIC_OFFSETS = 2
+    NUM_FLOAT_ARRAYS = 3
+
+
+class RotationQuantization(Enum):
+    # enum id: 39156016
+
+    POLAR32 = 0
+    THREECOMP40 = 1
+    THREECOMP48 = 2
+    THREECOMP24 = 3
+    STRAIGHT16 = 4
+    UNCOMPRESSED = 5
+
+
+class ScalarQuantization(Enum):
+    # enum id: 39156056
+
+    BITS8 = 0
+    BITS16 = 1
+
+
+class ParameterType(Enum):
+    # enum id: 39156936
+
+    UNKNOWN = 0
+    LINEAR_SPEED = 1
+    LINEAR_DIRECTION = 2
+    TURN_SPEED = 3
+
+
+class MaterialFlagsBits(Enum):
+    # enum id: 39159936
+
+    MATERIAL_NONE = 0
+    MATERIAL_BLOCKING = 1
+    MATERIAL_DEFAULT = 1
+
+
+class CellWidthToResolutionRounding(Enum):
+    # enum id: 39159976
+
+    ROUND_TO_ZERO = 0
+    ROUND_TO_NEAREST = 1
+
+
+class ConstructionFlagsBits(Enum):
+    # enum id: 39161208
+
+    MATERIAL_WALKABLE = 1
+    MATERIAL_CUTTING = 2
+    MATERIAL_WALKABLE_AND_CUTTING = 3
+
+
+class CharacterWidthUsage(Enum):
+    # enum id: 39161248
+
+    NONE = 0
+    BLOCK_EDGES = 1
+    SHRINK_NAV_MESH = 2
+
+
+class TriangleWinding(Enum):
+    # enum id: 39161288
+
+    WINDING_CCW = 0
+    WINDING_CW = 1
+
+
+class EdgeMatchingMetric(Enum):
+    # enum id: 39161328
+
+    ORDER_BY_OVERLAP = 1
+    ORDER_BY_DISTANCE = 2
+
+
+class FaceFlagBits(Enum):
+    # enum id: 39162648
+
+    FLAGS_NONE = 0
+    FLAGS_INPUT_GEOMETRY = 1
+    FLAGS_PAINTER = 2
+    FLAGS_CARVER = 4
+    FLAGS_EXTRUDED = 8
+    FLAGS_ALL = 15
+
+
+class VertexSelectionMethod(Enum):
+    # enum id: 39163112
+
+    PROPORTIONAL_TO_AREA = 0
+    PROPORTIONAL_TO_VERTICES = 1
+
+
+class OutputPathFlags(Enum):
+    # enum id: 39168000
+
+    OUTPUT_PATH_SMOOTHED = 1
+    OUTPUT_PATH_PROJECTED = 2
+    OUTPUT_PATH_COMPUTE_NORMALS = 4
+
+
+class LineOfSightFlags(Enum):
+    # enum id: 39168040
+
+    NO_LINE_OF_SIGHT_CHECK = 0
+    EARLY_OUT_IF_NO_COST_MODIFIER = 1
+    HANDLE_INTERNAL_VERTICES = 2
+    EARLY_OUT_ALWAYS = 4
+
+
+class WalkableTriangleSettings(Enum):
+    # enum id: 39169088
+
+    ONLY_FIX_WALKABLE = 0
+    PREFER_WALKABLE = 1
+    PREFER_UNWALKABLE = 2
+
+
+class UserEdgeDirection(Enum):
+    # enum id: 39169344
+
+    USER_EDGE_BLOCKED = 0
+    USER_EDGE_A_TO_B = 1
+    USER_EDGE_B_TO_A = 2
+    USER_EDGE_BIDIRECTIONAL = 3
+
+
+class UserEdgeSetupSpace(Enum):
+    # enum id: 39169384
+
+    USER_EDGE_SPACE_WORLD = 0
+    USER_EDGE_SPACE_LOCAL = 1
+
+
+class ClearanceResetMode(Enum):
+    # enum id: 39169424
+
+    RESET_CLEARANCE_CACHE = 0
+    DONT_RESET_CLEARANCE_CACHE = 1
+
+
+class UpdateFlags(Enum):
+    # enum id: 39170200
+
+    UPDATE_NORMAL = 0
+    UPDATE_FORCE_ALL = 1
+
+
+class CallbackType(Enum):
+    # enum id: 39171112
+
+    CALLBACK_PATH_SUCCEEDED = 0
+    CALLBACK_PATH_FAILED_INVALID_START = 1
+    CALLBACK_PATH_FAILED_INVALID_GOAL = 2
+    CALLBACK_PATH_FAILED_INVALID_UNREACHABLE = 3
+    CALLBACK_PATH_NOT_READY = 4
+
+
+class ClearanceResetMethod(Enum):
+    # enum id: 39171560
+
+    CLEARANCE_RESET_ALL = 0
+    CLEARANCE_RESET_MEDIATOR = 1
+    CLEARANCE_RESET_FLOODFILL = 2
+
+
+class GatherCutEdgesMode(Enum):
+    # enum id: 39171600
+
+    GATHER_ALL_EDGES = 0
+    GATHER_BOUNDARY_EDGES = 1
+
+
+class Constants(Enum):
+    # enum id: 39172088
+
+    INVALID_CELL_INDEX = 4294967295
+    INVALID_EDGE_INDEX = 4294967295
+
+
+class CellEdgeFlagBits(Enum):
+    # enum id: 39172128
+
+    EDGE_EXTERNAL_OPPOSITE = 64
+
+
+class ElementSizes(Enum):
+    # enum id: 39172904
+
+    OPENSET_ELEMENT_SIZE = 8
+    SEARCH_STATE_ELEMENT_SIZE = 18
+    SEARCH_STATE_OVERHEAD = 512
+
+
+class MemoryDefaultsSingleThreaded(Enum):
+    # enum id: 39172944
+
+    OPEN_SET_SIZE_SINGLE_THREADED = 131072
+    SEARCH_STATE_SIZE_SINGLE_THREADED = 590336
+    HIERARCHY_OPEN_SET_SIZE_SINGLE_THREADED = 32768
+    HIERARCHY_SEARCH_STATE_SIZE_SINGLE_THREADED = 147968
+
+
+class MemoryDefaultsMultiThreaded(Enum):
+    # enum id: 39172984
+
+    OPEN_SET_SIZE_MULTI_THREADED = 8192
+    SEARCH_STATE_SIZE_MULTI_THREADED = 37376
+    HIERARCHY_OPEN_SET_SIZE_MULTI_THREADED = 2048
+    HIERARCHY_SEARCH_STATE_SIZE_MULTI_THREADED = 9728
+
+
+class ThreadingType(Enum):
+    # enum id: 39173024
+
+    SINGLE_THREADED = 0
+    MULTI_THREADED = 1
+
+
+class SearchType(Enum):
+    # enum id: 39173064
+
+    SEARCH_REGULAR = 0
+    SEARCH_HIERARCHICAL = 1
+
+
+class LineOfSightFlags(Enum):
+    # enum id: 39173704
+
+    NO_LINE_OF_SIGHT_CHECK = 0
+    EARLY_OUT_IF_NO_COST_MODIFIER = 1
+    EARLY_OUT_ALWAYS = 4
+
+
+class UpdateTraversalStateResult(Enum):
+    # enum id: 39174280
+
+    UTSR_NORMAL = 0
+    UTSR_LOST = 1
+
+
+class BoundarySegmentBits(Enum):
+    # enum id: 39174320
+
+    BOUNDARYSEGMENT_MINV = 1
+    BOUNDARYSEGMENT_MAXU = 2
+    BOUNDARYSEGMENT_MAXV = 4
+    BOUNDARYSEGMENT_MINU = 8
+    BOUNDARYSEGMENT_ALL = 15
+
+
+class UpVectorTransformMethod(Enum):
+    # enum id: 39175016
+
+    USE_GLOBAL_UP = 0
+    USE_INSTANCE_TRANSFORM = 1
+    USE_FACE_NORMAL = 2
+
+
+class NearestFeatureType(Enum):
+    # enum id: 39175112
+
+    CALLBACK_EDGE = 0
+    CALLBACK_FACE = 1
+
+
+class KinematicConstraintType(Enum):
+    # enum id: 39176104
+
+    CONSTRAINTS_NONE = 0
+    CONSTRAINTS_LINEAR_AND_ANGULAR = 1
+    CONSTRAINTS_LINEAR_ONLY = 2
+
+
+class PpivResult(Enum):
+    # enum id: 39177152
+
+    PPIV_RESULT_SUCCESS = 0
+    PPIV_RESULT_HIT_PATH_END = 1
+    PPIV_RESULT_INVALID_PATH = 2
+
+
+class CostModifierType(Enum):
+    # enum id: 39177920
+
+    COST_MODIFIER_DEFAULT = 0
+    COST_MODIFIER_USER = 1
+
+
+class SearchStatus(Enum):
+    # enum id: 39178000
+
+    SEARCH_IN_PROGRESS = 0
+    SEARCH_SUCCEEDED = 1
+    SEARCH_UNREACHABLE = 2
+    SEARCH_TERMINATED = 3
+    SEARCH_SUCCEEDED_BUT_RESULTS_TRUNCATED = 4
+    SEARCH_INVALID = 5
+
+
+class TerminationCause(Enum):
+    # enum id: 39178040
+
+    NOT_TERMINATED = 0
+    TERMINATED_ITERATION_LIMIT = 1
+    TERMINATED_OPEN_SET_FULL = 2
+    TERMINATED_SEARCH_STATE_FULL = 3
+    TERMINATED_BY_USER = 4
+
+
+class PathType(Enum):
+    # enum id: 39179200
+
+    PATH_TYPE_NAVMESH = 0
+    PATH_TYPE_NAVMESH_CLIMBING = 1
+    PATH_TYPE_NAVVOLUME = 2
+
+
+class CachingOption(Enum):
+    # enum id: 39179296
+
+    CACHE = 0
+    USE_UNFILTERED = 1
+    DO_NOT_CACHE = 2
+    NOT_SET = 4294967295
+
+
+class DefaultCachingOption(Enum):
+    # enum id: 39179336
+
+    DCO_WARN_AND_TREAT_AS_UNFILTERED = 0
+    DCO_TREAT_AS_UNFILTERED = 1
+    DCO_DO_NOT_CACHE = 2
+    DCO_ASSERT = 3
+
+
+class GeneratorType(Enum):
+    # enum id: 39179752
+
+    GENERATOR_PHYSICS_2012_BODY = 0
+    GENERATOR_POINT_CLOUD = 1
+    GENERATOR_STORAGE_POINT_CLOUD_REMOVED = 2
+    GENERATOR_PHYSICS_BODY_BASE = 3
+    GENERATOR_PHYSICS_BODY = 4
+    GENERATOR_USER_0 = 5
+    GENERATOR_USER_1 = 6
+    GENERATOR_USER_2 = 7
+    GENERATOR_USER_3 = 8
+    GENERATOR_MAX = 9
+
+
+class ForceGenerateOntoPpuReasons(Enum):
+    # enum id: 39179792
+
+    FORCE_PPU_USER_REQUEST = 8
+    FORCE_PPU_SILHOUETTE_COMPLEXITY_REQUEST = 16
+
+
+class ExpansionFlags(Enum):
+    # enum id: 39179832
+
+    AABB_EXPAND_NONE = 0
+    AABB_EXTRUDE_DOWN = 1
+    AABB_EXPAND_PLANAR = 2
+    AABB_EXPAND_UNIFORM = 4
+
+
+class PathPointBits(Enum):
+    # enum id: 39180136
+
+    EDGE_TYPE_USER_START = 1
+    EDGE_TYPE_USER_END = 2
+    EDGE_TYPE_SEGMENT_START = 4
+    EDGE_TYPE_SEGMENT_END = 8
+
+
+class ReferenceFrame(Enum):
+    # enum id: 39180176
+
+    REFERENCE_FRAME_WORLD = 0
+    REFERENCE_FRAME_SECTION_LOCAL = 1
+    REFERENCE_FRAME_SECTION_FIXED = 2
+
+
+class MergeType(Enum):
+    # enum id: 39180856
+
+    UNUSED_MERGING_SIMPLE = 0
+    UNUSED_MERGING_CONVEX_HULL = 1
+
+
+class NearbyBoundariesSearchType(Enum):
+    # enum id: 39181104
+
+    SEARCH_NEIGHBORS = 0
+    SEARCH_FLOOD_FILL = 1
+
+
+class DebugValues(Enum):
+    # enum id: 39181184
+
+    DEAD_FACE = 3735943886
+    DEAD_EDGE = 3735940462
+
+
+class CutInfoValues(Enum):
+    # enum id: 39181224
+
+    NOT_CUT_EDGE = 65535
+
+
+class EdgeFilterType(Enum):
+    # enum id: 39182352
+
+    EDGE_FILTER_DEFAULT = 0
+    EDGE_FILTER_USER = 1
+
+
+class State(Enum):
+    # enum id: 39182952
+
+    STATE_NEEDS_NEW_PATH = 0
+    STATE_FOLLOWING_PATH = 1
+    STATE_SLOWING_TO_GOAL = 2
+    STATE_GOAL_REACHED = 3
+    STATE_PATH_FAILED = 4
+    STATE_WANDERED_OFF_PATH = 5
+    STATE_REPATHING_INCOMPLETE_PATH = 6
+    STATE_MANUAL_CONTROL = 7
+
+
+class AvoidanceEnabledMaskBits(Enum):
+    # enum id: 39182992
+
+    AVOID_BOUNDARIES = 1
+    AVOID_CHARACTERS = 2
+    AVOID_OBSTACLES = 4
+    AVOID_NONE = 0
+    AVOID_ALL = 7
+
+
+class AvoidanceState(Enum):
+    # enum id: 39183032
+
+    AVOIDANCE_SUCCESS = 0
+    AVOIDANCE_FAILURE = 1
+
+
+class StepThreading(Enum):
+    # enum id: 39183968
+
+    STEP_SINGLE_THREADED = 0
+    STEP_MULTI_THREADED = 1
+
+
+class CharacterCallbackType(Enum):
+    # enum id: 39184008
+
+    CALLBACK_PRECHARACTER_STEP = 0
+    CALLBACK_POSTCHARACTER_STEP = 1
+
+
+class PathType(Enum):
+    # enum id: 39184048
+
+    PATH_TYPE_NAVMESH = 0
+    PATH_TYPE_NAVVOLUME = 1
+
+
+class UserEdgeFlagBits(Enum):
+    # enum id: 39185648
+
+    USER_EDGE_IGNORE = 0
+    USER_EDGE_UNTRAVERSABLE_AS_BOUNDARY = 1
+    USER_EDGE_ALL_AS_BOUNDARY = 2
+    USER_EDGE_FOLLOW = 4
+    USER_EDGE_PRIORITIZE_REGULAR_EDGE = 8
+    USER_EDGE_IGNORE_WINDING = 16
+    USER_EDGE_IGNORE_BOUNDARIES_WHEN_TRAVERSING = 32
+    USER_EDGE_ROTATE_DIRECTION = 64
+    USER_EDGE_DISABLED_DEFAULT = 0
+    USER_EDGE_ENABLED_DEFAULT = 124
+
+
+class LineOfSightResult(Enum):
+    # enum id: 39185688
+
+    RESULT_INVALID_INPUT = 0
+    RESULT_CANT_ADVANCE = 1
+    RESULT_REACHED_BOUNDARY_CHECK_LIMIT = 2
+    RESULT_IN_PROGRESS = 3
+    RESULT_HIT_BOUNDARY_EDGE = 4
+    RESULT_HIT_REJECTED_EDGE = 5
+    RESULT_REACHED_RADIUS_LIMIT = 6
+    RESULT_REACHED_PATH_LENGTH_LIMIT = 7
+    RESULT_REACHED_ITERATION_LIMIT = 8
+    RESULT_REACHED_GOAL = 9
+
+
+class QueryMode(Enum):
+    # enum id: 39185736
+
+    MODE_LINE_OF_SIGHT = 0
+    MODE_DIRECT_PATH = 1
+
+
+class DetailLevel(Enum):
+    # enum id: 39186576
+
+    DETAIL_INVALID = 0
+    DETAIL_FULL = 1
+    DETAIL_OBB = 2
+    DETAIL_CONVEX_HULL = 3
+
+
+class PointCloudFlagBits(Enum):
+    # enum id: 39186616
+
+    LOCAL_POINTS_CHANGED = 1
+
+
+class AbsoluteTimeCounter(Enum):
+    # enum id: 39189728
+
+    ABSOLUTE_TIME_TIMER_0 = 0
+    ABSOLUTE_TIME_TIMER_1 = 1
+    ABSOLUTE_TIME_NOT_TIMED = 4294967295
+
+
+class AccessType(Enum):
+    # enum id: 39190240
+
+    HK_ACCESS_IGNORE = 0
+    HK_ACCESS_RO = 1
+    HK_ACCESS_RW = 2
+
+
+class ReadMode(Enum):
+    # enum id: 39190280
+
+    THIS_OBJECT_ONLY = 0
+    RECURSIVE = 1
+
+
+class SignatureFlags(Enum):
+    # enum id: 39190600
+
+    SIGNATURE_LOCAL = 1
+
+
+class FlagValues(Enum):
+    # enum id: 39190640
+
+    FLAGS_NONE = 0
+    FLAGS_NOT_SERIALIZABLE = 1
+
+
+class Type(Enum):
+    # enum id: 39190928
+
+    TYPE_VOID = 0
+    TYPE_BOOL = 1
+    TYPE_CHAR = 2
+    TYPE_INT8 = 3
+    TYPE_UINT8 = 4
+    TYPE_INT16 = 5
+    TYPE_UINT16 = 6
+    TYPE_INT32 = 7
+    TYPE_UINT32 = 8
+    TYPE_INT64 = 9
+    TYPE_UINT64 = 10
+    TYPE_REAL = 11
+    TYPE_VECTOR4 = 12
+    TYPE_QUATERNION = 13
+    TYPE_MATRIX3 = 14
+    TYPE_ROTATION = 15
+    TYPE_QSTRANSFORM = 16
+    TYPE_MATRIX4 = 17
+    TYPE_TRANSFORM = 18
+    TYPE_ZERO = 19
+    TYPE_POINTER = 20
+    TYPE_FUNCTIONPOINTER = 21
+    TYPE_ARRAY = 22
+    TYPE_INPLACEARRAY = 23
+    TYPE_ENUM = 24
+    TYPE_STRUCT = 25
+    TYPE_SIMPLEARRAY = 26
+    TYPE_HOMOGENEOUSARRAY = 27
+    TYPE_VARIANT = 28
+    TYPE_CSTRING = 29
+    TYPE_ULONG = 30
+    TYPE_FLAGS = 31
+    TYPE_HALF = 32
+    TYPE_STRINGPTR = 33
+    TYPE_RELARRAY = 34
+    TYPE_MAX = 35
+
+
+class FlagValues(Enum):
+    # enum id: 39190968
+
+    FLAGS_NONE = 0
+    ALIGN_8 = 128
+    ALIGN_16 = 256
+    NOT_OWNED = 512
+    SERIALIZE_IGNORED = 1024
+    ALIGN_32 = 2048
+    ALIGN_REAL = 256
+
+
+class DeprecatedFlagValues(Enum):
+    # enum id: 39191008
+
+    DEPRECATED_SIZE_8 = 8
+    DEPRECATED_ENUM_8 = 8
+    DEPRECATED_SIZE_16 = 16
+    DEPRECATED_ENUM_16 = 16
+    DEPRECATED_SIZE_32 = 32
+    DEPRECATED_ENUM_32 = 32
+
+
+class FlagEnum(Enum):
+    # enum id: 39191848
+
+    CONTACT_IS_NEW = 1
+    CONTACT_USES_SOLVER_PATH2 = 2
+    CONTACT_BREAKOFF_OBJECT_ID_SMALLER = 4
+    CONTACT_IS_DISABLED = 8
+
+
+class ReferenceCountHandling(Enum):
+    # enum id: 39195016
+
+    REFERENCE_COUNT_INCREMENT = 0
+    REFERENCE_COUNT_IGNORE = 1
+
+
+class ArrayType(Enum):
+    # enum id: 39195496
+
+    NONE = 0
+    POINTSOUP = 1
+    ENTITIES = 2
+
+
+class Types(Enum):
+    # enum id: 39195544
+
+    NONE = 0
+    MODELER_IS_MAX = 1
+    MODELER_IS_MAYA = 2
+    UI_SCHEME_IS_DESTRUCTION = 4
+    UI_SCHEME_IS_DESTRUCTION_2012 = 8
+
+
+class GizmoType(Enum):
+    # enum id: 39195712
+
+    POINT = 0
+    SPHERE = 1
+    PLANE = 2
+    ARROW = 3
+
+
+class Link(Enum):
+    # enum id: 39195760
+
+    NONE = 0
+    DIRECT_LINK = 1
+    CHILD = 2
+    MESH = 3
+    PARENT_NAME = 4
+    IMGSELECT = 5
+    NODE_UUID = 6
+
+
+class ModelerType(Enum):
+    # enum id: 39195808
+
+    DEFAULT = 0
+    LOCATOR = 1
+
+
+class Semantics(Enum):
+    # enum id: 39196216
+
+    UNKNOWN = 0
+    DISTANCE = 1
+    ANGLE = 2
+    NORMAL = 3
+    POSITION = 4
+    COSINE_ANGLE = 5
+
+
+class FlagValues(Enum):
+    # enum id: 39197232
+
+    FLAGS_NONE = 0
+
+
+class SplitResult(Enum):
+    # enum id: 39198176
+
+    SPLIT_SUCCESS = 0
+    SPLIT_FAILURE = 1
+    SPLIT_FAILURE_INSIDE = 2
+    SPLIT_FAILURE_OUTSIDE = 3
+
+
+class Type(Enum):
+    # enum id: 39198216
+
+    TYPE_EXACT = 0
+    TYPE_USER_0 = 16
+
+
+class ExecutionFlagValues(Enum):
+    # enum id: 39198256
+
+    CREATE_PHYSICS_SHAPES = 1
+    CREATE_GRAPHICS_SHAPES = 2
+    RECOMPUTE_INSIDE_TRANSFORM = 4
+    RECOMPUTE_OUTSIDE_TRANSFORM = 8
+    COMPUTE_INSIDE_SHAPES = 16
+    COMPUTE_OUTSIDE_SHAPES = 32
+    FRACTURE_PHYSICS = 64
+    FRACTURE_GRAPHICS = 128
+    DYNAMIC_SPLIT = 256
+    DEFAULT_EXECUTION_FLAGS = 255
+
+
+class Topology(Enum):
+    # enum id: 39198296
+
+    TOPOLOGY_CLOSED_MANIFOLD = 0
+    TOPOLOGY_OPEN_SELF_INTERSECTING = 1
+    TOPOLOGY_UNKNOWN = 2
+
+
+class ShapeDispatchTypeEnum(Enum):
+    # enum id: 39198856
+
+    CONVEX_IMPLICIT = 0
+    CONVEX = 1
+    HEIGHT_FIELD = 2
+    COMPOSITE = 3
+    USER = 4
+    NUM_DISPATCH_TYPES = 5
+
+
+class ShapeInfoCodecTypeEnum(Enum):
+    # enum id: 39198904
+
+    NULL_CODEC = 0
+    UFM358 = 1
+    MAX_NUM_CODECS = 16
+
+
+class ShapeTypeEnum(Enum):
+    # enum id: 39198952
+
+    SPHERE = 0
+    CYLINDER = 1
+    TRIANGLE = 2
+    BOX = 3
+    CAPSULE = 4
+    CONVEX_VERTICES = 5
+    TRI_SAMPLED_HEIGHT_FIELD_COLLECTION = 6
+    TRI_SAMPLED_HEIGHT_FIELD_BV_TREE = 7
+    LIST = 8
+    MOPP = 9
+    CONVEX_TRANSLATE = 10
+    CONVEX_TRANSFORM = 11
+    SAMPLED_HEIGHT_FIELD = 12
+    EXTENDED_MESH = 13
+    TRANSFORM = 14
+    COMPRESSED_MESH = 15
+    STATIC_COMPOUND = 16
+    BV_COMPRESSED_MESH = 17
+    COLLECTION = 18
+    USER0 = 19
+    USER1 = 20
+    USER2 = 21
+    BV_TREE = 22
+    CONVEX = 23
+    CONVEX_PIECE = 24
+    MULTI_SPHERE = 25
+    CONVEX_LIST = 26
+    TRIANGLE_COLLECTION = 27
+    HEIGHT_FIELD = 28
+    SPHERE_REP = 29
+    BV = 30
+    PLANE = 31
+    PHANTOM_CALLBACK = 32
+    MULTI_RAY = 33
+    INVALID = 34
+    FIRST_SHAPE_TYPE = 0
+    MAX_SPU_SHAPE_TYPE = 22
+    MAX_PPU_SHAPE_TYPE = 35
+    ALL_SHAPE_TYPES = 4294967295
+
+
+class Bounds(Enum):
+    # enum id: 39200160
+
+    BOUND_POS_X = 0
+    BOUND_NEG_X = 1
+    BOUND_POS_Y = 2
+    BOUND_NEG_Y = 3
+    BOUND_POS_Z = 4
+    BOUND_NEG_Z = 5
+    NUM_BOUNDS = 6
+
+
+class BuildResult(Enum):
+    # enum id: 39200472
+
+    BUILD_SUCCESS = 0
+    BUILD_SUCCESS_CYCLIC_MAT = 1
+    BUILD_WITH_DOUBLED_POLYS = 2
+    BUILD_FAILURE = 3
+
+
+class NodeTypesEnum(Enum):
+    # enum id: 39200512
+
+    NODE_TYPE_INTERNAL = 0
+    NODE_TYPE_IN = 1
+    NODE_TYPE_OUT = 2
+    NODE_TYPE_UNKNOWN = 3
+    NODE_TYPE_INVALID = 4
+    NODE_TYPE_FREE = 15
+
+
+class BoundIndex(Enum):
+    # enum id: 39202160
+
+    X_MIN = 0
+    X_MAX = 1
+    Y_MIN = 2
+    Y_MAX = 3
+    Z_MIN = 4
+    Z_MAX = 5
+
+
+class Flags(Enum):
+    # enum id: 39203376
+
+    HAS_INTERNALS = 1
+    HAS_LEAVES = 2
+    HAS_NULLS = 4
+
+
+class CompressionMode(Enum):
+    # enum id: 39204344
+
+    CM_GLOBAL = 0
+    CM_LOCAL_4 = 1
+    CM_LOCAL_2 = 2
+    CM_AUTO = 3
+
+
+class Flags(Enum):
+    # enum id: 39204384
+
+    SF_REQUIRE_TREE = 1
+
+
+class Type(Enum):
+    # enum id: 39205024
+
+    INVALID = 0
+    TRIANGLE = 1
+    QUAD = 2
+    CUSTOM = 3
+    NUM_TYPES = 4
+
+
+class ListShapeFlags(Enum):
+    # enum id: 39206192
+
+    ALL_FLAGS_CLEAR = 0
+    DISABLE_SPU_CACHE_FOR_LIST_CHILD_INFO = 1
+
+
+class hkpFilterType(Enum):
+    # enum id: 39208752
+
+    HK_FILTER_UNKNOWN = 0
+    HK_FILTER_NULL = 1
+    HK_FILTER_GROUP = 2
+    HK_FILTER_LIST = 3
+    HK_FILTER_CUSTOM = 4
+    HK_FILTER_PAIR = 5
+    HK_FILTER_CONSTRAINT = 6
+
+
+class RayHitType(Enum):
+    # enum id: 39208912
+
+    HIT_CAP0 = 0
+    HIT_CAP1 = 1
+    HIT_BODY = 2
+
+
+class BvTreeType(Enum):
+    # enum id: 39209552
+
+    BVTREE_MOPP = 0
+    BVTREE_TRISAMPLED_HEIGHTFIELD = 1
+    BVTREE_STATIC_COMPOUND = 2
+    BVTREE_COMPRESSED_MESH = 3
+    BVTREE_USER = 4
+    BVTREE_MAX = 5
+
+
+class WeldingType(Enum):
+    # enum id: 39210112
+
+    WELDING_TYPE_ANTICLOCKWISE = 0
+    WELDING_TYPE_CLOCKWISE = 4
+    WELDING_TYPE_TWO_SIDED = 5
+    WELDING_TYPE_NONE = 6
+
+
+class SectorType(Enum):
+    # enum id: 39210152
+
+    ACCEPT_0 = 1
+    SNAP_0 = 0
+    REJECT = 2
+    SNAP_1 = 4
+    ACCEPT_1 = 3
+
+
+class NumAngles(Enum):
+    # enum id: 39210192
+
+    NUM_ANGLES = 31
+
+
+class CollectionType(Enum):
+    # enum id: 39210904
+
+    COLLECTION_LIST = 0
+    COLLECTION_EXTENDED_MESH = 1
+    COLLECTION_TRISAMPLED_HEIGHTFIELD = 2
+    COLLECTION_USER = 3
+    COLLECTION_SIMPLE_MESH = 4
+    COLLECTION_MESH_SHAPE = 5
+    COLLECTION_COMPRESSED_MESH = 6
+    COLLECTION_MAX = 7
+
+
+class WeldResult(Enum):
+    # enum id: 39211880
+
+    WELD_RESULT_REJECT_CONTACT_POINT = 0
+    WELD_RESULT_ACCEPT_CONTACT_POINT_MODIFIED = 1
+    WELD_RESULT_ACCEPT_CONTACT_POINT_UNMODIFIED = 2
+
+
+class IndexStridingType(Enum):
+    # enum id: 39213360
+
+    INDICES_INVALID = 0
+    INDICES_INT8 = 1
+    INDICES_INT16 = 2
+    INDICES_INT32 = 3
+    INDICES_MAX_ID = 4
+
+
+class MaterialIndexStridingType(Enum):
+    # enum id: 39213400
+
+    MATERIAL_INDICES_INVALID = 0
+    MATERIAL_INDICES_INT8 = 1
+    MATERIAL_INDICES_INT16 = 2
+    MATERIAL_INDICES_MAX_ID = 3
+
+
+class SubpartType(Enum):
+    # enum id: 39213440
+
+    SUBPART_TRIANGLES = 0
+    SUBPART_SHAPE = 1
+    SUBPART_TYPE_MAX = 2
+
+
+class SubpartTypesAndFlags(Enum):
+    # enum id: 39213480
+
+    SUBPART_TYPE_MASK = 1
+    SUBPART_MATERIAL_INDICES_MASK = 6
+    SUBPART_MATERIAL_INDICES_SHIFT = 1
+    SUBPART_NUM_MATERIALS_MASK = 65528
+    SUBPART_NUM_MATERIALS_SHIFT = 3
+
+
+class VertexIdEncoding(Enum):
+    # enum id: 39214600
+
+    VERTEX_ID_ENCODING_IS_BASE_A_SHIFT = 7
+    VERTEX_ID_ENCODING_SIN_SIGN_SHIFT = 6
+    VERTEX_ID_ENCODING_COS_SIGN_SHIFT = 5
+    VERTEX_ID_ENCODING_IS_SIN_LESSER_SHIFT = 4
+    VERTEX_ID_ENCODING_VALUE_MASK = 15
+
+
+class HeightFieldType(Enum):
+    # enum id: 39215000
+
+    HEIGHTFIELD_STORAGE = 0
+    HEIGHTFIELD_COMPRESSED = 1
+    HEIGHTFIELD_USER = 2
+    HEIGHTFIELD_MAX_ID = 3
+
+
+class MaterialType(Enum):
+    # enum id: 39217496
+
+    MATERIAL_NONE = 0
+    MATERIAL_SINGLE_VALUE_PER_CHUNK = 1
+    MATERIAL_ONE_BYTE_PER_TRIANGLE = 2
+    MATERIAL_TWO_BYTES_PER_TRIANGLE = 3
+    MATERIAL_FOUR_BYTES_PER_TRIANGLE = 4
+
+
+class ForceCollideOntoPpuReasons(Enum):
+    # enum id: 39218776
+
+    FORCE_PPU_USER_REQUEST = 1
+    FORCE_PPU_SHAPE_REQUEST = 2
+    FORCE_PPU_MODIFIER_REQUEST = 4
+    FORCE_PPU_SHAPE_UNCHECKED = 8
+
+
+class ConvexListCollisionType(Enum):
+    # enum id: 39220352
+
+    TREAT_CONVEX_LIST_AS_NORMAL = 0
+    TREAT_CONVEX_LIST_AS_LIST = 1
+    TREAT_CONVEX_LIST_AS_CONVEX = 2
+
+
+class MeshShapeIndexStridingType(Enum):
+    # enum id: 39220440
+
+    INDICES_INVALID = 0
+    INDICES_INT16 = 1
+    INDICES_INT32 = 2
+    INDICES_MAX_ID = 3
+
+
+class MeshShapeMaterialIndexStridingType(Enum):
+    # enum id: 39220480
+
+    MATERIAL_INDICES_INVALID = 0
+    MATERIAL_INDICES_INT8 = 1
+    MATERIAL_INDICES_INT16 = 2
+    MATERIAL_INDICES_MAX_ID = 3
+
+
+class Axis(Enum):
+    # enum id: 39223280
+
+    AXIS_TWIST = 0
+    AXIS_PLANES = 1
+    AXIS_CROSS_PRODUCT = 2
+
+
+class Type(Enum):
+    # enum id: 39224408
+
+    PRISMATIC = 0
+    HINGE = 1
+    BALL_SOCKET = 2
+
+
+class Axis(Enum):
+    # enum id: 39224448
+
+    AXIS_SHAFT = 0
+    AXIS_PERP_TO_SHAFT = 1
+
+
+class MotorType(Enum):
+    # enum id: 39225328
+
+    TYPE_INVALID = 0
+    TYPE_POSITION = 1
+    TYPE_VELOCITY = 2
+    TYPE_SPRING_DAMPER = 3
+    TYPE_CALLBACK = 4
+    TYPE_MAX = 5
+
+
+class CallbackType(Enum):
+    # enum id: 39226016
+
+    CALLBACK_MOTOR_TYPE_HAVOK_DEMO_SPRING_DAMPER = 0
+    CALLBACK_MOTOR_TYPE_USER_0 = 1
+    CALLBACK_MOTOR_TYPE_USER_1 = 2
+    CALLBACK_MOTOR_TYPE_USER_2 = 3
+    CALLBACK_MOTOR_TYPE_USER_3 = 4
+
+
+class Axis(Enum):
+    # enum id: 39226656
+
+    AXIS_SHAFT = 0
+    AXIS_PERP_TO_SHAFT = 1
+
+
+class Type(Enum):
+    # enum id: 39227048
+
+    TYPE_RACK_AND_PINION = 0
+    TYPE_SCREW = 1
+
+
+class Axis(Enum):
+    # enum id: 39227240
+
+    AXIS_AXLE = 0
+
+
+class Axis(Enum):
+    # enum id: 39228024
+
+    AXIS_SUSPENSION = 0
+    AXIS_PERP_SUSPENSION = 1
+    AXIS_AXLE = 0
+    AXIS_STEERING = 1
+
+
+class OrientationConstraintType(Enum):
+    # enum id: 39228528
+
+    CONSTRAIN_ORIENTATION_INVALID = 0
+    CONSTRAIN_ORIENTATION_NONE = 1
+    CONSTRAIN_ORIENTATION_ALLOW_SPIN = 2
+    CONSTRAIN_ORIENTATION_TO_PATH = 3
+    CONSTRAIN_ORIENTATION_MAX_ID = 4
+
+
+class ConstraintType(Enum):
+    # enum id: 39228656
+
+    CONSTRAINT_TYPE_BALLANDSOCKET = 0
+    CONSTRAINT_TYPE_HINGE = 1
+    CONSTRAINT_TYPE_LIMITEDHINGE = 2
+    CONSTRAINT_TYPE_POINTTOPATH = 3
+    CONSTRAINT_TYPE_PRISMATIC = 6
+    CONSTRAINT_TYPE_RAGDOLL = 7
+    CONSTRAINT_TYPE_STIFFSPRING = 8
+    CONSTRAINT_TYPE_WHEEL = 9
+    CONSTRAINT_TYPE_GENERIC = 10
+    CONSTRAINT_TYPE_CONTACT = 11
+    CONSTRAINT_TYPE_BREAKABLE = 12
+    CONSTRAINT_TYPE_MALLEABLE = 13
+    CONSTRAINT_TYPE_POINTTOPLANE = 14
+    CONSTRAINT_TYPE_PULLEY = 15
+    CONSTRAINT_TYPE_ROTATIONAL = 16
+    CONSTRAINT_TYPE_HINGE_LIMITS = 18
+    CONSTRAINT_TYPE_RAGDOLL_LIMITS = 19
+    CONSTRAINT_TYPE_CUSTOM = 20
+    CONSTRAINT_TYPE_RACK_AND_PINION = 21
+    CONSTRAINT_TYPE_COG_WHEEL = 22
+    CONSTRAINT_TYPE_FIXED = 23
+    CONSTRAINT_TYPE_DEFORMABLE_FIXED = 24
+    CONSTRAINT_TYPE_LINEAR_SLACK = 25
+    CONSTRAINT_TYPE_ANGULAR_FRICTION = 26
+    CONSTRAINT_TYPE_6DOF = 27
+    BEGIN_CONSTRAINT_CHAIN_TYPES = 100
+    CONSTRAINT_TYPE_STIFF_SPRING_CHAIN = 100
+    CONSTRAINT_TYPE_BALL_SOCKET_CHAIN = 101
+    CONSTRAINT_TYPE_POWERED_CHAIN = 102
+
+
+class MeasurementMode(Enum):
+    # enum id: 39230712
+
+    ZERO_WHEN_VECTORS_ALIGNED = 0
+    ZERO_WHEN_VECTORS_PERPENDICULAR = 1
+
+
+class AtomType(Enum):
+    # enum id: 39230760
+
+    TYPE_INVALID = 0
+    TYPE_BRIDGE = 1
+    TYPE_SET_LOCAL_TRANSFORMS = 2
+    TYPE_SET_LOCAL_TRANSLATIONS = 3
+    TYPE_SET_LOCAL_ROTATIONS = 4
+    TYPE_BALL_SOCKET = 5
+    TYPE_STIFF_SPRING = 6
+    TYPE_LIN = 7
+    TYPE_LIN_SOFT = 8
+    TYPE_LIN_LIMIT = 9
+    TYPE_LIN_FRICTION = 10
+    TYPE_LIN_MOTOR = 11
+    TYPE_2D_ANG = 12
+    TYPE_ANG = 13
+    TYPE_ANG_LIMIT = 14
+    TYPE_TWIST_LIMIT = 15
+    TYPE_CONE_LIMIT = 16
+    TYPE_ANG_FRICTION = 17
+    TYPE_ANG_MOTOR = 18
+    TYPE_RAGDOLL_MOTOR = 19
+    TYPE_PULLEY = 20
+    TYPE_RACK_AND_PINION = 21
+    TYPE_COG_WHEEL = 22
+    TYPE_SETUP_STABILIZATION = 23
+    TYPE_3D_ANG = 24
+    TYPE_DEFORMABLE_3D_LIN = 25
+    TYPE_DEFORMABLE_3D_ANG = 26
+    TYPE_OVERWRITE_PIVOT = 27
+    TYPE_WHEEL_FRICTION = 28
+    TYPE_ELLIPTICAL_LIMIT = 29
+    TYPE_CONTACT = 30
+    FIRST_MODIFIER_TYPE = 31
+    TYPE_MODIFIER_SOFT_CONTACT = 31
+    TYPE_MODIFIER_MASS_CHANGER = 32
+    TYPE_MODIFIER_VISCOUS_SURFACE = 33
+    TYPE_MODIFIER_MOVING_SURFACE = 34
+    TYPE_MODIFIER_IGNORE_CONSTRAINT = 35
+    TYPE_MODIFIER_CENTER_OF_MASS_CHANGER = 36
+    LAST_MODIFIER_TYPE = 36
+    TYPE_MAX = 37
+
+
+class CallbackRequest(Enum):
+    # enum id: 39230800
+
+    CALLBACK_REQUEST_NONE = 0
+    CALLBACK_REQUEST_NEW_CONTACT_POINT = 1
+    CALLBACK_REQUEST_SETUP_PPU_ONLY = 2
+    CALLBACK_REQUEST_SETUP_CALLBACK = 4
+    CALLBACK_REQUEST_CONTACT_POINT_CALLBACK = 8
+
+
+class SolvingMethod(Enum):
+    # enum id: 39230840
+
+    METHOD_STABILIZED = 0
+    METHOD_OLD = 1
+
+
+class Axis(Enum):
+    # enum id: 39235872
+
+    AXIS_AXLE = 0
+    AXIS_PERP_TO_AXLE_1 = 1
+    AXIS_PERP_TO_AXLE_2 = 2
+
+
+class Axis(Enum):
+    # enum id: 39236280
+
+    AXIS_AXLE = 0
+    AXIS_PERP_TO_AXLE_1 = 1
+    AXIS_PERP_TO_AXLE_2 = 2
+
+
+class MotorIndex(Enum):
+    # enum id: 39236672
+
+    MOTOR_TWIST = 0
+    MOTOR_SWING0 = 1
+    MOTOR_SWING1 = 2
+    MOTOR_ALL = 3
+
+
+class Axis(Enum):
+    # enum id: 39236712
+
+    AXIS_TWIST = 0
+    AXIS_SWING0 = 1
+    AXIS_SWING1 = 2
+
+
+class MotorIndex(Enum):
+    # enum id: 39237584
+
+    MOTOR_TWIST = 0
+    MOTOR_PLANE = 1
+    MOTOR_CONE = 2
+    NUM_MOTOR_INDICES = 3
+
+
+class Axis(Enum):
+    # enum id: 39237624
+
+    AXIS_TWIST = 0
+    AXIS_PLANES = 1
+    AXIS_CROSS_PRODUCT = 2
+
+
+class ReintegrationRecollideMode(Enum):
+    # enum id: 39241776
+
+    RR_MODE_REINTEGRATE = 1
+    RR_MODE_RECOLLIDE_BROADPHASE = 2
+    RR_MODE_RECOLLIDE_NARROWPHASE = 4
+    RR_MODE_ALL = 7
+
+
+class MtAccessChecking(Enum):
+    # enum id: 39241816
+
+    MT_ACCESS_CHECKING_ENABLED = 0
+    MT_ACCESS_CHECKING_DISABLED = 1
+
+
+class CachedAabbUpdate(Enum):
+    # enum id: 39241856
+
+    SHIFT_BROADPHASE_UPDATE_ENTITY_AABBS = 0
+    SHIFT_BROADPHASE_IGNORE_ENTITY_AABBS = 1
+
+
+class FindContacts(Enum):
+    # enum id: 39245968
+
+    FIND_CONTACTS_DEFAULT = 0
+    FIND_CONTACTS_EXTRA = 1
+
+
+class ResetCollisionInformation(Enum):
+    # enum id: 39246008
+
+    RESET_TOI = 1
+    RESET_TIM = 2
+    RESET_AABB = 4
+    RESET_ALL = 7
+
+
+class LastProcessingStep(Enum):
+    # enum id: 39246048
+
+    INTEGRATE = 0
+    COLLIDE = 1
+
+
+class CloneConstraintMode(Enum):
+    # enum id: 39248672
+
+    CLONE_SHALLOW_IF_NOT_CONSTRAINED_TO_WORLD = 0
+    CLONE_DEEP_WITH_MOTORS = 1
+    CLONE_FORCE_SHALLOW = 2
+    CLONE_DEFAULT = 0
+
+
+class SolverType(Enum):
+    # enum id: 39250432
+
+    SOLVER_TYPE_INVALID = 0
+    SOLVER_TYPE_2ITERS_SOFT = 1
+    SOLVER_TYPE_2ITERS_MEDIUM = 2
+    SOLVER_TYPE_2ITERS_HARD = 3
+    SOLVER_TYPE_4ITERS_SOFT = 4
+    SOLVER_TYPE_4ITERS_MEDIUM = 5
+    SOLVER_TYPE_4ITERS_HARD = 6
+    SOLVER_TYPE_8ITERS_SOFT = 7
+    SOLVER_TYPE_8ITERS_MEDIUM = 8
+    SOLVER_TYPE_8ITERS_HARD = 9
+    SOLVER_TYPE_MAX_ID = 10
+
+
+class SimulationType(Enum):
+    # enum id: 39250472
+
+    SIMULATION_TYPE_INVALID = 0
+    SIMULATION_TYPE_DISCRETE = 1
+    SIMULATION_TYPE_CONTINUOUS = 2
+    SIMULATION_TYPE_MULTITHREADED = 3
+
+
+class ContactPointGeneration(Enum):
+    # enum id: 39250512
+
+    CONTACT_POINT_ACCEPT_ALWAYS = 0
+    CONTACT_POINT_REJECT_DUBIOUS = 1
+    CONTACT_POINT_REJECT_MANY = 2
+
+
+class BroadPhaseType(Enum):
+    # enum id: 39250552
+
+    BROADPHASE_TYPE_SAP = 0
+    BROADPHASE_TYPE_TREE = 1
+    BROADPHASE_TYPE_HYBRID = 2
+
+
+class BroadPhaseBorderBehaviour(Enum):
+    # enum id: 39250592
+
+    BROADPHASE_BORDER_ASSERT = 0
+    BROADPHASE_BORDER_FIX_ENTITY = 1
+    BROADPHASE_BORDER_REMOVE_ENTITY = 2
+    BROADPHASE_BORDER_DO_NOTHING = 3
+
+
+class PerPrimitiveDataMode(Enum):
+    # enum id: 39253424
+
+    PER_PRIMITIVE_DATA_NONE = 0
+    PER_PRIMITIVE_DATA_8_BIT = 1
+    PER_PRIMITIVE_DATA_PALETTE = 2
+    PER_PRIMITIVE_DATA_STRING_PALETTE = 3
+
+
+class PrimitiveType(Enum):
+    # enum id: 39253464
+
+    PRIMITIVE_TYPE_BOX = 0
+    PRIMITIVE_TYPE_HULL = 1
+    PRIMITIVE_TYPE_SPHERE = 2
+    PRIMITIVE_TYPE_CAPSULE = 3
+    PRIMITIVE_TYPE_CYLINDER = 4
+
+
+class Config(Enum):
+    # enum id: 39253504
+
+    NUM_BYTES_FOR_TREE = 144
+    MAX_NUM_VERTICES_PER_HULL = 255
+    MAX_NUM_PRIMITIVES = 8388608
+
+
+class BuildType(Enum):
+    # enum id: 39253736
+
+    BUILT_WITH_CHUNK_SUBDIVISION = 0
+    BUILT_WITHOUT_CHUNK_SUBDIVISION = 1
+    BUILD_NOT_SET = 2
+
+
+class Config(Enum):
+    # enum id: 39254184
+
+    NUM_BYTES_FOR_TREE = 48
+
+
+class TriangleMaterial(Enum):
+    # enum id: 39255312
+
+    TM_SET_FROM_TRIANGLE_DATA_TYPE = 0
+    TM_SET_FROM_PRIMITIVE_KEY = 1
+
+
+class SerializedAgentType(Enum):
+    # enum id: 39257240
+
+    INVALID_AGENT_TYPE = 0
+    BOX_BOX_AGENT3 = 1
+    CAPSULE_TRIANGLE_AGENT3 = 2
+    PRED_GSK_AGENT3 = 3
+    PRED_GSK_CYLINDER_AGENT3 = 4
+    CONVEX_LIST_AGENT3 = 5
+    LIST_AGENT3 = 6
+    BV_TREE_AGENT3 = 7
+    COLLECTION_COLLECTION_AGENT3 = 8
+    COLLECTION_AGENT3 = 9
+
+
+class Type(Enum):
+    # enum id: 39258696
+
+    WEAPON_TYPE_INVALID = 0
+    WEAPON_TYPE_BALLGUN = 1
+    WEAPON_TYPE_GRENADEGUN = 2
+    WEAPON_TYPE_GRAVITYGUN = 3
+    WEAPON_TYPE_MOUNTEDBALLGUN = 4
+    WEAPON_TYPE_TWEAKERGUN = 5
+    WEAPON_TYPE_MISSILEGUN = 6
+    WEAPON_TYPE_RAYCASTGUN = 7
+    WEAPON_TYPE_SPHEREGUN = 8
+    WEAPON_TYPE_STICKYGUN = 9
+    WEAPON_TYPE_NUM_TYPES = 10
+
+
+class KeyboardKey(Enum):
+    # enum id: 39258736
+
+    KEY_F1 = 112
+    KEY_F2 = 113
+    KEY_F3 = 114
+    KEY_F4 = 115
+    KEY_F5 = 116
+    KEY_F6 = 117
+    KEY_F7 = 118
+    KEY_F8 = 119
+    KEY_F9 = 120
+    KEY_F10 = 121
+    KEY_F11 = 122
+    KEY_F12 = 123
+
+
+class EventType(Enum):
+    # enum id: 39262464
+
+    ENTERED_EVENT = 1
+    LEFT_EVENT = 2
+    ENTERED_AND_LEFT_EVENT = 3
+    TRIGGER_BODY_LEFT_EVENT = 6
+
+
+class Operation(Enum):
+    # enum id: 39262504
+
+    ADDED_OP = 0
+    REMOVED_OP = 1
+    CONTACT_OP = 2
+    TOI_OP = 3
+
+
+class WheelCollideType(Enum):
+    # enum id: 39274616
+
+    INVALID_WHEEL_COLLIDE = 0
+    RAY_CAST_WHEEL_COLLIDE = 1
+    LINEAR_CAST_WHEEL_COLLIDE = 2
+    USER_WHEEL_COLLIDE1 = 3
+    USER_WHEEL_COLLIDE2 = 4
+    USER_WHEEL_COLLIDE3 = 5
+    USER_WHEEL_COLLIDE4 = 6
+    USER_WHEEL_COLLIDE5 = 7
+
+
+class Format(Enum):
+    # enum id: 39277216
+
+    Unknown = 0
+    PNG = 1
+    TGA = 2
+    BMP = 3
+    DDS = 4
+    RAW = 5
+
+
+class FilterMode(Enum):
+    # enum id: 39277256
+
+    POINT = 0
+    LINEAR = 1
+    ANISOTROPIC = 2
+
+
+class TextureUsageType(Enum):
+    # enum id: 39277296
+
+    UNKNOWN = 0
+    DIFFUSE = 1
+    REFLECTION = 2
+    BUMP = 3
+    NORMAL = 4
+    DISPLACEMENT = 5
+    SPECULAR = 6
+    SPECULARANDGLOSS = 7
+    OPACITY = 8
+    EMISSIVE = 9
+    REFRACTION = 10
+    GLOSS = 11
+    DOMINANTS = 12
+    NOTEXPORTED = 13
+
+
+class Flags(Enum):
+    # enum id: 39278048
+
+    ACCESS_READ = 1
+    ACCESS_WRITE = 2
+    ACCESS_READ_WRITE = 3
+    ACCESS_WRITE_DISCARD = 4
+    ACCESS_ELEMENT_ARRAY = 8
+
+
+class LockResult(Enum):
+    # enum id: 39278088
+
+    RESULT_FAILURE = 0
+    RESULT_SUCCESS = 1
+    RESULT_IN_USE = 2
+
+
+class ComponentType(Enum):
+    # enum id: 39278128
+
+    TYPE_NONE = 0
+    TYPE_INT8 = 1
+    TYPE_UINT8 = 2
+    TYPE_INT16 = 3
+    TYPE_UINT16 = 4
+    TYPE_INT32 = 5
+    TYPE_UINT32 = 6
+    TYPE_UINT8_DWORD = 7
+    TYPE_ARGB32 = 8
+    TYPE_FLOAT16 = 9
+    TYPE_FLOAT32 = 10
+    TYPE_VECTOR4 = 11
+    TYPE_LAST = 12
+
+
+class ComponentUsage(Enum):
+    # enum id: 39278168
+
+    USAGE_NONE = 0
+    USAGE_POSITION = 1
+    USAGE_NORMAL = 2
+    USAGE_COLOR = 3
+    USAGE_TANGENT = 4
+    USAGE_BINORMAL = 5
+    USAGE_BLEND_MATRIX_INDEX = 6
+    USAGE_BLEND_WEIGHTS = 7
+    USAGE_BLEND_WEIGHTS_LAST_IMPLIED = 8
+    USAGE_TEX_COORD = 9
+    USAGE_POINT_SIZE = 10
+    USAGE_USER = 11
+    USAGE_LAST = 12
+
+
+class HintFlags(Enum):
+    # enum id: 39278208
+
+    FLAG_READ = 1
+    FLAG_WRITE = 2
+    FLAG_DYNAMIC = 4
+    FLAG_NOT_SHARED = 8
+
+
+class SharingType(Enum):
+    # enum id: 39278248
+
+    SHARING_ALL_SHARED = 0
+    SHARING_ALL_NOT_SHARED = 1
+    SHARING_MIXTURE = 2
+
+
+class PickDataIdentifier(Enum):
+    # enum id: 39281296
+
+    PICK_RIGID_BODY_WITH_BREAKABLE_BODY = 1
+    PICK_USER = 4096
+
+
+class MeshSectionIndexType(Enum):
+    # enum id: 39281872
+
+    INDEX_TYPE_NONE = 0
+    INDEX_TYPE_UINT16 = 1
+    INDEX_TYPE_UINT32 = 2
+
+
+class PrimitiveType(Enum):
+    # enum id: 39281912
+
+    PRIMITIVE_TYPE_UNKNOWN = 0
+    PRIMITIVE_TYPE_POINT_LIST = 1
+    PRIMITIVE_TYPE_LINE_LIST = 2
+    PRIMITIVE_TYPE_TRIANGLE_LIST = 3
+    PRIMITIVE_TYPE_TRIANGLE_STRIP = 4
+
+
+class AccessFlags(Enum):
+    # enum id: 39281968
+
+    ACCESS_INDICES = 1
+    ACCESS_VERTEX_BUFFER = 2
+
+
+class EffectType(Enum):
+    # enum id: 39284688
+
+    EFFECT_TYPE_INVALID = 0
+    EFFECT_TYPE_UNKNOWN = 1
+    EFFECT_TYPE_HLSL_FX_INLINE = 2
+    EFFECT_TYPE_CG_FX_INLINE = 3
+    EFFECT_TYPE_HLSL_FX_FILENAME = 4
+    EFFECT_TYPE_CG_FX_FILENAME = 5
+    EFFECT_TYPE_MAX_ID = 6
+
+
+class ShaderType(Enum):
+    # enum id: 39285264
+
+    EFFECT_TYPE_INVALID = 0
+    EFFECT_TYPE_UNKNOWN = 1
+    EFFECT_TYPE_HLSL_INLINE = 2
+    EFFECT_TYPE_CG_INLINE = 3
+    EFFECT_TYPE_HLSL_FILENAME = 4
+    EFFECT_TYPE_CG_FILENAME = 5
+    EFFECT_TYPE_MAX_ID = 6
+
+
+class Type(Enum):
+    # enum id: 39286152
+
+    TYPE_RESOURCE = 0
+    TYPE_CONTAINER = 1

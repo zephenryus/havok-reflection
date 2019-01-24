@@ -3,5 +3,5 @@ from .hkaiSplitGenerationUtilsSettings import hkaiSplitGenerationUtilsSettings
 
 
 class hkaiSplitGenerationSnapshot(object):
-	generationSnapshot: hkaiNavMeshGenerationSnapshot
-	splitSettings: hkaiSplitGenerationUtilsSettings
+    generationSnapshot: hkaiNavMeshGenerationSnapshot
+    splitSettings: hkaiSplitGenerationUtilsSettings

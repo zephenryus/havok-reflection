@@ -4,5 +4,5 @@ from .hclCompressibleLinkConstraintSetMxSingle import hclCompressibleLinkConstra
 
 
 class hclCompressibleLinkConstraintSetMx(hclConstraintSet):
-	batches: hclCompressibleLinkConstraintSetMxBatch
-	singles: hclCompressibleLinkConstraintSetMxSingle
+    batches: hclCompressibleLinkConstraintSetMxBatch
+    singles: hclCompressibleLinkConstraintSetMxSingle

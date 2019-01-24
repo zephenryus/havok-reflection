@@ -1,6 +1,7 @@
+from .common import vector4
 
 
 class hkpBallSocketChainDataConstraintInfo(object):
-	pivotInA: any
-	pivotInB: any
-	flags: int
+    pivotInA: vector4
+    pivotInB: vector4
+    flags: int

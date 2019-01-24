@@ -2,5 +2,5 @@ from .hkpConstraintAtom import hkpConstraintAtom
 
 
 class hkpOverwritePivotConstraintAtom(hkpConstraintAtom):
-	copyToPivotBFromPivotA: int
-	padding: int
+    copyToPivotBFromPivotA: int
+    padding: int

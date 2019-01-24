@@ -1,4 +1,5 @@
+from .common import vector4
 
 
 class hkFourTransposedPointsf(object):
-	vertices: any
+    vertices: vector4

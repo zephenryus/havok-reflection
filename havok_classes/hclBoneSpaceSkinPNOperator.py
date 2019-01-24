@@ -4,5 +4,5 @@ from .hclBoneSpaceDeformerLocalBlockUnpackedPN import hclBoneSpaceDeformerLocalB
 
 
 class hclBoneSpaceSkinPNOperator(hclBoneSpaceSkinOperator):
-	localPNs: hclBoneSpaceDeformerLocalBlockPN
-	localUnpackedPNs: hclBoneSpaceDeformerLocalBlockUnpackedPN
+    localPNs: hclBoneSpaceDeformerLocalBlockPN
+    localUnpackedPNs: hclBoneSpaceDeformerLocalBlockUnpackedPN

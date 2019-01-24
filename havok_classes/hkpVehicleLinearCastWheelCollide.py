@@ -4,9 +4,9 @@ from .hkpRejectChassisListener import hkpRejectChassisListener
 
 
 class hkpVehicleLinearCastWheelCollide(hkpVehicleWheelCollide):
-	wheelCollisionFilterInfo: int
-	wheelStates: hkpVehicleLinearCastWheelCollideWheelState
-	rejectChassisListener: hkpRejectChassisListener
-	maxExtraPenetration: float
-	startPointTolerance: float
-	collectStartPointHits: bool
+    wheelCollisionFilterInfo: int
+    wheelStates: hkpVehicleLinearCastWheelCollideWheelState
+    rejectChassisListener: hkpRejectChassisListener
+    maxExtraPenetration: float
+    startPointTolerance: float
+    collectStartPointHits: bool

@@ -1,10 +1,10 @@
 from .hkReferencedObject import hkReferencedObject
-from .hkReferencedObject import hkReferencedObject
+from .common import any
 
 
 class hkaBoneAttachment(hkReferencedObject):
-	originalSkeletonName: any
-	boneFromAttachment: any
-	attachment: hkReferencedObject
-	name: any
-	boneIndex: int
+    originalSkeletonName: str
+    boneFromAttachment: any
+    attachment: hkReferencedObject
+    name: str
+    boneIndex: int

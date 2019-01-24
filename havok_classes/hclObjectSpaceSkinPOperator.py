@@ -4,5 +4,5 @@ from .hclObjectSpaceDeformerLocalBlockUnpackedP import hclObjectSpaceDeformerLoc
 
 
 class hclObjectSpaceSkinPOperator(hclObjectSpaceSkinOperator):
-	localPs: hclObjectSpaceDeformerLocalBlockP
-	localUnpackedPs: hclObjectSpaceDeformerLocalBlockUnpackedP
+    localPs: hclObjectSpaceDeformerLocalBlockP
+    localUnpackedPs: hclObjectSpaceDeformerLocalBlockUnpackedP

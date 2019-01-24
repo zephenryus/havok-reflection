@@ -6,8 +6,8 @@ from .hkaiNavMesh import hkaiNavMesh
 
 
 class hkaiNavMeshSimplificationSnapshot(object):
-	geometry: hkGeometry
-	carvers: hkaiCarver
-	cuttingTriangles: hkBitField
-	settings: hkaiNavMeshGenerationSettings
-	unsimplifiedNavMesh: hkaiNavMesh
+    geometry: hkGeometry
+    carvers: hkaiCarver
+    cuttingTriangles: hkBitField
+    settings: hkaiNavMeshGenerationSettings
+    unsimplifiedNavMesh: hkaiNavMesh

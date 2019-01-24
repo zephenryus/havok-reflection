@@ -4,5 +4,5 @@ from .hkpStorageExtendedMeshShapeShapeSubpartStorage import hkpStorageExtendedMe
 
 
 class hkpStorageExtendedMeshShape(hkpExtendedMeshShape):
-	meshstorage: hkpStorageExtendedMeshShapeMeshSubpartStorage
-	shapestorage: hkpStorageExtendedMeshShapeShapeSubpartStorage
+    meshstorage: hkpStorageExtendedMeshShapeMeshSubpartStorage
+    shapestorage: hkpStorageExtendedMeshShapeShapeSubpartStorage

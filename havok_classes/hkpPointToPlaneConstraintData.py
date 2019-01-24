@@ -3,4 +3,4 @@ from .hkpPointToPlaneConstraintDataAtoms import hkpPointToPlaneConstraintDataAto
 
 
 class hkpPointToPlaneConstraintData(hkpConstraintData):
-	atoms: hkpPointToPlaneConstraintDataAtoms
+    atoms: hkpPointToPlaneConstraintDataAtoms

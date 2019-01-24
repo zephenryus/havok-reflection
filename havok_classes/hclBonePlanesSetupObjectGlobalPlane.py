@@ -1,11 +1,11 @@
 from .hclVertexSelectionInput import hclVertexSelectionInput
-from .hclVertexFloatInput import hclVertexFloatInput
+from .common import vector4
 from .hclVertexFloatInput import hclVertexFloatInput
 
 
 class hclBonePlanesSetupObjectGlobalPlane(object):
-	transformName: any
-	particles: hclVertexSelectionInput
-	planeEquationBoneSpace: any
-	allowedPenetration: hclVertexFloatInput
-	stiffness: hclVertexFloatInput
+    transformName: str
+    particles: hclVertexSelectionInput
+    planeEquationBoneSpace: vector4
+    allowedPenetration: hclVertexFloatInput
+    stiffness: hclVertexFloatInput

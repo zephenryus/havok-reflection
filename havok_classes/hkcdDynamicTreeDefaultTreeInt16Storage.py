@@ -2,3 +2,4 @@ from .hkcdDynamicTreeTreehkcdDynamicTreeDynamicStorageInt16 import hkcdDynamicTr
 
 
 class hkcdDynamicTreeDefaultTreeInt16Storage(hkcdDynamicTreeTreehkcdDynamicTreeDynamicStorageInt16):
+    pass

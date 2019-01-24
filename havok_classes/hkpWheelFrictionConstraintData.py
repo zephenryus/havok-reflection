@@ -3,4 +3,4 @@ from .hkpWheelFrictionConstraintDataAtoms import hkpWheelFrictionConstraintDataA
 
 
 class hkpWheelFrictionConstraintData(hkpConstraintData):
-	atoms: hkpWheelFrictionConstraintDataAtoms
+    atoms: hkpWheelFrictionConstraintDataAtoms

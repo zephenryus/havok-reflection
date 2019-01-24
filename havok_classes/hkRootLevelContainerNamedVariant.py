@@ -2,6 +2,6 @@ from .hkReferencedObject import hkReferencedObject
 
 
 class hkRootLevelContainerNamedVariant(object):
-	name: any
-	className: any
-	variant: hkReferencedObject
+    name: str
+    className: str
+    variant: hkReferencedObject

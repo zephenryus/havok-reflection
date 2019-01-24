@@ -1,6 +1,7 @@
 from .hkSphere import hkSphere
+from .common import vector4
 
 
 class hkaiAvoidanceSolverSphereObstacle(object):
-	sphere: hkSphere
-	velocity: any
+    sphere: hkSphere
+    velocity: vector4

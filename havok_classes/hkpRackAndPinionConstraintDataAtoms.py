@@ -3,5 +3,5 @@ from .hkpRackAndPinionConstraintAtom import hkpRackAndPinionConstraintAtom
 
 
 class hkpRackAndPinionConstraintDataAtoms(object):
-	transforms: hkpSetLocalTransformsConstraintAtom
-	rackAndPinion: hkpRackAndPinionConstraintAtom
+    transforms: hkpSetLocalTransformsConstraintAtom
+    rackAndPinion: hkpRackAndPinionConstraintAtom

@@ -1,4 +1,5 @@
+from .common import vector4
 
 
 class hclObjectSpaceDeformerLocalBlockUnpackedP(object):
-	localPosition: any
+    localPosition: vector4

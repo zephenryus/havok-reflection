@@ -4,5 +4,5 @@ from .hclStretchLinkConstraintSetMxSingle import hclStretchLinkConstraintSetMxSi
 
 
 class hclStretchLinkConstraintSetMx(hclConstraintSet):
-	batches: hclStretchLinkConstraintSetMxBatch
-	singles: hclStretchLinkConstraintSetMxSingle
+    batches: hclStretchLinkConstraintSetMxBatch
+    singles: hclStretchLinkConstraintSetMxSingle

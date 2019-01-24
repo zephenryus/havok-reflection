@@ -1,5 +1,3 @@
-
-
 class hkaAnnotationTrackAnnotation(object):
-	time: float
-	text: any
+    time: float
+    text: str

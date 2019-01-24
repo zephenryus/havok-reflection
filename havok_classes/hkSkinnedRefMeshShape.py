@@ -1,9 +1,10 @@
 from .hkMeshShape import hkMeshShape
 from .hkSkinnedMeshShape import hkSkinnedMeshShape
+from .common import any
 
 
 class hkSkinnedRefMeshShape(hkMeshShape):
-	skinnedMeshShape: hkSkinnedMeshShape
-	bones: any
-	localFromRootTransforms: any
-	name: any
+    skinnedMeshShape: hkSkinnedMeshShape
+    bones: any
+    localFromRootTransforms: any
+    name: str

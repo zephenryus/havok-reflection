@@ -2,6 +2,6 @@ from .hkcdDynamicTreeDynamicStorageInt16 import hkcdDynamicTreeDynamicStorageInt
 
 
 class hkcdDynamicTreeTreehkcdDynamicTreeDynamicStorageInt16(hkcdDynamicTreeDynamicStorageInt16):
-	numLeaves: int
-	path: int
-	root: int
+    numLeaves: int
+    path: int
+    root: int

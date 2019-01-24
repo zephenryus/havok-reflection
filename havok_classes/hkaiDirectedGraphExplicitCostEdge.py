@@ -1,6 +1,7 @@
+from .common import any
 
 
 class hkaiDirectedGraphExplicitCostEdge(object):
-	cost: int
-	flags: any
-	target: int
+    cost: int
+    flags: any
+    target: int

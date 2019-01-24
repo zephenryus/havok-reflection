@@ -4,6 +4,6 @@ from .hkxMeshSection import hkxMeshSection
 
 
 class hclSceneDataSetupMeshSection(hkReferencedObject):
-	setupMesh: hclSceneDataSetupMesh
-	meshSection: hkxMeshSection
-	skinnedSection: bool
+    setupMesh: hclSceneDataSetupMesh
+    meshSection: hkxMeshSection
+    skinnedSection: bool

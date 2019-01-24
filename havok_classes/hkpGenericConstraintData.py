@@ -4,5 +4,5 @@ from .hkpGenericConstraintDataScheme import hkpGenericConstraintDataScheme
 
 
 class hkpGenericConstraintData(hkpConstraintData):
-	atoms: hkpBridgeAtoms
-	scheme: hkpGenericConstraintDataScheme
+    atoms: hkpBridgeAtoms
+    scheme: hkpGenericConstraintDataScheme

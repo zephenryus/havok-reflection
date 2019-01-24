@@ -3,4 +3,4 @@ from .hkpVehicleSuspensionSuspensionWheelParameters import hkpVehicleSuspensionS
 
 
 class hkpVehicleSuspension(hkReferencedObject):
-	wheelParams: hkpVehicleSuspensionSuspensionWheelParameters
+    wheelParams: hkpVehicleSuspensionSuspensionWheelParameters

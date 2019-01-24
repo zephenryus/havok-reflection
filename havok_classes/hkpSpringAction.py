@@ -1,12 +1,13 @@
 from .hkpBinaryAction import hkpBinaryAction
+from .common import vector4
 
 
 class hkpSpringAction(hkpBinaryAction):
-	lastForce: any
-	positionAinA: any
-	positionBinB: any
-	restLength: float
-	strength: float
-	damping: float
-	onCompression: bool
-	onExtension: bool
+    lastForce: vector4
+    positionAinA: vector4
+    positionBinB: vector4
+    restLength: float
+    strength: float
+    damping: float
+    onCompression: bool
+    onExtension: bool

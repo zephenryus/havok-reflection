@@ -3,4 +3,4 @@ from .hkaFootstepAnalysisInfo import hkaFootstepAnalysisInfo
 
 
 class hkaFootstepAnalysisInfoContainer(hkReferencedObject):
-	previewInfo: hkaFootstepAnalysisInfo
+    previewInfo: hkaFootstepAnalysisInfo

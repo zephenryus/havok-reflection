@@ -1,3 +1,2 @@
-
-
 class hkpRayCollidableFilter(object):
+    pass

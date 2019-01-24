@@ -1,6 +1,4 @@
-
-
 class hkaiEdgePathTraversalState(object):
-	faceEdge: int
-	trailingEdge: int
-	highestUserEdgeCrossed: int
+    faceEdge: int
+    trailingEdge: int
+    highestUserEdgeCrossed: int

@@ -1,5 +1,6 @@
+from .common import any
 
 
 class hkCustomAttributesAttribute(object):
-	name: any
-	value: any
+    name: str
+    value: any

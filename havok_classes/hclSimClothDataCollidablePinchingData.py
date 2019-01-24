@@ -1,6 +1,4 @@
-
-
 class hclSimClothDataCollidablePinchingData(object):
-	pinchDetectionEnabled: bool
-	pinchDetectionPriority: int
-	pinchDetectionRadius: float
+    pinchDetectionEnabled: bool
+    pinchDetectionPriority: int
+    pinchDetectionRadius: float

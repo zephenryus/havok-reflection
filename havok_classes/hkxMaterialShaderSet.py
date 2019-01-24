@@ -3,4 +3,4 @@ from .hkxMaterialShader import hkxMaterialShader
 
 
 class hkxMaterialShaderSet(hkReferencedObject):
-	shaders: hkxMaterialShader
+    shaders: hkxMaterialShader

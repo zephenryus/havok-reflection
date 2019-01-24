@@ -4,8 +4,8 @@ from .hkpStiffSpringChainDataConstraintInfo import hkpStiffSpringChainDataConstr
 
 
 class hkpStiffSpringChainData(hkpConstraintChainData):
-	atoms: hkpBridgeAtoms
-	infos: hkpStiffSpringChainDataConstraintInfo
-	tau: float
-	damping: float
-	cfm: float
+    atoms: hkpBridgeAtoms
+    infos: hkpStiffSpringChainDataConstraintInfo
+    tau: float
+    damping: float
+    cfm: float

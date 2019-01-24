@@ -3,4 +3,4 @@ from .hclCompressibleLinkConstraintSetLink import hclCompressibleLinkConstraintS
 
 
 class hclCompressibleLinkConstraintSet(hclConstraintSet):
-	links: hclCompressibleLinkConstraintSetLink
+    links: hclCompressibleLinkConstraintSetLink

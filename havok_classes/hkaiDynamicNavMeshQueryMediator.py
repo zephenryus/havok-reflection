@@ -5,7 +5,7 @@ from .hkaiNavMeshCutter import hkaiNavMeshCutter
 
 
 class hkaiDynamicNavMeshQueryMediator(hkaiNavMeshQueryMediator):
-	collection: hkaiStreamingCollection
-	aabbTree: hkcdDynamicAabbTree
-	cutter: hkaiNavMeshCutter
-	cutAabbTolerance: float
+    collection: hkaiStreamingCollection
+    aabbTree: hkcdDynamicAabbTree
+    cutter: hkaiNavMeshCutter
+    cutAabbTolerance: float

@@ -3,5 +3,5 @@ from .hkpSingleShapeContainer import hkpSingleShapeContainer
 
 
 class hkpMoppBvTreeShape(hkMoppBvTreeShapeBase):
-	child: hkpSingleShapeContainer
-	childSize: int
+    child: hkpSingleShapeContainer
+    childSize: int

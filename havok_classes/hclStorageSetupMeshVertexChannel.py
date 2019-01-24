@@ -1,5 +1,6 @@
+from .enums import VertexChannelType
 
 
 class hclStorageSetupMeshVertexChannel(object):
-	name: any
-	type: any
+    name: str
+    type: VertexChannelType

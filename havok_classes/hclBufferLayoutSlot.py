@@ -1,5 +1,6 @@
+from .enums import SlotFlags
 
 
 class hclBufferLayoutSlot(object):
-	flags: any
-	stride: int
+    flags: SlotFlags
+    stride: int

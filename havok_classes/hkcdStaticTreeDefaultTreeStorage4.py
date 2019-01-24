@@ -2,3 +2,4 @@ from .hkcdStaticTreeTreehkcdStaticTreeDynamicStorage4 import hkcdStaticTreeTreeh
 
 
 class hkcdStaticTreeDefaultTreeStorage4(hkcdStaticTreeTreehkcdStaticTreeDynamicStorage4):
+    pass

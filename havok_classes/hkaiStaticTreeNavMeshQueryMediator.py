@@ -4,5 +4,5 @@ from .hkaiNavMesh import hkaiNavMesh
 
 
 class hkaiStaticTreeNavMeshQueryMediator(hkaiNavMeshQueryMediator):
-	tree: hkcdStaticAabbTree
-	navMesh: hkaiNavMesh
+    tree: hkcdStaticAabbTree
+    navMesh: hkaiNavMesh

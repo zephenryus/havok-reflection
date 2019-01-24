@@ -2,4 +2,4 @@ from .hkOffsetBitFieldStoragehkArrayunsignedinthkContainerHeapAllocator import h
 
 
 class hkBitFieldBasehkOffsetBitFieldStoragehkArrayunsignedinthkContainerHeapAllocator(object):
-	storage: hkOffsetBitFieldStoragehkArrayunsignedinthkContainerHeapAllocator
+    storage: hkOffsetBitFieldStoragehkArrayunsignedinthkContainerHeapAllocator

@@ -1,5 +1,3 @@
-
-
 class hkpMoppCodeReindexedTerminal(object):
-	origShapeKey: int
-	reindexedShapeKey: int
+    origShapeKey: int
+    reindexedShapeKey: int

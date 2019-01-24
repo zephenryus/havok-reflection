@@ -4,6 +4,6 @@ from .hclBendStiffnessConstraintSetMxSingle import hclBendStiffnessConstraintSet
 
 
 class hclBendStiffnessConstraintSetMx(hclConstraintSet):
-	batches: hclBendStiffnessConstraintSetMxBatch
-	singles: hclBendStiffnessConstraintSetMxSingle
-	useRestPoseConfig: bool
+    batches: hclBendStiffnessConstraintSetMxBatch
+    singles: hclBendStiffnessConstraintSetMxSingle
+    useRestPoseConfig: bool

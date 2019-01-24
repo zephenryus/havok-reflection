@@ -3,4 +3,4 @@ from .hkxEnvironmentVariable import hkxEnvironmentVariable
 
 
 class hkxEnvironment(hkReferencedObject):
-	variables: hkxEnvironmentVariable
+    variables: hkxEnvironmentVariable

@@ -1,3 +1,2 @@
-
-
 class hkScriptableAttribute(object):
+    pass

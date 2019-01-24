@@ -4,5 +4,5 @@ from .hkpVehicleFrictionDescription import hkpVehicleFrictionDescription
 
 
 class hkpVehicleDefaultSimulation(hkpVehicleSimulation):
-	frictionStatus: hkpVehicleFrictionStatus
-	frictionDescription: hkpVehicleFrictionDescription
+    frictionStatus: hkpVehicleFrictionStatus
+    frictionDescription: hkpVehicleFrictionDescription

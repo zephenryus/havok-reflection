@@ -1,9 +1,10 @@
+from .enums import DataType, DataUsage
 
 
 class hkxVertexDescriptionElementDecl(object):
-	byteOffset: int
-	type: any
-	usage: any
-	byteStride: int
-	numElements: int
-	channelID: any
+    byteOffset: int
+    type: DataType
+    usage: DataUsage
+    byteStride: int
+    numElements: int
+    channelID: str

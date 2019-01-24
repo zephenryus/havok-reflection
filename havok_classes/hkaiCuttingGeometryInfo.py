@@ -4,5 +4,5 @@ from .hkBitField import hkBitField
 
 
 class hkaiCuttingGeometryInfo(hkReferencedObject):
-	geometry: hkGeometry
-	cuttingTriangles: hkBitField
+    geometry: hkGeometry
+    cuttingTriangles: hkBitField

@@ -1,5 +1,3 @@
-
-
 class hclObjectSpaceDeformerOneBlendEntryBlock(object):
-	vertexIndices: int
-	boneIndices: int
+    vertexIndices: int
+    boneIndices: int

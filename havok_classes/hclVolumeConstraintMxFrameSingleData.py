@@ -1,6 +1,7 @@
+from .common import vector4
 
 
 class hclVolumeConstraintMxFrameSingleData(object):
-	frameVector: any
-	particleIndex: int
-	weight: float
+    frameVector: vector4
+    particleIndex: int
+    weight: float

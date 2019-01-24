@@ -3,4 +3,4 @@ from .hkpStorageMeshShapeSubpartStorage import hkpStorageMeshShapeSubpartStorage
 
 
 class hkpStorageMeshShape(hkpMeshShape):
-	storage: hkpStorageMeshShapeSubpartStorage
+    storage: hkpStorageMeshShapeSubpartStorage

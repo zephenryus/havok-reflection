@@ -3,5 +3,5 @@ from .hkpSimpleShapePhantomCollisionDetail import hkpSimpleShapePhantomCollision
 
 
 class hkpSimpleShapePhantom(hkpShapePhantom):
-	collisionDetails: hkpSimpleShapePhantomCollisionDetail
-	orderDirty: bool
+    collisionDetails: hkpSimpleShapePhantomCollisionDetail
+    orderDirty: bool

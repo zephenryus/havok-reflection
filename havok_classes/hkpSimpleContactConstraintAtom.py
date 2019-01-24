@@ -3,11 +3,11 @@ from .hkpSimpleContactConstraintDataInfo import hkpSimpleContactConstraintDataIn
 
 
 class hkpSimpleContactConstraintAtom(hkpConstraintAtom):
-	sizeOfAllAtoms: int
-	numContactPoints: int
-	numReservedContactPoints: int
-	numUserDatasForBodyA: int
-	numUserDatasForBodyB: int
-	contactPointPropertiesStriding: int
-	maxNumContactPoints: int
-	info: hkpSimpleContactConstraintDataInfo
+    sizeOfAllAtoms: int
+    numContactPoints: int
+    numReservedContactPoints: int
+    numUserDatasForBodyA: int
+    numUserDatasForBodyB: int
+    contactPointPropertiesStriding: int
+    maxNumContactPoints: int
+    info: hkpSimpleContactConstraintDataInfo

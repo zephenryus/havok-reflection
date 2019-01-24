@@ -4,6 +4,6 @@ from .hkAabb import hkAabb
 
 
 class hkcdPlanarSolidNodeStorage(hkReferencedObject):
-	storage: hkcdPlanarSolidNode
-	aabbs: hkAabb
-	firstFreeNodeId: int
+    storage: hkcdPlanarSolidNode
+    aabbs: hkAabb
+    firstFreeNodeId: int

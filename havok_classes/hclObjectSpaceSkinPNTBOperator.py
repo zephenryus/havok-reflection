@@ -4,5 +4,5 @@ from .hclObjectSpaceDeformerLocalBlockUnpackedPNTB import hclObjectSpaceDeformer
 
 
 class hclObjectSpaceSkinPNTBOperator(hclObjectSpaceSkinOperator):
-	localPNTBs: hclObjectSpaceDeformerLocalBlockPNTB
-	localUnpackedPNTBs: hclObjectSpaceDeformerLocalBlockUnpackedPNTB
+    localPNTBs: hclObjectSpaceDeformerLocalBlockPNTB
+    localUnpackedPNTBs: hclObjectSpaceDeformerLocalBlockUnpackedPNTB

@@ -1,5 +1,3 @@
-
-
 class hkaSkeletonMapperDataPartitionMappingRange(object):
-	startMappingIndex: int
-	numMappings: int
+    startMappingIndex: int
+    numMappings: int

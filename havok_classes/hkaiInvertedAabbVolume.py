@@ -4,5 +4,5 @@ from .hkGeometry import hkGeometry
 
 
 class hkaiInvertedAabbVolume(hkaiVolume):
-	aabb: hkAabb
-	geometry: hkGeometry
+    aabb: hkAabb
+    geometry: hkGeometry

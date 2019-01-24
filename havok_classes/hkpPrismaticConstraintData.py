@@ -3,4 +3,4 @@ from .hkpPrismaticConstraintDataAtoms import hkpPrismaticConstraintDataAtoms
 
 
 class hkpPrismaticConstraintData(hkpConstraintData):
-	atoms: hkpPrismaticConstraintDataAtoms
+    atoms: hkpPrismaticConstraintDataAtoms

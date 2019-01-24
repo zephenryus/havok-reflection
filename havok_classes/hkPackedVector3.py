@@ -1,4 +1,2 @@
-
-
 class hkPackedVector3(object):
-	values: int
+    values: int

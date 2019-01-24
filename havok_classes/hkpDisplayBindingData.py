@@ -4,5 +4,5 @@ from .hkpDisplayBindingDataPhysicsSystem import hkpDisplayBindingDataPhysicsSyst
 
 
 class hkpDisplayBindingData(hkReferencedObject):
-	rigidBodyBindings: hkpDisplayBindingDataRigidBody
-	physicsSystemBindings: hkpDisplayBindingDataPhysicsSystem
+    rigidBodyBindings: hkpDisplayBindingDataRigidBody
+    physicsSystemBindings: hkpDisplayBindingDataPhysicsSystem

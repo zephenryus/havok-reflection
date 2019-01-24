@@ -1,6 +1,4 @@
-
-
 class hkaSkeletonPartition(object):
-	name: any
-	startBoneIndex: int
-	numBones: int
+    name: str
+    startBoneIndex: int
+    numBones: int

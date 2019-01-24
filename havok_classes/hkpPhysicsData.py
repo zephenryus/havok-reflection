@@ -4,5 +4,5 @@ from .hkpPhysicsSystem import hkpPhysicsSystem
 
 
 class hkpPhysicsData(hkReferencedObject):
-	worldCinfo: hkpWorldCinfo
-	systems: hkpPhysicsSystem
+    worldCinfo: hkpWorldCinfo
+    systems: hkpPhysicsSystem

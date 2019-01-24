@@ -3,4 +3,4 @@ from .hkaiUserEdgeUtilsUserEdgePair import hkaiUserEdgeUtilsUserEdgePair
 
 
 class hkaiUserEdgePairArray(hkReferencedObject):
-	edgePairs: hkaiUserEdgeUtilsUserEdgePair
+    edgePairs: hkaiUserEdgeUtilsUserEdgePair

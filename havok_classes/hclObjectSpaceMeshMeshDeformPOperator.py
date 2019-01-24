@@ -4,5 +4,5 @@ from .hclObjectSpaceDeformerLocalBlockUnpackedP import hclObjectSpaceDeformerLoc
 
 
 class hclObjectSpaceMeshMeshDeformPOperator(hclObjectSpaceMeshMeshDeformOperator):
-	localPs: hclObjectSpaceDeformerLocalBlockP
-	localUnpackedPs: hclObjectSpaceDeformerLocalBlockUnpackedP
+    localPs: hclObjectSpaceDeformerLocalBlockP
+    localUnpackedPs: hclObjectSpaceDeformerLocalBlockUnpackedP

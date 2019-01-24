@@ -3,6 +3,6 @@ from .hkpTyremarkPoint import hkpTyremarkPoint
 
 
 class hkpTyremarksWheel(hkReferencedObject):
-	currentPosition: int
-	numPoints: int
-	tyremarkPoints: hkpTyremarkPoint
+    currentPosition: int
+    numPoints: int
+    tyremarkPoints: hkpTyremarkPoint

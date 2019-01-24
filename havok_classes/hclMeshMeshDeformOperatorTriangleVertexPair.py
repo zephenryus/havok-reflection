@@ -1,7 +1,8 @@
+from .common import vector4
 
 
 class hclMeshMeshDeformOperatorTriangleVertexPair(object):
-	localPosition: any
-	localNormal: any
-	triangleIndex: int
-	weight: float
+    localPosition: vector4
+    localNormal: vector4
+    triangleIndex: int
+    weight: float

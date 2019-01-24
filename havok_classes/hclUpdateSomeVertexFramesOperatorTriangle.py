@@ -1,4 +1,2 @@
-
-
 class hclUpdateSomeVertexFramesOperatorTriangle(object):
-	indices: int
+    indices: int

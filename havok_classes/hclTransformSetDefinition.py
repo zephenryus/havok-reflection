@@ -2,6 +2,6 @@ from .hkReferencedObject import hkReferencedObject
 
 
 class hclTransformSetDefinition(hkReferencedObject):
-	name: any
-	type: int
-	numTransforms: int
+    name: str
+    type: int
+    numTransforms: int

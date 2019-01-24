@@ -1,4 +1,2 @@
-
-
 class hkUuid(object):
-	data: int
+    data: int

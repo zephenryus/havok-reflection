@@ -1,3 +1,2 @@
-
-
 class hkaKeyFrameHierarchyUtility(object):
+    pass

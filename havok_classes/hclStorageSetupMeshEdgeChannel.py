@@ -1,5 +1,6 @@
+from .enums import EdgeChannelType
 
 
 class hclStorageSetupMeshEdgeChannel(object):
-	name: any
-	type: any
+    name: str
+    type: EdgeChannelType

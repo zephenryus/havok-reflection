@@ -3,4 +3,4 @@ from .hkpStiffSpringConstraintDataAtoms import hkpStiffSpringConstraintDataAtoms
 
 
 class hkpStiffSpringConstraintData(hkpConstraintData):
-	atoms: hkpStiffSpringConstraintDataAtoms
+    atoms: hkpStiffSpringConstraintDataAtoms

@@ -1,8 +1,9 @@
 from .hkReferencedObject import hkReferencedObject
+from .enums import ShapeDispatchTypeEnum, ShapeInfoCodecTypeEnum
 
 
 class hkcdShape(hkReferencedObject):
-	type: any
-	dispatchType: any
-	bitsPerKey: int
-	shapeInfoCodecType: any
+    type: enumerate
+    dispatchType: ShapeDispatchTypeEnum
+    bitsPerKey: int
+    shapeInfoCodecType: ShapeInfoCodecTypeEnum

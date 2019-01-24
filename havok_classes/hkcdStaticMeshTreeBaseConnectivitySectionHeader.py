@@ -1,5 +1,3 @@
-
-
 class hkcdStaticMeshTreeBaseConnectivitySectionHeader(object):
-	baseLocal: int
-	baseGlobal: int
+    baseLocal: int
+    baseGlobal: int

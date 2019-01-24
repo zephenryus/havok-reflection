@@ -2,3 +2,4 @@ from .hkSetunsignedlonglonghkContainerHeapAllocatorhkMapOperationsunsignedlonglo
 
 
 class hkSetUint64(hkSetunsignedlonglonghkContainerHeapAllocatorhkMapOperationsunsignedlonglong):
+    pass

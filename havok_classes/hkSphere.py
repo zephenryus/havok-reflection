@@ -1,4 +1,5 @@
+from .common import vector4
 
 
 class hkSphere(object):
-	pos: any
+    pos: vector4

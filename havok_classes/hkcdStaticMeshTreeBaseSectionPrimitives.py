@@ -1,4 +1,2 @@
-
-
 class hkcdStaticMeshTreeBaseSectionPrimitives(object):
-	data: int
+    data: int

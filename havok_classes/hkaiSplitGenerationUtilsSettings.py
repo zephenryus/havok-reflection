@@ -1,17 +1,19 @@
+from .enums import SplitAndGenerateOptions, SplitMethod
+from .common import any
 
 
 class hkaiSplitGenerationUtilsSettings(object):
-	simplificationOptions: any
-	splitMethod: any
-	generateClusterGraphs: bool
-	desiredFacesPerCluster: int
-	costModifier: any
-	shelver: any
-	borderPreserveShrinkSize: float
-	streamingEdgeMatchTolerance: float
-	numX: int
-	numY: int
-	maxSplits: int
-	desiredTrisPerChunk: int
-	saveInputSnapshot: bool
-	snapshotFilename: any
+    simplificationOptions: SplitAndGenerateOptions
+    splitMethod: SplitMethod
+    generateClusterGraphs: bool
+    desiredFacesPerCluster: int
+    costModifier: any
+    shelver: any
+    borderPreserveShrinkSize: float
+    streamingEdgeMatchTolerance: float
+    numX: int
+    numY: int
+    maxSplits: int
+    desiredTrisPerChunk: int
+    saveInputSnapshot: bool
+    snapshotFilename: str

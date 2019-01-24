@@ -1,6 +1,7 @@
 from .hkpConstraintAtom import hkpConstraintAtom
+from .common import vector4
 
 
 class hkpSetLocalTranslationsConstraintAtom(hkpConstraintAtom):
-	translationA: any
-	translationB: any
+    translationA: vector4
+    translationB: vector4

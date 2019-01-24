@@ -1,8 +1,9 @@
 from .hkpUnaryAction import hkpUnaryAction
+from .common import vector4
 
 
 class hkpMotorAction(hkpUnaryAction):
-	axis: any
-	spinRate: float
-	gain: float
-	active: bool
+    axis: vector4
+    spinRate: float
+    gain: float
+    active: bool

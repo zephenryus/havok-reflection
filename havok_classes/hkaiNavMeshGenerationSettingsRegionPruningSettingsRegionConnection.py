@@ -1,5 +1,6 @@
+from .common import vector4
 
 
 class hkaiNavMeshGenerationSettingsRegionPruningSettingsRegionConnection(object):
-	a: any
-	b: any
+    a: vector4
+    b: vector4

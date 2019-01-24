@@ -5,7 +5,7 @@ from .hkaiNavMeshClearanceCacheManager import hkaiNavMeshClearanceCacheManager
 
 
 class hkaiStreamingCollection(hkReferencedObject):
-	isTemporary: bool
-	tree: hkcdDynamicAabbTree
-	instances: hkaiStreamingCollectionInstanceInfo
-	clearanceCacheManager: hkaiNavMeshClearanceCacheManager
+    isTemporary: bool
+    tree: hkcdDynamicAabbTree
+    instances: hkaiStreamingCollectionInstanceInfo
+    clearanceCacheManager: hkaiNavMeshClearanceCacheManager

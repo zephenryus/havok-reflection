@@ -5,6 +5,6 @@ from .hkpConstraintChainInstance import hkpConstraintChainInstance
 
 
 class hkpPoweredChainMapper(hkReferencedObject):
-	links: hkpPoweredChainMapperLinkInfo
-	targets: hkpPoweredChainMapperTarget
-	chains: hkpConstraintChainInstance
+    links: hkpPoweredChainMapperLinkInfo
+    targets: hkpPoweredChainMapperTarget
+    chains: hkpConstraintChainInstance

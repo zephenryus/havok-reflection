@@ -3,5 +3,5 @@ from .hkaiVolume import hkaiVolume
 
 
 class hkaiMaterialPainter(hkReferencedObject):
-	material: int
-	volume: hkaiVolume
+    material: int
+    volume: hkaiVolume

@@ -3,8 +3,8 @@ from .hclAntiPinchConstraintSetPerParticle import hclAntiPinchConstraintSetPerPa
 
 
 class hclAntiPinchConstraintSet(hclConstraintSet):
-	perParticleData: hclAntiPinchConstraintSetPerParticle
-	toAnimPeriod: float
-	toSimPeriod: float
-	toSimMaxDistance: float
-	referenceMeshBufferIdx: int
+    perParticleData: hclAntiPinchConstraintSetPerParticle
+    toAnimPeriod: float
+    toSimPeriod: float
+    toSimMaxDistance: float
+    referenceMeshBufferIdx: int

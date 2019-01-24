@@ -3,4 +3,4 @@ from .hkpRagdollLimitsDataAtoms import hkpRagdollLimitsDataAtoms
 
 
 class hkpRagdollLimitsData(hkpConstraintData):
-	atoms: hkpRagdollLimitsDataAtoms
+    atoms: hkpRagdollLimitsDataAtoms

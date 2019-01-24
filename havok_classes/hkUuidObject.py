@@ -3,4 +3,4 @@ from .hkUuid import hkUuid
 
 
 class hkUuidObject(hkReferencedObject):
-	uuid: hkUuid
+    uuid: hkUuid

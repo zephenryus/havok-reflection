@@ -3,4 +3,4 @@ from .hkpRotationalConstraintDataAtoms import hkpRotationalConstraintDataAtoms
 
 
 class hkpRotationalConstraintData(hkpConstraintData):
-	atoms: hkpRotationalConstraintDataAtoms
+    atoms: hkpRotationalConstraintDataAtoms

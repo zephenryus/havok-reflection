@@ -3,6 +3,6 @@ from .ShapeInfo import ShapeInfo
 
 
 class StaticCompoundInfo(object):
-	Offset: int
-	ActorInfo: ActorInfo
-	ShapeInfo: ShapeInfo
+    Offset: int
+    ActorInfo: ActorInfo
+    ShapeInfo: ShapeInfo

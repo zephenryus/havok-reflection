@@ -1,4 +1,2 @@
-
-
 class hkaiEdgePathFollowingCornerInfo(object):
-	data: int
+    data: int

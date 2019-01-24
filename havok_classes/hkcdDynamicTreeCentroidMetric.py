@@ -1,3 +1,2 @@
-
-
 class hkcdDynamicTreeCentroidMetric(object):
+    pass

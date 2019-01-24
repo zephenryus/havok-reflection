@@ -4,6 +4,6 @@ from .hkMemoryResourceHandleExternalLink import hkMemoryResourceHandleExternalLi
 
 
 class hkMemoryResourceHandle(hkResourceHandle):
-	variant: hkReferencedObject
-	name: any
-	references: hkMemoryResourceHandleExternalLink
+    variant: hkReferencedObject
+    name: str
+    references: hkMemoryResourceHandleExternalLink

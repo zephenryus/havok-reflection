@@ -1,6 +1,7 @@
 from .hkReferencedObject import hkReferencedObject
+from .common import any
 
 
 class hclSimClothPose(hkReferencedObject):
-	name: any
-	positions: any
+    name: str
+    positions: any

@@ -3,8 +3,8 @@ from .hclSetupMesh import hclSetupMesh
 
 
 class hclScratchBufferSetupObject(hclBufferSetupObject):
-	name: any
-	setupMesh: hclSetupMesh
-	storeNormals: bool
-	storeTangentsAndBiTangents: bool
-	storeTriangles: bool
+    name: str
+    setupMesh: hclSetupMesh
+    storeNormals: bool
+    storeTangentsAndBiTangents: bool
+    storeTriangles: bool

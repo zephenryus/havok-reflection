@@ -1,3 +1,2 @@
-
-
 class hkpCollidableCollidableFilter(object):
+    pass

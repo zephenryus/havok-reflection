@@ -3,5 +3,5 @@ from .hkaiNavVolumeGenerationSettings import hkaiNavVolumeGenerationSettings
 
 
 class hkaiNavVolumeGenerationSnapshot(object):
-	geometry: hkGeometry
-	settings: hkaiNavVolumeGenerationSettings
+    geometry: hkGeometry
+    settings: hkaiNavVolumeGenerationSettings

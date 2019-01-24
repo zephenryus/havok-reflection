@@ -3,6 +3,6 @@ from .hclRuntimeConversionInfo import hclRuntimeConversionInfo
 
 
 class hclInputConvertOperator(hclOperator):
-	userBufferIndex: int
-	shadowBufferIndex: int
-	conversionInfo: hclRuntimeConversionInfo
+    userBufferIndex: int
+    shadowBufferIndex: int
+    conversionInfo: hclRuntimeConversionInfo

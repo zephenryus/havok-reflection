@@ -1,5 +1,3 @@
-
-
 class hkaiAgentTraversalInfo(object):
-	diameter: float
-	filterInfo: int
+    diameter: float
+    filterInfo: int

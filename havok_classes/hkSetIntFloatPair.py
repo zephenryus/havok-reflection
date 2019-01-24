@@ -2,3 +2,4 @@ from .hkSethkIntRealPairhkContainerHeapAllocatorhkMapOperationshkIntRealPair imp
 
 
 class hkSetIntFloatPair(hkSethkIntRealPairhkContainerHeapAllocatorhkMapOperationshkIntRealPair):
+    pass

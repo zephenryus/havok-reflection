@@ -3,5 +3,5 @@ from .hkpSingleShapeContainer import hkpSingleShapeContainer
 
 
 class hkpConvexTransformShapeBase(hkpConvexShape):
-	childShape: hkpSingleShapeContainer
-	childShapeSizeForSpu: int
+    childShape: hkpSingleShapeContainer
+    childShapeSizeForSpu: int

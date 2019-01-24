@@ -2,3 +2,4 @@ from .hkcdDynamicTreeDefaultDynamicStoragehkcdDynamicTreeCodecRawUint import hkc
 
 
 class hkcdDynamicTreeDynamicStorage32(hkcdDynamicTreeDefaultDynamicStoragehkcdDynamicTreeCodecRawUint):
+    pass

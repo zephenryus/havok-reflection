@@ -1,8 +1,9 @@
+from .common import vector4, any
 
 
 class hkaiPathPathPoint(object):
-	position: any
-	normal: any
-	userEdgeData: int
-	sectionId: int
-	flags: any
+    position: vector4
+    normal: vector4
+    userEdgeData: int
+    sectionId: int
+    flags: any

@@ -4,5 +4,5 @@ from .hclBendLinkConstraintSetMxSingle import hclBendLinkConstraintSetMxSingle
 
 
 class hclBendLinkConstraintSetMx(hclConstraintSet):
-	batches: hclBendLinkConstraintSetMxBatch
-	singles: hclBendLinkConstraintSetMxSingle
+    batches: hclBendLinkConstraintSetMxBatch
+    singles: hclBendLinkConstraintSetMxSingle

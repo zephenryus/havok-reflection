@@ -3,4 +3,4 @@ from .hkpVehicleDefaultSuspensionWheelSpringSuspensionParameters import hkpVehic
 
 
 class hkpVehicleDefaultSuspension(hkpVehicleSuspension):
-	wheelSpringParams: hkpVehicleDefaultSuspensionWheelSpringSuspensionParameters
+    wheelSpringParams: hkpVehicleDefaultSuspensionWheelSpringSuspensionParameters

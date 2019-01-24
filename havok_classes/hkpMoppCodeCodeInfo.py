@@ -1,4 +1,5 @@
+from .common import vector4
 
 
 class hkpMoppCodeCodeInfo(object):
-	offset: any
+    offset: vector4

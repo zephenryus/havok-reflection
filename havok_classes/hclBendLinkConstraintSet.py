@@ -3,4 +3,4 @@ from .hclBendLinkConstraintSetLink import hclBendLinkConstraintSetLink
 
 
 class hclBendLinkConstraintSet(hclConstraintSet):
-	links: hclBendLinkConstraintSetLink
+    links: hclBendLinkConstraintSetLink

@@ -4,9 +4,9 @@ from .hclVertexSelectionInput import hclVertexSelectionInput
 
 
 class hclUpdateVertexFramesSetupObject(hclOperatorSetupObject):
-	name: any
-	buffer: hclBufferSetupObject
-	vertexSelection: hclVertexSelectionInput
-	updateNormals: bool
-	updateTangents: bool
-	updateBiTangents: bool
+    name: str
+    buffer: hclBufferSetupObject
+    vertexSelection: hclVertexSelectionInput
+    updateNormals: bool
+    updateTangents: bool
+    updateBiTangents: bool

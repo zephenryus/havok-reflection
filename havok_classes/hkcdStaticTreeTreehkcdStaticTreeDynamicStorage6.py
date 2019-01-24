@@ -3,4 +3,4 @@ from .hkAabb import hkAabb
 
 
 class hkcdStaticTreeTreehkcdStaticTreeDynamicStorage6(hkcdStaticTreeDynamicStorage6):
-	domain: hkAabb
+    domain: hkAabb

@@ -3,6 +3,6 @@ from .hkaiAgentTraversalInfo import hkaiAgentTraversalInfo
 
 
 class hkaiHierarchyUtilsClusterSettings(object):
-	desiredFacesPerCluster: int
-	searchParameters: hkaiNavMeshPathSearchParameters
-	agentInfo: hkaiAgentTraversalInfo
+    desiredFacesPerCluster: int
+    searchParameters: hkaiNavMeshPathSearchParameters
+    agentInfo: hkaiAgentTraversalInfo

@@ -4,6 +4,6 @@ from .hclBufferSetupObject import hclBufferSetupObject
 
 
 class hclMoveFixedParticlesSetupObject(hclOperatorSetupObject):
-	name: any
-	simClothSetupObject: hclSimClothSetupObject
-	displayBufferSetup: hclBufferSetupObject
+    name: str
+    simClothSetupObject: hclSimClothSetupObject
+    displayBufferSetup: hclBufferSetupObject

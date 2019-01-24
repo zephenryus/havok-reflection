@@ -3,6 +3,6 @@ from .hkRefCountedProperties import hkRefCountedProperties
 
 
 class hkpBreakableMaterial(hkReferencedObject):
-	strength: float
-	typeAndFlags: int
-	properties: hkRefCountedProperties
+    strength: float
+    typeAndFlags: int
+    properties: hkRefCountedProperties

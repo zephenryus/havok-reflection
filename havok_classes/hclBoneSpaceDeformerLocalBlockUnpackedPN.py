@@ -1,5 +1,6 @@
+from .common import vector4
 
 
 class hclBoneSpaceDeformerLocalBlockUnpackedPN(object):
-	localPosition: any
-	localNormal: any
+    localPosition: vector4
+    localNormal: vector4

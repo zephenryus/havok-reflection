@@ -1,5 +1,3 @@
-
-
 class hclMoveParticlesOperatorVertexParticlePair(object):
-	vertexIndex: int
-	particleIndex: int
+    vertexIndex: int
+    particleIndex: int

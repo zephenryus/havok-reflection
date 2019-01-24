@@ -1,5 +1,3 @@
-
-
 class hkMonitorStreamStringMapStringMap(object):
-	id: int
-	string: any
+    id: int
+    string: str

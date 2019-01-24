@@ -1,3 +1,2 @@
-
-
 class hkBaseObject(object):
+    pass

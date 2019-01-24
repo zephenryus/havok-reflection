@@ -1,4 +1,2 @@
-
-
 class hclSetupMeshSectionTriangle(object):
-	indices: int
+    indices: int

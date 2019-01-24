@@ -2,3 +2,4 @@ from .hkBitFieldBasehkOffsetBitFieldStoragehkArrayunsignedinthkContainerHeapAllo
 
 
 class hkOffsetBitField(hkBitFieldBasehkOffsetBitFieldStoragehkArrayunsignedinthkContainerHeapAllocator):
+    pass

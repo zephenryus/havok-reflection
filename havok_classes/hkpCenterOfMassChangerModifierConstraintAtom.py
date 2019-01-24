@@ -1,6 +1,7 @@
 from .hkpModifierConstraintAtom import hkpModifierConstraintAtom
+from .common import vector4
 
 
 class hkpCenterOfMassChangerModifierConstraintAtom(hkpModifierConstraintAtom):
-	displacementA: any
-	displacementB: any
+    displacementA: vector4
+    displacementB: vector4

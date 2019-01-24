@@ -4,6 +4,6 @@ from .hkpRejectChassisListener import hkpRejectChassisListener
 
 
 class hkpVehicleRayCastWheelCollide(hkpVehicleWheelCollide):
-	wheelCollisionFilterInfo: int
-	phantom: hkpAabbPhantom
-	rejectRayChassisListener: hkpRejectChassisListener
+    wheelCollisionFilterInfo: int
+    phantom: hkpAabbPhantom
+    rejectRayChassisListener: hkpRejectChassisListener

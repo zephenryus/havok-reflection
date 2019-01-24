@@ -1,5 +1,3 @@
-
-
 class hkMonitorStreamColorTableColorPair(object):
-	colorName: any
-	color: int
+    colorName: str
+    color: int

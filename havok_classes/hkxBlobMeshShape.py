@@ -3,5 +3,5 @@ from .hkxBlob import hkxBlob
 
 
 class hkxBlobMeshShape(hkMeshShape):
-	blob: hkxBlob
-	name: any
+    blob: hkxBlob
+    name: str

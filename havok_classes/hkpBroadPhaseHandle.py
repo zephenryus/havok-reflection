@@ -1,4 +1,2 @@
-
-
 class hkpBroadPhaseHandle(object):
-	id: int
+    id: int

@@ -7,9 +7,9 @@ from .hclClothStateSetupObject import hclClothStateSetupObject
 
 
 class hclClothSetupObject(hkReferencedObject):
-	name: any
-	bufferSetupObjects: hclBufferSetupObject
-	transformSetSetupObjects: hclTransformSetSetupObject
-	simClothSetupObjects: hclSimClothSetupObject
-	operatorSetupObjects: hclOperatorSetupObject
-	clothStateSetupObjects: hclClothStateSetupObject
+    name: str
+    bufferSetupObjects: hclBufferSetupObject
+    transformSetSetupObjects: hclTransformSetSetupObject
+    simClothSetupObjects: hclSimClothSetupObject
+    operatorSetupObjects: hclOperatorSetupObject
+    clothStateSetupObjects: hclClothStateSetupObject

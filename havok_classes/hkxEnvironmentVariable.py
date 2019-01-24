@@ -1,5 +1,3 @@
-
-
 class hkxEnvironmentVariable(object):
-	name: any
-	value: any
+    name: str
+    value: str

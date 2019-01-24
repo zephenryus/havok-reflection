@@ -3,6 +3,6 @@ from .hkpVehicleFrictionDescriptionAxisDescription import hkpVehicleFrictionDesc
 
 
 class hkpVehicleFrictionDescription(hkReferencedObject):
-	wheelDistance: float
-	chassisMassInv: float
-	axleDescr: hkpVehicleFrictionDescriptionAxisDescription
+    wheelDistance: float
+    chassisMassInv: float
+    axleDescr: hkpVehicleFrictionDescriptionAxisDescription

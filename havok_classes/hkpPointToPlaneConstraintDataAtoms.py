@@ -3,5 +3,5 @@ from .hkpLinConstraintAtom import hkpLinConstraintAtom
 
 
 class hkpPointToPlaneConstraintDataAtoms(object):
-	transforms: hkpSetLocalTransformsConstraintAtom
-	lin: hkpLinConstraintAtom
+    transforms: hkpSetLocalTransformsConstraintAtom
+    lin: hkpLinConstraintAtom

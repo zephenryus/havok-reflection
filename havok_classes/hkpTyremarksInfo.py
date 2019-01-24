@@ -3,6 +3,6 @@ from .hkpTyremarksWheel import hkpTyremarksWheel
 
 
 class hkpTyremarksInfo(hkReferencedObject):
-	minTyremarkEnergy: float
-	maxTyremarkEnergy: float
-	tyremarksWheel: hkpTyremarksWheel
+    minTyremarkEnergy: float
+    maxTyremarkEnergy: float
+    tyremarksWheel: hkpTyremarksWheel

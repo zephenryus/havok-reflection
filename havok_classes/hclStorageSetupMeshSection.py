@@ -1,5 +1,6 @@
 from .hkReferencedObject import hkReferencedObject
 from .hclSetupMesh import hclSetupMesh
+from .common import any
 from .hclSetupMeshSectionTriangle import hclSetupMeshSectionTriangle
 from .hclStorageSetupMeshSectionSectionVertexChannel import hclStorageSetupMeshSectionSectionVertexChannel
 from .hclStorageSetupMeshSectionSectionEdgeSelectionChannel import hclStorageSetupMeshSectionSectionEdgeSelectionChannel
@@ -8,14 +9,14 @@ from .hclStorageSetupMeshSectionBoneInfluences import hclStorageSetupMeshSection
 
 
 class hclStorageSetupMeshSection(hkReferencedObject):
-	parentSetupMesh: hclSetupMesh
-	vertices: any
-	normals: any
-	tangents: any
-	bitangents: any
-	triangles: hclSetupMeshSectionTriangle
-	sectionVertexChannels: hclStorageSetupMeshSectionSectionVertexChannel
-	sectionEdgeChannels: hclStorageSetupMeshSectionSectionEdgeSelectionChannel
-	sectionTriangleChannels: hclStorageSetupMeshSectionSectionTriangleSelectionChannel
-	boneInfluences: hclStorageSetupMeshSectionBoneInfluences
-	normalIDs: any
+    parentSetupMesh: hclSetupMesh
+    vertices: any
+    normals: any
+    tangents: any
+    bitangents: any
+    triangles: hclSetupMeshSectionTriangle
+    sectionVertexChannels: hclStorageSetupMeshSectionSectionVertexChannel
+    sectionEdgeChannels: hclStorageSetupMeshSectionSectionEdgeSelectionChannel
+    sectionTriangleChannels: hclStorageSetupMeshSectionSectionTriangleSelectionChannel
+    boneInfluences: hclStorageSetupMeshSectionBoneInfluences
+    normalIDs: any

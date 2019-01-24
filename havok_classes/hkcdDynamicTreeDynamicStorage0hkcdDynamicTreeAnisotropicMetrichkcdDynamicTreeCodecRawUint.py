@@ -3,5 +3,5 @@ from .hkcdDynamicTreeCodecRawUint import hkcdDynamicTreeCodecRawUint
 
 
 class hkcdDynamicTreeDynamicStorage0hkcdDynamicTreeAnisotropicMetrichkcdDynamicTreeCodecRawUint(hkcdDynamicTreeAnisotropicMetric):
-	nodes: hkcdDynamicTreeCodecRawUint
-	firstFree: int
+    nodes: hkcdDynamicTreeCodecRawUint
+    firstFree: int

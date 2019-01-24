@@ -3,4 +3,4 @@ from .hkpBallAndSocketConstraintDataAtoms import hkpBallAndSocketConstraintDataA
 
 
 class hkpBallAndSocketConstraintData(hkpConstraintData):
-	atoms: hkpBallAndSocketConstraintDataAtoms
+    atoms: hkpBallAndSocketConstraintDataAtoms

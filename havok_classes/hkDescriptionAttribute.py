@@ -1,4 +1,2 @@
-
-
 class hkDescriptionAttribute(object):
-	string: any
+    string: str

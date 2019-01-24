@@ -3,4 +3,4 @@ from .hkpVehicleInstance import hkpVehicleInstance
 
 
 class hkpVehicleManager(hkReferencedObject):
-	registeredVehicles: hkpVehicleInstance
+    registeredVehicles: hkpVehicleInstance

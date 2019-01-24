@@ -3,5 +3,5 @@ from .hkpCogWheelConstraintAtom import hkpCogWheelConstraintAtom
 
 
 class hkpCogWheelConstraintDataAtoms(object):
-	transforms: hkpSetLocalTransformsConstraintAtom
-	cogWheels: hkpCogWheelConstraintAtom
+    transforms: hkpSetLocalTransformsConstraintAtom
+    cogWheels: hkpCogWheelConstraintAtom

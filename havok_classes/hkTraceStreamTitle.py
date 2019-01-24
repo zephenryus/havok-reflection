@@ -1,4 +1,2 @@
-
-
 class hkTraceStreamTitle(object):
-	value: str
+    value: str

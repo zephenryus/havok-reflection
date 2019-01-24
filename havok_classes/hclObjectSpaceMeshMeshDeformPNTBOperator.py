@@ -4,5 +4,5 @@ from .hclObjectSpaceDeformerLocalBlockUnpackedPNTB import hclObjectSpaceDeformer
 
 
 class hclObjectSpaceMeshMeshDeformPNTBOperator(hclObjectSpaceMeshMeshDeformOperator):
-	localPNTBs: hclObjectSpaceDeformerLocalBlockPNTB
-	localUnpackedPNTBs: hclObjectSpaceDeformerLocalBlockUnpackedPNTB
+    localPNTBs: hclObjectSpaceDeformerLocalBlockPNTB
+    localUnpackedPNTBs: hclObjectSpaceDeformerLocalBlockUnpackedPNTB

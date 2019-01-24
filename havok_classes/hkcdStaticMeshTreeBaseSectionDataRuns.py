@@ -1,4 +1,2 @@
-
-
 class hkcdStaticMeshTreeBaseSectionDataRuns(object):
-	data: int
+    data: int

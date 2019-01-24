@@ -1,6 +1,4 @@
-
-
 class hkaiAvoidancePairPropertiesPairData(object):
-	key: int
-	weight: float
-	cosViewAngle: float
+    key: int
+    weight: float
+    cosViewAngle: float

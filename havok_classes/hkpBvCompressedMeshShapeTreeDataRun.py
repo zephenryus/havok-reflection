@@ -2,3 +2,4 @@ from .hkcdStaticMeshTreeBasePrimitiveDataRunBaseunsignedint import hkcdStaticMes
 
 
 class hkpBvCompressedMeshShapeTreeDataRun(hkcdStaticMeshTreeBasePrimitiveDataRunBaseunsignedint):
+    pass

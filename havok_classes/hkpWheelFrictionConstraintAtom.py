@@ -3,13 +3,13 @@ from .hkpWheelFrictionConstraintAtomAxle import hkpWheelFrictionConstraintAtomAx
 
 
 class hkpWheelFrictionConstraintAtom(hkpConstraintAtom):
-	isEnabled: int
-	forwardAxis: int
-	sideAxis: int
-	radius: float
-	axle: hkpWheelFrictionConstraintAtomAxle
-	maxFrictionForce: float
-	torque: float
-	frictionImpulse: float
-	slipImpulse: float
-	padding: int
+    isEnabled: int
+    forwardAxis: int
+    sideAxis: int
+    radius: float
+    axle: hkpWheelFrictionConstraintAtomAxle
+    maxFrictionForce: float
+    torque: float
+    frictionImpulse: float
+    slipImpulse: float
+    padding: int

@@ -4,5 +4,5 @@ from .hkpBreakableMaterial import hkpBreakableMaterial
 
 
 class hkpBreakableShape(hkReferencedObject):
-	physicsShape: hkcdShape
-	material: hkpBreakableMaterial
+    physicsShape: hkcdShape
+    material: hkpBreakableMaterial

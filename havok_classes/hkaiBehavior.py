@@ -3,4 +3,4 @@ from .hkaiWorld import hkaiWorld
 
 
 class hkaiBehavior(hkReferencedObject):
-	world: hkaiWorld
+    world: hkaiWorld

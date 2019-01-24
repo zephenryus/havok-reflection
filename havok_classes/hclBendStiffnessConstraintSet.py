@@ -3,5 +3,5 @@ from .hclBendStiffnessConstraintSetLink import hclBendStiffnessConstraintSetLink
 
 
 class hclBendStiffnessConstraintSet(hclConstraintSet):
-	links: hclBendStiffnessConstraintSetLink
-	useRestPoseConfig: bool
+    links: hclBendStiffnessConstraintSetLink
+    useRestPoseConfig: bool

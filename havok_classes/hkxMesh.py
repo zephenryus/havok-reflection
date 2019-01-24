@@ -4,5 +4,5 @@ from .hkxMeshUserChannelInfo import hkxMeshUserChannelInfo
 
 
 class hkxMesh(hkReferencedObject):
-	sections: hkxMeshSection
-	userChannelInfos: hkxMeshUserChannelInfo
+    sections: hkxMeshSection
+    userChannelInfos: hkxMeshUserChannelInfo

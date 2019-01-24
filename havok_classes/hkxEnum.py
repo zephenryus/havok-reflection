@@ -3,4 +3,4 @@ from .hkxEnumItem import hkxEnumItem
 
 
 class hkxEnum(hkReferencedObject):
-	items: hkxEnumItem
+    items: hkxEnumItem

@@ -1,4 +1,2 @@
-
-
 class hkAabbHalf(object):
-	data: int
+    data: int

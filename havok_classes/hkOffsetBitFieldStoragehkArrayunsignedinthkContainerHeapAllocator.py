@@ -1,5 +1,6 @@
+from .common import any
 
 
 class hkOffsetBitFieldStoragehkArrayunsignedinthkContainerHeapAllocator(object):
-	words: any
-	offset: int
+    words: any
+    offset: int

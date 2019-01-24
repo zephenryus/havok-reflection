@@ -4,10 +4,10 @@ from .hclConstraintSetSetupObject import hclConstraintSetSetupObject
 
 
 class hclSimulateSetupObject(hclOperatorSetupObject):
-	name: any
-	simClothSetupObject: hclSimClothSetupObject
-	numberOfSubsteps: int
-	numberOfSolveIterations: int
-	adaptConstraintStiffness: bool
-	explicitConstraintOrder: bool
-	constraintSetExecutionOrder: hclConstraintSetSetupObject
+    name: str
+    simClothSetupObject: hclSimClothSetupObject
+    numberOfSubsteps: int
+    numberOfSolveIterations: int
+    adaptConstraintStiffness: bool
+    explicitConstraintOrder: bool
+    constraintSetExecutionOrder: hclConstraintSetSetupObject

@@ -1,4 +1,2 @@
-
-
 class hclObjectSpaceDeformerLocalBlockP(object):
-	localPosition: int
+    localPosition: int

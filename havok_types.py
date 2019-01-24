@@ -1,3 +1,6 @@
+from havok_classes.common import vector4
+
+
 class type_base(object):
     python_type: type
     struct_char: str
@@ -11,8 +14,8 @@ havok_types = {
     'TYPE_ARRAY': type_base(any, ''),
     'TYPE_BOOL': type_base(bool, '?'),
     'TYPE_CHAR': type_base(str, 'c'),
-    'TYPE_CSTRING': type_base(any, ''),
-    'TYPE_ENUM': type_base(any, ''),
+    'TYPE_CSTRING': type_base(str, ''),
+    'TYPE_ENUM': type_base(enumerate, ''),
     'TYPE_FLAGS': type_base(any, ''),
     'TYPE_HALF': type_base(int, 'h'),
     'TYPE_INT16': type_base(int, 'h'),
@@ -27,7 +30,7 @@ havok_types = {
     'TYPE_REAL': type_base(float, 'f'),
     'TYPE_ROTATION': type_base(any, ''),
     'TYPE_SIMPLEARRAY': type_base(any, ''),
-    'TYPE_STRINGPTR': type_base(any, ''),
+    'TYPE_STRINGPTR': type_base(str, 's'),
     'TYPE_STRUCT': type_base(any, ''),
     'TYPE_TRANSFORM': type_base(any, ''),
     'TYPE_UINT16': type_base(int, 'H'),
@@ -36,6 +39,6 @@ havok_types = {
     'TYPE_UINT8': type_base(int, 'B'),
     'TYPE_ULONG': type_base(int, 'L'),
     'TYPE_VARIANT': type_base(any, ''),
-    'TYPE_VECTOR4': type_base(any, ''),
+    'TYPE_VECTOR4': type_base(vector4, '4f'),
     'TYPE_VOID': type_base(any, '')
 }

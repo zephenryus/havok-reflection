@@ -1,10 +1,11 @@
+from .common import vector4
 
 
 class hkaiEdgeFollowingBehaviorCornerPredictorInitInfo(object):
-	positionLocal: any
-	forwardVectorLocal: any
-	upLocal: any
-	positionSectionIndex: int
-	nextEdgeIndex: int
-	nextIsLeft: bool
-	hasInfo: bool
+    positionLocal: vector4
+    forwardVectorLocal: vector4
+    upLocal: vector4
+    positionSectionIndex: int
+    nextEdgeIndex: int
+    nextIsLeft: bool
+    hasInfo: bool

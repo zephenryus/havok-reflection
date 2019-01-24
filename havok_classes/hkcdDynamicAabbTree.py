@@ -3,5 +3,5 @@ from .hkcdDynamicTreeDefaultTree48Storage import hkcdDynamicTreeDefaultTree48Sto
 
 
 class hkcdDynamicAabbTree(hkReferencedObject):
-	shouldDeleteTree: bool
-	treePtr: hkcdDynamicTreeDefaultTree48Storage
+    shouldDeleteTree: bool
+    treePtr: hkcdDynamicTreeDefaultTree48Storage

@@ -3,5 +3,5 @@ from .hkpWheelFrictionConstraintAtom import hkpWheelFrictionConstraintAtom
 
 
 class hkpWheelFrictionConstraintDataAtoms(object):
-	transforms: hkpSetLocalTransformsConstraintAtom
-	friction: hkpWheelFrictionConstraintAtom
+    transforms: hkpSetLocalTransformsConstraintAtom
+    friction: hkpWheelFrictionConstraintAtom

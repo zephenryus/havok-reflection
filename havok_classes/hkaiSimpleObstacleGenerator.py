@@ -3,4 +3,4 @@ from .hkAabb import hkAabb
 
 
 class hkaiSimpleObstacleGenerator(hkaiObstacleGenerator):
-	localAabb: hkAabb
+    localAabb: hkAabb

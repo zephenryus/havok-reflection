@@ -1,3 +1,2 @@
-
-
 class hkaiVolumePathfindingUtil(object):
+    pass

@@ -4,6 +4,6 @@ from .hkpBallSocketConstraintAtom import hkpBallSocketConstraintAtom
 
 
 class hkpBallAndSocketConstraintDataAtoms(object):
-	pivots: hkpSetLocalTranslationsConstraintAtom
-	setupStabilization: hkpSetupStabilizationAtom
-	ballSocket: hkpBallSocketConstraintAtom
+    pivots: hkpSetLocalTranslationsConstraintAtom
+    setupStabilization: hkpSetupStabilizationAtom
+    ballSocket: hkpBallSocketConstraintAtom

@@ -1,5 +1,3 @@
-
-
 class hclAntiPinchConstraintSetPerParticle(object):
-	particleIndex: int
-	referenceVertex: int
+    particleIndex: int
+    referenceVertex: int

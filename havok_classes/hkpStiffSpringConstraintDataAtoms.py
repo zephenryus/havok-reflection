@@ -4,6 +4,6 @@ from .hkpStiffSpringConstraintAtom import hkpStiffSpringConstraintAtom
 
 
 class hkpStiffSpringConstraintDataAtoms(object):
-	pivots: hkpSetLocalTranslationsConstraintAtom
-	setupStabilization: hkpSetupStabilizationAtom
-	spring: hkpStiffSpringConstraintAtom
+    pivots: hkpSetLocalTranslationsConstraintAtom
+    setupStabilization: hkpSetupStabilizationAtom
+    spring: hkpStiffSpringConstraintAtom

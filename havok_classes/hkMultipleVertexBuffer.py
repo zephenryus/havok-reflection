@@ -7,14 +7,14 @@ from .hkMultipleVertexBufferVertexBufferInfo import hkMultipleVertexBufferVertex
 
 
 class hkMultipleVertexBuffer(hkMeshVertexBuffer):
-	vertexFormat: hkVertexFormat
-	lockedElements: hkMultipleVertexBufferLockedElement
-	lockedBuffer: hkMemoryMeshVertexBuffer
-	elementInfos: hkMultipleVertexBufferElementInfo
-	vertexBufferInfos: hkMultipleVertexBufferVertexBufferInfo
-	numVertices: int
-	isLocked: bool
-	updateCount: int
-	writeLock: bool
-	isSharable: bool
-	constructionComplete: bool
+    vertexFormat: hkVertexFormat
+    lockedElements: hkMultipleVertexBufferLockedElement
+    lockedBuffer: hkMemoryMeshVertexBuffer
+    elementInfos: hkMultipleVertexBufferElementInfo
+    vertexBufferInfos: hkMultipleVertexBufferVertexBufferInfo
+    numVertices: int
+    isLocked: bool
+    updateCount: int
+    writeLock: bool
+    isSharable: bool
+    constructionComplete: bool

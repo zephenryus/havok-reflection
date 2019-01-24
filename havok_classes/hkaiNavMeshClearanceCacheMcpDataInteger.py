@@ -1,5 +1,3 @@
-
-
 class hkaiNavMeshClearanceCacheMcpDataInteger(object):
-	interpolant: int
-	clearance: int
+    interpolant: int
+    clearance: int

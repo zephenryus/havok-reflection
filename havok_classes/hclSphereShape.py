@@ -3,4 +3,4 @@ from .hkSphere import hkSphere
 
 
 class hclSphereShape(hclShape):
-	sphere: hkSphere
+    sphere: hkSphere

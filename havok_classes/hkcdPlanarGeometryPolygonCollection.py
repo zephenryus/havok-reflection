@@ -2,3 +2,4 @@ from .hkcdPlanarGeometryPrimitivesCollection28 import hkcdPlanarGeometryPrimitiv
 
 
 class hkcdPlanarGeometryPolygonCollection(hkcdPlanarGeometryPrimitivesCollection28):
+    pass

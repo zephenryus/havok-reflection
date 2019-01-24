@@ -1,8 +1,7 @@
 from .hkpCollisionFilter import hkpCollisionFilter
 from .hkpPairCollisionFilterMapPairFilterKeyOverrideType import hkpPairCollisionFilterMapPairFilterKeyOverrideType
-from .hkpCollisionFilter import hkpCollisionFilter
 
 
 class hkpPairCollisionFilter(hkpCollisionFilter):
-	disabledPairs: hkpPairCollisionFilterMapPairFilterKeyOverrideType
-	childFilter: hkpCollisionFilter
+    disabledPairs: hkpPairCollisionFilterMapPairFilterKeyOverrideType
+    childFilter: hkpCollisionFilter

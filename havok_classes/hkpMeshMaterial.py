@@ -1,4 +1,2 @@
-
-
 class hkpMeshMaterial(object):
-	filterInfo: int
+    filterInfo: int

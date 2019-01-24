@@ -1,5 +1,6 @@
+from .common import any
 
 
 class hclStorageSetupMeshBone(object):
-	name: any
-	boneFromSkin: any
+    name: str
+    boneFromSkin: any

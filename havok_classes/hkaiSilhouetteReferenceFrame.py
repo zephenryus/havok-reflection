@@ -1,6 +1,7 @@
+from .common import vector4
 
 
 class hkaiSilhouetteReferenceFrame(object):
-	up: any
-	referenceAxis: any
-	orthogonalAxis: any
+    up: vector4
+    referenceAxis: vector4
+    orthogonalAxis: vector4

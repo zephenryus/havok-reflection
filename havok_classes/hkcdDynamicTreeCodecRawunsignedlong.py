@@ -2,6 +2,6 @@ from .hkAabb import hkAabb
 
 
 class hkcdDynamicTreeCodecRawunsignedlong(object):
-	aabb: hkAabb
-	parent: int
-	children: int
+    aabb: hkAabb
+    parent: int
+    children: int

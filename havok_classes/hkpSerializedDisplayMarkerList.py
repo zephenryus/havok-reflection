@@ -3,4 +3,4 @@ from .hkpSerializedDisplayMarker import hkpSerializedDisplayMarker
 
 
 class hkpSerializedDisplayMarkerList(hkReferencedObject):
-	markers: hkpSerializedDisplayMarker
+    markers: hkpSerializedDisplayMarker

@@ -1,9 +1,9 @@
 from .hkReferencedObject import hkReferencedObject
 from .hkpRigidBody import hkpRigidBody
-from .hkReferencedObject import hkReferencedObject
+from .common import any
 
 
 class hkpDisplayBindingDataRigidBody(hkReferencedObject):
-	rigidBody: hkpRigidBody
-	displayObjectPtr: hkReferencedObject
-	rigidBodyFromDisplayObjectTransform: any
+    rigidBody: hkpRigidBody
+    displayObjectPtr: hkReferencedObject
+    rigidBodyFromDisplayObjectTransform: any

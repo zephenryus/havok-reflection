@@ -3,4 +3,4 @@ from .hkaiUserEdgeUtilsUserEdgeSetup import hkaiUserEdgeUtilsUserEdgeSetup
 
 
 class hkaiUserEdgeSetupArray(hkReferencedObject):
-	edgeSetups: hkaiUserEdgeUtilsUserEdgeSetup
+    edgeSetups: hkaiUserEdgeUtilsUserEdgeSetup

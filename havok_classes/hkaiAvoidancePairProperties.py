@@ -3,4 +3,4 @@ from .hkaiAvoidancePairPropertiesPairData import hkaiAvoidancePairPropertiesPair
 
 
 class hkaiAvoidancePairProperties(hkReferencedObject):
-	avoidancePairDataMap: hkaiAvoidancePairPropertiesPairData
+    avoidancePairDataMap: hkaiAvoidancePairPropertiesPairData

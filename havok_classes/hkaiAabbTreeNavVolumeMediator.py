@@ -4,5 +4,5 @@ from .hkcdStaticAabbTree import hkcdStaticAabbTree
 
 
 class hkaiAabbTreeNavVolumeMediator(hkaiNavVolumeMediator):
-	navVolume: hkaiNavVolume
-	tree: hkcdStaticAabbTree
+    navVolume: hkaiNavVolume
+    tree: hkcdStaticAabbTree

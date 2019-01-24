@@ -3,5 +3,5 @@ from .hkpPulleyConstraintAtom import hkpPulleyConstraintAtom
 
 
 class hkpPulleyConstraintDataAtoms(object):
-	translations: hkpSetLocalTranslationsConstraintAtom
-	pulley: hkpPulleyConstraintAtom
+    translations: hkpSetLocalTranslationsConstraintAtom
+    pulley: hkpPulleyConstraintAtom

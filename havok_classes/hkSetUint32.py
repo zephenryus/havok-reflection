@@ -2,3 +2,4 @@ from .hkSetunsignedinthkContainerHeapAllocatorhkMapOperationsunsignedint import 
 
 
 class hkSetUint32(hkSetunsignedinthkContainerHeapAllocatorhkMapOperationsunsignedint):
+    pass

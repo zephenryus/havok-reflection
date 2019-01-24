@@ -4,5 +4,5 @@ from .hclStandardLinkConstraintSetMxSingle import hclStandardLinkConstraintSetMx
 
 
 class hclStandardLinkConstraintSetMx(hclConstraintSet):
-	batches: hclStandardLinkConstraintSetMxBatch
-	singles: hclStandardLinkConstraintSetMxSingle
+    batches: hclStandardLinkConstraintSetMxBatch
+    singles: hclStandardLinkConstraintSetMxSingle

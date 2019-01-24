@@ -1,9 +1,10 @@
+from .common import any
 
 
 class hkaSkeletonMapperDataChainMapping(object):
-	startBoneA: int
-	endBoneA: int
-	startBoneB: int
-	endBoneB: int
-	startAFromBTransform: any
-	endAFromBTransform: any
+    startBoneA: int
+    endBoneA: int
+    startBoneB: int
+    endBoneB: int
+    startAFromBTransform: any
+    endAFromBTransform: any

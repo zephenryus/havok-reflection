@@ -1,5 +1,3 @@
-
-
 class hclBlendSomeVerticesOperatorBlendEntry(object):
-	vertexIndex: int
-	blendWeight: float
+    vertexIndex: int
+    blendWeight: float

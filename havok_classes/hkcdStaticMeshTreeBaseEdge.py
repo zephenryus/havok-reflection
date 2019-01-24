@@ -1,4 +1,2 @@
-
-
 class hkcdStaticMeshTreeBaseEdge(object):
-	keyAndIndex: int
+    keyAndIndex: int

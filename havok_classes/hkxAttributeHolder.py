@@ -3,4 +3,4 @@ from .hkxAttributeGroup import hkxAttributeGroup
 
 
 class hkxAttributeHolder(hkReferencedObject):
-	attributeGroups: hkxAttributeGroup
+    attributeGroups: hkxAttributeGroup

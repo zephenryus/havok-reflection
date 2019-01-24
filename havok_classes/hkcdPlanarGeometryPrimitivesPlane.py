@@ -1,5 +1,3 @@
-
-
 class hkcdPlanarGeometryPrimitivesPlane(object):
-	iEqn: int
-	dEqn: int
+    iEqn: int
+    dEqn: int

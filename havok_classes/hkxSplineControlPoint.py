@@ -1,8 +1,10 @@
+from .common import vector4
+from .enums import ControlType
 
 
 class hkxSplineControlPoint(object):
-	position: any
-	tangentIn: any
-	tangentOut: any
-	inType: any
-	outType: any
+    position: vector4
+    tangentIn: vector4
+    tangentOut: vector4
+    inType: ControlType
+    outType: ControlType

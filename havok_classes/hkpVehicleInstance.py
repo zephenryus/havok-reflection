@@ -13,32 +13,33 @@ from .hkpVehicleVelocityDamper import hkpVehicleVelocityDamper
 from .hkpVehicleSimulation import hkpVehicleSimulation
 from .hkpVehicleInstanceWheelInfo import hkpVehicleInstanceWheelInfo
 from .hkpVehicleDriverInputStatus import hkpVehicleDriverInputStatus
+from .common import any
 
 
 class hkpVehicleInstance(hkpUnaryAction):
-	data: hkpVehicleData
-	driverInput: hkpVehicleDriverInput
-	steering: hkpVehicleSteering
-	engine: hkpVehicleEngine
-	transmission: hkpVehicleTransmission
-	brake: hkpVehicleBrake
-	suspension: hkpVehicleSuspension
-	aerodynamics: hkpVehicleAerodynamics
-	wheelCollide: hkpVehicleWheelCollide
-	tyreMarks: hkpTyremarksInfo
-	velocityDamper: hkpVehicleVelocityDamper
-	vehicleSimulation: hkpVehicleSimulation
-	wheelsInfo: hkpVehicleInstanceWheelInfo
-	deviceStatus: hkpVehicleDriverInputStatus
-	isFixed: any
-	wheelsTimeSinceMaxPedalInput: float
-	tryingToReverse: bool
-	torque: float
-	rpm: float
-	mainSteeringAngle: float
-	mainSteeringAngleAssumingNoReduction: float
-	wheelsSteeringAngle: any
-	isReversing: bool
-	currentGear: int
-	delayed: bool
-	clutchDelayCountdown: float
+    data: hkpVehicleData
+    driverInput: hkpVehicleDriverInput
+    steering: hkpVehicleSteering
+    engine: hkpVehicleEngine
+    transmission: hkpVehicleTransmission
+    brake: hkpVehicleBrake
+    suspension: hkpVehicleSuspension
+    aerodynamics: hkpVehicleAerodynamics
+    wheelCollide: hkpVehicleWheelCollide
+    tyreMarks: hkpTyremarksInfo
+    velocityDamper: hkpVehicleVelocityDamper
+    vehicleSimulation: hkpVehicleSimulation
+    wheelsInfo: hkpVehicleInstanceWheelInfo
+    deviceStatus: hkpVehicleDriverInputStatus
+    isFixed: any
+    wheelsTimeSinceMaxPedalInput: float
+    tryingToReverse: bool
+    torque: float
+    rpm: float
+    mainSteeringAngle: float
+    mainSteeringAngleAssumingNoReduction: float
+    wheelsSteeringAngle: any
+    isReversing: bool
+    currentGear: int
+    delayed: bool
+    clutchDelayCountdown: float

@@ -2,5 +2,5 @@ from .hkxAttributeHolder import hkxAttributeHolder
 
 
 class hkxMeshUserChannelInfo(hkxAttributeHolder):
-	name: any
-	className: any
+    name: str
+    className: str

@@ -3,4 +3,4 @@ from .hkpEntity import hkpEntity
 
 
 class hkpUnaryAction(hkpAction):
-	entity: hkpEntity
+    entity: hkpEntity

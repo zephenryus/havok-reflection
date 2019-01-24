@@ -4,6 +4,6 @@ from .hkpDeformableAngConstraintAtom import hkpDeformableAngConstraintAtom
 
 
 class hkpDeformableFixedConstraintDataAtoms(object):
-	transforms: hkpSetLocalTransformsConstraintAtom
-	lin: hkpDeformableLinConstraintAtom
-	ang: hkpDeformableAngConstraintAtom
+    transforms: hkpSetLocalTransformsConstraintAtom
+    lin: hkpDeformableLinConstraintAtom
+    ang: hkpDeformableAngConstraintAtom
