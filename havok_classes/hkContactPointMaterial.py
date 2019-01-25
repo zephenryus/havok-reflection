@@ -18,8 +18,18 @@ class hkContactPointMaterial(object):
     flags: int
 
     def __init__(self, infile):
-        self.userData = struct.unpack('>L', infile.read(8))
-        self.friction = hkUFloat8(infile)  # TYPE_STRUCT
-        self.restitution = struct.unpack('>B', infile.read(1))
-        self.maxImpulse = hkUFloat8(infile)  # TYPE_STRUCT
-        self.flags = struct.unpack('>B', infile.read(1))
+        self.userData = struct.unpack('>L', infile.read(8))  # TYPE_ULONG:TYPE_VOID
+        self.friction = hkUFloat8(infile)  # TYPE_STRUCT:TYPE_VOID
+        self.restitution = struct.unpack('>B', infile.read(1))  # TYPE_UINT8:TYPE_VOID
+        self.maxImpulse = hkUFloat8(infile)  # TYPE_STRUCT:TYPE_VOID
+        self.flags = struct.unpack('>B', infile.read(1))  # TYPE_UINT8:TYPE_VOID
+
+    def __repr__(self):
+        return "<{class_name} userData={userData}, friction={friction}, restitution={restitution}, maxImpulse={maxImpulse}, flags={flags}>".format(**{
+            "class_name": self.__class__.__name__,
+            "userData": self.userData,
+            "friction": self.friction,
+            "restitution": self.restitution,
+            "maxImpulse": self.maxImpulse,
+            "flags": self.flags,
+        })

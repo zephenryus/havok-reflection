@@ -16,6 +16,14 @@ class hkGizmoAttribute(object):
     type: GizmoType
 
     def __init__(self, infile):
-        self.visible = struct.unpack('>?', infile.read(1))
-        self.label = str(infile)  # TYPE_CSTRING
-        self.type = GizmoType(infile)  # TYPE_ENUM
+        self.visible = struct.unpack('>?', infile.read(1))  # TYPE_BOOL:TYPE_VOID
+        self.label = str(infile)  # TYPE_CSTRING:TYPE_VOID
+        self.type = GizmoType(infile)  # TYPE_ENUM:TYPE_INT8
+
+    def __repr__(self):
+        return "<{class_name} visible={visible}, label=\"{label}\", type={type}>".format(**{
+            "class_name": self.__class__.__name__,
+            "visible": self.visible,
+            "label": self.label,
+            "type": self.type,
+        })

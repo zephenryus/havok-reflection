@@ -1,9 +1,16 @@
 from .hclStorageSetupMeshSectionSectionVertexChannel import hclStorageSetupMeshSectionSectionVertexChannel
-from .common import any
+from typing import List
+from .common import get_array
 
 
 class hclStorageSetupMeshSectionSectionVertexFloatChannel(hclStorageSetupMeshSectionSectionVertexChannel):
-    vertexFloats: any
+    vertexFloats: List[float]
 
     def __init__(self, infile):
-        self.vertexFloats = any(infile)  # TYPE_ARRAY
+        self.vertexFloats = get_array(infile, float, 4)  # TYPE_ARRAY:TYPE_REAL
+
+    def __repr__(self):
+        return "<{class_name} vertexFloats=[{vertexFloats}]>".format(**{
+            "class_name": self.__class__.__name__,
+            "vertexFloats": self.vertexFloats,
+        })

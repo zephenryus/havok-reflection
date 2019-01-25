@@ -24,7 +24,16 @@ class hclBufferLayout(object):
     triangleFormat: TriangleFormat
 
     def __init__(self, infile):
-        self.elementsLayout = hclBufferLayoutBufferElement(infile)  # TYPE_STRUCT
-        self.slots = hclBufferLayoutSlot(infile)  # TYPE_STRUCT
-        self.numSlots = struct.unpack('>B', infile.read(1))
-        self.triangleFormat = TriangleFormat(infile)  # TYPE_ENUM
+        self.elementsLayout = hclBufferLayoutBufferElement(infile)  # TYPE_STRUCT:TYPE_VOID
+        self.slots = hclBufferLayoutSlot(infile)  # TYPE_STRUCT:TYPE_VOID
+        self.numSlots = struct.unpack('>B', infile.read(1))  # TYPE_UINT8:TYPE_VOID
+        self.triangleFormat = TriangleFormat(infile)  # TYPE_ENUM:TYPE_UINT8
+
+    def __repr__(self):
+        return "<{class_name} elementsLayout={elementsLayout}, slots={slots}, numSlots={numSlots}, triangleFormat={triangleFormat}>".format(**{
+            "class_name": self.__class__.__name__,
+            "elementsLayout": self.elementsLayout,
+            "slots": self.slots,
+            "numSlots": self.numSlots,
+            "triangleFormat": self.triangleFormat,
+        })

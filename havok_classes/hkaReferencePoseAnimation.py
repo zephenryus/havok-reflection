@@ -3,7 +3,13 @@ from .hkaSkeleton import hkaSkeleton
 
 
 class hkaReferencePoseAnimation(hkaAnimation):
-    skeleton: hkaSkeleton
+    skeleton: any
 
     def __init__(self, infile):
-        self.skeleton = hkaSkeleton(infile)  # TYPE_POINTER
+        self.skeleton = any(infile)  # TYPE_POINTER:TYPE_STRUCT
+
+    def __repr__(self):
+        return "<{class_name} skeleton={skeleton}>".format(**{
+            "class_name": self.__class__.__name__,
+            "skeleton": self.skeleton,
+        })

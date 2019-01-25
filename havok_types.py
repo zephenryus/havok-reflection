@@ -1,3 +1,5 @@
+from typing import List
+
 from havok_classes.common import vector4
 
 
@@ -15,7 +17,7 @@ class type_base(object):
 
 
 havok_types = {
-    'TYPE_ARRAY': type_base(any, '', 0, 'TYPE_ARRAY'),
+    'TYPE_ARRAY': type_base(List, '', 0, 'TYPE_ARRAY'),
     'TYPE_BOOL': type_base(bool, '?', 1, 'TYPE_BOOL'),
     'TYPE_CHAR': type_base(str, 'c', 1, 'TYPE_CHAR'),
     'TYPE_CSTRING': type_base(str, '', 0, 'TYPE_CSTRING'),

@@ -1,7 +1,8 @@
 from .hkReferencedObject import hkReferencedObject
 from enum import Enum
 from .enums import KeyboardKey
-from .common import any
+from typing import List
+from .common import get_array
 
 
 class Type(Enum):
@@ -37,10 +38,19 @@ class hkpFirstPersonGun(hkReferencedObject):
     type: enumerate
     name: str
     keyboardKey: KeyboardKey
-    listeners: any
+    listeners: List[any]
 
     def __init__(self, infile):
-        self.type = enumerate(infile)  # TYPE_ENUM
-        self.name = struct.unpack('>s', infile.read(0))
-        self.keyboardKey = KeyboardKey(infile)  # TYPE_ENUM
-        self.listeners = any(infile)  # TYPE_ARRAY
+        self.type = enumerate(infile)  # TYPE_ENUM:TYPE_UINT8
+        self.name = struct.unpack('>s', infile.read(0))  # TYPE_STRINGPTR:TYPE_VOID
+        self.keyboardKey = KeyboardKey(infile)  # TYPE_ENUM:TYPE_UINT8
+        self.listeners = get_array(infile, any, 0)  # TYPE_ARRAY:TYPE_POINTER
+
+    def __repr__(self):
+        return "<{class_name} type={type}, name=\"{name}\", keyboardKey={keyboardKey}, listeners=[{listeners}]>".format(**{
+            "class_name": self.__class__.__name__,
+            "type": self.type,
+            "name": self.name,
+            "keyboardKey": self.keyboardKey,
+            "listeners": self.listeners,
+        })

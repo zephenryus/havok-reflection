@@ -1,6 +1,5 @@
 from .hkpConstraintData import hkpConstraintData
 from .hkpWheelConstraintDataAtoms import hkpWheelConstraintDataAtoms
-from .common import vector4
 import struct
 
 
@@ -10,6 +9,14 @@ class hkpWheelConstraintData(hkpConstraintData):
     initialSteeringAxisInB: vector4
 
     def __init__(self, infile):
-        self.atoms = hkpWheelConstraintDataAtoms(infile)  # TYPE_STRUCT
-        self.initialAxleInB = struct.unpack('>4f', infile.read(16))
-        self.initialSteeringAxisInB = struct.unpack('>4f', infile.read(16))
+        self.atoms = hkpWheelConstraintDataAtoms(infile)  # TYPE_STRUCT:TYPE_VOID
+        self.initialAxleInB = struct.unpack('>4f', infile.read(16))  # TYPE_VECTOR4:TYPE_VOID
+        self.initialSteeringAxisInB = struct.unpack('>4f', infile.read(16))  # TYPE_VECTOR4:TYPE_VOID
+
+    def __repr__(self):
+        return "<{class_name} atoms={atoms}, initialAxleInB={initialAxleInB}, initialSteeringAxisInB={initialSteeringAxisInB}>".format(**{
+            "class_name": self.__class__.__name__,
+            "atoms": self.atoms,
+            "initialAxleInB": self.initialAxleInB,
+            "initialSteeringAxisInB": self.initialSteeringAxisInB,
+        })

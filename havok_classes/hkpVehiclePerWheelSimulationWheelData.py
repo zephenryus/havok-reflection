@@ -1,6 +1,5 @@
 from .hkpWheelFrictionConstraintAtomAxle import hkpWheelFrictionConstraintAtomAxle
 from .hkpWheelFrictionConstraintData import hkpWheelFrictionConstraintData
-from .common import any, vector4
 import struct
 
 
@@ -13,9 +12,20 @@ class hkpVehiclePerWheelSimulationWheelData(object):
     contactLocal: vector4
 
     def __init__(self, infile):
-        self.axle = hkpWheelFrictionConstraintAtomAxle(infile)  # TYPE_STRUCT
-        self.frictionData = hkpWheelFrictionConstraintData(infile)  # TYPE_STRUCT
-        self.frictionConstraint = any(infile)  # TYPE_POINTER
-        self.forwardDirectionWs = struct.unpack('>4f', infile.read(16))
-        self.sideDirectionWs = struct.unpack('>4f', infile.read(16))
-        self.contactLocal = struct.unpack('>4f', infile.read(16))
+        self.axle = hkpWheelFrictionConstraintAtomAxle(infile)  # TYPE_STRUCT:TYPE_VOID
+        self.frictionData = hkpWheelFrictionConstraintData(infile)  # TYPE_STRUCT:TYPE_VOID
+        self.frictionConstraint = any(infile)  # TYPE_POINTER:TYPE_VOID
+        self.forwardDirectionWs = struct.unpack('>4f', infile.read(16))  # TYPE_VECTOR4:TYPE_VOID
+        self.sideDirectionWs = struct.unpack('>4f', infile.read(16))  # TYPE_VECTOR4:TYPE_VOID
+        self.contactLocal = struct.unpack('>4f', infile.read(16))  # TYPE_VECTOR4:TYPE_VOID
+
+    def __repr__(self):
+        return "<{class_name} axle={axle}, frictionData={frictionData}, frictionConstraint={frictionConstraint}, forwardDirectionWs={forwardDirectionWs}, sideDirectionWs={sideDirectionWs}, contactLocal={contactLocal}>".format(**{
+            "class_name": self.__class__.__name__,
+            "axle": self.axle,
+            "frictionData": self.frictionData,
+            "frictionConstraint": self.frictionConstraint,
+            "forwardDirectionWs": self.forwardDirectionWs,
+            "sideDirectionWs": self.sideDirectionWs,
+            "contactLocal": self.contactLocal,
+        })

@@ -1,4 +1,3 @@
-from .common import vector4
 import struct
 
 
@@ -9,7 +8,16 @@ class hclBoneSpaceDeformerLocalBlockPNTB(object):
     localBiTangent: int
 
     def __init__(self, infile):
-        self.localPosition = struct.unpack('>4f', infile.read(16))
-        self.localNormal = struct.unpack('>h', infile.read(2))
-        self.localTangent = struct.unpack('>h', infile.read(2))
-        self.localBiTangent = struct.unpack('>h', infile.read(2))
+        self.localPosition = struct.unpack('>4f', infile.read(16))  # TYPE_VECTOR4:TYPE_VOID
+        self.localNormal = struct.unpack('>h', infile.read(2))  # TYPE_INT16:TYPE_VOID
+        self.localTangent = struct.unpack('>h', infile.read(2))  # TYPE_INT16:TYPE_VOID
+        self.localBiTangent = struct.unpack('>h', infile.read(2))  # TYPE_INT16:TYPE_VOID
+
+    def __repr__(self):
+        return "<{class_name} localPosition={localPosition}, localNormal={localNormal}, localTangent={localTangent}, localBiTangent={localBiTangent}>".format(**{
+            "class_name": self.__class__.__name__,
+            "localPosition": self.localPosition,
+            "localNormal": self.localNormal,
+            "localTangent": self.localTangent,
+            "localBiTangent": self.localBiTangent,
+        })

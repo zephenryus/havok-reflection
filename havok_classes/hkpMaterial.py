@@ -18,7 +18,16 @@ class hkpMaterial(object):
     restitution: float
 
     def __init__(self, infile):
-        self.responseType = ResponseType(infile)  # TYPE_ENUM
-        self.rollingFrictionMultiplier = struct.unpack('>h', infile.read(2))
-        self.friction = struct.unpack('>f', infile.read(4))
-        self.restitution = struct.unpack('>f', infile.read(4))
+        self.responseType = ResponseType(infile)  # TYPE_ENUM:TYPE_INT8
+        self.rollingFrictionMultiplier = struct.unpack('>h', infile.read(2))  # TYPE_HALF:TYPE_VOID
+        self.friction = struct.unpack('>f', infile.read(4))  # TYPE_REAL:TYPE_VOID
+        self.restitution = struct.unpack('>f', infile.read(4))  # TYPE_REAL:TYPE_VOID
+
+    def __repr__(self):
+        return "<{class_name} responseType={responseType}, rollingFrictionMultiplier={rollingFrictionMultiplier}, friction={friction}, restitution={restitution}>".format(**{
+            "class_name": self.__class__.__name__,
+            "responseType": self.responseType,
+            "rollingFrictionMultiplier": self.rollingFrictionMultiplier,
+            "friction": self.friction,
+            "restitution": self.restitution,
+        })

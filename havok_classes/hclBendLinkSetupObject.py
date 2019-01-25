@@ -7,7 +7,7 @@ from .hclVertexFloatInput import hclVertexFloatInput
 
 class hclBendLinkSetupObject(hclConstraintSetSetupObject):
     name: str
-    simulationMesh: hclSimulationSetupMesh
+    simulationMesh: any
     createStandardLinks: bool
     vertexSelection: hclVertexSelectionInput
     bendStiffness: hclVertexFloatInput
@@ -15,10 +15,22 @@ class hclBendLinkSetupObject(hclConstraintSetSetupObject):
     flatnessFactor: hclVertexFloatInput
 
     def __init__(self, infile):
-        self.name = struct.unpack('>s', infile.read(0))
-        self.simulationMesh = hclSimulationSetupMesh(infile)  # TYPE_POINTER
-        self.createStandardLinks = struct.unpack('>?', infile.read(1))
-        self.vertexSelection = hclVertexSelectionInput(infile)  # TYPE_STRUCT
-        self.bendStiffness = hclVertexFloatInput(infile)  # TYPE_STRUCT
-        self.stretchStiffness = hclVertexFloatInput(infile)  # TYPE_STRUCT
-        self.flatnessFactor = hclVertexFloatInput(infile)  # TYPE_STRUCT
+        self.name = struct.unpack('>s', infile.read(0))  # TYPE_STRINGPTR:TYPE_VOID
+        self.simulationMesh = any(infile)  # TYPE_POINTER:TYPE_STRUCT
+        self.createStandardLinks = struct.unpack('>?', infile.read(1))  # TYPE_BOOL:TYPE_VOID
+        self.vertexSelection = hclVertexSelectionInput(infile)  # TYPE_STRUCT:TYPE_VOID
+        self.bendStiffness = hclVertexFloatInput(infile)  # TYPE_STRUCT:TYPE_VOID
+        self.stretchStiffness = hclVertexFloatInput(infile)  # TYPE_STRUCT:TYPE_VOID
+        self.flatnessFactor = hclVertexFloatInput(infile)  # TYPE_STRUCT:TYPE_VOID
+
+    def __repr__(self):
+        return "<{class_name} name=\"{name}\", simulationMesh={simulationMesh}, createStandardLinks={createStandardLinks}, vertexSelection={vertexSelection}, bendStiffness={bendStiffness}, stretchStiffness={stretchStiffness}, flatnessFactor={flatnessFactor}>".format(**{
+            "class_name": self.__class__.__name__,
+            "name": self.name,
+            "simulationMesh": self.simulationMesh,
+            "createStandardLinks": self.createStandardLinks,
+            "vertexSelection": self.vertexSelection,
+            "bendStiffness": self.bendStiffness,
+            "stretchStiffness": self.stretchStiffness,
+            "flatnessFactor": self.flatnessFactor,
+        })

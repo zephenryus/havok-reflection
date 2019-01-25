@@ -3,7 +3,6 @@ from .hkClass import hkClass
 import struct
 from .hkClassEnum import hkClassEnum
 from .hkClassMember import hkClassMember
-from .common import any
 from .hkCustomAttributes import hkCustomAttributes
 
 
@@ -18,24 +17,39 @@ class FlagValues(Enum):
 
 class hkClass(object):
     name: str
-    parent: hkClass
+    parent: any
     objectSize: int
     numImplementedInterfaces: int
-    declaredEnums: hkClassEnum
-    declaredMembers: hkClassMember
+    declaredEnums: any
+    declaredMembers: any
     defaults: any
-    attributes: hkCustomAttributes
+    attributes: any
     flags: any
     describedVersion: int
 
     def __init__(self, infile):
-        self.name = str(infile)  # TYPE_CSTRING
-        self.parent = hkClass(infile)  # TYPE_POINTER
-        self.objectSize = struct.unpack('>i', infile.read(4))
-        self.numImplementedInterfaces = struct.unpack('>i', infile.read(4))
-        self.declaredEnums = hkClassEnum(infile)  # TYPE_SIMPLEARRAY
-        self.declaredMembers = hkClassMember(infile)  # TYPE_SIMPLEARRAY
-        self.defaults = any(infile)  # TYPE_POINTER
-        self.attributes = hkCustomAttributes(infile)  # TYPE_POINTER
-        self.flags = any(infile)  # TYPE_FLAGS
-        self.describedVersion = struct.unpack('>i', infile.read(4))
+        self.name = str(infile)  # TYPE_CSTRING:TYPE_VOID
+        self.parent = any(infile)  # TYPE_POINTER:TYPE_STRUCT
+        self.objectSize = struct.unpack('>i', infile.read(4))  # TYPE_INT32:TYPE_VOID
+        self.numImplementedInterfaces = struct.unpack('>i', infile.read(4))  # TYPE_INT32:TYPE_VOID
+        self.declaredEnums = any(infile)  # TYPE_SIMPLEARRAY:TYPE_STRUCT
+        self.declaredMembers = any(infile)  # TYPE_SIMPLEARRAY:TYPE_STRUCT
+        self.defaults = any(infile)  # TYPE_POINTER:TYPE_VOID
+        self.attributes = any(infile)  # TYPE_POINTER:TYPE_STRUCT
+        self.flags = any(infile)  # TYPE_FLAGS:TYPE_UINT32
+        self.describedVersion = struct.unpack('>i', infile.read(4))  # TYPE_INT32:TYPE_VOID
+
+    def __repr__(self):
+        return "<{class_name} name=\"{name}\", parent={parent}, objectSize={objectSize}, numImplementedInterfaces={numImplementedInterfaces}, declaredEnums={declaredEnums}, declaredMembers={declaredMembers}, defaults={defaults}, attributes={attributes}, flags={flags}, describedVersion={describedVersion}>".format(**{
+            "class_name": self.__class__.__name__,
+            "name": self.name,
+            "parent": self.parent,
+            "objectSize": self.objectSize,
+            "numImplementedInterfaces": self.numImplementedInterfaces,
+            "declaredEnums": self.declaredEnums,
+            "declaredMembers": self.declaredMembers,
+            "defaults": self.defaults,
+            "attributes": self.attributes,
+            "flags": self.flags,
+            "describedVersion": self.describedVersion,
+        })

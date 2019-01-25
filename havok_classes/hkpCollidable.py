@@ -21,9 +21,20 @@ class hkpCollidable(hkpCdBody):
     allowedPenetrationDepth: float
 
     def __init__(self, infile):
-        self.ownerOffset = struct.unpack('>b', infile.read(1))
-        self.forceCollideOntoPpu = struct.unpack('>B', infile.read(1))
-        self.shapeSizeOnSpu = struct.unpack('>H', infile.read(2))
-        self.broadPhaseHandle = hkpTypedBroadPhaseHandle(infile)  # TYPE_STRUCT
-        self.boundingVolumeData = hkpCollidableBoundingVolumeData(infile)  # TYPE_STRUCT
-        self.allowedPenetrationDepth = struct.unpack('>f', infile.read(4))
+        self.ownerOffset = struct.unpack('>b', infile.read(1))  # TYPE_INT8:TYPE_VOID
+        self.forceCollideOntoPpu = struct.unpack('>B', infile.read(1))  # TYPE_UINT8:TYPE_VOID
+        self.shapeSizeOnSpu = struct.unpack('>H', infile.read(2))  # TYPE_UINT16:TYPE_VOID
+        self.broadPhaseHandle = hkpTypedBroadPhaseHandle(infile)  # TYPE_STRUCT:TYPE_VOID
+        self.boundingVolumeData = hkpCollidableBoundingVolumeData(infile)  # TYPE_STRUCT:TYPE_VOID
+        self.allowedPenetrationDepth = struct.unpack('>f', infile.read(4))  # TYPE_REAL:TYPE_VOID
+
+    def __repr__(self):
+        return "<{class_name} ownerOffset={ownerOffset}, forceCollideOntoPpu={forceCollideOntoPpu}, shapeSizeOnSpu={shapeSizeOnSpu}, broadPhaseHandle={broadPhaseHandle}, boundingVolumeData={boundingVolumeData}, allowedPenetrationDepth={allowedPenetrationDepth}>".format(**{
+            "class_name": self.__class__.__name__,
+            "ownerOffset": self.ownerOffset,
+            "forceCollideOntoPpu": self.forceCollideOntoPpu,
+            "shapeSizeOnSpu": self.shapeSizeOnSpu,
+            "broadPhaseHandle": self.broadPhaseHandle,
+            "boundingVolumeData": self.boundingVolumeData,
+            "allowedPenetrationDepth": self.allowedPenetrationDepth,
+        })

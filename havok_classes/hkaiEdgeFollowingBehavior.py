@@ -12,10 +12,10 @@ class hkaiEdgeFollowingBehavior(hkaiSingleCharacterBehavior):
     updateQuerySize: float
     characterRadiusMultiplier: float
     maxIgnoredHeight: float
-    edgePath: hkaiEdgePath
+    edgePath: any
     traversalState: hkaiEdgePathTraversalState
     newCharacterState: State
-    pathFollowingProperties: hkaiPathFollowingProperties
+    pathFollowingProperties: any
     highestUserEdgeNotified: int
     userEdgeFakePathPoint: hkaiPathPathPoint
     savedCharacterState: State
@@ -23,15 +23,32 @@ class hkaiEdgeFollowingBehavior(hkaiSingleCharacterBehavior):
     passiveAvoidance: bool
 
     def __init__(self, infile):
-        self.updateQuerySize = struct.unpack('>f', infile.read(4))
-        self.characterRadiusMultiplier = struct.unpack('>f', infile.read(4))
-        self.maxIgnoredHeight = struct.unpack('>f', infile.read(4))
-        self.edgePath = hkaiEdgePath(infile)  # TYPE_POINTER
-        self.traversalState = hkaiEdgePathTraversalState(infile)  # TYPE_STRUCT
-        self.newCharacterState = State(infile)  # TYPE_ENUM
-        self.pathFollowingProperties = hkaiPathFollowingProperties(infile)  # TYPE_POINTER
-        self.highestUserEdgeNotified = struct.unpack('>i', infile.read(4))
-        self.userEdgeFakePathPoint = hkaiPathPathPoint(infile)  # TYPE_STRUCT
-        self.savedCharacterState = State(infile)  # TYPE_ENUM
-        self.cornerPredictorInitInfo = hkaiEdgeFollowingBehaviorCornerPredictorInitInfo(infile)  # TYPE_STRUCT
-        self.passiveAvoidance = struct.unpack('>?', infile.read(1))
+        self.updateQuerySize = struct.unpack('>f', infile.read(4))  # TYPE_REAL:TYPE_VOID
+        self.characterRadiusMultiplier = struct.unpack('>f', infile.read(4))  # TYPE_REAL:TYPE_VOID
+        self.maxIgnoredHeight = struct.unpack('>f', infile.read(4))  # TYPE_REAL:TYPE_VOID
+        self.edgePath = any(infile)  # TYPE_POINTER:TYPE_STRUCT
+        self.traversalState = hkaiEdgePathTraversalState(infile)  # TYPE_STRUCT:TYPE_VOID
+        self.newCharacterState = State(infile)  # TYPE_ENUM:TYPE_INT32
+        self.pathFollowingProperties = any(infile)  # TYPE_POINTER:TYPE_STRUCT
+        self.highestUserEdgeNotified = struct.unpack('>i', infile.read(4))  # TYPE_INT32:TYPE_VOID
+        self.userEdgeFakePathPoint = hkaiPathPathPoint(infile)  # TYPE_STRUCT:TYPE_VOID
+        self.savedCharacterState = State(infile)  # TYPE_ENUM:TYPE_INT32
+        self.cornerPredictorInitInfo = hkaiEdgeFollowingBehaviorCornerPredictorInitInfo(infile)  # TYPE_STRUCT:TYPE_VOID
+        self.passiveAvoidance = struct.unpack('>?', infile.read(1))  # TYPE_BOOL:TYPE_VOID
+
+    def __repr__(self):
+        return "<{class_name} updateQuerySize={updateQuerySize}, characterRadiusMultiplier={characterRadiusMultiplier}, maxIgnoredHeight={maxIgnoredHeight}, edgePath={edgePath}, traversalState={traversalState}, newCharacterState={newCharacterState}, pathFollowingProperties={pathFollowingProperties}, highestUserEdgeNotified={highestUserEdgeNotified}, userEdgeFakePathPoint={userEdgeFakePathPoint}, savedCharacterState={savedCharacterState}, cornerPredictorInitInfo={cornerPredictorInitInfo}, passiveAvoidance={passiveAvoidance}>".format(**{
+            "class_name": self.__class__.__name__,
+            "updateQuerySize": self.updateQuerySize,
+            "characterRadiusMultiplier": self.characterRadiusMultiplier,
+            "maxIgnoredHeight": self.maxIgnoredHeight,
+            "edgePath": self.edgePath,
+            "traversalState": self.traversalState,
+            "newCharacterState": self.newCharacterState,
+            "pathFollowingProperties": self.pathFollowingProperties,
+            "highestUserEdgeNotified": self.highestUserEdgeNotified,
+            "userEdgeFakePathPoint": self.userEdgeFakePathPoint,
+            "savedCharacterState": self.savedCharacterState,
+            "cornerPredictorInitInfo": self.cornerPredictorInitInfo,
+            "passiveAvoidance": self.passiveAvoidance,
+        })

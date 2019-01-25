@@ -1,7 +1,6 @@
 from enum import Enum
 from .enums import PrimitiveType, MeshSectionIndexType
 import struct
-from .common import any
 from .hkMeshVertexBuffer import hkMeshVertexBuffer
 from .hkMeshMaterial import hkMeshMaterial
 from .hkMeshBoneIndexMapping import hkMeshBoneIndexMapping
@@ -29,20 +28,36 @@ class hkMeshSection(object):
     transformIndex: int
     indexType: MeshSectionIndexType
     indices: any
-    vertexBuffer: hkMeshVertexBuffer
-    material: hkMeshMaterial
-    boneMatrixMap: hkMeshBoneIndexMapping
+    vertexBuffer: any
+    material: any
+    boneMatrixMap: any
     sectionIndex: int
 
     def __init__(self, infile):
-        self.primitiveType = PrimitiveType(infile)  # TYPE_ENUM
-        self.numPrimitives = struct.unpack('>i', infile.read(4))
-        self.numIndices = struct.unpack('>i', infile.read(4))
-        self.vertexStartIndex = struct.unpack('>i', infile.read(4))
-        self.transformIndex = struct.unpack('>i', infile.read(4))
-        self.indexType = MeshSectionIndexType(infile)  # TYPE_ENUM
-        self.indices = any(infile)  # TYPE_POINTER
-        self.vertexBuffer = hkMeshVertexBuffer(infile)  # TYPE_POINTER
-        self.material = hkMeshMaterial(infile)  # TYPE_POINTER
-        self.boneMatrixMap = hkMeshBoneIndexMapping(infile)  # TYPE_POINTER
-        self.sectionIndex = struct.unpack('>i', infile.read(4))
+        self.primitiveType = PrimitiveType(infile)  # TYPE_ENUM:TYPE_UINT8
+        self.numPrimitives = struct.unpack('>i', infile.read(4))  # TYPE_INT32:TYPE_VOID
+        self.numIndices = struct.unpack('>i', infile.read(4))  # TYPE_INT32:TYPE_VOID
+        self.vertexStartIndex = struct.unpack('>i', infile.read(4))  # TYPE_INT32:TYPE_VOID
+        self.transformIndex = struct.unpack('>i', infile.read(4))  # TYPE_INT32:TYPE_VOID
+        self.indexType = MeshSectionIndexType(infile)  # TYPE_ENUM:TYPE_UINT8
+        self.indices = any(infile)  # TYPE_POINTER:TYPE_VOID
+        self.vertexBuffer = any(infile)  # TYPE_POINTER:TYPE_STRUCT
+        self.material = any(infile)  # TYPE_POINTER:TYPE_STRUCT
+        self.boneMatrixMap = any(infile)  # TYPE_POINTER:TYPE_STRUCT
+        self.sectionIndex = struct.unpack('>i', infile.read(4))  # TYPE_INT32:TYPE_VOID
+
+    def __repr__(self):
+        return "<{class_name} primitiveType={primitiveType}, numPrimitives={numPrimitives}, numIndices={numIndices}, vertexStartIndex={vertexStartIndex}, transformIndex={transformIndex}, indexType={indexType}, indices={indices}, vertexBuffer={vertexBuffer}, material={material}, boneMatrixMap={boneMatrixMap}, sectionIndex={sectionIndex}>".format(**{
+            "class_name": self.__class__.__name__,
+            "primitiveType": self.primitiveType,
+            "numPrimitives": self.numPrimitives,
+            "numIndices": self.numIndices,
+            "vertexStartIndex": self.vertexStartIndex,
+            "transformIndex": self.transformIndex,
+            "indexType": self.indexType,
+            "indices": self.indices,
+            "vertexBuffer": self.vertexBuffer,
+            "material": self.material,
+            "boneMatrixMap": self.boneMatrixMap,
+            "sectionIndex": self.sectionIndex,
+        })

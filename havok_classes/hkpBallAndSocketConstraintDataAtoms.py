@@ -9,6 +9,14 @@ class hkpBallAndSocketConstraintDataAtoms(object):
     ballSocket: hkpBallSocketConstraintAtom
 
     def __init__(self, infile):
-        self.pivots = hkpSetLocalTranslationsConstraintAtom(infile)  # TYPE_STRUCT
-        self.setupStabilization = hkpSetupStabilizationAtom(infile)  # TYPE_STRUCT
-        self.ballSocket = hkpBallSocketConstraintAtom(infile)  # TYPE_STRUCT
+        self.pivots = hkpSetLocalTranslationsConstraintAtom(infile)  # TYPE_STRUCT:TYPE_VOID
+        self.setupStabilization = hkpSetupStabilizationAtom(infile)  # TYPE_STRUCT:TYPE_VOID
+        self.ballSocket = hkpBallSocketConstraintAtom(infile)  # TYPE_STRUCT:TYPE_VOID
+
+    def __repr__(self):
+        return "<{class_name} pivots={pivots}, setupStabilization={setupStabilization}, ballSocket={ballSocket}>".format(**{
+            "class_name": self.__class__.__name__,
+            "pivots": self.pivots,
+            "setupStabilization": self.setupStabilization,
+            "ballSocket": self.ballSocket,
+        })

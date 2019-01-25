@@ -1,5 +1,4 @@
 from .hkpConstraintAtom import hkpConstraintAtom
-from .common import vector4
 import struct
 
 
@@ -11,8 +10,18 @@ class hkpDeformableLinConstraintAtom(hkpConstraintAtom):
     ultimateStrengthOffDiag: vector4
 
     def __init__(self, infile):
-        self.offset = struct.unpack('>4f', infile.read(16))
-        self.yieldStrengthDiag = struct.unpack('>4f', infile.read(16))
-        self.yieldStrengthOffDiag = struct.unpack('>4f', infile.read(16))
-        self.ultimateStrengthDiag = struct.unpack('>4f', infile.read(16))
-        self.ultimateStrengthOffDiag = struct.unpack('>4f', infile.read(16))
+        self.offset = struct.unpack('>4f', infile.read(16))  # TYPE_VECTOR4:TYPE_VOID
+        self.yieldStrengthDiag = struct.unpack('>4f', infile.read(16))  # TYPE_VECTOR4:TYPE_VOID
+        self.yieldStrengthOffDiag = struct.unpack('>4f', infile.read(16))  # TYPE_VECTOR4:TYPE_VOID
+        self.ultimateStrengthDiag = struct.unpack('>4f', infile.read(16))  # TYPE_VECTOR4:TYPE_VOID
+        self.ultimateStrengthOffDiag = struct.unpack('>4f', infile.read(16))  # TYPE_VECTOR4:TYPE_VOID
+
+    def __repr__(self):
+        return "<{class_name} offset={offset}, yieldStrengthDiag={yieldStrengthDiag}, yieldStrengthOffDiag={yieldStrengthOffDiag}, ultimateStrengthDiag={ultimateStrengthDiag}, ultimateStrengthOffDiag={ultimateStrengthOffDiag}>".format(**{
+            "class_name": self.__class__.__name__,
+            "offset": self.offset,
+            "yieldStrengthDiag": self.yieldStrengthDiag,
+            "yieldStrengthOffDiag": self.yieldStrengthOffDiag,
+            "ultimateStrengthDiag": self.ultimateStrengthDiag,
+            "ultimateStrengthOffDiag": self.ultimateStrengthOffDiag,
+        })

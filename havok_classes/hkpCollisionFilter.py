@@ -20,6 +20,14 @@ class hkpCollisionFilter(hkReferencedObject):
     postpad: int
 
     def __init__(self, infile):
-        self.prepad = struct.unpack('>I', infile.read(4))
-        self.type = hkpFilterType(infile)  # TYPE_ENUM
-        self.postpad = struct.unpack('>I', infile.read(4))
+        self.prepad = struct.unpack('>I', infile.read(4))  # TYPE_UINT32:TYPE_VOID
+        self.type = hkpFilterType(infile)  # TYPE_ENUM:TYPE_UINT32
+        self.postpad = struct.unpack('>I', infile.read(4))  # TYPE_UINT32:TYPE_VOID
+
+    def __repr__(self):
+        return "<{class_name} prepad={prepad}, type={type}, postpad={postpad}>".format(**{
+            "class_name": self.__class__.__name__,
+            "prepad": self.prepad,
+            "type": self.type,
+            "postpad": self.postpad,
+        })

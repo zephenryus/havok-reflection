@@ -2,7 +2,8 @@ from .hkpBvTreeShape import hkpBvTreeShape
 from enum import Enum
 import struct
 from .enums import WeldingType
-from .common import any
+from typing import List
+from .common import get_array
 from .hkpBvCompressedMeshShapeTree import hkpBvCompressedMeshShapeTree
 
 
@@ -32,17 +33,30 @@ class hkpBvCompressedMeshShape(hkpBvTreeShape):
     weldingType: WeldingType
     hasPerPrimitiveCollisionFilterInfo: bool
     hasPerPrimitiveUserData: bool
-    collisionFilterInfoPalette: any
-    userDataPalette: any
-    userStringPalette: any
+    collisionFilterInfoPalette: List[int]
+    userDataPalette: List[int]
+    userStringPalette: List[str]
     tree: hkpBvCompressedMeshShapeTree
 
     def __init__(self, infile):
-        self.convexRadius = struct.unpack('>f', infile.read(4))
-        self.weldingType = WeldingType(infile)  # TYPE_ENUM
-        self.hasPerPrimitiveCollisionFilterInfo = struct.unpack('>?', infile.read(1))
-        self.hasPerPrimitiveUserData = struct.unpack('>?', infile.read(1))
-        self.collisionFilterInfoPalette = any(infile)  # TYPE_ARRAY
-        self.userDataPalette = any(infile)  # TYPE_ARRAY
-        self.userStringPalette = any(infile)  # TYPE_ARRAY
-        self.tree = hkpBvCompressedMeshShapeTree(infile)  # TYPE_STRUCT
+        self.convexRadius = struct.unpack('>f', infile.read(4))  # TYPE_REAL:TYPE_VOID
+        self.weldingType = WeldingType(infile)  # TYPE_ENUM:TYPE_UINT8
+        self.hasPerPrimitiveCollisionFilterInfo = struct.unpack('>?', infile.read(1))  # TYPE_BOOL:TYPE_VOID
+        self.hasPerPrimitiveUserData = struct.unpack('>?', infile.read(1))  # TYPE_BOOL:TYPE_VOID
+        self.collisionFilterInfoPalette = get_array(infile, int, 4)  # TYPE_ARRAY:TYPE_UINT32
+        self.userDataPalette = get_array(infile, int, 4)  # TYPE_ARRAY:TYPE_UINT32
+        self.userStringPalette = get_array(infile, str, 0)  # TYPE_ARRAY:TYPE_STRINGPTR
+        self.tree = hkpBvCompressedMeshShapeTree(infile)  # TYPE_STRUCT:TYPE_VOID
+
+    def __repr__(self):
+        return "<{class_name} convexRadius={convexRadius}, weldingType={weldingType}, hasPerPrimitiveCollisionFilterInfo={hasPerPrimitiveCollisionFilterInfo}, hasPerPrimitiveUserData={hasPerPrimitiveUserData}, collisionFilterInfoPalette=[{collisionFilterInfoPalette}], userDataPalette=[{userDataPalette}], userStringPalette=[{userStringPalette}], tree={tree}>".format(**{
+            "class_name": self.__class__.__name__,
+            "convexRadius": self.convexRadius,
+            "weldingType": self.weldingType,
+            "hasPerPrimitiveCollisionFilterInfo": self.hasPerPrimitiveCollisionFilterInfo,
+            "hasPerPrimitiveUserData": self.hasPerPrimitiveUserData,
+            "collisionFilterInfoPalette": self.collisionFilterInfoPalette,
+            "userDataPalette": self.userDataPalette,
+            "userStringPalette": self.userStringPalette,
+            "tree": self.tree,
+        })

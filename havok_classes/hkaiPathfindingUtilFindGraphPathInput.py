@@ -1,4 +1,5 @@
-from .common import any
+from typing import List
+from .common import get_array
 import struct
 from .hkaiAgentTraversalInfo import hkaiAgentTraversalInfo
 from .hkaiGraphPathSearchParameters import hkaiGraphPathSearchParameters
@@ -6,10 +7,10 @@ from .hkaiSearchParametersSearchBuffers import hkaiSearchParametersSearchBuffers
 
 
 class hkaiPathfindingUtilFindGraphPathInput(object):
-    startNodeKeys: any
-    initialCosts: any
-    goalNodeKeys: any
-    finalCosts: any
+    startNodeKeys: List[int]
+    initialCosts: List[float]
+    goalNodeKeys: List[int]
+    finalCosts: List[float]
     maxNumberOfIterations: int
     agentInfo: hkaiAgentTraversalInfo
     searchParameters: hkaiGraphPathSearchParameters
@@ -17,12 +18,26 @@ class hkaiPathfindingUtilFindGraphPathInput(object):
     hierarchySearchBuffers: hkaiSearchParametersSearchBuffers
 
     def __init__(self, infile):
-        self.startNodeKeys = any(infile)  # TYPE_ARRAY
-        self.initialCosts = any(infile)  # TYPE_ARRAY
-        self.goalNodeKeys = any(infile)  # TYPE_ARRAY
-        self.finalCosts = any(infile)  # TYPE_ARRAY
-        self.maxNumberOfIterations = struct.unpack('>i', infile.read(4))
-        self.agentInfo = hkaiAgentTraversalInfo(infile)  # TYPE_STRUCT
-        self.searchParameters = hkaiGraphPathSearchParameters(infile)  # TYPE_STRUCT
-        self.searchBuffers = hkaiSearchParametersSearchBuffers(infile)  # TYPE_STRUCT
-        self.hierarchySearchBuffers = hkaiSearchParametersSearchBuffers(infile)  # TYPE_STRUCT
+        self.startNodeKeys = get_array(infile, int, 4)  # TYPE_ARRAY:TYPE_UINT32
+        self.initialCosts = get_array(infile, float, 4)  # TYPE_ARRAY:TYPE_REAL
+        self.goalNodeKeys = get_array(infile, int, 4)  # TYPE_ARRAY:TYPE_UINT32
+        self.finalCosts = get_array(infile, float, 4)  # TYPE_ARRAY:TYPE_REAL
+        self.maxNumberOfIterations = struct.unpack('>i', infile.read(4))  # TYPE_INT32:TYPE_VOID
+        self.agentInfo = hkaiAgentTraversalInfo(infile)  # TYPE_STRUCT:TYPE_VOID
+        self.searchParameters = hkaiGraphPathSearchParameters(infile)  # TYPE_STRUCT:TYPE_VOID
+        self.searchBuffers = hkaiSearchParametersSearchBuffers(infile)  # TYPE_STRUCT:TYPE_VOID
+        self.hierarchySearchBuffers = hkaiSearchParametersSearchBuffers(infile)  # TYPE_STRUCT:TYPE_VOID
+
+    def __repr__(self):
+        return "<{class_name} startNodeKeys=[{startNodeKeys}], initialCosts=[{initialCosts}], goalNodeKeys=[{goalNodeKeys}], finalCosts=[{finalCosts}], maxNumberOfIterations={maxNumberOfIterations}, agentInfo={agentInfo}, searchParameters={searchParameters}, searchBuffers={searchBuffers}, hierarchySearchBuffers={hierarchySearchBuffers}>".format(**{
+            "class_name": self.__class__.__name__,
+            "startNodeKeys": self.startNodeKeys,
+            "initialCosts": self.initialCosts,
+            "goalNodeKeys": self.goalNodeKeys,
+            "finalCosts": self.finalCosts,
+            "maxNumberOfIterations": self.maxNumberOfIterations,
+            "agentInfo": self.agentInfo,
+            "searchParameters": self.searchParameters,
+            "searchBuffers": self.searchBuffers,
+            "hierarchySearchBuffers": self.hierarchySearchBuffers,
+        })

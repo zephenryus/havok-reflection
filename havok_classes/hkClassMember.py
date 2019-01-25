@@ -3,7 +3,6 @@ from .hkClass import hkClass
 from .hkClassEnum import hkClassEnum
 from .enums import Type
 import struct
-from .common import any
 from .hkCustomAttributes import hkCustomAttributes
 
 
@@ -67,22 +66,36 @@ class DeprecatedFlagValues(Enum):
 
 class hkClassMember(object):
     name: str
-    class: hkClass
-    enum: hkClassEnum
+    class: any
+    enum: any
     type: Type
     subtype: Type
     cArraySize: int
     flags: any
     offset: int
-    attributes: hkCustomAttributes
+    attributes: any
 
     def __init__(self, infile):
-        self.name = str(infile)  # TYPE_CSTRING
-        self.class = hkClass(infile)  # TYPE_POINTER
-        self.enum = hkClassEnum(infile)  # TYPE_POINTER
-        self.type = Type(infile)  # TYPE_ENUM
-        self.subtype = Type(infile)  # TYPE_ENUM
-        self.cArraySize = struct.unpack('>h', infile.read(2))
-        self.flags = any(infile)  # TYPE_FLAGS
-        self.offset = struct.unpack('>H', infile.read(2))
-        self.attributes = hkCustomAttributes(infile)  # TYPE_POINTER
+        self.name = str(infile)  # TYPE_CSTRING:TYPE_VOID
+        self.class = any(infile)  # TYPE_POINTER:TYPE_STRUCT
+        self.enum = any(infile)  # TYPE_POINTER:TYPE_STRUCT
+        self.type = Type(infile)  # TYPE_ENUM:TYPE_UINT8
+        self.subtype = Type(infile)  # TYPE_ENUM:TYPE_UINT8
+        self.cArraySize = struct.unpack('>h', infile.read(2))  # TYPE_INT16:TYPE_VOID
+        self.flags = any(infile)  # TYPE_FLAGS:TYPE_UINT16
+        self.offset = struct.unpack('>H', infile.read(2))  # TYPE_UINT16:TYPE_VOID
+        self.attributes = any(infile)  # TYPE_POINTER:TYPE_STRUCT
+
+    def __repr__(self):
+        return "<{class_name} name=\"{name}\", class={class}, enum={enum}, type={type}, subtype={subtype}, cArraySize={cArraySize}, flags={flags}, offset={offset}, attributes={attributes}>".format(**{
+            "class_name": self.__class__.__name__,
+            "name": self.name,
+            "class": self.class,
+            "enum": self.enum,
+            "type": self.type,
+            "subtype": self.subtype,
+            "cArraySize": self.cArraySize,
+            "flags": self.flags,
+            "offset": self.offset,
+            "attributes": self.attributes,
+        })

@@ -13,4 +13,10 @@ class hkpConvexShape(hkpSphereRepShape):
     radius: float
 
     def __init__(self, infile):
-        self.radius = struct.unpack('>f', infile.read(4))
+        self.radius = struct.unpack('>f', infile.read(4))  # TYPE_REAL:TYPE_VOID
+
+    def __repr__(self):
+        return "<{class_name} radius={radius}>".format(**{
+            "class_name": self.__class__.__name__,
+            "radius": self.radius,
+        })

@@ -22,11 +22,19 @@ class NodeTypesEnum(Enum):
 
 
 class hkcdPlanarSolid(hkcdPlanarEntity):
-    nodes: hkcdPlanarSolidNodeStorage
-    planes: hkcdPlanarGeometryPlanesCollection
+    nodes: any
+    planes: any
     rootNodeId: int
 
     def __init__(self, infile):
-        self.nodes = hkcdPlanarSolidNodeStorage(infile)  # TYPE_POINTER
-        self.planes = hkcdPlanarGeometryPlanesCollection(infile)  # TYPE_POINTER
-        self.rootNodeId = struct.unpack('>I', infile.read(4))
+        self.nodes = any(infile)  # TYPE_POINTER:TYPE_STRUCT
+        self.planes = any(infile)  # TYPE_POINTER:TYPE_STRUCT
+        self.rootNodeId = struct.unpack('>I', infile.read(4))  # TYPE_UINT32:TYPE_VOID
+
+    def __repr__(self):
+        return "<{class_name} nodes={nodes}, planes={planes}, rootNodeId={rootNodeId}>".format(**{
+            "class_name": self.__class__.__name__,
+            "nodes": self.nodes,
+            "planes": self.planes,
+            "rootNodeId": self.rootNodeId,
+        })

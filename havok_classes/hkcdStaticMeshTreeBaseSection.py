@@ -25,15 +25,32 @@ class hkcdStaticMeshTreeBaseSection(hkcdStaticTreeTreehkcdStaticTreeDynamicStora
     unusedData: int
 
     def __init__(self, infile):
-        self.codecParms = struct.unpack('>f', infile.read(4))
-        self.firstPackedVertex = struct.unpack('>I', infile.read(4))
-        self.sharedVertices = hkcdStaticMeshTreeBaseSectionSharedVertices(infile)  # TYPE_STRUCT
-        self.primitives = hkcdStaticMeshTreeBaseSectionPrimitives(infile)  # TYPE_STRUCT
-        self.dataRuns = hkcdStaticMeshTreeBaseSectionDataRuns(infile)  # TYPE_STRUCT
-        self.numPackedVertices = struct.unpack('>B', infile.read(1))
-        self.numSharedIndices = struct.unpack('>B', infile.read(1))
-        self.leafIndex = struct.unpack('>H', infile.read(2))
-        self.page = struct.unpack('>B', infile.read(1))
-        self.flags = struct.unpack('>B', infile.read(1))
-        self.layerData = struct.unpack('>B', infile.read(1))
-        self.unusedData = struct.unpack('>B', infile.read(1))
+        self.codecParms = struct.unpack('>f', infile.read(4))  # TYPE_REAL:TYPE_VOID
+        self.firstPackedVertex = struct.unpack('>I', infile.read(4))  # TYPE_UINT32:TYPE_VOID
+        self.sharedVertices = hkcdStaticMeshTreeBaseSectionSharedVertices(infile)  # TYPE_STRUCT:TYPE_VOID
+        self.primitives = hkcdStaticMeshTreeBaseSectionPrimitives(infile)  # TYPE_STRUCT:TYPE_VOID
+        self.dataRuns = hkcdStaticMeshTreeBaseSectionDataRuns(infile)  # TYPE_STRUCT:TYPE_VOID
+        self.numPackedVertices = struct.unpack('>B', infile.read(1))  # TYPE_UINT8:TYPE_VOID
+        self.numSharedIndices = struct.unpack('>B', infile.read(1))  # TYPE_UINT8:TYPE_VOID
+        self.leafIndex = struct.unpack('>H', infile.read(2))  # TYPE_UINT16:TYPE_VOID
+        self.page = struct.unpack('>B', infile.read(1))  # TYPE_UINT8:TYPE_VOID
+        self.flags = struct.unpack('>B', infile.read(1))  # TYPE_UINT8:TYPE_VOID
+        self.layerData = struct.unpack('>B', infile.read(1))  # TYPE_UINT8:TYPE_VOID
+        self.unusedData = struct.unpack('>B', infile.read(1))  # TYPE_UINT8:TYPE_VOID
+
+    def __repr__(self):
+        return "<{class_name} codecParms={codecParms}, firstPackedVertex={firstPackedVertex}, sharedVertices={sharedVertices}, primitives={primitives}, dataRuns={dataRuns}, numPackedVertices={numPackedVertices}, numSharedIndices={numSharedIndices}, leafIndex={leafIndex}, page={page}, flags={flags}, layerData={layerData}, unusedData={unusedData}>".format(**{
+            "class_name": self.__class__.__name__,
+            "codecParms": self.codecParms,
+            "firstPackedVertex": self.firstPackedVertex,
+            "sharedVertices": self.sharedVertices,
+            "primitives": self.primitives,
+            "dataRuns": self.dataRuns,
+            "numPackedVertices": self.numPackedVertices,
+            "numSharedIndices": self.numSharedIndices,
+            "leafIndex": self.leafIndex,
+            "page": self.page,
+            "flags": self.flags,
+            "layerData": self.layerData,
+            "unusedData": self.unusedData,
+        })

@@ -3,6 +3,8 @@ from enum import Enum
 from .enums import AnimationType
 import struct
 from .hkaAnimatedReferenceFrame import hkaAnimatedReferenceFrame
+from typing import List
+from .common import get_array
 from .hkaAnnotationTrack import hkaAnnotationTrack
 
 
@@ -21,13 +23,24 @@ class hkaAnimation(hkReferencedObject):
     duration: float
     numberOfTransformTracks: int
     numberOfFloatTracks: int
-    extractedMotion: hkaAnimatedReferenceFrame
-    annotationTracks: hkaAnnotationTrack
+    extractedMotion: any
+    annotationTracks: List[hkaAnnotationTrack]
 
     def __init__(self, infile):
-        self.type = AnimationType(infile)  # TYPE_ENUM
-        self.duration = struct.unpack('>f', infile.read(4))
-        self.numberOfTransformTracks = struct.unpack('>i', infile.read(4))
-        self.numberOfFloatTracks = struct.unpack('>i', infile.read(4))
-        self.extractedMotion = hkaAnimatedReferenceFrame(infile)  # TYPE_POINTER
-        self.annotationTracks = hkaAnnotationTrack(infile)  # TYPE_ARRAY
+        self.type = AnimationType(infile)  # TYPE_ENUM:TYPE_INT32
+        self.duration = struct.unpack('>f', infile.read(4))  # TYPE_REAL:TYPE_VOID
+        self.numberOfTransformTracks = struct.unpack('>i', infile.read(4))  # TYPE_INT32:TYPE_VOID
+        self.numberOfFloatTracks = struct.unpack('>i', infile.read(4))  # TYPE_INT32:TYPE_VOID
+        self.extractedMotion = any(infile)  # TYPE_POINTER:TYPE_STRUCT
+        self.annotationTracks = get_array(infile, hkaAnnotationTrack, 0)  # TYPE_ARRAY:TYPE_STRUCT
+
+    def __repr__(self):
+        return "<{class_name} type={type}, duration={duration}, numberOfTransformTracks={numberOfTransformTracks}, numberOfFloatTracks={numberOfFloatTracks}, extractedMotion={extractedMotion}, annotationTracks=[{annotationTracks}]>".format(**{
+            "class_name": self.__class__.__name__,
+            "type": self.type,
+            "duration": self.duration,
+            "numberOfTransformTracks": self.numberOfTransformTracks,
+            "numberOfFloatTracks": self.numberOfFloatTracks,
+            "extractedMotion": self.extractedMotion,
+            "annotationTracks": self.annotationTracks,
+        })

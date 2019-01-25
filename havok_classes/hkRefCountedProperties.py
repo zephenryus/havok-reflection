@@ -1,4 +1,6 @@
 from enum import Enum
+from typing import List
+from .common import get_array
 from .hkRefCountedPropertiesEntry import hkRefCountedPropertiesEntry
 
 
@@ -8,7 +10,13 @@ class ReferenceCountHandling(Enum):
 
 
 class hkRefCountedProperties(object):
-    entries: hkRefCountedPropertiesEntry
+    entries: List[hkRefCountedPropertiesEntry]
 
     def __init__(self, infile):
-        self.entries = hkRefCountedPropertiesEntry(infile)  # TYPE_ARRAY
+        self.entries = get_array(infile, hkRefCountedPropertiesEntry, 0)  # TYPE_ARRAY:TYPE_STRUCT
+
+    def __repr__(self):
+        return "<{class_name} entries=[{entries}]>".format(**{
+            "class_name": self.__class__.__name__,
+            "entries": self.entries,
+        })

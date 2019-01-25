@@ -1,6 +1,7 @@
 from .hclOperator import hclOperator
 from enum import Enum
-from .common import any
+from typing import List
+from .common import get_array
 from .hclMeshMeshDeformOperatorTriangleVertexPair import hclMeshMeshDeformOperatorTriangleVertexPair
 import struct
 from .enums import ScaleNormalBehaviour
@@ -13,9 +14,9 @@ class ScaleNormalBehaviour(Enum):
 
 
 class hclMeshMeshDeformOperator(hclOperator):
-    inputTrianglesSubset: any
-    triangleVertexPairs: hclMeshMeshDeformOperatorTriangleVertexPair
-    triangleVertexStartForVertex: any
+    inputTrianglesSubset: List[int]
+    triangleVertexPairs: List[hclMeshMeshDeformOperatorTriangleVertexPair]
+    triangleVertexStartForVertex: List[int]
     inputBufferIdx: int
     outputBufferIdx: int
     startVertex: int
@@ -25,13 +26,28 @@ class hclMeshMeshDeformOperator(hclOperator):
     partialDeform: bool
 
     def __init__(self, infile):
-        self.inputTrianglesSubset = any(infile)  # TYPE_ARRAY
-        self.triangleVertexPairs = hclMeshMeshDeformOperatorTriangleVertexPair(infile)  # TYPE_ARRAY
-        self.triangleVertexStartForVertex = any(infile)  # TYPE_ARRAY
-        self.inputBufferIdx = struct.unpack('>I', infile.read(4))
-        self.outputBufferIdx = struct.unpack('>I', infile.read(4))
-        self.startVertex = struct.unpack('>H', infile.read(2))
-        self.endVertex = struct.unpack('>H', infile.read(2))
-        self.scaleNormalBehaviour = ScaleNormalBehaviour(infile)  # TYPE_ENUM
-        self.deformNormals = struct.unpack('>?', infile.read(1))
-        self.partialDeform = struct.unpack('>?', infile.read(1))
+        self.inputTrianglesSubset = get_array(infile, int, 2)  # TYPE_ARRAY:TYPE_UINT16
+        self.triangleVertexPairs = get_array(infile, hclMeshMeshDeformOperatorTriangleVertexPair, 0)  # TYPE_ARRAY:TYPE_STRUCT
+        self.triangleVertexStartForVertex = get_array(infile, int, 2)  # TYPE_ARRAY:TYPE_UINT16
+        self.inputBufferIdx = struct.unpack('>I', infile.read(4))  # TYPE_UINT32:TYPE_VOID
+        self.outputBufferIdx = struct.unpack('>I', infile.read(4))  # TYPE_UINT32:TYPE_VOID
+        self.startVertex = struct.unpack('>H', infile.read(2))  # TYPE_UINT16:TYPE_VOID
+        self.endVertex = struct.unpack('>H', infile.read(2))  # TYPE_UINT16:TYPE_VOID
+        self.scaleNormalBehaviour = ScaleNormalBehaviour(infile)  # TYPE_ENUM:TYPE_UINT32
+        self.deformNormals = struct.unpack('>?', infile.read(1))  # TYPE_BOOL:TYPE_VOID
+        self.partialDeform = struct.unpack('>?', infile.read(1))  # TYPE_BOOL:TYPE_VOID
+
+    def __repr__(self):
+        return "<{class_name} inputTrianglesSubset=[{inputTrianglesSubset}], triangleVertexPairs=[{triangleVertexPairs}], triangleVertexStartForVertex=[{triangleVertexStartForVertex}], inputBufferIdx={inputBufferIdx}, outputBufferIdx={outputBufferIdx}, startVertex={startVertex}, endVertex={endVertex}, scaleNormalBehaviour={scaleNormalBehaviour}, deformNormals={deformNormals}, partialDeform={partialDeform}>".format(**{
+            "class_name": self.__class__.__name__,
+            "inputTrianglesSubset": self.inputTrianglesSubset,
+            "triangleVertexPairs": self.triangleVertexPairs,
+            "triangleVertexStartForVertex": self.triangleVertexStartForVertex,
+            "inputBufferIdx": self.inputBufferIdx,
+            "outputBufferIdx": self.outputBufferIdx,
+            "startVertex": self.startVertex,
+            "endVertex": self.endVertex,
+            "scaleNormalBehaviour": self.scaleNormalBehaviour,
+            "deformNormals": self.deformNormals,
+            "partialDeform": self.partialDeform,
+        })

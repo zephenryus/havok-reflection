@@ -1,6 +1,7 @@
 from .hkaAnimation import hkaAnimation
 from enum import Enum
-from .common import any
+from typing import List
+from .common import get_array
 import struct
 
 
@@ -32,10 +33,10 @@ class FloatArrayID(Enum):
 
 
 class hkaPredictiveCompressedAnimation(hkaAnimation):
-    compressedData: any
-    intData: any
+    compressedData: List[int]
+    intData: List[int]
     intArrayOffsets: int
-    floatData: any
+    floatData: List[float]
     floatArrayOffsets: int
     numBones: int
     numFloatSlots: int
@@ -45,14 +46,30 @@ class hkaPredictiveCompressedAnimation(hkaAnimation):
     maxCompressedBytesPerFrame: int
 
     def __init__(self, infile):
-        self.compressedData = any(infile)  # TYPE_ARRAY
-        self.intData = any(infile)  # TYPE_ARRAY
-        self.intArrayOffsets = struct.unpack('>i', infile.read(4))
-        self.floatData = any(infile)  # TYPE_ARRAY
-        self.floatArrayOffsets = struct.unpack('>i', infile.read(4))
-        self.numBones = struct.unpack('>i', infile.read(4))
-        self.numFloatSlots = struct.unpack('>i', infile.read(4))
-        self.numFrames = struct.unpack('>i', infile.read(4))
-        self.firstFloatBlockScaleAndOffsetIndex = struct.unpack('>i', infile.read(4))
-        self.skeleton = any(infile)  # TYPE_POINTER
-        self.maxCompressedBytesPerFrame = struct.unpack('>i', infile.read(4))
+        self.compressedData = get_array(infile, int, 1)  # TYPE_ARRAY:TYPE_UINT8
+        self.intData = get_array(infile, int, 2)  # TYPE_ARRAY:TYPE_UINT16
+        self.intArrayOffsets = struct.unpack('>i', infile.read(4))  # TYPE_INT32:TYPE_VOID
+        self.floatData = get_array(infile, float, 4)  # TYPE_ARRAY:TYPE_REAL
+        self.floatArrayOffsets = struct.unpack('>i', infile.read(4))  # TYPE_INT32:TYPE_VOID
+        self.numBones = struct.unpack('>i', infile.read(4))  # TYPE_INT32:TYPE_VOID
+        self.numFloatSlots = struct.unpack('>i', infile.read(4))  # TYPE_INT32:TYPE_VOID
+        self.numFrames = struct.unpack('>i', infile.read(4))  # TYPE_INT32:TYPE_VOID
+        self.firstFloatBlockScaleAndOffsetIndex = struct.unpack('>i', infile.read(4))  # TYPE_INT32:TYPE_VOID
+        self.skeleton = any(infile)  # TYPE_POINTER:TYPE_VOID
+        self.maxCompressedBytesPerFrame = struct.unpack('>i', infile.read(4))  # TYPE_INT32:TYPE_VOID
+
+    def __repr__(self):
+        return "<{class_name} compressedData=[{compressedData}], intData=[{intData}], intArrayOffsets={intArrayOffsets}, floatData=[{floatData}], floatArrayOffsets={floatArrayOffsets}, numBones={numBones}, numFloatSlots={numFloatSlots}, numFrames={numFrames}, firstFloatBlockScaleAndOffsetIndex={firstFloatBlockScaleAndOffsetIndex}, skeleton={skeleton}, maxCompressedBytesPerFrame={maxCompressedBytesPerFrame}>".format(**{
+            "class_name": self.__class__.__name__,
+            "compressedData": self.compressedData,
+            "intData": self.intData,
+            "intArrayOffsets": self.intArrayOffsets,
+            "floatData": self.floatData,
+            "floatArrayOffsets": self.floatArrayOffsets,
+            "numBones": self.numBones,
+            "numFloatSlots": self.numFloatSlots,
+            "numFrames": self.numFrames,
+            "firstFloatBlockScaleAndOffsetIndex": self.firstFloatBlockScaleAndOffsetIndex,
+            "skeleton": self.skeleton,
+            "maxCompressedBytesPerFrame": self.maxCompressedBytesPerFrame,
+        })

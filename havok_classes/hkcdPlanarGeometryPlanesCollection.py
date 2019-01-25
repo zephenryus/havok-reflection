@@ -1,7 +1,8 @@
 from .hkReferencedObject import hkReferencedObject
 from enum import Enum
-from .common import vector4, any
 import struct
+from typing import List
+from .common import get_array
 from .hkcdPlanarGeometryPrimitivesPlane import hkcdPlanarGeometryPrimitivesPlane
 
 
@@ -17,12 +18,21 @@ class Bounds(Enum):
 
 class hkcdPlanarGeometryPlanesCollection(hkReferencedObject):
     offsetAndScale: vector4
-    planes: hkcdPlanarGeometryPrimitivesPlane
+    planes: List[hkcdPlanarGeometryPrimitivesPlane]
     cache: any
     criticalAccess: any
 
     def __init__(self, infile):
-        self.offsetAndScale = struct.unpack('>4f', infile.read(16))
-        self.planes = hkcdPlanarGeometryPrimitivesPlane(infile)  # TYPE_ARRAY
-        self.cache = any(infile)  # TYPE_POINTER
-        self.criticalAccess = any(infile)  # TYPE_POINTER
+        self.offsetAndScale = struct.unpack('>4f', infile.read(16))  # TYPE_VECTOR4:TYPE_VOID
+        self.planes = get_array(infile, hkcdPlanarGeometryPrimitivesPlane, 0)  # TYPE_ARRAY:TYPE_STRUCT
+        self.cache = any(infile)  # TYPE_POINTER:TYPE_VOID
+        self.criticalAccess = any(infile)  # TYPE_POINTER:TYPE_VOID
+
+    def __repr__(self):
+        return "<{class_name} offsetAndScale={offsetAndScale}, planes=[{planes}], cache={cache}, criticalAccess={criticalAccess}>".format(**{
+            "class_name": self.__class__.__name__,
+            "offsetAndScale": self.offsetAndScale,
+            "planes": self.planes,
+            "cache": self.cache,
+            "criticalAccess": self.criticalAccess,
+        })

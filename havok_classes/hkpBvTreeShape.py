@@ -16,4 +16,10 @@ class hkpBvTreeShape(hkpShape):
     bvTreeType: BvTreeType
 
     def __init__(self, infile):
-        self.bvTreeType = BvTreeType(infile)  # TYPE_ENUM
+        self.bvTreeType = BvTreeType(infile)  # TYPE_ENUM:TYPE_UINT8
+
+    def __repr__(self):
+        return "<{class_name} bvTreeType={bvTreeType}>".format(**{
+            "class_name": self.__class__.__name__,
+            "bvTreeType": self.bvTreeType,
+        })

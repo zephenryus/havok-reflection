@@ -1,5 +1,4 @@
 from .hkaiLineOfSightUtilInputBase import hkaiLineOfSightUtilInputBase
-from .common import vector4
 import struct
 
 
@@ -7,4 +6,10 @@ class hkaiLineOfSightUtilDirectPathInput(hkaiLineOfSightUtilInputBase):
     direction: vector4
 
     def __init__(self, infile):
-        self.direction = struct.unpack('>4f', infile.read(16))
+        self.direction = struct.unpack('>4f', infile.read(16))  # TYPE_VECTOR4:TYPE_VOID
+
+    def __repr__(self):
+        return "<{class_name} direction={direction}>".format(**{
+            "class_name": self.__class__.__name__,
+            "direction": self.direction,
+        })

@@ -1,7 +1,8 @@
 from .hkReferencedObject import hkReferencedObject
 from enum import Enum
 from .enums import EffectType
-from .common import any
+from typing import List
+from .common import get_array
 
 
 class EffectType(Enum):
@@ -17,9 +18,17 @@ class EffectType(Enum):
 class hkxMaterialEffect(hkReferencedObject):
     name: str
     type: EffectType
-    data: any
+    data: List[int]
 
     def __init__(self, infile):
-        self.name = struct.unpack('>s', infile.read(0))
-        self.type = EffectType(infile)  # TYPE_ENUM
-        self.data = any(infile)  # TYPE_ARRAY
+        self.name = struct.unpack('>s', infile.read(0))  # TYPE_STRINGPTR:TYPE_VOID
+        self.type = EffectType(infile)  # TYPE_ENUM:TYPE_UINT8
+        self.data = get_array(infile, int, 1)  # TYPE_ARRAY:TYPE_UINT8
+
+    def __repr__(self):
+        return "<{class_name} name=\"{name}\", type={type}, data=[{data}]>".format(**{
+            "class_name": self.__class__.__name__,
+            "name": self.name,
+            "type": self.type,
+            "data": self.data,
+        })

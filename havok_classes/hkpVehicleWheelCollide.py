@@ -19,5 +19,12 @@ class hkpVehicleWheelCollide(hkReferencedObject):
     type: enumerate
 
     def __init__(self, infile):
-        self.alreadyUsed = struct.unpack('>?', infile.read(1))
-        self.type = enumerate(infile)  # TYPE_ENUM
+        self.alreadyUsed = struct.unpack('>?', infile.read(1))  # TYPE_BOOL:TYPE_VOID
+        self.type = enumerate(infile)  # TYPE_ENUM:TYPE_UINT8
+
+    def __repr__(self):
+        return "<{class_name} alreadyUsed={alreadyUsed}, type={type}>".format(**{
+            "class_name": self.__class__.__name__,
+            "alreadyUsed": self.alreadyUsed,
+            "type": self.type,
+        })

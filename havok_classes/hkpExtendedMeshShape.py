@@ -1,8 +1,9 @@
 from .hkpShapeCollection import hkpShapeCollection
 from enum import Enum
 from .hkpExtendedMeshShapeTrianglesSubpart import hkpExtendedMeshShapeTrianglesSubpart
-from .common import vector4, any
 import struct
+from typing import List
+from .common import get_array
 from .hkpExtendedMeshShapeShapesSubpart import hkpExtendedMeshShapeShapesSubpart
 from .enums import WeldingType
 
@@ -42,9 +43,9 @@ class hkpExtendedMeshShape(hkpShapeCollection):
     aabbCenter: vector4
     materialClass: any
     numBitsForSubpartIndex: int
-    trianglesSubparts: hkpExtendedMeshShapeTrianglesSubpart
-    shapesSubparts: hkpExtendedMeshShapeShapesSubpart
-    weldingInfo: any
+    trianglesSubparts: List[hkpExtendedMeshShapeTrianglesSubpart]
+    shapesSubparts: List[hkpExtendedMeshShapeShapesSubpart]
+    weldingInfo: List[int]
     weldingType: WeldingType
     defaultCollisionFilterInfo: int
     cachedNumChildShapes: int
@@ -52,16 +53,34 @@ class hkpExtendedMeshShape(hkpShapeCollection):
     padding: int
 
     def __init__(self, infile):
-        self.embeddedTrianglesSubpart = hkpExtendedMeshShapeTrianglesSubpart(infile)  # TYPE_STRUCT
-        self.aabbHalfExtents = struct.unpack('>4f', infile.read(16))
-        self.aabbCenter = struct.unpack('>4f', infile.read(16))
-        self.materialClass = any(infile)  # TYPE_POINTER
-        self.numBitsForSubpartIndex = struct.unpack('>i', infile.read(4))
-        self.trianglesSubparts = hkpExtendedMeshShapeTrianglesSubpart(infile)  # TYPE_ARRAY
-        self.shapesSubparts = hkpExtendedMeshShapeShapesSubpart(infile)  # TYPE_ARRAY
-        self.weldingInfo = any(infile)  # TYPE_ARRAY
-        self.weldingType = WeldingType(infile)  # TYPE_ENUM
-        self.defaultCollisionFilterInfo = struct.unpack('>I', infile.read(4))
-        self.cachedNumChildShapes = struct.unpack('>i', infile.read(4))
-        self.triangleRadius = struct.unpack('>f', infile.read(4))
-        self.padding = struct.unpack('>i', infile.read(4))
+        self.embeddedTrianglesSubpart = hkpExtendedMeshShapeTrianglesSubpart(infile)  # TYPE_STRUCT:TYPE_VOID
+        self.aabbHalfExtents = struct.unpack('>4f', infile.read(16))  # TYPE_VECTOR4:TYPE_VOID
+        self.aabbCenter = struct.unpack('>4f', infile.read(16))  # TYPE_VECTOR4:TYPE_VOID
+        self.materialClass = any(infile)  # TYPE_POINTER:TYPE_VOID
+        self.numBitsForSubpartIndex = struct.unpack('>i', infile.read(4))  # TYPE_INT32:TYPE_VOID
+        self.trianglesSubparts = get_array(infile, hkpExtendedMeshShapeTrianglesSubpart, 0)  # TYPE_ARRAY:TYPE_STRUCT
+        self.shapesSubparts = get_array(infile, hkpExtendedMeshShapeShapesSubpart, 0)  # TYPE_ARRAY:TYPE_STRUCT
+        self.weldingInfo = get_array(infile, int, 2)  # TYPE_ARRAY:TYPE_UINT16
+        self.weldingType = WeldingType(infile)  # TYPE_ENUM:TYPE_UINT8
+        self.defaultCollisionFilterInfo = struct.unpack('>I', infile.read(4))  # TYPE_UINT32:TYPE_VOID
+        self.cachedNumChildShapes = struct.unpack('>i', infile.read(4))  # TYPE_INT32:TYPE_VOID
+        self.triangleRadius = struct.unpack('>f', infile.read(4))  # TYPE_REAL:TYPE_VOID
+        self.padding = struct.unpack('>i', infile.read(4))  # TYPE_INT32:TYPE_VOID
+
+    def __repr__(self):
+        return "<{class_name} embeddedTrianglesSubpart={embeddedTrianglesSubpart}, aabbHalfExtents={aabbHalfExtents}, aabbCenter={aabbCenter}, materialClass={materialClass}, numBitsForSubpartIndex={numBitsForSubpartIndex}, trianglesSubparts=[{trianglesSubparts}], shapesSubparts=[{shapesSubparts}], weldingInfo=[{weldingInfo}], weldingType={weldingType}, defaultCollisionFilterInfo={defaultCollisionFilterInfo}, cachedNumChildShapes={cachedNumChildShapes}, triangleRadius={triangleRadius}, padding={padding}>".format(**{
+            "class_name": self.__class__.__name__,
+            "embeddedTrianglesSubpart": self.embeddedTrianglesSubpart,
+            "aabbHalfExtents": self.aabbHalfExtents,
+            "aabbCenter": self.aabbCenter,
+            "materialClass": self.materialClass,
+            "numBitsForSubpartIndex": self.numBitsForSubpartIndex,
+            "trianglesSubparts": self.trianglesSubparts,
+            "shapesSubparts": self.shapesSubparts,
+            "weldingInfo": self.weldingInfo,
+            "weldingType": self.weldingType,
+            "defaultCollisionFilterInfo": self.defaultCollisionFilterInfo,
+            "cachedNumChildShapes": self.cachedNumChildShapes,
+            "triangleRadius": self.triangleRadius,
+            "padding": self.padding,
+        })

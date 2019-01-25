@@ -1,4 +1,3 @@
-from .common import vector4
 import struct
 from .enums import ControlType
 
@@ -11,8 +10,18 @@ class hkxSplineControlPoint(object):
     outType: ControlType
 
     def __init__(self, infile):
-        self.position = struct.unpack('>4f', infile.read(16))
-        self.tangentIn = struct.unpack('>4f', infile.read(16))
-        self.tangentOut = struct.unpack('>4f', infile.read(16))
-        self.inType = ControlType(infile)  # TYPE_ENUM
-        self.outType = ControlType(infile)  # TYPE_ENUM
+        self.position = struct.unpack('>4f', infile.read(16))  # TYPE_VECTOR4:TYPE_VOID
+        self.tangentIn = struct.unpack('>4f', infile.read(16))  # TYPE_VECTOR4:TYPE_VOID
+        self.tangentOut = struct.unpack('>4f', infile.read(16))  # TYPE_VECTOR4:TYPE_VOID
+        self.inType = ControlType(infile)  # TYPE_ENUM:TYPE_UINT8
+        self.outType = ControlType(infile)  # TYPE_ENUM:TYPE_UINT8
+
+    def __repr__(self):
+        return "<{class_name} position={position}, tangentIn={tangentIn}, tangentOut={tangentOut}, inType={inType}, outType={outType}>".format(**{
+            "class_name": self.__class__.__name__,
+            "position": self.position,
+            "tangentIn": self.tangentIn,
+            "tangentOut": self.tangentOut,
+            "inType": self.inType,
+            "outType": self.outType,
+        })

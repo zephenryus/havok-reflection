@@ -1,5 +1,7 @@
 from .hkReferencedObject import hkReferencedObject
 from enum import Enum
+from typing import List
+from .common import get_array
 from .hkaiPathPathPoint import hkaiPathPathPoint
 from .enums import ReferenceFrame
 
@@ -18,9 +20,16 @@ class ReferenceFrame(Enum):
 
 
 class hkaiPath(hkReferencedObject):
-    points: hkaiPathPathPoint
+    points: List[hkaiPathPathPoint]
     referenceFrame: ReferenceFrame
 
     def __init__(self, infile):
-        self.points = hkaiPathPathPoint(infile)  # TYPE_ARRAY
-        self.referenceFrame = ReferenceFrame(infile)  # TYPE_ENUM
+        self.points = get_array(infile, hkaiPathPathPoint, 0)  # TYPE_ARRAY:TYPE_STRUCT
+        self.referenceFrame = ReferenceFrame(infile)  # TYPE_ENUM:TYPE_UINT8
+
+    def __repr__(self):
+        return "<{class_name} points=[{points}], referenceFrame={referenceFrame}>".format(**{
+            "class_name": self.__class__.__name__,
+            "points": self.points,
+            "referenceFrame": self.referenceFrame,
+        })

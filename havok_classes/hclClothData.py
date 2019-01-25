@@ -1,5 +1,7 @@
 from .hkReferencedObject import hkReferencedObject
 from enum import Enum
+from typing import List
+from .common import get_array
 from .hclSimClothData import hclSimClothData
 from .hclBufferDefinition import hclBufferDefinition
 from .hclTransformSetDefinition import hclTransformSetDefinition
@@ -33,20 +35,33 @@ class Platform(Enum):
 
 class hclClothData(hkReferencedObject):
     name: str
-    simClothDatas: hclSimClothData
-    bufferDefinitions: hclBufferDefinition
-    transformSetDefinitions: hclTransformSetDefinition
-    operators: hclOperator
-    clothStateDatas: hclClothState
-    actions: hclAction
+    simClothDatas: List[hclSimClothData]
+    bufferDefinitions: List[hclBufferDefinition]
+    transformSetDefinitions: List[hclTransformSetDefinition]
+    operators: List[hclOperator]
+    clothStateDatas: List[hclClothState]
+    actions: List[hclAction]
     targetPlatform: Platform
 
     def __init__(self, infile):
-        self.name = struct.unpack('>s', infile.read(0))
-        self.simClothDatas = hclSimClothData(infile)  # TYPE_ARRAY
-        self.bufferDefinitions = hclBufferDefinition(infile)  # TYPE_ARRAY
-        self.transformSetDefinitions = hclTransformSetDefinition(infile)  # TYPE_ARRAY
-        self.operators = hclOperator(infile)  # TYPE_ARRAY
-        self.clothStateDatas = hclClothState(infile)  # TYPE_ARRAY
-        self.actions = hclAction(infile)  # TYPE_ARRAY
-        self.targetPlatform = Platform(infile)  # TYPE_ENUM
+        self.name = struct.unpack('>s', infile.read(0))  # TYPE_STRINGPTR:TYPE_VOID
+        self.simClothDatas = get_array(infile, hclSimClothData, 0)  # TYPE_ARRAY:TYPE_POINTER
+        self.bufferDefinitions = get_array(infile, hclBufferDefinition, 0)  # TYPE_ARRAY:TYPE_POINTER
+        self.transformSetDefinitions = get_array(infile, hclTransformSetDefinition, 0)  # TYPE_ARRAY:TYPE_POINTER
+        self.operators = get_array(infile, hclOperator, 0)  # TYPE_ARRAY:TYPE_POINTER
+        self.clothStateDatas = get_array(infile, hclClothState, 0)  # TYPE_ARRAY:TYPE_POINTER
+        self.actions = get_array(infile, hclAction, 0)  # TYPE_ARRAY:TYPE_POINTER
+        self.targetPlatform = Platform(infile)  # TYPE_ENUM:TYPE_UINT32
+
+    def __repr__(self):
+        return "<{class_name} name=\"{name}\", simClothDatas=[{simClothDatas}], bufferDefinitions=[{bufferDefinitions}], transformSetDefinitions=[{transformSetDefinitions}], operators=[{operators}], clothStateDatas=[{clothStateDatas}], actions=[{actions}], targetPlatform={targetPlatform}>".format(**{
+            "class_name": self.__class__.__name__,
+            "name": self.name,
+            "simClothDatas": self.simClothDatas,
+            "bufferDefinitions": self.bufferDefinitions,
+            "transformSetDefinitions": self.transformSetDefinitions,
+            "operators": self.operators,
+            "clothStateDatas": self.clothStateDatas,
+            "actions": self.actions,
+            "targetPlatform": self.targetPlatform,
+        })

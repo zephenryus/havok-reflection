@@ -1,4 +1,3 @@
-from .common import vector4
 import struct
 
 
@@ -7,5 +6,12 @@ class hkAabb(object):
     max: vector4
 
     def __init__(self, infile):
-        self.min = struct.unpack('>4f', infile.read(16))
-        self.max = struct.unpack('>4f', infile.read(16))
+        self.min = struct.unpack('>4f', infile.read(16))  # TYPE_VECTOR4:TYPE_VOID
+        self.max = struct.unpack('>4f', infile.read(16))  # TYPE_VECTOR4:TYPE_VOID
+
+    def __repr__(self):
+        return "<{class_name} min={min}, max={max}>".format(**{
+            "class_name": self.__class__.__name__,
+            "min": self.min,
+            "max": self.max,
+        })

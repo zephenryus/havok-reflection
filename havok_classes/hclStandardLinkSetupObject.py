@@ -8,7 +8,7 @@ from .hclVertexFloatInput import hclVertexFloatInput
 
 class hclStandardLinkSetupObject(hclConstraintSetSetupObject):
     name: str
-    simulationMesh: hclSimulationSetupMesh
+    simulationMesh: any
     vertexSelection: hclVertexSelectionInput
     edgeSelection: hclEdgeSelectionInput
     ignoreHiddenEdges: bool
@@ -17,11 +17,24 @@ class hclStandardLinkSetupObject(hclConstraintSetSetupObject):
     allowedStretching: hclVertexFloatInput
 
     def __init__(self, infile):
-        self.name = struct.unpack('>s', infile.read(0))
-        self.simulationMesh = hclSimulationSetupMesh(infile)  # TYPE_POINTER
-        self.vertexSelection = hclVertexSelectionInput(infile)  # TYPE_STRUCT
-        self.edgeSelection = hclEdgeSelectionInput(infile)  # TYPE_STRUCT
-        self.ignoreHiddenEdges = struct.unpack('>?', infile.read(1))
-        self.stiffness = hclVertexFloatInput(infile)  # TYPE_STRUCT
-        self.allowedCompression = hclVertexFloatInput(infile)  # TYPE_STRUCT
-        self.allowedStretching = hclVertexFloatInput(infile)  # TYPE_STRUCT
+        self.name = struct.unpack('>s', infile.read(0))  # TYPE_STRINGPTR:TYPE_VOID
+        self.simulationMesh = any(infile)  # TYPE_POINTER:TYPE_STRUCT
+        self.vertexSelection = hclVertexSelectionInput(infile)  # TYPE_STRUCT:TYPE_VOID
+        self.edgeSelection = hclEdgeSelectionInput(infile)  # TYPE_STRUCT:TYPE_VOID
+        self.ignoreHiddenEdges = struct.unpack('>?', infile.read(1))  # TYPE_BOOL:TYPE_VOID
+        self.stiffness = hclVertexFloatInput(infile)  # TYPE_STRUCT:TYPE_VOID
+        self.allowedCompression = hclVertexFloatInput(infile)  # TYPE_STRUCT:TYPE_VOID
+        self.allowedStretching = hclVertexFloatInput(infile)  # TYPE_STRUCT:TYPE_VOID
+
+    def __repr__(self):
+        return "<{class_name} name=\"{name}\", simulationMesh={simulationMesh}, vertexSelection={vertexSelection}, edgeSelection={edgeSelection}, ignoreHiddenEdges={ignoreHiddenEdges}, stiffness={stiffness}, allowedCompression={allowedCompression}, allowedStretching={allowedStretching}>".format(**{
+            "class_name": self.__class__.__name__,
+            "name": self.name,
+            "simulationMesh": self.simulationMesh,
+            "vertexSelection": self.vertexSelection,
+            "edgeSelection": self.edgeSelection,
+            "ignoreHiddenEdges": self.ignoreHiddenEdges,
+            "stiffness": self.stiffness,
+            "allowedCompression": self.allowedCompression,
+            "allowedStretching": self.allowedStretching,
+        })

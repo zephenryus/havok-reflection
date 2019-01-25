@@ -1,5 +1,4 @@
 import struct
-from .common import vector4
 
 
 class hkSkinnedMeshShapePart(object):
@@ -12,10 +11,22 @@ class hkSkinnedMeshShapePart(object):
     boundingSphere: vector4
 
     def __init__(self, infile):
-        self.startVertex = struct.unpack('>i', infile.read(4))
-        self.numVertices = struct.unpack('>i', infile.read(4))
-        self.startIndex = struct.unpack('>i', infile.read(4))
-        self.numIndices = struct.unpack('>i', infile.read(4))
-        self.boneSetId = struct.unpack('>H', infile.read(2))
-        self.meshSectionIndex = struct.unpack('>H', infile.read(2))
-        self.boundingSphere = struct.unpack('>4f', infile.read(16))
+        self.startVertex = struct.unpack('>i', infile.read(4))  # TYPE_INT32:TYPE_VOID
+        self.numVertices = struct.unpack('>i', infile.read(4))  # TYPE_INT32:TYPE_VOID
+        self.startIndex = struct.unpack('>i', infile.read(4))  # TYPE_INT32:TYPE_VOID
+        self.numIndices = struct.unpack('>i', infile.read(4))  # TYPE_INT32:TYPE_VOID
+        self.boneSetId = struct.unpack('>H', infile.read(2))  # TYPE_UINT16:TYPE_VOID
+        self.meshSectionIndex = struct.unpack('>H', infile.read(2))  # TYPE_UINT16:TYPE_VOID
+        self.boundingSphere = struct.unpack('>4f', infile.read(16))  # TYPE_VECTOR4:TYPE_VOID
+
+    def __repr__(self):
+        return "<{class_name} startVertex={startVertex}, numVertices={numVertices}, startIndex={startIndex}, numIndices={numIndices}, boneSetId={boneSetId}, meshSectionIndex={meshSectionIndex}, boundingSphere={boundingSphere}>".format(**{
+            "class_name": self.__class__.__name__,
+            "startVertex": self.startVertex,
+            "numVertices": self.numVertices,
+            "startIndex": self.startIndex,
+            "numIndices": self.numIndices,
+            "boneSetId": self.boneSetId,
+            "meshSectionIndex": self.meshSectionIndex,
+            "boundingSphere": self.boundingSphere,
+        })

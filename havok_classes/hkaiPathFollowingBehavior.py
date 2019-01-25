@@ -13,9 +13,9 @@ class PathType(Enum):
 
 
 class hkaiPathFollowingBehavior(hkaiSingleCharacterBehavior):
-    pathFollowingProperties: hkaiPathFollowingProperties
-    currentPath: hkaiPath
-    currentPathFixed: hkaiPath
+    pathFollowingProperties: any
+    currentPath: any
+    currentPathFixed: any
     currentPathSegment: int
     previousPathSegment: int
     newCharacterState: int
@@ -32,20 +32,42 @@ class hkaiPathFollowingBehavior(hkaiSingleCharacterBehavior):
     savedCharacterState: State
 
     def __init__(self, infile):
-        self.pathFollowingProperties = hkaiPathFollowingProperties(infile)  # TYPE_POINTER
-        self.currentPath = hkaiPath(infile)  # TYPE_POINTER
-        self.currentPathFixed = hkaiPath(infile)  # TYPE_POINTER
-        self.currentPathSegment = struct.unpack('>i', infile.read(4))
-        self.previousPathSegment = struct.unpack('>i', infile.read(4))
-        self.newCharacterState = struct.unpack('>i', infile.read(4))
-        self.changeSegmentDistance = struct.unpack('>f', infile.read(4))
-        self.tempChangeSegmentDistance = struct.unpack('>f', infile.read(4))
-        self.updateQuerySize = struct.unpack('>f', infile.read(4))
-        self.characterRadiusMultiplier = struct.unpack('>f', infile.read(4))
-        self.characterToPathStartThreshold = struct.unpack('>f', infile.read(4))
-        self.useSectionLocalPaths = struct.unpack('>?', infile.read(1))
-        self.pathType = PathType(infile)  # TYPE_ENUM
-        self.lastPointIsGoal = struct.unpack('>?', infile.read(1))
-        self.needsRepath = struct.unpack('>?', infile.read(1))
-        self.passiveAvoidance = struct.unpack('>?', infile.read(1))
-        self.savedCharacterState = State(infile)  # TYPE_ENUM
+        self.pathFollowingProperties = any(infile)  # TYPE_POINTER:TYPE_STRUCT
+        self.currentPath = any(infile)  # TYPE_POINTER:TYPE_STRUCT
+        self.currentPathFixed = any(infile)  # TYPE_POINTER:TYPE_STRUCT
+        self.currentPathSegment = struct.unpack('>i', infile.read(4))  # TYPE_INT32:TYPE_VOID
+        self.previousPathSegment = struct.unpack('>i', infile.read(4))  # TYPE_INT32:TYPE_VOID
+        self.newCharacterState = struct.unpack('>i', infile.read(4))  # TYPE_INT32:TYPE_VOID
+        self.changeSegmentDistance = struct.unpack('>f', infile.read(4))  # TYPE_REAL:TYPE_VOID
+        self.tempChangeSegmentDistance = struct.unpack('>f', infile.read(4))  # TYPE_REAL:TYPE_VOID
+        self.updateQuerySize = struct.unpack('>f', infile.read(4))  # TYPE_REAL:TYPE_VOID
+        self.characterRadiusMultiplier = struct.unpack('>f', infile.read(4))  # TYPE_REAL:TYPE_VOID
+        self.characterToPathStartThreshold = struct.unpack('>f', infile.read(4))  # TYPE_REAL:TYPE_VOID
+        self.useSectionLocalPaths = struct.unpack('>?', infile.read(1))  # TYPE_BOOL:TYPE_VOID
+        self.pathType = PathType(infile)  # TYPE_ENUM:TYPE_UINT8
+        self.lastPointIsGoal = struct.unpack('>?', infile.read(1))  # TYPE_BOOL:TYPE_VOID
+        self.needsRepath = struct.unpack('>?', infile.read(1))  # TYPE_BOOL:TYPE_VOID
+        self.passiveAvoidance = struct.unpack('>?', infile.read(1))  # TYPE_BOOL:TYPE_VOID
+        self.savedCharacterState = State(infile)  # TYPE_ENUM:TYPE_UINT8
+
+    def __repr__(self):
+        return "<{class_name} pathFollowingProperties={pathFollowingProperties}, currentPath={currentPath}, currentPathFixed={currentPathFixed}, currentPathSegment={currentPathSegment}, previousPathSegment={previousPathSegment}, newCharacterState={newCharacterState}, changeSegmentDistance={changeSegmentDistance}, tempChangeSegmentDistance={tempChangeSegmentDistance}, updateQuerySize={updateQuerySize}, characterRadiusMultiplier={characterRadiusMultiplier}, characterToPathStartThreshold={characterToPathStartThreshold}, useSectionLocalPaths={useSectionLocalPaths}, pathType={pathType}, lastPointIsGoal={lastPointIsGoal}, needsRepath={needsRepath}, passiveAvoidance={passiveAvoidance}, savedCharacterState={savedCharacterState}>".format(**{
+            "class_name": self.__class__.__name__,
+            "pathFollowingProperties": self.pathFollowingProperties,
+            "currentPath": self.currentPath,
+            "currentPathFixed": self.currentPathFixed,
+            "currentPathSegment": self.currentPathSegment,
+            "previousPathSegment": self.previousPathSegment,
+            "newCharacterState": self.newCharacterState,
+            "changeSegmentDistance": self.changeSegmentDistance,
+            "tempChangeSegmentDistance": self.tempChangeSegmentDistance,
+            "updateQuerySize": self.updateQuerySize,
+            "characterRadiusMultiplier": self.characterRadiusMultiplier,
+            "characterToPathStartThreshold": self.characterToPathStartThreshold,
+            "useSectionLocalPaths": self.useSectionLocalPaths,
+            "pathType": self.pathType,
+            "lastPointIsGoal": self.lastPointIsGoal,
+            "needsRepath": self.needsRepath,
+            "passiveAvoidance": self.passiveAvoidance,
+            "savedCharacterState": self.savedCharacterState,
+        })

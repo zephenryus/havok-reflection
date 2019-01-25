@@ -4,7 +4,6 @@ from .hkpBridgeAtoms import hkpBridgeAtoms
 from .hkpParametricCurve import hkpParametricCurve
 import struct
 from .enums import OrientationConstraintType
-from .common import any
 
 
 class OrientationConstraintType(Enum):
@@ -17,14 +16,24 @@ class OrientationConstraintType(Enum):
 
 class hkpPointToPathConstraintData(hkpConstraintData):
     atoms: hkpBridgeAtoms
-    path: hkpParametricCurve
+    path: any
     maxFrictionForce: float
     angularConstrainedDOF: OrientationConstraintType
     transform_OS_KS: any
 
     def __init__(self, infile):
-        self.atoms = hkpBridgeAtoms(infile)  # TYPE_STRUCT
-        self.path = hkpParametricCurve(infile)  # TYPE_POINTER
-        self.maxFrictionForce = struct.unpack('>f', infile.read(4))
-        self.angularConstrainedDOF = OrientationConstraintType(infile)  # TYPE_ENUM
-        self.transform_OS_KS = any(infile)  # TYPE_TRANSFORM
+        self.atoms = hkpBridgeAtoms(infile)  # TYPE_STRUCT:TYPE_VOID
+        self.path = any(infile)  # TYPE_POINTER:TYPE_STRUCT
+        self.maxFrictionForce = struct.unpack('>f', infile.read(4))  # TYPE_REAL:TYPE_VOID
+        self.angularConstrainedDOF = OrientationConstraintType(infile)  # TYPE_ENUM:TYPE_INT8
+        self.transform_OS_KS = any(infile)  # TYPE_TRANSFORM:TYPE_VOID
+
+    def __repr__(self):
+        return "<{class_name} atoms={atoms}, path={path}, maxFrictionForce={maxFrictionForce}, angularConstrainedDOF={angularConstrainedDOF}, transform_OS_KS={transform_OS_KS}>".format(**{
+            "class_name": self.__class__.__name__,
+            "atoms": self.atoms,
+            "path": self.path,
+            "maxFrictionForce": self.maxFrictionForce,
+            "angularConstrainedDOF": self.angularConstrainedDOF,
+            "transform_OS_KS": self.transform_OS_KS,
+        })

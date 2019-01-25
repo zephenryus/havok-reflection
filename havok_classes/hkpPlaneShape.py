@@ -1,5 +1,4 @@
 from .hkpHeightFieldShape import hkpHeightFieldShape
-from .common import vector4
 import struct
 
 
@@ -9,6 +8,14 @@ class hkpPlaneShape(hkpHeightFieldShape):
     aabbHalfExtents: vector4
 
     def __init__(self, infile):
-        self.plane = struct.unpack('>4f', infile.read(16))
-        self.aabbCenter = struct.unpack('>4f', infile.read(16))
-        self.aabbHalfExtents = struct.unpack('>4f', infile.read(16))
+        self.plane = struct.unpack('>4f', infile.read(16))  # TYPE_VECTOR4:TYPE_VOID
+        self.aabbCenter = struct.unpack('>4f', infile.read(16))  # TYPE_VECTOR4:TYPE_VOID
+        self.aabbHalfExtents = struct.unpack('>4f', infile.read(16))  # TYPE_VECTOR4:TYPE_VOID
+
+    def __repr__(self):
+        return "<{class_name} plane={plane}, aabbCenter={aabbCenter}, aabbHalfExtents={aabbHalfExtents}>".format(**{
+            "class_name": self.__class__.__name__,
+            "plane": self.plane,
+            "aabbCenter": self.aabbCenter,
+            "aabbHalfExtents": self.aabbHalfExtents,
+        })

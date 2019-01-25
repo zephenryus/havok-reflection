@@ -1,14 +1,21 @@
 from .hkReferencedObject import hkReferencedObject
 from .hkpRigidBody import hkpRigidBody
-from .common import any
 
 
 class hkpDisplayBindingDataRigidBody(hkReferencedObject):
-    rigidBody: hkpRigidBody
-    displayObjectPtr: hkReferencedObject
+    rigidBody: any
+    displayObjectPtr: any
     rigidBodyFromDisplayObjectTransform: any
 
     def __init__(self, infile):
-        self.rigidBody = hkpRigidBody(infile)  # TYPE_POINTER
-        self.displayObjectPtr = hkReferencedObject(infile)  # TYPE_POINTER
-        self.rigidBodyFromDisplayObjectTransform = any(infile)  # TYPE_MATRIX4
+        self.rigidBody = any(infile)  # TYPE_POINTER:TYPE_STRUCT
+        self.displayObjectPtr = any(infile)  # TYPE_POINTER:TYPE_STRUCT
+        self.rigidBodyFromDisplayObjectTransform = any(infile)  # TYPE_MATRIX4:TYPE_VOID
+
+    def __repr__(self):
+        return "<{class_name} rigidBody={rigidBody}, displayObjectPtr={displayObjectPtr}, rigidBodyFromDisplayObjectTransform={rigidBodyFromDisplayObjectTransform}>".format(**{
+            "class_name": self.__class__.__name__,
+            "rigidBody": self.rigidBody,
+            "displayObjectPtr": self.displayObjectPtr,
+            "rigidBodyFromDisplayObjectTransform": self.rigidBodyFromDisplayObjectTransform,
+        })

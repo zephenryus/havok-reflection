@@ -1,5 +1,4 @@
 import struct
-from .common import any
 
 
 class hkpCollidableBoundingVolumeData(object):
@@ -15,13 +14,28 @@ class hkpCollidableBoundingVolumeData(object):
     childShapeKeys: any
 
     def __init__(self, infile):
-        self.min = struct.unpack('>I', infile.read(4))
-        self.expansionMin = struct.unpack('>B', infile.read(1))
-        self.expansionShift = struct.unpack('>B', infile.read(1))
-        self.max = struct.unpack('>I', infile.read(4))
-        self.expansionMax = struct.unpack('>B', infile.read(1))
-        self.padding = struct.unpack('>B', infile.read(1))
-        self.numChildShapeAabbs = struct.unpack('>H', infile.read(2))
-        self.capacityChildShapeAabbs = struct.unpack('>H', infile.read(2))
-        self.childShapeAabbs = any(infile)  # TYPE_POINTER
-        self.childShapeKeys = any(infile)  # TYPE_POINTER
+        self.min = struct.unpack('>I', infile.read(4))  # TYPE_UINT32:TYPE_VOID
+        self.expansionMin = struct.unpack('>B', infile.read(1))  # TYPE_UINT8:TYPE_VOID
+        self.expansionShift = struct.unpack('>B', infile.read(1))  # TYPE_UINT8:TYPE_VOID
+        self.max = struct.unpack('>I', infile.read(4))  # TYPE_UINT32:TYPE_VOID
+        self.expansionMax = struct.unpack('>B', infile.read(1))  # TYPE_UINT8:TYPE_VOID
+        self.padding = struct.unpack('>B', infile.read(1))  # TYPE_UINT8:TYPE_VOID
+        self.numChildShapeAabbs = struct.unpack('>H', infile.read(2))  # TYPE_UINT16:TYPE_VOID
+        self.capacityChildShapeAabbs = struct.unpack('>H', infile.read(2))  # TYPE_UINT16:TYPE_VOID
+        self.childShapeAabbs = any(infile)  # TYPE_POINTER:TYPE_VOID
+        self.childShapeKeys = any(infile)  # TYPE_POINTER:TYPE_VOID
+
+    def __repr__(self):
+        return "<{class_name} min={min}, expansionMin={expansionMin}, expansionShift={expansionShift}, max={max}, expansionMax={expansionMax}, padding={padding}, numChildShapeAabbs={numChildShapeAabbs}, capacityChildShapeAabbs={capacityChildShapeAabbs}, childShapeAabbs={childShapeAabbs}, childShapeKeys={childShapeKeys}>".format(**{
+            "class_name": self.__class__.__name__,
+            "min": self.min,
+            "expansionMin": self.expansionMin,
+            "expansionShift": self.expansionShift,
+            "max": self.max,
+            "expansionMax": self.expansionMax,
+            "padding": self.padding,
+            "numChildShapeAabbs": self.numChildShapeAabbs,
+            "capacityChildShapeAabbs": self.capacityChildShapeAabbs,
+            "childShapeAabbs": self.childShapeAabbs,
+            "childShapeKeys": self.childShapeKeys,
+        })

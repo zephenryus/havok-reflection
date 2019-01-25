@@ -1,5 +1,4 @@
 from enum import Enum
-from .common import vector4
 import struct
 from .enums import UpVectorTransformMethod
 
@@ -17,7 +16,16 @@ class hkaiReferenceFrameAndExtrusion(object):
     upTransformMethod: UpVectorTransformMethod
 
     def __init__(self, infile):
-        self.up = struct.unpack('>4f', infile.read(16))
-        self.cellExtrusion = struct.unpack('>f', infile.read(4))
-        self.silhouetteRadiusExpasion = struct.unpack('>f', infile.read(4))
-        self.upTransformMethod = UpVectorTransformMethod(infile)  # TYPE_ENUM
+        self.up = struct.unpack('>4f', infile.read(16))  # TYPE_VECTOR4:TYPE_VOID
+        self.cellExtrusion = struct.unpack('>f', infile.read(4))  # TYPE_REAL:TYPE_VOID
+        self.silhouetteRadiusExpasion = struct.unpack('>f', infile.read(4))  # TYPE_REAL:TYPE_VOID
+        self.upTransformMethod = UpVectorTransformMethod(infile)  # TYPE_ENUM:TYPE_UINT8
+
+    def __repr__(self):
+        return "<{class_name} up={up}, cellExtrusion={cellExtrusion}, silhouetteRadiusExpasion={silhouetteRadiusExpasion}, upTransformMethod={upTransformMethod}>".format(**{
+            "class_name": self.__class__.__name__,
+            "up": self.up,
+            "cellExtrusion": self.cellExtrusion,
+            "silhouetteRadiusExpasion": self.silhouetteRadiusExpasion,
+            "upTransformMethod": self.upTransformMethod,
+        })

@@ -13,9 +13,17 @@ class Type(Enum):
 class hclSimClothBufferSetupObject(hclBufferSetupObject):
     type: Type
     name: str
-    simClothSetupObject: hclSimClothSetupObject
+    simClothSetupObject: any
 
     def __init__(self, infile):
-        self.type = Type(infile)  # TYPE_ENUM
-        self.name = struct.unpack('>s', infile.read(0))
-        self.simClothSetupObject = hclSimClothSetupObject(infile)  # TYPE_POINTER
+        self.type = Type(infile)  # TYPE_ENUM:TYPE_UINT32
+        self.name = struct.unpack('>s', infile.read(0))  # TYPE_STRINGPTR:TYPE_VOID
+        self.simClothSetupObject = any(infile)  # TYPE_POINTER:TYPE_STRUCT
+
+    def __repr__(self):
+        return "<{class_name} type={type}, name=\"{name}\", simClothSetupObject={simClothSetupObject}>".format(**{
+            "class_name": self.__class__.__name__,
+            "type": self.type,
+            "name": self.name,
+            "simClothSetupObject": self.simClothSetupObject,
+        })

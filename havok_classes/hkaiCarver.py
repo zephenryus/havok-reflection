@@ -1,7 +1,6 @@
 from .hkReferencedObject import hkReferencedObject
 from enum import Enum
 from .hkaiVolume import hkaiVolume
-from .common import any
 
 
 class FlagBits(Enum):
@@ -9,9 +8,16 @@ class FlagBits(Enum):
 
 
 class hkaiCarver(hkReferencedObject):
-    volume: hkaiVolume
+    volume: any
     flags: any
 
     def __init__(self, infile):
-        self.volume = hkaiVolume(infile)  # TYPE_POINTER
-        self.flags = any(infile)  # TYPE_FLAGS
+        self.volume = any(infile)  # TYPE_POINTER:TYPE_STRUCT
+        self.flags = any(infile)  # TYPE_FLAGS:TYPE_UINT32
+
+    def __repr__(self):
+        return "<{class_name} volume={volume}, flags={flags}>".format(**{
+            "class_name": self.__class__.__name__,
+            "volume": self.volume,
+            "flags": self.flags,
+        })

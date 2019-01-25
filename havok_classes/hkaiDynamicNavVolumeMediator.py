@@ -4,9 +4,16 @@ from .hkcdDynamicAabbTree import hkcdDynamicAabbTree
 
 
 class hkaiDynamicNavVolumeMediator(hkaiNavVolumeMediator):
-    collection: hkaiStreamingCollection
-    aabbTree: hkcdDynamicAabbTree
+    collection: any
+    aabbTree: any
 
     def __init__(self, infile):
-        self.collection = hkaiStreamingCollection(infile)  # TYPE_POINTER
-        self.aabbTree = hkcdDynamicAabbTree(infile)  # TYPE_POINTER
+        self.collection = any(infile)  # TYPE_POINTER:TYPE_STRUCT
+        self.aabbTree = any(infile)  # TYPE_POINTER:TYPE_STRUCT
+
+    def __repr__(self):
+        return "<{class_name} collection={collection}, aabbTree={aabbTree}>".format(**{
+            "class_name": self.__class__.__name__,
+            "collection": self.collection,
+            "aabbTree": self.aabbTree,
+        })

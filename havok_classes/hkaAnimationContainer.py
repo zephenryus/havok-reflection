@@ -1,4 +1,6 @@
 from .hkReferencedObject import hkReferencedObject
+from typing import List
+from .common import get_array
 from .hkaSkeleton import hkaSkeleton
 from .hkaAnimation import hkaAnimation
 from .hkaAnimationBinding import hkaAnimationBinding
@@ -7,15 +9,25 @@ from .hkaMeshBinding import hkaMeshBinding
 
 
 class hkaAnimationContainer(hkReferencedObject):
-    skeletons: hkaSkeleton
-    animations: hkaAnimation
-    bindings: hkaAnimationBinding
-    attachments: hkaBoneAttachment
-    skins: hkaMeshBinding
+    skeletons: List[hkaSkeleton]
+    animations: List[hkaAnimation]
+    bindings: List[hkaAnimationBinding]
+    attachments: List[hkaBoneAttachment]
+    skins: List[hkaMeshBinding]
 
     def __init__(self, infile):
-        self.skeletons = hkaSkeleton(infile)  # TYPE_ARRAY
-        self.animations = hkaAnimation(infile)  # TYPE_ARRAY
-        self.bindings = hkaAnimationBinding(infile)  # TYPE_ARRAY
-        self.attachments = hkaBoneAttachment(infile)  # TYPE_ARRAY
-        self.skins = hkaMeshBinding(infile)  # TYPE_ARRAY
+        self.skeletons = get_array(infile, hkaSkeleton, 0)  # TYPE_ARRAY:TYPE_POINTER
+        self.animations = get_array(infile, hkaAnimation, 0)  # TYPE_ARRAY:TYPE_POINTER
+        self.bindings = get_array(infile, hkaAnimationBinding, 0)  # TYPE_ARRAY:TYPE_POINTER
+        self.attachments = get_array(infile, hkaBoneAttachment, 0)  # TYPE_ARRAY:TYPE_POINTER
+        self.skins = get_array(infile, hkaMeshBinding, 0)  # TYPE_ARRAY:TYPE_POINTER
+
+    def __repr__(self):
+        return "<{class_name} skeletons=[{skeletons}], animations=[{animations}], bindings=[{bindings}], attachments=[{attachments}], skins=[{skins}]>".format(**{
+            "class_name": self.__class__.__name__,
+            "skeletons": self.skeletons,
+            "animations": self.animations,
+            "bindings": self.bindings,
+            "attachments": self.attachments,
+            "skins": self.skins,
+        })

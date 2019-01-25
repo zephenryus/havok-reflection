@@ -62,4 +62,10 @@ class hkpConstraintAtom(object):
     type: AtomType
 
     def __init__(self, infile):
-        self.type = AtomType(infile)  # TYPE_ENUM
+        self.type = AtomType(infile)  # TYPE_ENUM:TYPE_UINT16
+
+    def __repr__(self):
+        return "<{class_name} type={type}>".format(**{
+            "class_name": self.__class__.__name__,
+            "type": self.type,
+        })

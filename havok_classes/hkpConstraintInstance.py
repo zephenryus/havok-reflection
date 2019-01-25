@@ -1,6 +1,5 @@
 from .hkReferencedObject import hkReferencedObject
 from enum import Enum
-from .common import any
 from .hkpConstraintData import hkpConstraintData
 from .hkpModifierConstraintAtom import hkpModifierConstraintAtom
 from .hkpEntity import hkpEntity
@@ -44,9 +43,9 @@ class OnDestructionRemapInfo(Enum):
 
 class hkpConstraintInstance(hkReferencedObject):
     owner: any
-    data: hkpConstraintData
-    constraintModifiers: hkpModifierConstraintAtom
-    entities: hkpEntity
+    data: any
+    constraintModifiers: any
+    entities: any
     priority: ConstraintPriority
     wantRuntime: bool
     destructionRemapInfo: OnDestructionRemapInfo
@@ -57,15 +56,32 @@ class hkpConstraintInstance(hkReferencedObject):
     uid: int
 
     def __init__(self, infile):
-        self.owner = any(infile)  # TYPE_POINTER
-        self.data = hkpConstraintData(infile)  # TYPE_POINTER
-        self.constraintModifiers = hkpModifierConstraintAtom(infile)  # TYPE_POINTER
-        self.entities = hkpEntity(infile)  # TYPE_POINTER
-        self.priority = ConstraintPriority(infile)  # TYPE_ENUM
-        self.wantRuntime = struct.unpack('>?', infile.read(1))
-        self.destructionRemapInfo = OnDestructionRemapInfo(infile)  # TYPE_ENUM
-        self.listeners = hkpConstraintInstanceSmallArraySerializeOverrideType(infile)  # TYPE_STRUCT
-        self.name = struct.unpack('>s', infile.read(0))
-        self.userData = struct.unpack('>L', infile.read(8))
-        self.internal = any(infile)  # TYPE_POINTER
-        self.uid = struct.unpack('>I', infile.read(4))
+        self.owner = any(infile)  # TYPE_POINTER:TYPE_VOID
+        self.data = any(infile)  # TYPE_POINTER:TYPE_STRUCT
+        self.constraintModifiers = any(infile)  # TYPE_POINTER:TYPE_STRUCT
+        self.entities = any(infile)  # TYPE_POINTER:TYPE_STRUCT
+        self.priority = ConstraintPriority(infile)  # TYPE_ENUM:TYPE_UINT8
+        self.wantRuntime = struct.unpack('>?', infile.read(1))  # TYPE_BOOL:TYPE_VOID
+        self.destructionRemapInfo = OnDestructionRemapInfo(infile)  # TYPE_ENUM:TYPE_UINT8
+        self.listeners = hkpConstraintInstanceSmallArraySerializeOverrideType(infile)  # TYPE_STRUCT:TYPE_VOID
+        self.name = struct.unpack('>s', infile.read(0))  # TYPE_STRINGPTR:TYPE_VOID
+        self.userData = struct.unpack('>L', infile.read(8))  # TYPE_ULONG:TYPE_VOID
+        self.internal = any(infile)  # TYPE_POINTER:TYPE_VOID
+        self.uid = struct.unpack('>I', infile.read(4))  # TYPE_UINT32:TYPE_VOID
+
+    def __repr__(self):
+        return "<{class_name} owner={owner}, data={data}, constraintModifiers={constraintModifiers}, entities={entities}, priority={priority}, wantRuntime={wantRuntime}, destructionRemapInfo={destructionRemapInfo}, listeners={listeners}, name=\"{name}\", userData={userData}, internal={internal}, uid={uid}>".format(**{
+            "class_name": self.__class__.__name__,
+            "owner": self.owner,
+            "data": self.data,
+            "constraintModifiers": self.constraintModifiers,
+            "entities": self.entities,
+            "priority": self.priority,
+            "wantRuntime": self.wantRuntime,
+            "destructionRemapInfo": self.destructionRemapInfo,
+            "listeners": self.listeners,
+            "name": self.name,
+            "userData": self.userData,
+            "internal": self.internal,
+            "uid": self.uid,
+        })

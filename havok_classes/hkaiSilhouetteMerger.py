@@ -14,5 +14,12 @@ class hkaiSilhouetteMerger(hkReferencedObject):
     mergeParams: hkaiSilhouetteGenerationParameters
 
     def __init__(self, infile):
-        self.mergeType = MergeType(infile)  # TYPE_ENUM
-        self.mergeParams = hkaiSilhouetteGenerationParameters(infile)  # TYPE_STRUCT
+        self.mergeType = MergeType(infile)  # TYPE_ENUM:TYPE_UINT8
+        self.mergeParams = hkaiSilhouetteGenerationParameters(infile)  # TYPE_STRUCT:TYPE_VOID
+
+    def __repr__(self):
+        return "<{class_name} mergeType={mergeType}, mergeParams={mergeParams}>".format(**{
+            "class_name": self.__class__.__name__,
+            "mergeType": self.mergeType,
+            "mergeParams": self.mergeParams,
+        })

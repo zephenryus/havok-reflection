@@ -17,5 +17,12 @@ class hkaiSearchParametersBufferSizes(object):
     maxSearchStateSizeBytes: int
 
     def __init__(self, infile):
-        self.maxOpenSetSizeBytes = struct.unpack('>i', infile.read(4))
-        self.maxSearchStateSizeBytes = struct.unpack('>i', infile.read(4))
+        self.maxOpenSetSizeBytes = struct.unpack('>i', infile.read(4))  # TYPE_INT32:TYPE_VOID
+        self.maxSearchStateSizeBytes = struct.unpack('>i', infile.read(4))  # TYPE_INT32:TYPE_VOID
+
+    def __repr__(self):
+        return "<{class_name} maxOpenSetSizeBytes={maxOpenSetSizeBytes}, maxSearchStateSizeBytes={maxSearchStateSizeBytes}>".format(**{
+            "class_name": self.__class__.__name__,
+            "maxOpenSetSizeBytes": self.maxOpenSetSizeBytes,
+            "maxSearchStateSizeBytes": self.maxSearchStateSizeBytes,
+        })

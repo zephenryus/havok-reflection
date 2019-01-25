@@ -1,8 +1,9 @@
 from .hkpShapeCollection import hkpShapeCollection
 from enum import Enum
+from typing import List
+from .common import get_array
 from .hkpListShapeChildInfo import hkpListShapeChildInfo
 import struct
-from .common import vector4
 
 
 class ListShapeFlags(Enum):
@@ -11,7 +12,7 @@ class ListShapeFlags(Enum):
 
 
 class hkpListShape(hkpShapeCollection):
-    childInfo: hkpListShapeChildInfo
+    childInfo: List[hkpListShapeChildInfo]
     flags: int
     numDisabledChildren: int
     aabbHalfExtents: vector4
@@ -19,9 +20,20 @@ class hkpListShape(hkpShapeCollection):
     enabledChildren: int
 
     def __init__(self, infile):
-        self.childInfo = hkpListShapeChildInfo(infile)  # TYPE_ARRAY
-        self.flags = struct.unpack('>H', infile.read(2))
-        self.numDisabledChildren = struct.unpack('>H', infile.read(2))
-        self.aabbHalfExtents = struct.unpack('>4f', infile.read(16))
-        self.aabbCenter = struct.unpack('>4f', infile.read(16))
-        self.enabledChildren = struct.unpack('>I', infile.read(4))
+        self.childInfo = get_array(infile, hkpListShapeChildInfo, 0)  # TYPE_ARRAY:TYPE_STRUCT
+        self.flags = struct.unpack('>H', infile.read(2))  # TYPE_UINT16:TYPE_VOID
+        self.numDisabledChildren = struct.unpack('>H', infile.read(2))  # TYPE_UINT16:TYPE_VOID
+        self.aabbHalfExtents = struct.unpack('>4f', infile.read(16))  # TYPE_VECTOR4:TYPE_VOID
+        self.aabbCenter = struct.unpack('>4f', infile.read(16))  # TYPE_VECTOR4:TYPE_VOID
+        self.enabledChildren = struct.unpack('>I', infile.read(4))  # TYPE_UINT32:TYPE_VOID
+
+    def __repr__(self):
+        return "<{class_name} childInfo=[{childInfo}], flags={flags}, numDisabledChildren={numDisabledChildren}, aabbHalfExtents={aabbHalfExtents}, aabbCenter={aabbCenter}, enabledChildren={enabledChildren}>".format(**{
+            "class_name": self.__class__.__name__,
+            "childInfo": self.childInfo,
+            "flags": self.flags,
+            "numDisabledChildren": self.numDisabledChildren,
+            "aabbHalfExtents": self.aabbHalfExtents,
+            "aabbCenter": self.aabbCenter,
+            "enabledChildren": self.enabledChildren,
+        })

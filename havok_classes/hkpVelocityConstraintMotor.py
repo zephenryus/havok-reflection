@@ -8,6 +8,14 @@ class hkpVelocityConstraintMotor(hkpLimitedForceConstraintMotor):
     useVelocityTargetFromConstraintTargets: bool
 
     def __init__(self, infile):
-        self.tau = struct.unpack('>f', infile.read(4))
-        self.velocityTarget = struct.unpack('>f', infile.read(4))
-        self.useVelocityTargetFromConstraintTargets = struct.unpack('>?', infile.read(1))
+        self.tau = struct.unpack('>f', infile.read(4))  # TYPE_REAL:TYPE_VOID
+        self.velocityTarget = struct.unpack('>f', infile.read(4))  # TYPE_REAL:TYPE_VOID
+        self.useVelocityTargetFromConstraintTargets = struct.unpack('>?', infile.read(1))  # TYPE_BOOL:TYPE_VOID
+
+    def __repr__(self):
+        return "<{class_name} tau={tau}, velocityTarget={velocityTarget}, useVelocityTargetFromConstraintTargets={useVelocityTargetFromConstraintTargets}>".format(**{
+            "class_name": self.__class__.__name__,
+            "tau": self.tau,
+            "velocityTarget": self.velocityTarget,
+            "useVelocityTargetFromConstraintTargets": self.useVelocityTargetFromConstraintTargets,
+        })

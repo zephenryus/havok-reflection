@@ -1,11 +1,17 @@
 from .hkpRigidBody import hkpRigidBody
-from .common import any
 
 
 class hkpSerializedDisplayRbTransformsDisplayTransformPair(object):
-    rb: hkpRigidBody
+    rb: any
     localToDisplay: any
 
     def __init__(self, infile):
-        self.rb = hkpRigidBody(infile)  # TYPE_POINTER
-        self.localToDisplay = any(infile)  # TYPE_TRANSFORM
+        self.rb = any(infile)  # TYPE_POINTER:TYPE_STRUCT
+        self.localToDisplay = any(infile)  # TYPE_TRANSFORM:TYPE_VOID
+
+    def __repr__(self):
+        return "<{class_name} rb={rb}, localToDisplay={localToDisplay}>".format(**{
+            "class_name": self.__class__.__name__,
+            "rb": self.rb,
+            "localToDisplay": self.localToDisplay,
+        })

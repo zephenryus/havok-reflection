@@ -24,7 +24,7 @@ class LastProcessingStep(Enum):
 
 class hkpSimulation(hkReferencedObject):
     determinismCheckFrameCounter: int
-    world: hkpWorld
+    world: any
     lastProcessingStep: LastProcessingStep
     currentTime: float
     currentPsiTime: float
@@ -34,12 +34,26 @@ class hkpSimulation(hkReferencedObject):
     previousStepResult: int
 
     def __init__(self, infile):
-        self.determinismCheckFrameCounter = struct.unpack('>I', infile.read(4))
-        self.world = hkpWorld(infile)  # TYPE_POINTER
-        self.lastProcessingStep = LastProcessingStep(infile)  # TYPE_ENUM
-        self.currentTime = struct.unpack('>f', infile.read(4))
-        self.currentPsiTime = struct.unpack('>f', infile.read(4))
-        self.physicsDeltaTime = struct.unpack('>f', infile.read(4))
-        self.simulateUntilTime = struct.unpack('>f', infile.read(4))
-        self.frameMarkerPsiSnap = struct.unpack('>f', infile.read(4))
-        self.previousStepResult = struct.unpack('>I', infile.read(4))
+        self.determinismCheckFrameCounter = struct.unpack('>I', infile.read(4))  # TYPE_UINT32:TYPE_VOID
+        self.world = any(infile)  # TYPE_POINTER:TYPE_STRUCT
+        self.lastProcessingStep = LastProcessingStep(infile)  # TYPE_ENUM:TYPE_UINT8
+        self.currentTime = struct.unpack('>f', infile.read(4))  # TYPE_REAL:TYPE_VOID
+        self.currentPsiTime = struct.unpack('>f', infile.read(4))  # TYPE_REAL:TYPE_VOID
+        self.physicsDeltaTime = struct.unpack('>f', infile.read(4))  # TYPE_REAL:TYPE_VOID
+        self.simulateUntilTime = struct.unpack('>f', infile.read(4))  # TYPE_REAL:TYPE_VOID
+        self.frameMarkerPsiSnap = struct.unpack('>f', infile.read(4))  # TYPE_REAL:TYPE_VOID
+        self.previousStepResult = struct.unpack('>I', infile.read(4))  # TYPE_UINT32:TYPE_VOID
+
+    def __repr__(self):
+        return "<{class_name} determinismCheckFrameCounter={determinismCheckFrameCounter}, world={world}, lastProcessingStep={lastProcessingStep}, currentTime={currentTime}, currentPsiTime={currentPsiTime}, physicsDeltaTime={physicsDeltaTime}, simulateUntilTime={simulateUntilTime}, frameMarkerPsiSnap={frameMarkerPsiSnap}, previousStepResult={previousStepResult}>".format(**{
+            "class_name": self.__class__.__name__,
+            "determinismCheckFrameCounter": self.determinismCheckFrameCounter,
+            "world": self.world,
+            "lastProcessingStep": self.lastProcessingStep,
+            "currentTime": self.currentTime,
+            "currentPsiTime": self.currentPsiTime,
+            "physicsDeltaTime": self.physicsDeltaTime,
+            "simulateUntilTime": self.simulateUntilTime,
+            "frameMarkerPsiSnap": self.frameMarkerPsiSnap,
+            "previousStepResult": self.previousStepResult,
+        })

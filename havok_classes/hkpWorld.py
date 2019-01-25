@@ -1,9 +1,10 @@
 from .hkReferencedObject import hkReferencedObject
 from enum import Enum
 from .hkpSimulation import hkpSimulation
-from .common import vector4, any
 import struct
 from .hkpRigidBody import hkpRigidBody
+from typing import List
+from .common import get_array
 from .hkMultiThreadCheck import hkMultiThreadCheck
 from .hkpPhantom import hkpPhantom
 
@@ -26,13 +27,13 @@ class CachedAabbUpdate(Enum):
 
 
 class hkpWorld(hkReferencedObject):
-    simulation: hkpSimulation
+    simulation: any
     gravity: vector4
     fixedIsland: any
-    fixedRigidBody: hkpRigidBody
-    activeSimulationIslands: any
-    inactiveSimulationIslands: any
-    dirtySimulationIslands: any
+    fixedRigidBody: any
+    activeSimulationIslands: List[any]
+    inactiveSimulationIslands: List[any]
+    dirtySimulationIslands: List[any]
     maintenanceMgr: any
     memoryWatchDog: any
     assertOnRunningOutOfSolverMemory: bool
@@ -86,21 +87,21 @@ class hkpWorld(hkReferencedObject):
     lastEntityUid: int
     lastIslandUid: int
     lastConstraintUid: int
-    phantoms: hkpPhantom
-    actionListeners: any
-    entityListeners: any
-    phantomListeners: any
-    constraintListeners: any
-    worldDeletionListeners: any
-    islandActivationListeners: any
-    worldPostSimulationListeners: any
-    worldPostIntegrateListeners: any
-    worldPostCollideListeners: any
-    islandPostIntegrateListeners: any
-    islandPostCollideListeners: any
-    contactListeners: any
-    contactImpulseLimitBreachedListeners: any
-    worldExtensions: any
+    phantoms: List[hkpPhantom]
+    actionListeners: List[any]
+    entityListeners: List[any]
+    phantomListeners: List[any]
+    constraintListeners: List[any]
+    worldDeletionListeners: List[any]
+    islandActivationListeners: List[any]
+    worldPostSimulationListeners: List[any]
+    worldPostIntegrateListeners: List[any]
+    worldPostCollideListeners: List[any]
+    islandPostIntegrateListeners: List[any]
+    islandPostCollideListeners: List[any]
+    contactListeners: List[any]
+    contactImpulseLimitBreachedListeners: List[any]
+    worldExtensions: List[any]
     violatedConstraintArray: any
     broadPhaseBorder: any
     destructionWorld: any
@@ -114,89 +115,180 @@ class hkpWorld(hkReferencedObject):
     useCompoundSpuElf: bool
 
     def __init__(self, infile):
-        self.simulation = hkpSimulation(infile)  # TYPE_POINTER
-        self.gravity = struct.unpack('>4f', infile.read(16))
-        self.fixedIsland = any(infile)  # TYPE_POINTER
-        self.fixedRigidBody = hkpRigidBody(infile)  # TYPE_POINTER
-        self.activeSimulationIslands = any(infile)  # TYPE_ARRAY
-        self.inactiveSimulationIslands = any(infile)  # TYPE_ARRAY
-        self.dirtySimulationIslands = any(infile)  # TYPE_ARRAY
-        self.maintenanceMgr = any(infile)  # TYPE_POINTER
-        self.memoryWatchDog = any(infile)  # TYPE_POINTER
-        self.assertOnRunningOutOfSolverMemory = struct.unpack('>?', infile.read(1))
-        self.broadPhaseType = enumerate(infile)  # TYPE_ENUM
-        self.broadPhase = any(infile)  # TYPE_POINTER
-        self.broadPhaseDispatcher = any(infile)  # TYPE_POINTER
-        self.phantomBroadPhaseListener = any(infile)  # TYPE_POINTER
-        self.entityEntityBroadPhaseListener = any(infile)  # TYPE_POINTER
-        self.broadPhaseBorderListener = any(infile)  # TYPE_POINTER
-        self.multithreadedSimulationJobData = any(infile)  # TYPE_POINTER
-        self.collisionInput = any(infile)  # TYPE_POINTER
-        self.collisionFilter = any(infile)  # TYPE_POINTER
-        self.collisionDispatcher = any(infile)  # TYPE_POINTER
-        self.convexListFilter = any(infile)  # TYPE_POINTER
-        self.pendingOperations = any(infile)  # TYPE_POINTER
-        self.pendingOperationsCount = struct.unpack('>i', infile.read(4))
-        self.pendingBodyOperationsCount = struct.unpack('>i', infile.read(4))
-        self.criticalOperationsLockCount = struct.unpack('>i', infile.read(4))
-        self.criticalOperationsLockCountForPhantoms = struct.unpack('>i', infile.read(4))
-        self.blockExecutingPendingOperations = struct.unpack('>?', infile.read(1))
-        self.criticalOperationsAllowed = struct.unpack('>?', infile.read(1))
-        self.pendingOperationQueues = any(infile)  # TYPE_POINTER
-        self.pendingOperationQueueCount = struct.unpack('>i', infile.read(4))
-        self.multiThreadCheck = hkMultiThreadCheck(infile)  # TYPE_STRUCT
-        self.processActionsInSingleThread = struct.unpack('>?', infile.read(1))
-        self.allowIntegrationOfIslandsWithoutConstraintsInASeparateJob = struct.unpack('>?', infile.read(1))
-        self.minDesiredIslandSize = struct.unpack('>I', infile.read(4))
-        self.modifyConstraintCriticalSection = any(infile)  # TYPE_POINTER
-        self.isLocked = struct.unpack('>i', infile.read(4))
-        self.islandDirtyListCriticalSection = any(infile)  # TYPE_POINTER
-        self.propertyMasterLock = any(infile)  # TYPE_POINTER
-        self.wantSimulationIslands = struct.unpack('>?', infile.read(1))
-        self.snapCollisionToConvexEdgeThreshold = struct.unpack('>f', infile.read(4))
-        self.snapCollisionToConcaveEdgeThreshold = struct.unpack('>f', infile.read(4))
-        self.enableToiWeldRejection = struct.unpack('>?', infile.read(1))
-        self.wantDeactivation = struct.unpack('>?', infile.read(1))
-        self.shouldActivateOnRigidBodyTransformChange = struct.unpack('>?', infile.read(1))
-        self.deactivationReferenceDistance = struct.unpack('>f', infile.read(4))
-        self.toiCollisionResponseRotateNormal = struct.unpack('>f', infile.read(4))
-        self.maxSectorsPerMidphaseCollideTask = struct.unpack('>i', infile.read(4))
-        self.maxSectorsPerNarrowphaseCollideTask = struct.unpack('>i', infile.read(4))
-        self.processToisMultithreaded = struct.unpack('>?', infile.read(1))
-        self.maxEntriesPerToiMidphaseCollideTask = struct.unpack('>i', infile.read(4))
-        self.maxEntriesPerToiNarrowphaseCollideTask = struct.unpack('>i', infile.read(4))
-        self.maxNumToiCollisionPairsSinglethreaded = struct.unpack('>i', infile.read(4))
-        self.simulationType = enumerate(infile)  # TYPE_ENUM
-        self.numToisTillAllowedPenetrationSimplifiedToi = struct.unpack('>f', infile.read(4))
-        self.numToisTillAllowedPenetrationToi = struct.unpack('>f', infile.read(4))
-        self.numToisTillAllowedPenetrationToiHigher = struct.unpack('>f', infile.read(4))
-        self.numToisTillAllowedPenetrationToiForced = struct.unpack('>f', infile.read(4))
-        self.lastEntityUid = struct.unpack('>I', infile.read(4))
-        self.lastIslandUid = struct.unpack('>I', infile.read(4))
-        self.lastConstraintUid = struct.unpack('>I', infile.read(4))
-        self.phantoms = hkpPhantom(infile)  # TYPE_ARRAY
-        self.actionListeners = any(infile)  # TYPE_ARRAY
-        self.entityListeners = any(infile)  # TYPE_ARRAY
-        self.phantomListeners = any(infile)  # TYPE_ARRAY
-        self.constraintListeners = any(infile)  # TYPE_ARRAY
-        self.worldDeletionListeners = any(infile)  # TYPE_ARRAY
-        self.islandActivationListeners = any(infile)  # TYPE_ARRAY
-        self.worldPostSimulationListeners = any(infile)  # TYPE_ARRAY
-        self.worldPostIntegrateListeners = any(infile)  # TYPE_ARRAY
-        self.worldPostCollideListeners = any(infile)  # TYPE_ARRAY
-        self.islandPostIntegrateListeners = any(infile)  # TYPE_ARRAY
-        self.islandPostCollideListeners = any(infile)  # TYPE_ARRAY
-        self.contactListeners = any(infile)  # TYPE_ARRAY
-        self.contactImpulseLimitBreachedListeners = any(infile)  # TYPE_ARRAY
-        self.worldExtensions = any(infile)  # TYPE_ARRAY
-        self.violatedConstraintArray = any(infile)  # TYPE_POINTER
-        self.broadPhaseBorder = any(infile)  # TYPE_POINTER
-        self.destructionWorld = any(infile)  # TYPE_POINTER
-        self.npWorld = any(infile)  # TYPE_POINTER
-        self.broadPhaseExtents = struct.unpack('>4f', infile.read(16))
-        self.broadPhaseNumMarkers = struct.unpack('>i', infile.read(4))
-        self.sizeOfToiEventQueue = struct.unpack('>i', infile.read(4))
-        self.broadPhaseQuerySize = struct.unpack('>i', infile.read(4))
-        self.broadPhaseUpdateSize = struct.unpack('>i', infile.read(4))
-        self.contactPointGeneration = enumerate(infile)  # TYPE_ENUM
-        self.useCompoundSpuElf = struct.unpack('>?', infile.read(1))
+        self.simulation = any(infile)  # TYPE_POINTER:TYPE_STRUCT
+        self.gravity = struct.unpack('>4f', infile.read(16))  # TYPE_VECTOR4:TYPE_VOID
+        self.fixedIsland = any(infile)  # TYPE_POINTER:TYPE_VOID
+        self.fixedRigidBody = any(infile)  # TYPE_POINTER:TYPE_STRUCT
+        self.activeSimulationIslands = get_array(infile, any, 0)  # TYPE_ARRAY:TYPE_POINTER
+        self.inactiveSimulationIslands = get_array(infile, any, 0)  # TYPE_ARRAY:TYPE_POINTER
+        self.dirtySimulationIslands = get_array(infile, any, 0)  # TYPE_ARRAY:TYPE_POINTER
+        self.maintenanceMgr = any(infile)  # TYPE_POINTER:TYPE_VOID
+        self.memoryWatchDog = any(infile)  # TYPE_POINTER:TYPE_VOID
+        self.assertOnRunningOutOfSolverMemory = struct.unpack('>?', infile.read(1))  # TYPE_BOOL:TYPE_VOID
+        self.broadPhaseType = enumerate(infile)  # TYPE_ENUM:TYPE_INT8
+        self.broadPhase = any(infile)  # TYPE_POINTER:TYPE_VOID
+        self.broadPhaseDispatcher = any(infile)  # TYPE_POINTER:TYPE_VOID
+        self.phantomBroadPhaseListener = any(infile)  # TYPE_POINTER:TYPE_VOID
+        self.entityEntityBroadPhaseListener = any(infile)  # TYPE_POINTER:TYPE_VOID
+        self.broadPhaseBorderListener = any(infile)  # TYPE_POINTER:TYPE_VOID
+        self.multithreadedSimulationJobData = any(infile)  # TYPE_POINTER:TYPE_VOID
+        self.collisionInput = any(infile)  # TYPE_POINTER:TYPE_VOID
+        self.collisionFilter = any(infile)  # TYPE_POINTER:TYPE_VOID
+        self.collisionDispatcher = any(infile)  # TYPE_POINTER:TYPE_VOID
+        self.convexListFilter = any(infile)  # TYPE_POINTER:TYPE_VOID
+        self.pendingOperations = any(infile)  # TYPE_POINTER:TYPE_VOID
+        self.pendingOperationsCount = struct.unpack('>i', infile.read(4))  # TYPE_INT32:TYPE_VOID
+        self.pendingBodyOperationsCount = struct.unpack('>i', infile.read(4))  # TYPE_INT32:TYPE_VOID
+        self.criticalOperationsLockCount = struct.unpack('>i', infile.read(4))  # TYPE_INT32:TYPE_VOID
+        self.criticalOperationsLockCountForPhantoms = struct.unpack('>i', infile.read(4))  # TYPE_INT32:TYPE_VOID
+        self.blockExecutingPendingOperations = struct.unpack('>?', infile.read(1))  # TYPE_BOOL:TYPE_VOID
+        self.criticalOperationsAllowed = struct.unpack('>?', infile.read(1))  # TYPE_BOOL:TYPE_VOID
+        self.pendingOperationQueues = any(infile)  # TYPE_POINTER:TYPE_VOID
+        self.pendingOperationQueueCount = struct.unpack('>i', infile.read(4))  # TYPE_INT32:TYPE_VOID
+        self.multiThreadCheck = hkMultiThreadCheck(infile)  # TYPE_STRUCT:TYPE_VOID
+        self.processActionsInSingleThread = struct.unpack('>?', infile.read(1))  # TYPE_BOOL:TYPE_VOID
+        self.allowIntegrationOfIslandsWithoutConstraintsInASeparateJob = struct.unpack('>?', infile.read(1))  # TYPE_BOOL:TYPE_VOID
+        self.minDesiredIslandSize = struct.unpack('>I', infile.read(4))  # TYPE_UINT32:TYPE_VOID
+        self.modifyConstraintCriticalSection = any(infile)  # TYPE_POINTER:TYPE_VOID
+        self.isLocked = struct.unpack('>i', infile.read(4))  # TYPE_INT32:TYPE_VOID
+        self.islandDirtyListCriticalSection = any(infile)  # TYPE_POINTER:TYPE_VOID
+        self.propertyMasterLock = any(infile)  # TYPE_POINTER:TYPE_VOID
+        self.wantSimulationIslands = struct.unpack('>?', infile.read(1))  # TYPE_BOOL:TYPE_VOID
+        self.snapCollisionToConvexEdgeThreshold = struct.unpack('>f', infile.read(4))  # TYPE_REAL:TYPE_VOID
+        self.snapCollisionToConcaveEdgeThreshold = struct.unpack('>f', infile.read(4))  # TYPE_REAL:TYPE_VOID
+        self.enableToiWeldRejection = struct.unpack('>?', infile.read(1))  # TYPE_BOOL:TYPE_VOID
+        self.wantDeactivation = struct.unpack('>?', infile.read(1))  # TYPE_BOOL:TYPE_VOID
+        self.shouldActivateOnRigidBodyTransformChange = struct.unpack('>?', infile.read(1))  # TYPE_BOOL:TYPE_VOID
+        self.deactivationReferenceDistance = struct.unpack('>f', infile.read(4))  # TYPE_REAL:TYPE_VOID
+        self.toiCollisionResponseRotateNormal = struct.unpack('>f', infile.read(4))  # TYPE_REAL:TYPE_VOID
+        self.maxSectorsPerMidphaseCollideTask = struct.unpack('>i', infile.read(4))  # TYPE_INT32:TYPE_VOID
+        self.maxSectorsPerNarrowphaseCollideTask = struct.unpack('>i', infile.read(4))  # TYPE_INT32:TYPE_VOID
+        self.processToisMultithreaded = struct.unpack('>?', infile.read(1))  # TYPE_BOOL:TYPE_VOID
+        self.maxEntriesPerToiMidphaseCollideTask = struct.unpack('>i', infile.read(4))  # TYPE_INT32:TYPE_VOID
+        self.maxEntriesPerToiNarrowphaseCollideTask = struct.unpack('>i', infile.read(4))  # TYPE_INT32:TYPE_VOID
+        self.maxNumToiCollisionPairsSinglethreaded = struct.unpack('>i', infile.read(4))  # TYPE_INT32:TYPE_VOID
+        self.simulationType = enumerate(infile)  # TYPE_ENUM:TYPE_INT32
+        self.numToisTillAllowedPenetrationSimplifiedToi = struct.unpack('>f', infile.read(4))  # TYPE_REAL:TYPE_VOID
+        self.numToisTillAllowedPenetrationToi = struct.unpack('>f', infile.read(4))  # TYPE_REAL:TYPE_VOID
+        self.numToisTillAllowedPenetrationToiHigher = struct.unpack('>f', infile.read(4))  # TYPE_REAL:TYPE_VOID
+        self.numToisTillAllowedPenetrationToiForced = struct.unpack('>f', infile.read(4))  # TYPE_REAL:TYPE_VOID
+        self.lastEntityUid = struct.unpack('>I', infile.read(4))  # TYPE_UINT32:TYPE_VOID
+        self.lastIslandUid = struct.unpack('>I', infile.read(4))  # TYPE_UINT32:TYPE_VOID
+        self.lastConstraintUid = struct.unpack('>I', infile.read(4))  # TYPE_UINT32:TYPE_VOID
+        self.phantoms = get_array(infile, hkpPhantom, 0)  # TYPE_ARRAY:TYPE_POINTER
+        self.actionListeners = get_array(infile, any, 0)  # TYPE_ARRAY:TYPE_POINTER
+        self.entityListeners = get_array(infile, any, 0)  # TYPE_ARRAY:TYPE_POINTER
+        self.phantomListeners = get_array(infile, any, 0)  # TYPE_ARRAY:TYPE_POINTER
+        self.constraintListeners = get_array(infile, any, 0)  # TYPE_ARRAY:TYPE_POINTER
+        self.worldDeletionListeners = get_array(infile, any, 0)  # TYPE_ARRAY:TYPE_POINTER
+        self.islandActivationListeners = get_array(infile, any, 0)  # TYPE_ARRAY:TYPE_POINTER
+        self.worldPostSimulationListeners = get_array(infile, any, 0)  # TYPE_ARRAY:TYPE_POINTER
+        self.worldPostIntegrateListeners = get_array(infile, any, 0)  # TYPE_ARRAY:TYPE_POINTER
+        self.worldPostCollideListeners = get_array(infile, any, 0)  # TYPE_ARRAY:TYPE_POINTER
+        self.islandPostIntegrateListeners = get_array(infile, any, 0)  # TYPE_ARRAY:TYPE_POINTER
+        self.islandPostCollideListeners = get_array(infile, any, 0)  # TYPE_ARRAY:TYPE_POINTER
+        self.contactListeners = get_array(infile, any, 0)  # TYPE_ARRAY:TYPE_POINTER
+        self.contactImpulseLimitBreachedListeners = get_array(infile, any, 0)  # TYPE_ARRAY:TYPE_POINTER
+        self.worldExtensions = get_array(infile, any, 0)  # TYPE_ARRAY:TYPE_POINTER
+        self.violatedConstraintArray = any(infile)  # TYPE_POINTER:TYPE_VOID
+        self.broadPhaseBorder = any(infile)  # TYPE_POINTER:TYPE_VOID
+        self.destructionWorld = any(infile)  # TYPE_POINTER:TYPE_VOID
+        self.npWorld = any(infile)  # TYPE_POINTER:TYPE_VOID
+        self.broadPhaseExtents = struct.unpack('>4f', infile.read(16))  # TYPE_VECTOR4:TYPE_VOID
+        self.broadPhaseNumMarkers = struct.unpack('>i', infile.read(4))  # TYPE_INT32:TYPE_VOID
+        self.sizeOfToiEventQueue = struct.unpack('>i', infile.read(4))  # TYPE_INT32:TYPE_VOID
+        self.broadPhaseQuerySize = struct.unpack('>i', infile.read(4))  # TYPE_INT32:TYPE_VOID
+        self.broadPhaseUpdateSize = struct.unpack('>i', infile.read(4))  # TYPE_INT32:TYPE_VOID
+        self.contactPointGeneration = enumerate(infile)  # TYPE_ENUM:TYPE_INT8
+        self.useCompoundSpuElf = struct.unpack('>?', infile.read(1))  # TYPE_BOOL:TYPE_VOID
+
+    def __repr__(self):
+        return "<{class_name} simulation={simulation}, gravity={gravity}, fixedIsland={fixedIsland}, fixedRigidBody={fixedRigidBody}, activeSimulationIslands=[{activeSimulationIslands}], inactiveSimulationIslands=[{inactiveSimulationIslands}], dirtySimulationIslands=[{dirtySimulationIslands}], maintenanceMgr={maintenanceMgr}, memoryWatchDog={memoryWatchDog}, assertOnRunningOutOfSolverMemory={assertOnRunningOutOfSolverMemory}, broadPhaseType={broadPhaseType}, broadPhase={broadPhase}, broadPhaseDispatcher={broadPhaseDispatcher}, phantomBroadPhaseListener={phantomBroadPhaseListener}, entityEntityBroadPhaseListener={entityEntityBroadPhaseListener}, broadPhaseBorderListener={broadPhaseBorderListener}, multithreadedSimulationJobData={multithreadedSimulationJobData}, collisionInput={collisionInput}, collisionFilter={collisionFilter}, collisionDispatcher={collisionDispatcher}, convexListFilter={convexListFilter}, pendingOperations={pendingOperations}, pendingOperationsCount={pendingOperationsCount}, pendingBodyOperationsCount={pendingBodyOperationsCount}, criticalOperationsLockCount={criticalOperationsLockCount}, criticalOperationsLockCountForPhantoms={criticalOperationsLockCountForPhantoms}, blockExecutingPendingOperations={blockExecutingPendingOperations}, criticalOperationsAllowed={criticalOperationsAllowed}, pendingOperationQueues={pendingOperationQueues}, pendingOperationQueueCount={pendingOperationQueueCount}, multiThreadCheck={multiThreadCheck}, processActionsInSingleThread={processActionsInSingleThread}, allowIntegrationOfIslandsWithoutConstraintsInASeparateJob={allowIntegrationOfIslandsWithoutConstraintsInASeparateJob}, minDesiredIslandSize={minDesiredIslandSize}, modifyConstraintCriticalSection={modifyConstraintCriticalSection}, isLocked={isLocked}, islandDirtyListCriticalSection={islandDirtyListCriticalSection}, propertyMasterLock={propertyMasterLock}, wantSimulationIslands={wantSimulationIslands}, snapCollisionToConvexEdgeThreshold={snapCollisionToConvexEdgeThreshold}, snapCollisionToConcaveEdgeThreshold={snapCollisionToConcaveEdgeThreshold}, enableToiWeldRejection={enableToiWeldRejection}, wantDeactivation={wantDeactivation}, shouldActivateOnRigidBodyTransformChange={shouldActivateOnRigidBodyTransformChange}, deactivationReferenceDistance={deactivationReferenceDistance}, toiCollisionResponseRotateNormal={toiCollisionResponseRotateNormal}, maxSectorsPerMidphaseCollideTask={maxSectorsPerMidphaseCollideTask}, maxSectorsPerNarrowphaseCollideTask={maxSectorsPerNarrowphaseCollideTask}, processToisMultithreaded={processToisMultithreaded}, maxEntriesPerToiMidphaseCollideTask={maxEntriesPerToiMidphaseCollideTask}, maxEntriesPerToiNarrowphaseCollideTask={maxEntriesPerToiNarrowphaseCollideTask}, maxNumToiCollisionPairsSinglethreaded={maxNumToiCollisionPairsSinglethreaded}, simulationType={simulationType}, numToisTillAllowedPenetrationSimplifiedToi={numToisTillAllowedPenetrationSimplifiedToi}, numToisTillAllowedPenetrationToi={numToisTillAllowedPenetrationToi}, numToisTillAllowedPenetrationToiHigher={numToisTillAllowedPenetrationToiHigher}, numToisTillAllowedPenetrationToiForced={numToisTillAllowedPenetrationToiForced}, lastEntityUid={lastEntityUid}, lastIslandUid={lastIslandUid}, lastConstraintUid={lastConstraintUid}, phantoms=[{phantoms}], actionListeners=[{actionListeners}], entityListeners=[{entityListeners}], phantomListeners=[{phantomListeners}], constraintListeners=[{constraintListeners}], worldDeletionListeners=[{worldDeletionListeners}], islandActivationListeners=[{islandActivationListeners}], worldPostSimulationListeners=[{worldPostSimulationListeners}], worldPostIntegrateListeners=[{worldPostIntegrateListeners}], worldPostCollideListeners=[{worldPostCollideListeners}], islandPostIntegrateListeners=[{islandPostIntegrateListeners}], islandPostCollideListeners=[{islandPostCollideListeners}], contactListeners=[{contactListeners}], contactImpulseLimitBreachedListeners=[{contactImpulseLimitBreachedListeners}], worldExtensions=[{worldExtensions}], violatedConstraintArray={violatedConstraintArray}, broadPhaseBorder={broadPhaseBorder}, destructionWorld={destructionWorld}, npWorld={npWorld}, broadPhaseExtents={broadPhaseExtents}, broadPhaseNumMarkers={broadPhaseNumMarkers}, sizeOfToiEventQueue={sizeOfToiEventQueue}, broadPhaseQuerySize={broadPhaseQuerySize}, broadPhaseUpdateSize={broadPhaseUpdateSize}, contactPointGeneration={contactPointGeneration}, useCompoundSpuElf={useCompoundSpuElf}>".format(**{
+            "class_name": self.__class__.__name__,
+            "simulation": self.simulation,
+            "gravity": self.gravity,
+            "fixedIsland": self.fixedIsland,
+            "fixedRigidBody": self.fixedRigidBody,
+            "activeSimulationIslands": self.activeSimulationIslands,
+            "inactiveSimulationIslands": self.inactiveSimulationIslands,
+            "dirtySimulationIslands": self.dirtySimulationIslands,
+            "maintenanceMgr": self.maintenanceMgr,
+            "memoryWatchDog": self.memoryWatchDog,
+            "assertOnRunningOutOfSolverMemory": self.assertOnRunningOutOfSolverMemory,
+            "broadPhaseType": self.broadPhaseType,
+            "broadPhase": self.broadPhase,
+            "broadPhaseDispatcher": self.broadPhaseDispatcher,
+            "phantomBroadPhaseListener": self.phantomBroadPhaseListener,
+            "entityEntityBroadPhaseListener": self.entityEntityBroadPhaseListener,
+            "broadPhaseBorderListener": self.broadPhaseBorderListener,
+            "multithreadedSimulationJobData": self.multithreadedSimulationJobData,
+            "collisionInput": self.collisionInput,
+            "collisionFilter": self.collisionFilter,
+            "collisionDispatcher": self.collisionDispatcher,
+            "convexListFilter": self.convexListFilter,
+            "pendingOperations": self.pendingOperations,
+            "pendingOperationsCount": self.pendingOperationsCount,
+            "pendingBodyOperationsCount": self.pendingBodyOperationsCount,
+            "criticalOperationsLockCount": self.criticalOperationsLockCount,
+            "criticalOperationsLockCountForPhantoms": self.criticalOperationsLockCountForPhantoms,
+            "blockExecutingPendingOperations": self.blockExecutingPendingOperations,
+            "criticalOperationsAllowed": self.criticalOperationsAllowed,
+            "pendingOperationQueues": self.pendingOperationQueues,
+            "pendingOperationQueueCount": self.pendingOperationQueueCount,
+            "multiThreadCheck": self.multiThreadCheck,
+            "processActionsInSingleThread": self.processActionsInSingleThread,
+            "allowIntegrationOfIslandsWithoutConstraintsInASeparateJob": self.allowIntegrationOfIslandsWithoutConstraintsInASeparateJob,
+            "minDesiredIslandSize": self.minDesiredIslandSize,
+            "modifyConstraintCriticalSection": self.modifyConstraintCriticalSection,
+            "isLocked": self.isLocked,
+            "islandDirtyListCriticalSection": self.islandDirtyListCriticalSection,
+            "propertyMasterLock": self.propertyMasterLock,
+            "wantSimulationIslands": self.wantSimulationIslands,
+            "snapCollisionToConvexEdgeThreshold": self.snapCollisionToConvexEdgeThreshold,
+            "snapCollisionToConcaveEdgeThreshold": self.snapCollisionToConcaveEdgeThreshold,
+            "enableToiWeldRejection": self.enableToiWeldRejection,
+            "wantDeactivation": self.wantDeactivation,
+            "shouldActivateOnRigidBodyTransformChange": self.shouldActivateOnRigidBodyTransformChange,
+            "deactivationReferenceDistance": self.deactivationReferenceDistance,
+            "toiCollisionResponseRotateNormal": self.toiCollisionResponseRotateNormal,
+            "maxSectorsPerMidphaseCollideTask": self.maxSectorsPerMidphaseCollideTask,
+            "maxSectorsPerNarrowphaseCollideTask": self.maxSectorsPerNarrowphaseCollideTask,
+            "processToisMultithreaded": self.processToisMultithreaded,
+            "maxEntriesPerToiMidphaseCollideTask": self.maxEntriesPerToiMidphaseCollideTask,
+            "maxEntriesPerToiNarrowphaseCollideTask": self.maxEntriesPerToiNarrowphaseCollideTask,
+            "maxNumToiCollisionPairsSinglethreaded": self.maxNumToiCollisionPairsSinglethreaded,
+            "simulationType": self.simulationType,
+            "numToisTillAllowedPenetrationSimplifiedToi": self.numToisTillAllowedPenetrationSimplifiedToi,
+            "numToisTillAllowedPenetrationToi": self.numToisTillAllowedPenetrationToi,
+            "numToisTillAllowedPenetrationToiHigher": self.numToisTillAllowedPenetrationToiHigher,
+            "numToisTillAllowedPenetrationToiForced": self.numToisTillAllowedPenetrationToiForced,
+            "lastEntityUid": self.lastEntityUid,
+            "lastIslandUid": self.lastIslandUid,
+            "lastConstraintUid": self.lastConstraintUid,
+            "phantoms": self.phantoms,
+            "actionListeners": self.actionListeners,
+            "entityListeners": self.entityListeners,
+            "phantomListeners": self.phantomListeners,
+            "constraintListeners": self.constraintListeners,
+            "worldDeletionListeners": self.worldDeletionListeners,
+            "islandActivationListeners": self.islandActivationListeners,
+            "worldPostSimulationListeners": self.worldPostSimulationListeners,
+            "worldPostIntegrateListeners": self.worldPostIntegrateListeners,
+            "worldPostCollideListeners": self.worldPostCollideListeners,
+            "islandPostIntegrateListeners": self.islandPostIntegrateListeners,
+            "islandPostCollideListeners": self.islandPostCollideListeners,
+            "contactListeners": self.contactListeners,
+            "contactImpulseLimitBreachedListeners": self.contactImpulseLimitBreachedListeners,
+            "worldExtensions": self.worldExtensions,
+            "violatedConstraintArray": self.violatedConstraintArray,
+            "broadPhaseBorder": self.broadPhaseBorder,
+            "destructionWorld": self.destructionWorld,
+            "npWorld": self.npWorld,
+            "broadPhaseExtents": self.broadPhaseExtents,
+            "broadPhaseNumMarkers": self.broadPhaseNumMarkers,
+            "sizeOfToiEventQueue": self.sizeOfToiEventQueue,
+            "broadPhaseQuerySize": self.broadPhaseQuerySize,
+            "broadPhaseUpdateSize": self.broadPhaseUpdateSize,
+            "contactPointGeneration": self.contactPointGeneration,
+            "useCompoundSpuElf": self.useCompoundSpuElf,
+        })

@@ -25,7 +25,16 @@ class hclRuntimeConversionInfo(object):
     numElementsConverted: int
 
     def __init__(self, infile):
-        self.slotConversions = hclRuntimeConversionInfoSlotConversion(infile)  # TYPE_STRUCT
-        self.elementConversions = hclRuntimeConversionInfoElementConversion(infile)  # TYPE_STRUCT
-        self.numSlotsConverted = struct.unpack('>B', infile.read(1))
-        self.numElementsConverted = struct.unpack('>B', infile.read(1))
+        self.slotConversions = hclRuntimeConversionInfoSlotConversion(infile)  # TYPE_STRUCT:TYPE_VOID
+        self.elementConversions = hclRuntimeConversionInfoElementConversion(infile)  # TYPE_STRUCT:TYPE_VOID
+        self.numSlotsConverted = struct.unpack('>B', infile.read(1))  # TYPE_UINT8:TYPE_VOID
+        self.numElementsConverted = struct.unpack('>B', infile.read(1))  # TYPE_UINT8:TYPE_VOID
+
+    def __repr__(self):
+        return "<{class_name} slotConversions={slotConversions}, elementConversions={elementConversions}, numSlotsConverted={numSlotsConverted}, numElementsConverted={numElementsConverted}>".format(**{
+            "class_name": self.__class__.__name__,
+            "slotConversions": self.slotConversions,
+            "elementConversions": self.elementConversions,
+            "numSlotsConverted": self.numSlotsConverted,
+            "numElementsConverted": self.numElementsConverted,
+        })

@@ -37,14 +37,26 @@ class hkaiSilhouetteGenerator(hkReferencedObject):
     type: GeneratorType
     forceGenerateOntoPpu: int
     materialId: int
-    cachedSilhouettes: hkaiConvexSilhouetteSet
+    cachedSilhouettes: any
     transform: hkQTransform
 
     def __init__(self, infile):
-        self.userData = struct.unpack('>L', infile.read(8))
-        self.lazyRecomputeDisplacementThreshold = struct.unpack('>f', infile.read(4))
-        self.type = GeneratorType(infile)  # TYPE_ENUM
-        self.forceGenerateOntoPpu = struct.unpack('>B', infile.read(1))
-        self.materialId = struct.unpack('>i', infile.read(4))
-        self.cachedSilhouettes = hkaiConvexSilhouetteSet(infile)  # TYPE_POINTER
-        self.transform = hkQTransform(infile)  # TYPE_STRUCT
+        self.userData = struct.unpack('>L', infile.read(8))  # TYPE_ULONG:TYPE_VOID
+        self.lazyRecomputeDisplacementThreshold = struct.unpack('>f', infile.read(4))  # TYPE_REAL:TYPE_VOID
+        self.type = GeneratorType(infile)  # TYPE_ENUM:TYPE_UINT8
+        self.forceGenerateOntoPpu = struct.unpack('>B', infile.read(1))  # TYPE_UINT8:TYPE_VOID
+        self.materialId = struct.unpack('>i', infile.read(4))  # TYPE_INT32:TYPE_VOID
+        self.cachedSilhouettes = any(infile)  # TYPE_POINTER:TYPE_STRUCT
+        self.transform = hkQTransform(infile)  # TYPE_STRUCT:TYPE_VOID
+
+    def __repr__(self):
+        return "<{class_name} userData={userData}, lazyRecomputeDisplacementThreshold={lazyRecomputeDisplacementThreshold}, type={type}, forceGenerateOntoPpu={forceGenerateOntoPpu}, materialId={materialId}, cachedSilhouettes={cachedSilhouettes}, transform={transform}>".format(**{
+            "class_name": self.__class__.__name__,
+            "userData": self.userData,
+            "lazyRecomputeDisplacementThreshold": self.lazyRecomputeDisplacementThreshold,
+            "type": self.type,
+            "forceGenerateOntoPpu": self.forceGenerateOntoPpu,
+            "materialId": self.materialId,
+            "cachedSilhouettes": self.cachedSilhouettes,
+            "transform": self.transform,
+        })

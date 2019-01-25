@@ -13,8 +13,15 @@ class Hint(Enum):
 
 class hkxAttribute(object):
     name: str
-    value: hkReferencedObject
+    value: any
 
     def __init__(self, infile):
-        self.name = struct.unpack('>s', infile.read(0))
-        self.value = hkReferencedObject(infile)  # TYPE_POINTER
+        self.name = struct.unpack('>s', infile.read(0))  # TYPE_STRINGPTR:TYPE_VOID
+        self.value = any(infile)  # TYPE_POINTER:TYPE_STRUCT
+
+    def __repr__(self):
+        return "<{class_name} name=\"{name}\", value={value}>".format(**{
+            "class_name": self.__class__.__name__,
+            "name": self.name,
+            "value": self.value,
+        })

@@ -3,7 +3,13 @@ from .hkaiWorld import hkaiWorld
 
 
 class hkaiBehavior(hkReferencedObject):
-    world: hkaiWorld
+    world: any
 
     def __init__(self, infile):
-        self.world = hkaiWorld(infile)  # TYPE_POINTER
+        self.world = any(infile)  # TYPE_POINTER:TYPE_STRUCT
+
+    def __repr__(self):
+        return "<{class_name} world={world}>".format(**{
+            "class_name": self.__class__.__name__,
+            "world": self.world,
+        })

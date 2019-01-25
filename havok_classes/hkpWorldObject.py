@@ -1,9 +1,10 @@
 from .hkReferencedObject import hkReferencedObject
 from enum import Enum
-from .common import any
 import struct
 from .hkpLinkedCollidable import hkpLinkedCollidable
 from .hkMultiThreadCheck import hkMultiThreadCheck
+from typing import List
+from .common import get_array
 from .hkSimpleProperty import hkSimpleProperty
 
 
@@ -26,12 +27,23 @@ class hkpWorldObject(hkReferencedObject):
     collidable: hkpLinkedCollidable
     multiThreadCheck: hkMultiThreadCheck
     name: str
-    properties: hkSimpleProperty
+    properties: List[hkSimpleProperty]
 
     def __init__(self, infile):
-        self.world = any(infile)  # TYPE_POINTER
-        self.userData = struct.unpack('>L', infile.read(8))
-        self.collidable = hkpLinkedCollidable(infile)  # TYPE_STRUCT
-        self.multiThreadCheck = hkMultiThreadCheck(infile)  # TYPE_STRUCT
-        self.name = struct.unpack('>s', infile.read(0))
-        self.properties = hkSimpleProperty(infile)  # TYPE_ARRAY
+        self.world = any(infile)  # TYPE_POINTER:TYPE_VOID
+        self.userData = struct.unpack('>L', infile.read(8))  # TYPE_ULONG:TYPE_VOID
+        self.collidable = hkpLinkedCollidable(infile)  # TYPE_STRUCT:TYPE_VOID
+        self.multiThreadCheck = hkMultiThreadCheck(infile)  # TYPE_STRUCT:TYPE_VOID
+        self.name = struct.unpack('>s', infile.read(0))  # TYPE_STRINGPTR:TYPE_VOID
+        self.properties = get_array(infile, hkSimpleProperty, 0)  # TYPE_ARRAY:TYPE_STRUCT
+
+    def __repr__(self):
+        return "<{class_name} world={world}, userData={userData}, collidable={collidable}, multiThreadCheck={multiThreadCheck}, name=\"{name}\", properties=[{properties}]>".format(**{
+            "class_name": self.__class__.__name__,
+            "world": self.world,
+            "userData": self.userData,
+            "collidable": self.collidable,
+            "multiThreadCheck": self.multiThreadCheck,
+            "name": self.name,
+            "properties": self.properties,
+        })

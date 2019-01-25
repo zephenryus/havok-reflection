@@ -24,10 +24,22 @@ class hkpLimitedHingeConstraintDataAtoms(object):
     ballSocket: hkpBallSocketConstraintAtom
 
     def __init__(self, infile):
-        self.transforms = hkpSetLocalTransformsConstraintAtom(infile)  # TYPE_STRUCT
-        self.setupStabilization = hkpSetupStabilizationAtom(infile)  # TYPE_STRUCT
-        self.angMotor = hkpAngMotorConstraintAtom(infile)  # TYPE_STRUCT
-        self.angFriction = hkpAngFrictionConstraintAtom(infile)  # TYPE_STRUCT
-        self.angLimit = hkpAngLimitConstraintAtom(infile)  # TYPE_STRUCT
-        self.2dAng = hkp2dAngConstraintAtom(infile)  # TYPE_STRUCT
-        self.ballSocket = hkpBallSocketConstraintAtom(infile)  # TYPE_STRUCT
+        self.transforms = hkpSetLocalTransformsConstraintAtom(infile)  # TYPE_STRUCT:TYPE_VOID
+        self.setupStabilization = hkpSetupStabilizationAtom(infile)  # TYPE_STRUCT:TYPE_VOID
+        self.angMotor = hkpAngMotorConstraintAtom(infile)  # TYPE_STRUCT:TYPE_VOID
+        self.angFriction = hkpAngFrictionConstraintAtom(infile)  # TYPE_STRUCT:TYPE_VOID
+        self.angLimit = hkpAngLimitConstraintAtom(infile)  # TYPE_STRUCT:TYPE_VOID
+        self.2dAng = hkp2dAngConstraintAtom(infile)  # TYPE_STRUCT:TYPE_VOID
+        self.ballSocket = hkpBallSocketConstraintAtom(infile)  # TYPE_STRUCT:TYPE_VOID
+
+    def __repr__(self):
+        return "<{class_name} transforms={transforms}, setupStabilization={setupStabilization}, angMotor={angMotor}, angFriction={angFriction}, angLimit={angLimit}, 2dAng={2dAng}, ballSocket={ballSocket}>".format(**{
+            "class_name": self.__class__.__name__,
+            "transforms": self.transforms,
+            "setupStabilization": self.setupStabilization,
+            "angMotor": self.angMotor,
+            "angFriction": self.angFriction,
+            "angLimit": self.angLimit,
+            "2dAng": self.2dAng,
+            "ballSocket": self.ballSocket,
+        })

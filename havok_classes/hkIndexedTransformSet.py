@@ -1,21 +1,33 @@
 from .hkReferencedObject import hkReferencedObject
-from .common import any
+from typing import List
+from .common import get_array
 from .hkMeshBoneIndexMapping import hkMeshBoneIndexMapping
 import struct
 
 
 class hkIndexedTransformSet(hkReferencedObject):
-    matrices: any
-    inverseMatrices: any
-    matricesOrder: any
-    matricesNames: any
-    indexMappings: hkMeshBoneIndexMapping
+    matrices: List[any]
+    inverseMatrices: List[any]
+    matricesOrder: List[int]
+    matricesNames: List[str]
+    indexMappings: List[hkMeshBoneIndexMapping]
     allMatricesAreAffine: bool
 
     def __init__(self, infile):
-        self.matrices = any(infile)  # TYPE_ARRAY
-        self.inverseMatrices = any(infile)  # TYPE_ARRAY
-        self.matricesOrder = any(infile)  # TYPE_ARRAY
-        self.matricesNames = any(infile)  # TYPE_ARRAY
-        self.indexMappings = hkMeshBoneIndexMapping(infile)  # TYPE_ARRAY
-        self.allMatricesAreAffine = struct.unpack('>?', infile.read(1))
+        self.matrices = get_array(infile, any, 0)  # TYPE_ARRAY:TYPE_MATRIX4
+        self.inverseMatrices = get_array(infile, any, 0)  # TYPE_ARRAY:TYPE_MATRIX4
+        self.matricesOrder = get_array(infile, int, 2)  # TYPE_ARRAY:TYPE_INT16
+        self.matricesNames = get_array(infile, str, 0)  # TYPE_ARRAY:TYPE_STRINGPTR
+        self.indexMappings = get_array(infile, hkMeshBoneIndexMapping, 0)  # TYPE_ARRAY:TYPE_STRUCT
+        self.allMatricesAreAffine = struct.unpack('>?', infile.read(1))  # TYPE_BOOL:TYPE_VOID
+
+    def __repr__(self):
+        return "<{class_name} matrices=[{matrices}], inverseMatrices=[{inverseMatrices}], matricesOrder=[{matricesOrder}], matricesNames=[{matricesNames}], indexMappings=[{indexMappings}], allMatricesAreAffine={allMatricesAreAffine}>".format(**{
+            "class_name": self.__class__.__name__,
+            "matrices": self.matrices,
+            "inverseMatrices": self.inverseMatrices,
+            "matricesOrder": self.matricesOrder,
+            "matricesNames": self.matricesNames,
+            "indexMappings": self.indexMappings,
+            "allMatricesAreAffine": self.allMatricesAreAffine,
+        })

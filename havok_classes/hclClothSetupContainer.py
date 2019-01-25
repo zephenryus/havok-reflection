@@ -1,15 +1,25 @@
 from .hkReferencedObject import hkReferencedObject
+from typing import List
+from .common import get_array
 from .hclClothSetupObject import hclClothSetupObject
 from .hclNamedSetupMesh import hclNamedSetupMesh
 from .hclNamedTransformSetSetupObject import hclNamedTransformSetSetupObject
 
 
 class hclClothSetupContainer(hkReferencedObject):
-    clothSetupDatas: hclClothSetupObject
-    namedSetupMeshWrappers: hclNamedSetupMesh
-    namedTransformSetWrappers: hclNamedTransformSetSetupObject
+    clothSetupDatas: List[hclClothSetupObject]
+    namedSetupMeshWrappers: List[hclNamedSetupMesh]
+    namedTransformSetWrappers: List[hclNamedTransformSetSetupObject]
 
     def __init__(self, infile):
-        self.clothSetupDatas = hclClothSetupObject(infile)  # TYPE_ARRAY
-        self.namedSetupMeshWrappers = hclNamedSetupMesh(infile)  # TYPE_ARRAY
-        self.namedTransformSetWrappers = hclNamedTransformSetSetupObject(infile)  # TYPE_ARRAY
+        self.clothSetupDatas = get_array(infile, hclClothSetupObject, 0)  # TYPE_ARRAY:TYPE_POINTER
+        self.namedSetupMeshWrappers = get_array(infile, hclNamedSetupMesh, 0)  # TYPE_ARRAY:TYPE_POINTER
+        self.namedTransformSetWrappers = get_array(infile, hclNamedTransformSetSetupObject, 0)  # TYPE_ARRAY:TYPE_POINTER
+
+    def __repr__(self):
+        return "<{class_name} clothSetupDatas=[{clothSetupDatas}], namedSetupMeshWrappers=[{namedSetupMeshWrappers}], namedTransformSetWrappers=[{namedTransformSetWrappers}]>".format(**{
+            "class_name": self.__class__.__name__,
+            "clothSetupDatas": self.clothSetupDatas,
+            "namedSetupMeshWrappers": self.namedSetupMeshWrappers,
+            "namedTransformSetWrappers": self.namedTransformSetWrappers,
+        })

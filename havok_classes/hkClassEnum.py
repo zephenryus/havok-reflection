@@ -1,7 +1,6 @@
 from enum import Enum
 from .hkClassEnumItem import hkClassEnumItem
 from .hkCustomAttributes import hkCustomAttributes
-from .common import any
 
 
 class FlagValues(Enum):
@@ -10,12 +9,21 @@ class FlagValues(Enum):
 
 class hkClassEnum(object):
     name: str
-    items: hkClassEnumItem
-    attributes: hkCustomAttributes
+    items: any
+    attributes: any
     flags: any
 
     def __init__(self, infile):
-        self.name = str(infile)  # TYPE_CSTRING
-        self.items = hkClassEnumItem(infile)  # TYPE_SIMPLEARRAY
-        self.attributes = hkCustomAttributes(infile)  # TYPE_POINTER
-        self.flags = any(infile)  # TYPE_FLAGS
+        self.name = str(infile)  # TYPE_CSTRING:TYPE_VOID
+        self.items = any(infile)  # TYPE_SIMPLEARRAY:TYPE_STRUCT
+        self.attributes = any(infile)  # TYPE_POINTER:TYPE_STRUCT
+        self.flags = any(infile)  # TYPE_FLAGS:TYPE_UINT32
+
+    def __repr__(self):
+        return "<{class_name} name=\"{name}\", items={items}, attributes={attributes}, flags={flags}>".format(**{
+            "class_name": self.__class__.__name__,
+            "name": self.name,
+            "items": self.items,
+            "attributes": self.attributes,
+            "flags": self.flags,
+        })

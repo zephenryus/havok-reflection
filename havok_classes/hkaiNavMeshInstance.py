@@ -1,9 +1,10 @@
 from .hkReferencedObject import hkReferencedObject
 from enum import Enum
-from .common import any
 import struct
 from .hkaiNavMesh import hkaiNavMesh
 from .hkaiReferenceFrame import hkaiReferenceFrame
+from typing import List
+from .common import get_array
 from .hkaiNavMeshFace import hkaiNavMeshFace
 from .hkaiNavMeshEdge import hkaiNavMeshEdge
 from .hkaiNavMeshClearanceCache import hkaiNavMeshClearanceCache
@@ -26,50 +27,81 @@ class hkaiNavMeshInstance(hkReferencedObject):
     faceDataStriding: int
     originalEdgeData: any
     edgeDataStriding: int
-    originalMesh: hkaiNavMesh
+    originalMesh: any
     referenceFrame: hkaiReferenceFrame
-    edgeMap: any
-    faceMap: any
-    instancedFaces: hkaiNavMeshFace
-    instancedEdges: hkaiNavMeshEdge
-    ownedFaces: hkaiNavMeshFace
-    ownedEdges: hkaiNavMeshEdge
-    ownedVertices: any
-    faceFlags: any
-    cuttingInfo: any
-    instancedFaceData: any
-    instancedEdgeData: any
-    ownedFaceData: any
-    ownedEdgeData: any
+    edgeMap: List[int]
+    faceMap: List[int]
+    instancedFaces: List[hkaiNavMeshFace]
+    instancedEdges: List[hkaiNavMeshEdge]
+    ownedFaces: List[hkaiNavMeshFace]
+    ownedEdges: List[hkaiNavMeshEdge]
+    ownedVertices: List[vector4]
+    faceFlags: List[int]
+    cuttingInfo: List[int]
+    instancedFaceData: List[int]
+    instancedEdgeData: List[int]
+    ownedFaceData: List[int]
+    ownedEdgeData: List[int]
     sectionUid: int
     runtimeId: int
     layer: int
-    clearanceCaches: hkaiNavMeshClearanceCache
+    clearanceCaches: List[hkaiNavMeshClearanceCache]
 
     def __init__(self, infile):
-        self.originalFaces = any(infile)  # TYPE_SIMPLEARRAY
-        self.originalEdges = any(infile)  # TYPE_SIMPLEARRAY
-        self.originalVertices = any(infile)  # TYPE_SIMPLEARRAY
-        self.originalFaceData = any(infile)  # TYPE_POINTER
-        self.faceDataStriding = struct.unpack('>i', infile.read(4))
-        self.originalEdgeData = any(infile)  # TYPE_POINTER
-        self.edgeDataStriding = struct.unpack('>i', infile.read(4))
-        self.originalMesh = hkaiNavMesh(infile)  # TYPE_POINTER
-        self.referenceFrame = hkaiReferenceFrame(infile)  # TYPE_STRUCT
-        self.edgeMap = any(infile)  # TYPE_ARRAY
-        self.faceMap = any(infile)  # TYPE_ARRAY
-        self.instancedFaces = hkaiNavMeshFace(infile)  # TYPE_ARRAY
-        self.instancedEdges = hkaiNavMeshEdge(infile)  # TYPE_ARRAY
-        self.ownedFaces = hkaiNavMeshFace(infile)  # TYPE_ARRAY
-        self.ownedEdges = hkaiNavMeshEdge(infile)  # TYPE_ARRAY
-        self.ownedVertices = any(infile)  # TYPE_ARRAY
-        self.faceFlags = any(infile)  # TYPE_ARRAY
-        self.cuttingInfo = any(infile)  # TYPE_ARRAY
-        self.instancedFaceData = any(infile)  # TYPE_ARRAY
-        self.instancedEdgeData = any(infile)  # TYPE_ARRAY
-        self.ownedFaceData = any(infile)  # TYPE_ARRAY
-        self.ownedEdgeData = any(infile)  # TYPE_ARRAY
-        self.sectionUid = struct.unpack('>I', infile.read(4))
-        self.runtimeId = struct.unpack('>i', infile.read(4))
-        self.layer = struct.unpack('>I', infile.read(4))
-        self.clearanceCaches = hkaiNavMeshClearanceCache(infile)  # TYPE_ARRAY
+        self.originalFaces = any(infile)  # TYPE_SIMPLEARRAY:TYPE_VOID
+        self.originalEdges = any(infile)  # TYPE_SIMPLEARRAY:TYPE_VOID
+        self.originalVertices = any(infile)  # TYPE_SIMPLEARRAY:TYPE_VOID
+        self.originalFaceData = any(infile)  # TYPE_POINTER:TYPE_VOID
+        self.faceDataStriding = struct.unpack('>i', infile.read(4))  # TYPE_INT32:TYPE_VOID
+        self.originalEdgeData = any(infile)  # TYPE_POINTER:TYPE_VOID
+        self.edgeDataStriding = struct.unpack('>i', infile.read(4))  # TYPE_INT32:TYPE_VOID
+        self.originalMesh = any(infile)  # TYPE_POINTER:TYPE_STRUCT
+        self.referenceFrame = hkaiReferenceFrame(infile)  # TYPE_STRUCT:TYPE_VOID
+        self.edgeMap = get_array(infile, int, 4)  # TYPE_ARRAY:TYPE_INT32
+        self.faceMap = get_array(infile, int, 4)  # TYPE_ARRAY:TYPE_INT32
+        self.instancedFaces = get_array(infile, hkaiNavMeshFace, 0)  # TYPE_ARRAY:TYPE_STRUCT
+        self.instancedEdges = get_array(infile, hkaiNavMeshEdge, 0)  # TYPE_ARRAY:TYPE_STRUCT
+        self.ownedFaces = get_array(infile, hkaiNavMeshFace, 0)  # TYPE_ARRAY:TYPE_STRUCT
+        self.ownedEdges = get_array(infile, hkaiNavMeshEdge, 0)  # TYPE_ARRAY:TYPE_STRUCT
+        self.ownedVertices = get_array(infile, vector4, 16)  # TYPE_ARRAY:TYPE_VECTOR4
+        self.faceFlags = get_array(infile, int, 1)  # TYPE_ARRAY:TYPE_UINT8
+        self.cuttingInfo = get_array(infile, int, 2)  # TYPE_ARRAY:TYPE_UINT16
+        self.instancedFaceData = get_array(infile, int, 4)  # TYPE_ARRAY:TYPE_INT32
+        self.instancedEdgeData = get_array(infile, int, 4)  # TYPE_ARRAY:TYPE_INT32
+        self.ownedFaceData = get_array(infile, int, 4)  # TYPE_ARRAY:TYPE_INT32
+        self.ownedEdgeData = get_array(infile, int, 4)  # TYPE_ARRAY:TYPE_INT32
+        self.sectionUid = struct.unpack('>I', infile.read(4))  # TYPE_UINT32:TYPE_VOID
+        self.runtimeId = struct.unpack('>i', infile.read(4))  # TYPE_INT32:TYPE_VOID
+        self.layer = struct.unpack('>I', infile.read(4))  # TYPE_UINT32:TYPE_VOID
+        self.clearanceCaches = get_array(infile, hkaiNavMeshClearanceCache, 0)  # TYPE_ARRAY:TYPE_POINTER
+
+    def __repr__(self):
+        return "<{class_name} originalFaces={originalFaces}, originalEdges={originalEdges}, originalVertices={originalVertices}, originalFaceData={originalFaceData}, faceDataStriding={faceDataStriding}, originalEdgeData={originalEdgeData}, edgeDataStriding={edgeDataStriding}, originalMesh={originalMesh}, referenceFrame={referenceFrame}, edgeMap=[{edgeMap}], faceMap=[{faceMap}], instancedFaces=[{instancedFaces}], instancedEdges=[{instancedEdges}], ownedFaces=[{ownedFaces}], ownedEdges=[{ownedEdges}], ownedVertices=[{ownedVertices}], faceFlags=[{faceFlags}], cuttingInfo=[{cuttingInfo}], instancedFaceData=[{instancedFaceData}], instancedEdgeData=[{instancedEdgeData}], ownedFaceData=[{ownedFaceData}], ownedEdgeData=[{ownedEdgeData}], sectionUid={sectionUid}, runtimeId={runtimeId}, layer={layer}, clearanceCaches=[{clearanceCaches}]>".format(**{
+            "class_name": self.__class__.__name__,
+            "originalFaces": self.originalFaces,
+            "originalEdges": self.originalEdges,
+            "originalVertices": self.originalVertices,
+            "originalFaceData": self.originalFaceData,
+            "faceDataStriding": self.faceDataStriding,
+            "originalEdgeData": self.originalEdgeData,
+            "edgeDataStriding": self.edgeDataStriding,
+            "originalMesh": self.originalMesh,
+            "referenceFrame": self.referenceFrame,
+            "edgeMap": self.edgeMap,
+            "faceMap": self.faceMap,
+            "instancedFaces": self.instancedFaces,
+            "instancedEdges": self.instancedEdges,
+            "ownedFaces": self.ownedFaces,
+            "ownedEdges": self.ownedEdges,
+            "ownedVertices": self.ownedVertices,
+            "faceFlags": self.faceFlags,
+            "cuttingInfo": self.cuttingInfo,
+            "instancedFaceData": self.instancedFaceData,
+            "instancedEdgeData": self.instancedEdgeData,
+            "ownedFaceData": self.ownedFaceData,
+            "ownedEdgeData": self.ownedEdgeData,
+            "sectionUid": self.sectionUid,
+            "runtimeId": self.runtimeId,
+            "layer": self.layer,
+            "clearanceCaches": self.clearanceCaches,
+        })

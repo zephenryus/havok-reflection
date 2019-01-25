@@ -1,7 +1,8 @@
 from .hkxAttributeHolder import hkxAttributeHolder
 from enum import Enum
+from typing import List
+from .common import get_array
 from .hkxMaterialTextureStage import hkxMaterialTextureStage
-from .common import vector4
 import struct
 from .hkxMaterial import hkxMaterial
 from .hkReferencedObject import hkReferencedObject
@@ -64,13 +65,13 @@ class Transparency(Enum):
 
 class hkxMaterial(hkxAttributeHolder):
     name: str
-    stages: hkxMaterialTextureStage
+    stages: List[hkxMaterialTextureStage]
     diffuseColor: vector4
     ambientColor: vector4
     specularColor: vector4
     emissiveColor: vector4
-    subMaterials: hkxMaterial
-    extraData: hkReferencedObject
+    subMaterials: List[hkxMaterial]
+    extraData: any
     uvMapScale: float
     uvMapOffset: float
     uvMapRotation: float
@@ -79,23 +80,45 @@ class hkxMaterial(hkxAttributeHolder):
     specularExponent: float
     transparency: Transparency
     userData: int
-    properties: hkxMaterialProperty
+    properties: List[hkxMaterialProperty]
 
     def __init__(self, infile):
-        self.name = struct.unpack('>s', infile.read(0))
-        self.stages = hkxMaterialTextureStage(infile)  # TYPE_ARRAY
-        self.diffuseColor = struct.unpack('>4f', infile.read(16))
-        self.ambientColor = struct.unpack('>4f', infile.read(16))
-        self.specularColor = struct.unpack('>4f', infile.read(16))
-        self.emissiveColor = struct.unpack('>4f', infile.read(16))
-        self.subMaterials = hkxMaterial(infile)  # TYPE_ARRAY
-        self.extraData = hkReferencedObject(infile)  # TYPE_POINTER
-        self.uvMapScale = struct.unpack('>f', infile.read(4))
-        self.uvMapOffset = struct.unpack('>f', infile.read(4))
-        self.uvMapRotation = struct.unpack('>f', infile.read(4))
-        self.uvMapAlgorithm = UVMappingAlgorithm(infile)  # TYPE_ENUM
-        self.specularMultiplier = struct.unpack('>f', infile.read(4))
-        self.specularExponent = struct.unpack('>f', infile.read(4))
-        self.transparency = Transparency(infile)  # TYPE_ENUM
-        self.userData = struct.unpack('>L', infile.read(8))
-        self.properties = hkxMaterialProperty(infile)  # TYPE_ARRAY
+        self.name = struct.unpack('>s', infile.read(0))  # TYPE_STRINGPTR:TYPE_VOID
+        self.stages = get_array(infile, hkxMaterialTextureStage, 0)  # TYPE_ARRAY:TYPE_STRUCT
+        self.diffuseColor = struct.unpack('>4f', infile.read(16))  # TYPE_VECTOR4:TYPE_VOID
+        self.ambientColor = struct.unpack('>4f', infile.read(16))  # TYPE_VECTOR4:TYPE_VOID
+        self.specularColor = struct.unpack('>4f', infile.read(16))  # TYPE_VECTOR4:TYPE_VOID
+        self.emissiveColor = struct.unpack('>4f', infile.read(16))  # TYPE_VECTOR4:TYPE_VOID
+        self.subMaterials = get_array(infile, hkxMaterial, 0)  # TYPE_ARRAY:TYPE_POINTER
+        self.extraData = any(infile)  # TYPE_POINTER:TYPE_STRUCT
+        self.uvMapScale = struct.unpack('>f', infile.read(4))  # TYPE_REAL:TYPE_VOID
+        self.uvMapOffset = struct.unpack('>f', infile.read(4))  # TYPE_REAL:TYPE_VOID
+        self.uvMapRotation = struct.unpack('>f', infile.read(4))  # TYPE_REAL:TYPE_VOID
+        self.uvMapAlgorithm = UVMappingAlgorithm(infile)  # TYPE_ENUM:TYPE_UINT32
+        self.specularMultiplier = struct.unpack('>f', infile.read(4))  # TYPE_REAL:TYPE_VOID
+        self.specularExponent = struct.unpack('>f', infile.read(4))  # TYPE_REAL:TYPE_VOID
+        self.transparency = Transparency(infile)  # TYPE_ENUM:TYPE_UINT8
+        self.userData = struct.unpack('>L', infile.read(8))  # TYPE_ULONG:TYPE_VOID
+        self.properties = get_array(infile, hkxMaterialProperty, 0)  # TYPE_ARRAY:TYPE_STRUCT
+
+    def __repr__(self):
+        return "<{class_name} name=\"{name}\", stages=[{stages}], diffuseColor={diffuseColor}, ambientColor={ambientColor}, specularColor={specularColor}, emissiveColor={emissiveColor}, subMaterials=[{subMaterials}], extraData={extraData}, uvMapScale={uvMapScale}, uvMapOffset={uvMapOffset}, uvMapRotation={uvMapRotation}, uvMapAlgorithm={uvMapAlgorithm}, specularMultiplier={specularMultiplier}, specularExponent={specularExponent}, transparency={transparency}, userData={userData}, properties=[{properties}]>".format(**{
+            "class_name": self.__class__.__name__,
+            "name": self.name,
+            "stages": self.stages,
+            "diffuseColor": self.diffuseColor,
+            "ambientColor": self.ambientColor,
+            "specularColor": self.specularColor,
+            "emissiveColor": self.emissiveColor,
+            "subMaterials": self.subMaterials,
+            "extraData": self.extraData,
+            "uvMapScale": self.uvMapScale,
+            "uvMapOffset": self.uvMapOffset,
+            "uvMapRotation": self.uvMapRotation,
+            "uvMapAlgorithm": self.uvMapAlgorithm,
+            "specularMultiplier": self.specularMultiplier,
+            "specularExponent": self.specularExponent,
+            "transparency": self.transparency,
+            "userData": self.userData,
+            "properties": self.properties,
+        })

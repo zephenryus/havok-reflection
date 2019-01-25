@@ -5,8 +5,15 @@ from .hkcdDynamicTreeDefaultTree48Storage import hkcdDynamicTreeDefaultTree48Sto
 
 class hkcdDynamicAabbTree(hkReferencedObject):
     shouldDeleteTree: bool
-    treePtr: hkcdDynamicTreeDefaultTree48Storage
+    treePtr: any
 
     def __init__(self, infile):
-        self.shouldDeleteTree = struct.unpack('>?', infile.read(1))
-        self.treePtr = hkcdDynamicTreeDefaultTree48Storage(infile)  # TYPE_POINTER
+        self.shouldDeleteTree = struct.unpack('>?', infile.read(1))  # TYPE_BOOL:TYPE_VOID
+        self.treePtr = any(infile)  # TYPE_POINTER:TYPE_STRUCT
+
+    def __repr__(self):
+        return "<{class_name} shouldDeleteTree={shouldDeleteTree}, treePtr={treePtr}>".format(**{
+            "class_name": self.__class__.__name__,
+            "shouldDeleteTree": self.shouldDeleteTree,
+            "treePtr": self.treePtr,
+        })

@@ -1,5 +1,3 @@
-from typing import List
-
 from havok_types import havok_types
 
 primative_types = [
@@ -8,6 +6,20 @@ primative_types = [
     'str',
     'float'
 ]
+
+
+def class_factory(data: dict, enum_map: dict):
+    class_imports = {}
+
+    parent = _get_parent_string(data, class_imports)
+    _add_enum_import(data, class_imports)
+    class_members = _get_class_members(data, class_imports, enum_map)
+
+    return {
+        'parent': parent,
+        'class_imports': class_imports,
+        'class_members': class_members
+    }
 
 
 def add_import(class_imports: dict, class_name: str, source_file=None):
@@ -21,114 +33,73 @@ def add_import(class_imports: dict, class_name: str, source_file=None):
         class_imports[source_file].append(class_name)
 
 
-def class_factory(data: dict, enum_map: dict):
-    class_imports = {}
-    class_members = []
-
+def _get_parent_string(data, class_imports):
     parent = '(object)'
     if data['parent'] is not None:
         parent = "({})".format(data['parent'])
         add_import(class_imports, data['parent'])
 
+    return parent
+
+
+def _add_enum_import(data, class_imports):
     if len(data['enums']) > 0:
         add_import(class_imports, 'Enum', 'enum')
 
+
+def _get_class_members(data, class_imports, enum_map):
+    class_members = []
+
     for member in data['members']:
-        member_unpack_string = ''
+        # if member['cl'] is None:
+        #     member_type = _get_member_type(class_imports, enum_map, member, 'type')
+        # else:
+        #     member_type = member['cl']
+        #     add_import(class_imports, member['cl'])
 
-        if member['cl'] is None:
-            member_type = havok_types[member['type']].python_type.__name__
+        member_type = _get_member_type(class_imports, enum_map, member, 'type')
+        member_subtype = _get_member_type(class_imports, enum_map, member, 'subtype')
 
-            if member['type'] == 'TYPE_ENUM':
-                if member['enum'] in enum_map:
-                    member_type = enum_map[member['enum']]
-                    add_import(class_imports, enum_map[member['enum']], 'enums')
-                    print(enum_map[member['enum']])
-                else:
-                    pass
-                    # print("Unknown enum: {}".format(member))
-
-            elif member_type not in primative_types:
-                add_import(class_imports, member_type, 'common')
-        else:
+        if member['type'] == 'TYPE_STRUCT':
             member_type = member['cl']
+            add_import(class_imports, member['cl'])
+
+        if member['cl'] is not None:
+            member_subtype = member['cl']
             add_import(class_imports, member['cl'])
 
         class_members.append({
             'name': member['name'],
             'type': member_type,
+            'subtype': member_subtype,
             'unpack_string': havok_types[member['type']].struct_char,
             'unpack_size': havok_types[member['type']].struct_size,
-            'reflection_type': havok_types[member['type']].reflection_type,
+            'reflection_type': member['type'],
+            'reflection_subtype': member['subtype'],
         })
 
         if havok_types[member['type']].struct_size > 0:
             add_import(class_imports, 'struct')
 
-    # print(class_imports)
-    # print(class_members)
+    return class_members
 
-    with open('havok_classes/{}.py'.format(data['name']), 'w') as outfile:
-        print('Generating havok_classes/{}.py...'.format(data['name']))
-        for import_source_file in class_imports:
-            if import_source_file == 'enum':
-                outfile.write("from enum import Enum\n")
 
-            elif import_source_file == 'struct':
-                outfile.write("import struct\n")
-
-            else:
-                outfile.write("from .{source_file} import {class_name}\n".format(**{
-                    'source_file': import_source_file,
-                    'class_name': ', '.join(class_imports[import_source_file])
-                }))
-
-        if (len(class_imports) > 0):
-            outfile.write("\n\n")
-
-        for enum in data['enums']:
-            outfile.write("class {enum_name}(Enum):\n".format(**{
-                'enum_name': enum['name']
-            }))
-
-            for item in enum['items']:
-                outfile.write("    {name} = {value}\n".format(**{
-                    'name': item[1],
-                    'value': item[0]
-                }))
-
-            outfile.write("\n\n")
-
-        outfile.write("class {class_name}{parent}:\n".format(**{
-            'class_name': data['name'],
-            'parent': parent
-        }))
-
-        for member in class_members:
-            outfile.write("    {name}: {type}\n".format(**{
-                'name': member['name'],
-                'type': member['type']
-            }))
-
-        if len(class_members) == 0:
-            outfile.write("    pass\n")
-
+def _get_member_type(class_imports, enum_map, member, key):
+    member_type = havok_types[member[key]].python_type.__name__
+    if member[key] == 'TYPE_ENUM':
+        if member['enum'] in enum_map:
+            member_type = enum_map[member['enum']]
+            add_import(class_imports, enum_map[member['enum']], 'enums')
         else:
-            outfile.write("\n    def __init__(self, infile):\n")
+            pass
+            # print("Unknown enum: {}".format(member))
 
-            for member in class_members:
-                if member['unpack_string'] != '':
-                    outfile.write(
-                        "        self.{name} = struct.unpack('>{unpack_string}', infile.read({unpack_size}))\n".format(
-                            **{
-                                'name': member['name'],
-                                'unpack_string': member['unpack_string'],
-                                'unpack_size': member['unpack_size'],
-                            }))
-                else:
-                    outfile.write(
-                        "        self.{name} = {type}(infile)  # {reflection_type}\n".format(**{
-                            'name': member['name'],
-                            'type': member['type'],
-                            'reflection_type': member['reflection_type']
-                        }))
+    elif member[key] == 'TYPE_ARRAY':
+        add_import(class_imports, 'List', 'typing')
+        add_import(class_imports, 'get_array', 'common')
+
+    elif member[key] not in primative_types:
+        pass
+        # add_import(class_imports, member_type, 'common')
+
+    return member_type

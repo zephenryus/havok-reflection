@@ -1,4 +1,6 @@
 from enum import Enum
+from typing import List
+from .common import get_array
 from .hkxVertexDescriptionElementDecl import hkxVertexDescriptionElementDecl
 
 
@@ -24,7 +26,13 @@ class DataUsage(Enum):
 
 
 class hkxVertexDescription(object):
-    decls: hkxVertexDescriptionElementDecl
+    decls: List[hkxVertexDescriptionElementDecl]
 
     def __init__(self, infile):
-        self.decls = hkxVertexDescriptionElementDecl(infile)  # TYPE_ARRAY
+        self.decls = get_array(infile, hkxVertexDescriptionElementDecl, 0)  # TYPE_ARRAY:TYPE_STRUCT
+
+    def __repr__(self):
+        return "<{class_name} decls=[{decls}]>".format(**{
+            "class_name": self.__class__.__name__,
+            "decls": self.decls,
+        })

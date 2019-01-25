@@ -32,15 +32,32 @@ class hkaSplineCompressedAnimationTrackCompressionParams(object):
     floatQuantizationType: ScalarQuantization
 
     def __init__(self, infile):
-        self.rotationTolerance = struct.unpack('>f', infile.read(4))
-        self.translationTolerance = struct.unpack('>f', infile.read(4))
-        self.scaleTolerance = struct.unpack('>f', infile.read(4))
-        self.floatingTolerance = struct.unpack('>f', infile.read(4))
-        self.rotationDegree = struct.unpack('>H', infile.read(2))
-        self.translationDegree = struct.unpack('>H', infile.read(2))
-        self.scaleDegree = struct.unpack('>H', infile.read(2))
-        self.floatingDegree = struct.unpack('>H', infile.read(2))
-        self.rotationQuantizationType = RotationQuantization(infile)  # TYPE_ENUM
-        self.translationQuantizationType = ScalarQuantization(infile)  # TYPE_ENUM
-        self.scaleQuantizationType = ScalarQuantization(infile)  # TYPE_ENUM
-        self.floatQuantizationType = ScalarQuantization(infile)  # TYPE_ENUM
+        self.rotationTolerance = struct.unpack('>f', infile.read(4))  # TYPE_REAL:TYPE_VOID
+        self.translationTolerance = struct.unpack('>f', infile.read(4))  # TYPE_REAL:TYPE_VOID
+        self.scaleTolerance = struct.unpack('>f', infile.read(4))  # TYPE_REAL:TYPE_VOID
+        self.floatingTolerance = struct.unpack('>f', infile.read(4))  # TYPE_REAL:TYPE_VOID
+        self.rotationDegree = struct.unpack('>H', infile.read(2))  # TYPE_UINT16:TYPE_VOID
+        self.translationDegree = struct.unpack('>H', infile.read(2))  # TYPE_UINT16:TYPE_VOID
+        self.scaleDegree = struct.unpack('>H', infile.read(2))  # TYPE_UINT16:TYPE_VOID
+        self.floatingDegree = struct.unpack('>H', infile.read(2))  # TYPE_UINT16:TYPE_VOID
+        self.rotationQuantizationType = RotationQuantization(infile)  # TYPE_ENUM:TYPE_UINT8
+        self.translationQuantizationType = ScalarQuantization(infile)  # TYPE_ENUM:TYPE_UINT8
+        self.scaleQuantizationType = ScalarQuantization(infile)  # TYPE_ENUM:TYPE_UINT8
+        self.floatQuantizationType = ScalarQuantization(infile)  # TYPE_ENUM:TYPE_UINT8
+
+    def __repr__(self):
+        return "<{class_name} rotationTolerance={rotationTolerance}, translationTolerance={translationTolerance}, scaleTolerance={scaleTolerance}, floatingTolerance={floatingTolerance}, rotationDegree={rotationDegree}, translationDegree={translationDegree}, scaleDegree={scaleDegree}, floatingDegree={floatingDegree}, rotationQuantizationType={rotationQuantizationType}, translationQuantizationType={translationQuantizationType}, scaleQuantizationType={scaleQuantizationType}, floatQuantizationType={floatQuantizationType}>".format(**{
+            "class_name": self.__class__.__name__,
+            "rotationTolerance": self.rotationTolerance,
+            "translationTolerance": self.translationTolerance,
+            "scaleTolerance": self.scaleTolerance,
+            "floatingTolerance": self.floatingTolerance,
+            "rotationDegree": self.rotationDegree,
+            "translationDegree": self.translationDegree,
+            "scaleDegree": self.scaleDegree,
+            "floatingDegree": self.floatingDegree,
+            "rotationQuantizationType": self.rotationQuantizationType,
+            "translationQuantizationType": self.translationQuantizationType,
+            "scaleQuantizationType": self.scaleQuantizationType,
+            "floatQuantizationType": self.floatQuantizationType,
+        })

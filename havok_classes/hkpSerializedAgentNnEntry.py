@@ -4,7 +4,8 @@ from .hkpEntity import hkpEntity
 import struct
 from .enums import SerializedAgentType
 from .hkpSimpleContactConstraintAtom import hkpSimpleContactConstraintAtom
-from .common import any
+from typing import List
+from .common import get_array
 from .hkContactPoint import hkContactPoint
 from .hkpSerializedTrack1nInfo import hkpSerializedTrack1nInfo
 
@@ -23,33 +24,52 @@ class SerializedAgentType(Enum):
 
 
 class hkpSerializedAgentNnEntry(hkReferencedObject):
-    bodyA: hkpEntity
-    bodyB: hkpEntity
+    bodyA: any
+    bodyB: any
     bodyAId: int
     bodyBId: int
     useEntityIds: bool
     agentType: SerializedAgentType
     atom: hkpSimpleContactConstraintAtom
-    propertiesStream: any
-    contactPoints: hkContactPoint
-    cpIdMgr: any
+    propertiesStream: List[int]
+    contactPoints: List[hkContactPoint]
+    cpIdMgr: List[int]
     nnEntryData: int
     trackInfo: hkpSerializedTrack1nInfo
     endianCheckBuffer: int
     version: int
 
     def __init__(self, infile):
-        self.bodyA = hkpEntity(infile)  # TYPE_POINTER
-        self.bodyB = hkpEntity(infile)  # TYPE_POINTER
-        self.bodyAId = struct.unpack('>L', infile.read(8))
-        self.bodyBId = struct.unpack('>L', infile.read(8))
-        self.useEntityIds = struct.unpack('>?', infile.read(1))
-        self.agentType = SerializedAgentType(infile)  # TYPE_ENUM
-        self.atom = hkpSimpleContactConstraintAtom(infile)  # TYPE_STRUCT
-        self.propertiesStream = any(infile)  # TYPE_ARRAY
-        self.contactPoints = hkContactPoint(infile)  # TYPE_ARRAY
-        self.cpIdMgr = any(infile)  # TYPE_ARRAY
-        self.nnEntryData = struct.unpack('>B', infile.read(1))
-        self.trackInfo = hkpSerializedTrack1nInfo(infile)  # TYPE_STRUCT
-        self.endianCheckBuffer = struct.unpack('>B', infile.read(1))
-        self.version = struct.unpack('>I', infile.read(4))
+        self.bodyA = any(infile)  # TYPE_POINTER:TYPE_STRUCT
+        self.bodyB = any(infile)  # TYPE_POINTER:TYPE_STRUCT
+        self.bodyAId = struct.unpack('>L', infile.read(8))  # TYPE_ULONG:TYPE_VOID
+        self.bodyBId = struct.unpack('>L', infile.read(8))  # TYPE_ULONG:TYPE_VOID
+        self.useEntityIds = struct.unpack('>?', infile.read(1))  # TYPE_BOOL:TYPE_VOID
+        self.agentType = SerializedAgentType(infile)  # TYPE_ENUM:TYPE_INT8
+        self.atom = hkpSimpleContactConstraintAtom(infile)  # TYPE_STRUCT:TYPE_VOID
+        self.propertiesStream = get_array(infile, int, 1)  # TYPE_ARRAY:TYPE_UINT8
+        self.contactPoints = get_array(infile, hkContactPoint, 0)  # TYPE_ARRAY:TYPE_STRUCT
+        self.cpIdMgr = get_array(infile, int, 1)  # TYPE_ARRAY:TYPE_UINT8
+        self.nnEntryData = struct.unpack('>B', infile.read(1))  # TYPE_UINT8:TYPE_VOID
+        self.trackInfo = hkpSerializedTrack1nInfo(infile)  # TYPE_STRUCT:TYPE_VOID
+        self.endianCheckBuffer = struct.unpack('>B', infile.read(1))  # TYPE_UINT8:TYPE_VOID
+        self.version = struct.unpack('>I', infile.read(4))  # TYPE_UINT32:TYPE_VOID
+
+    def __repr__(self):
+        return "<{class_name} bodyA={bodyA}, bodyB={bodyB}, bodyAId={bodyAId}, bodyBId={bodyBId}, useEntityIds={useEntityIds}, agentType={agentType}, atom={atom}, propertiesStream=[{propertiesStream}], contactPoints=[{contactPoints}], cpIdMgr=[{cpIdMgr}], nnEntryData={nnEntryData}, trackInfo={trackInfo}, endianCheckBuffer={endianCheckBuffer}, version={version}>".format(**{
+            "class_name": self.__class__.__name__,
+            "bodyA": self.bodyA,
+            "bodyB": self.bodyB,
+            "bodyAId": self.bodyAId,
+            "bodyBId": self.bodyBId,
+            "useEntityIds": self.useEntityIds,
+            "agentType": self.agentType,
+            "atom": self.atom,
+            "propertiesStream": self.propertiesStream,
+            "contactPoints": self.contactPoints,
+            "cpIdMgr": self.cpIdMgr,
+            "nnEntryData": self.nnEntryData,
+            "trackInfo": self.trackInfo,
+            "endianCheckBuffer": self.endianCheckBuffer,
+            "version": self.version,
+        })

@@ -1,6 +1,5 @@
 from .hkReferencedObject import hkReferencedObject
 from enum import Enum
-from .common import vector4, any
 import struct
 from .hkaiStreamingCollection import hkaiStreamingCollection
 from .hkaiNavMeshCutter import hkaiNavMeshCutter
@@ -9,6 +8,8 @@ from .hkaiDynamicNavMeshQueryMediator import hkaiDynamicNavMeshQueryMediator
 from .hkaiDynamicNavVolumeMediator import hkaiDynamicNavVolumeMediator
 from .hkaiOverlapManager import hkaiOverlapManager
 from .hkaiSilhouetteGenerationParameters import hkaiSilhouetteGenerationParameters
+from typing import List
+from .common import get_array
 from .hkaiSilhouetteGenerator import hkaiSilhouetteGenerator
 from .hkaiObstacleGenerator import hkaiObstacleGenerator
 from .hkaiAvoidancePairProperties import hkaiAvoidancePairProperties
@@ -33,22 +34,22 @@ class PathType(Enum):
 
 class hkaiWorld(hkReferencedObject):
     up: vector4
-    streamingCollection: hkaiStreamingCollection
-    cutter: hkaiNavMeshCutter
-    clearanceCacheManager: hkaiNavMeshClearanceCacheManager
+    streamingCollection: any
+    cutter: any
+    clearanceCacheManager: any
     performValidationChecks: bool
-    dynamicNavMeshMediator: hkaiDynamicNavMeshQueryMediator
-    dynamicNavVolumeMediator: hkaiDynamicNavVolumeMediator
-    overlapManager: hkaiOverlapManager
+    dynamicNavMeshMediator: any
+    dynamicNavVolumeMediator: any
+    overlapManager: any
     silhouetteGenerationParameters: hkaiSilhouetteGenerationParameters
     silhouetteExtrusion: float
     forceSilhouetteUpdates: bool
-    listeners: any
-    silhouetteGenerators: hkaiSilhouetteGenerator
-    obstacleGenerators: hkaiObstacleGenerator
-    avoidancePairProps: hkaiAvoidancePairProperties
-    navMeshPathRequests: any
-    navVolumePathRequests: any
+    listeners: List[any]
+    silhouetteGenerators: List[hkaiSilhouetteGenerator]
+    obstacleGenerators: List[hkaiObstacleGenerator]
+    avoidancePairProps: any
+    navMeshPathRequests: List[any]
+    navVolumePathRequests: List[any]
     isPathRequestArrayLocked: bool
     maxRequestsPerStep: int
     maxEstimatedIterationsPerStep: int
@@ -62,31 +63,64 @@ class hkaiWorld(hkReferencedObject):
     defaultVolumePathfindingInput: hkaiVolumePathfindingUtilFindPathInput
 
     def __init__(self, infile):
-        self.up = struct.unpack('>4f', infile.read(16))
-        self.streamingCollection = hkaiStreamingCollection(infile)  # TYPE_POINTER
-        self.cutter = hkaiNavMeshCutter(infile)  # TYPE_POINTER
-        self.clearanceCacheManager = hkaiNavMeshClearanceCacheManager(infile)  # TYPE_POINTER
-        self.performValidationChecks = struct.unpack('>?', infile.read(1))
-        self.dynamicNavMeshMediator = hkaiDynamicNavMeshQueryMediator(infile)  # TYPE_POINTER
-        self.dynamicNavVolumeMediator = hkaiDynamicNavVolumeMediator(infile)  # TYPE_POINTER
-        self.overlapManager = hkaiOverlapManager(infile)  # TYPE_POINTER
-        self.silhouetteGenerationParameters = hkaiSilhouetteGenerationParameters(infile)  # TYPE_STRUCT
-        self.silhouetteExtrusion = struct.unpack('>f', infile.read(4))
-        self.forceSilhouetteUpdates = struct.unpack('>?', infile.read(1))
-        self.listeners = any(infile)  # TYPE_ARRAY
-        self.silhouetteGenerators = hkaiSilhouetteGenerator(infile)  # TYPE_ARRAY
-        self.obstacleGenerators = hkaiObstacleGenerator(infile)  # TYPE_ARRAY
-        self.avoidancePairProps = hkaiAvoidancePairProperties(infile)  # TYPE_POINTER
-        self.navMeshPathRequests = any(infile)  # TYPE_ARRAY
-        self.navVolumePathRequests = any(infile)  # TYPE_ARRAY
-        self.isPathRequestArrayLocked = struct.unpack('>?', infile.read(1))
-        self.maxRequestsPerStep = struct.unpack('>i', infile.read(4))
-        self.maxEstimatedIterationsPerStep = struct.unpack('>i', infile.read(4))
-        self.priorityThreshold = struct.unpack('>i', infile.read(4))
-        self.numPathRequestsPerTask = struct.unpack('>i', infile.read(4))
-        self.numBehaviorUpdatesPerTask = struct.unpack('>i', infile.read(4))
-        self.numCharactersPerAvoidanceTask = struct.unpack('>i', infile.read(4))
-        self.maxPathSearchEdgesOut = struct.unpack('>i', infile.read(4))
-        self.maxPathSearchPointsOut = struct.unpack('>i', infile.read(4))
-        self.defaultPathfindingInput = hkaiPathfindingUtilFindPathInput(infile)  # TYPE_STRUCT
-        self.defaultVolumePathfindingInput = hkaiVolumePathfindingUtilFindPathInput(infile)  # TYPE_STRUCT
+        self.up = struct.unpack('>4f', infile.read(16))  # TYPE_VECTOR4:TYPE_VOID
+        self.streamingCollection = any(infile)  # TYPE_POINTER:TYPE_STRUCT
+        self.cutter = any(infile)  # TYPE_POINTER:TYPE_STRUCT
+        self.clearanceCacheManager = any(infile)  # TYPE_POINTER:TYPE_STRUCT
+        self.performValidationChecks = struct.unpack('>?', infile.read(1))  # TYPE_BOOL:TYPE_VOID
+        self.dynamicNavMeshMediator = any(infile)  # TYPE_POINTER:TYPE_STRUCT
+        self.dynamicNavVolumeMediator = any(infile)  # TYPE_POINTER:TYPE_STRUCT
+        self.overlapManager = any(infile)  # TYPE_POINTER:TYPE_STRUCT
+        self.silhouetteGenerationParameters = hkaiSilhouetteGenerationParameters(infile)  # TYPE_STRUCT:TYPE_VOID
+        self.silhouetteExtrusion = struct.unpack('>f', infile.read(4))  # TYPE_REAL:TYPE_VOID
+        self.forceSilhouetteUpdates = struct.unpack('>?', infile.read(1))  # TYPE_BOOL:TYPE_VOID
+        self.listeners = get_array(infile, any, 0)  # TYPE_ARRAY:TYPE_POINTER
+        self.silhouetteGenerators = get_array(infile, hkaiSilhouetteGenerator, 0)  # TYPE_ARRAY:TYPE_POINTER
+        self.obstacleGenerators = get_array(infile, hkaiObstacleGenerator, 0)  # TYPE_ARRAY:TYPE_POINTER
+        self.avoidancePairProps = any(infile)  # TYPE_POINTER:TYPE_STRUCT
+        self.navMeshPathRequests = get_array(infile, any, 0)  # TYPE_ARRAY:TYPE_VOID
+        self.navVolumePathRequests = get_array(infile, any, 0)  # TYPE_ARRAY:TYPE_VOID
+        self.isPathRequestArrayLocked = struct.unpack('>?', infile.read(1))  # TYPE_BOOL:TYPE_VOID
+        self.maxRequestsPerStep = struct.unpack('>i', infile.read(4))  # TYPE_INT32:TYPE_VOID
+        self.maxEstimatedIterationsPerStep = struct.unpack('>i', infile.read(4))  # TYPE_INT32:TYPE_VOID
+        self.priorityThreshold = struct.unpack('>i', infile.read(4))  # TYPE_INT32:TYPE_VOID
+        self.numPathRequestsPerTask = struct.unpack('>i', infile.read(4))  # TYPE_INT32:TYPE_VOID
+        self.numBehaviorUpdatesPerTask = struct.unpack('>i', infile.read(4))  # TYPE_INT32:TYPE_VOID
+        self.numCharactersPerAvoidanceTask = struct.unpack('>i', infile.read(4))  # TYPE_INT32:TYPE_VOID
+        self.maxPathSearchEdgesOut = struct.unpack('>i', infile.read(4))  # TYPE_INT32:TYPE_VOID
+        self.maxPathSearchPointsOut = struct.unpack('>i', infile.read(4))  # TYPE_INT32:TYPE_VOID
+        self.defaultPathfindingInput = hkaiPathfindingUtilFindPathInput(infile)  # TYPE_STRUCT:TYPE_VOID
+        self.defaultVolumePathfindingInput = hkaiVolumePathfindingUtilFindPathInput(infile)  # TYPE_STRUCT:TYPE_VOID
+
+    def __repr__(self):
+        return "<{class_name} up={up}, streamingCollection={streamingCollection}, cutter={cutter}, clearanceCacheManager={clearanceCacheManager}, performValidationChecks={performValidationChecks}, dynamicNavMeshMediator={dynamicNavMeshMediator}, dynamicNavVolumeMediator={dynamicNavVolumeMediator}, overlapManager={overlapManager}, silhouetteGenerationParameters={silhouetteGenerationParameters}, silhouetteExtrusion={silhouetteExtrusion}, forceSilhouetteUpdates={forceSilhouetteUpdates}, listeners=[{listeners}], silhouetteGenerators=[{silhouetteGenerators}], obstacleGenerators=[{obstacleGenerators}], avoidancePairProps={avoidancePairProps}, navMeshPathRequests=[{navMeshPathRequests}], navVolumePathRequests=[{navVolumePathRequests}], isPathRequestArrayLocked={isPathRequestArrayLocked}, maxRequestsPerStep={maxRequestsPerStep}, maxEstimatedIterationsPerStep={maxEstimatedIterationsPerStep}, priorityThreshold={priorityThreshold}, numPathRequestsPerTask={numPathRequestsPerTask}, numBehaviorUpdatesPerTask={numBehaviorUpdatesPerTask}, numCharactersPerAvoidanceTask={numCharactersPerAvoidanceTask}, maxPathSearchEdgesOut={maxPathSearchEdgesOut}, maxPathSearchPointsOut={maxPathSearchPointsOut}, defaultPathfindingInput={defaultPathfindingInput}, defaultVolumePathfindingInput={defaultVolumePathfindingInput}>".format(**{
+            "class_name": self.__class__.__name__,
+            "up": self.up,
+            "streamingCollection": self.streamingCollection,
+            "cutter": self.cutter,
+            "clearanceCacheManager": self.clearanceCacheManager,
+            "performValidationChecks": self.performValidationChecks,
+            "dynamicNavMeshMediator": self.dynamicNavMeshMediator,
+            "dynamicNavVolumeMediator": self.dynamicNavVolumeMediator,
+            "overlapManager": self.overlapManager,
+            "silhouetteGenerationParameters": self.silhouetteGenerationParameters,
+            "silhouetteExtrusion": self.silhouetteExtrusion,
+            "forceSilhouetteUpdates": self.forceSilhouetteUpdates,
+            "listeners": self.listeners,
+            "silhouetteGenerators": self.silhouetteGenerators,
+            "obstacleGenerators": self.obstacleGenerators,
+            "avoidancePairProps": self.avoidancePairProps,
+            "navMeshPathRequests": self.navMeshPathRequests,
+            "navVolumePathRequests": self.navVolumePathRequests,
+            "isPathRequestArrayLocked": self.isPathRequestArrayLocked,
+            "maxRequestsPerStep": self.maxRequestsPerStep,
+            "maxEstimatedIterationsPerStep": self.maxEstimatedIterationsPerStep,
+            "priorityThreshold": self.priorityThreshold,
+            "numPathRequestsPerTask": self.numPathRequestsPerTask,
+            "numBehaviorUpdatesPerTask": self.numBehaviorUpdatesPerTask,
+            "numCharactersPerAvoidanceTask": self.numCharactersPerAvoidanceTask,
+            "maxPathSearchEdgesOut": self.maxPathSearchEdgesOut,
+            "maxPathSearchPointsOut": self.maxPathSearchPointsOut,
+            "defaultPathfindingInput": self.defaultPathfindingInput,
+            "defaultVolumePathfindingInput": self.defaultVolumePathfindingInput,
+        })

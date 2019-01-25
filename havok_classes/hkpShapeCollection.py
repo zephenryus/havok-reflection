@@ -20,5 +20,12 @@ class hkpShapeCollection(hkpShape):
     collectionType: CollectionType
 
     def __init__(self, infile):
-        self.disableWelding = struct.unpack('>?', infile.read(1))
-        self.collectionType = CollectionType(infile)  # TYPE_ENUM
+        self.disableWelding = struct.unpack('>?', infile.read(1))  # TYPE_BOOL:TYPE_VOID
+        self.collectionType = CollectionType(infile)  # TYPE_ENUM:TYPE_UINT8
+
+    def __repr__(self):
+        return "<{class_name} disableWelding={disableWelding}, collectionType={collectionType}>".format(**{
+            "class_name": self.__class__.__name__,
+            "disableWelding": self.disableWelding,
+            "collectionType": self.collectionType,
+        })

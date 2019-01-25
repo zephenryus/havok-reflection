@@ -1,5 +1,4 @@
 from enum import Enum
-from .common import vector4, any
 import struct
 from .hkaiSearchParametersBufferSizes import hkaiSearchParametersBufferSizes
 
@@ -36,19 +35,40 @@ class hkaiNavMeshPathSearchParameters(object):
     hierarchyBufferSizes: hkaiSearchParametersBufferSizes
 
     def __init__(self, infile):
-        self.up = struct.unpack('>4f', infile.read(16))
-        self.costModifier = any(infile)  # TYPE_POINTER
-        self.edgeFilter = any(infile)  # TYPE_POINTER
-        self.validateInputs = struct.unpack('>?', infile.read(1))
-        self.outputPathFlags = any(infile)  # TYPE_FLAGS
-        self.lineOfSightFlags = any(infile)  # TYPE_FLAGS
-        self.useHierarchicalHeuristic = struct.unpack('>?', infile.read(1))
-        self.projectedRadiusCheck = struct.unpack('>?', infile.read(1))
-        self.useGrandparentDistanceCalculation = struct.unpack('>?', infile.read(1))
-        self.heuristicWeight = struct.unpack('>f', infile.read(4))
-        self.simpleRadiusThreshold = struct.unpack('>f', infile.read(4))
-        self.maximumPathLength = struct.unpack('>f', infile.read(4))
-        self.searchSphereRadius = struct.unpack('>f', infile.read(4))
-        self.searchCapsuleRadius = struct.unpack('>f', infile.read(4))
-        self.bufferSizes = hkaiSearchParametersBufferSizes(infile)  # TYPE_STRUCT
-        self.hierarchyBufferSizes = hkaiSearchParametersBufferSizes(infile)  # TYPE_STRUCT
+        self.up = struct.unpack('>4f', infile.read(16))  # TYPE_VECTOR4:TYPE_VOID
+        self.costModifier = any(infile)  # TYPE_POINTER:TYPE_VOID
+        self.edgeFilter = any(infile)  # TYPE_POINTER:TYPE_VOID
+        self.validateInputs = struct.unpack('>?', infile.read(1))  # TYPE_BOOL:TYPE_VOID
+        self.outputPathFlags = any(infile)  # TYPE_FLAGS:TYPE_UINT8
+        self.lineOfSightFlags = any(infile)  # TYPE_FLAGS:TYPE_UINT8
+        self.useHierarchicalHeuristic = struct.unpack('>?', infile.read(1))  # TYPE_BOOL:TYPE_VOID
+        self.projectedRadiusCheck = struct.unpack('>?', infile.read(1))  # TYPE_BOOL:TYPE_VOID
+        self.useGrandparentDistanceCalculation = struct.unpack('>?', infile.read(1))  # TYPE_BOOL:TYPE_VOID
+        self.heuristicWeight = struct.unpack('>f', infile.read(4))  # TYPE_REAL:TYPE_VOID
+        self.simpleRadiusThreshold = struct.unpack('>f', infile.read(4))  # TYPE_REAL:TYPE_VOID
+        self.maximumPathLength = struct.unpack('>f', infile.read(4))  # TYPE_REAL:TYPE_VOID
+        self.searchSphereRadius = struct.unpack('>f', infile.read(4))  # TYPE_REAL:TYPE_VOID
+        self.searchCapsuleRadius = struct.unpack('>f', infile.read(4))  # TYPE_REAL:TYPE_VOID
+        self.bufferSizes = hkaiSearchParametersBufferSizes(infile)  # TYPE_STRUCT:TYPE_VOID
+        self.hierarchyBufferSizes = hkaiSearchParametersBufferSizes(infile)  # TYPE_STRUCT:TYPE_VOID
+
+    def __repr__(self):
+        return "<{class_name} up={up}, costModifier={costModifier}, edgeFilter={edgeFilter}, validateInputs={validateInputs}, outputPathFlags={outputPathFlags}, lineOfSightFlags={lineOfSightFlags}, useHierarchicalHeuristic={useHierarchicalHeuristic}, projectedRadiusCheck={projectedRadiusCheck}, useGrandparentDistanceCalculation={useGrandparentDistanceCalculation}, heuristicWeight={heuristicWeight}, simpleRadiusThreshold={simpleRadiusThreshold}, maximumPathLength={maximumPathLength}, searchSphereRadius={searchSphereRadius}, searchCapsuleRadius={searchCapsuleRadius}, bufferSizes={bufferSizes}, hierarchyBufferSizes={hierarchyBufferSizes}>".format(**{
+            "class_name": self.__class__.__name__,
+            "up": self.up,
+            "costModifier": self.costModifier,
+            "edgeFilter": self.edgeFilter,
+            "validateInputs": self.validateInputs,
+            "outputPathFlags": self.outputPathFlags,
+            "lineOfSightFlags": self.lineOfSightFlags,
+            "useHierarchicalHeuristic": self.useHierarchicalHeuristic,
+            "projectedRadiusCheck": self.projectedRadiusCheck,
+            "useGrandparentDistanceCalculation": self.useGrandparentDistanceCalculation,
+            "heuristicWeight": self.heuristicWeight,
+            "simpleRadiusThreshold": self.simpleRadiusThreshold,
+            "maximumPathLength": self.maximumPathLength,
+            "searchSphereRadius": self.searchSphereRadius,
+            "searchCapsuleRadius": self.searchCapsuleRadius,
+            "bufferSizes": self.bufferSizes,
+            "hierarchyBufferSizes": self.hierarchyBufferSizes,
+        })

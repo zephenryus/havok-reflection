@@ -1,6 +1,7 @@
 from .hkaDefaultAnimatedReferenceFrame import hkaDefaultAnimatedReferenceFrame
 from enum import Enum
-from .common import any
+from typing import List
+from .common import get_array
 
 
 class ParameterType(Enum):
@@ -11,9 +12,16 @@ class ParameterType(Enum):
 
 
 class hkaParameterizedAnimationReferenceFrame(hkaDefaultAnimatedReferenceFrame):
-    parameterValues: any
-    parameterTypes: any
+    parameterValues: List[float]
+    parameterTypes: List[int]
 
     def __init__(self, infile):
-        self.parameterValues = any(infile)  # TYPE_ARRAY
-        self.parameterTypes = any(infile)  # TYPE_ARRAY
+        self.parameterValues = get_array(infile, float, 4)  # TYPE_ARRAY:TYPE_REAL
+        self.parameterTypes = get_array(infile, int, 4)  # TYPE_ARRAY:TYPE_INT32
+
+    def __repr__(self):
+        return "<{class_name} parameterValues=[{parameterValues}], parameterTypes=[{parameterTypes}]>".format(**{
+            "class_name": self.__class__.__name__,
+            "parameterValues": self.parameterValues,
+            "parameterTypes": self.parameterTypes,
+        })

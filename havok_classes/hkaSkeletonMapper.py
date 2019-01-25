@@ -13,4 +13,10 @@ class hkaSkeletonMapper(hkReferencedObject):
     mapping: hkaSkeletonMapperData
 
     def __init__(self, infile):
-        self.mapping = hkaSkeletonMapperData(infile)  # TYPE_STRUCT
+        self.mapping = hkaSkeletonMapperData(infile)  # TYPE_STRUCT:TYPE_VOID
+
+    def __repr__(self):
+        return "<{class_name} mapping={mapping}>".format(**{
+            "class_name": self.__class__.__name__,
+            "mapping": self.mapping,
+        })

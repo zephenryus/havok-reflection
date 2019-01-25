@@ -3,9 +3,16 @@ from .hclSetupMesh import hclSetupMesh
 
 
 class hclDisplayBufferSetupObject(hclBufferSetupObject):
-    setupMesh: hclSetupMesh
+    setupMesh: any
     name: str
 
     def __init__(self, infile):
-        self.setupMesh = hclSetupMesh(infile)  # TYPE_POINTER
-        self.name = struct.unpack('>s', infile.read(0))
+        self.setupMesh = any(infile)  # TYPE_POINTER:TYPE_STRUCT
+        self.name = struct.unpack('>s', infile.read(0))  # TYPE_STRINGPTR:TYPE_VOID
+
+    def __repr__(self):
+        return "<{class_name} setupMesh={setupMesh}, name=\"{name}\">".format(**{
+            "class_name": self.__class__.__name__,
+            "setupMesh": self.setupMesh,
+            "name": self.name,
+        })

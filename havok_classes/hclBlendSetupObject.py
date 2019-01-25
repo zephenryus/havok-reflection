@@ -7,9 +7,9 @@ import struct
 
 class hclBlendSetupObject(hclOperatorSetupObject):
     name: str
-    A: hclBufferSetupObject
-    B: hclBufferSetupObject
-    C: hclBufferSetupObject
+    A: any
+    B: any
+    C: any
     vertexSelection: hclVertexSelectionInput
     blendWeights: hclVertexFloatInput
     mapToScurve: bool
@@ -18,13 +18,28 @@ class hclBlendSetupObject(hclOperatorSetupObject):
     blendBitangents: bool
 
     def __init__(self, infile):
-        self.name = struct.unpack('>s', infile.read(0))
-        self.A = hclBufferSetupObject(infile)  # TYPE_POINTER
-        self.B = hclBufferSetupObject(infile)  # TYPE_POINTER
-        self.C = hclBufferSetupObject(infile)  # TYPE_POINTER
-        self.vertexSelection = hclVertexSelectionInput(infile)  # TYPE_STRUCT
-        self.blendWeights = hclVertexFloatInput(infile)  # TYPE_STRUCT
-        self.mapToScurve = struct.unpack('>?', infile.read(1))
-        self.blendNormals = struct.unpack('>?', infile.read(1))
-        self.blendTangents = struct.unpack('>?', infile.read(1))
-        self.blendBitangents = struct.unpack('>?', infile.read(1))
+        self.name = struct.unpack('>s', infile.read(0))  # TYPE_STRINGPTR:TYPE_VOID
+        self.A = any(infile)  # TYPE_POINTER:TYPE_STRUCT
+        self.B = any(infile)  # TYPE_POINTER:TYPE_STRUCT
+        self.C = any(infile)  # TYPE_POINTER:TYPE_STRUCT
+        self.vertexSelection = hclVertexSelectionInput(infile)  # TYPE_STRUCT:TYPE_VOID
+        self.blendWeights = hclVertexFloatInput(infile)  # TYPE_STRUCT:TYPE_VOID
+        self.mapToScurve = struct.unpack('>?', infile.read(1))  # TYPE_BOOL:TYPE_VOID
+        self.blendNormals = struct.unpack('>?', infile.read(1))  # TYPE_BOOL:TYPE_VOID
+        self.blendTangents = struct.unpack('>?', infile.read(1))  # TYPE_BOOL:TYPE_VOID
+        self.blendBitangents = struct.unpack('>?', infile.read(1))  # TYPE_BOOL:TYPE_VOID
+
+    def __repr__(self):
+        return "<{class_name} name=\"{name}\", A={A}, B={B}, C={C}, vertexSelection={vertexSelection}, blendWeights={blendWeights}, mapToScurve={mapToScurve}, blendNormals={blendNormals}, blendTangents={blendTangents}, blendBitangents={blendBitangents}>".format(**{
+            "class_name": self.__class__.__name__,
+            "name": self.name,
+            "A": self.A,
+            "B": self.B,
+            "C": self.C,
+            "vertexSelection": self.vertexSelection,
+            "blendWeights": self.blendWeights,
+            "mapToScurve": self.mapToScurve,
+            "blendNormals": self.blendNormals,
+            "blendTangents": self.blendTangents,
+            "blendBitangents": self.blendBitangents,
+        })

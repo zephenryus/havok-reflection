@@ -1,8 +1,9 @@
 from .hkReferencedObject import hkReferencedObject
 from enum import Enum
+from typing import List
+from .common import get_array
 from .hkaiEdgeGeometryEdge import hkaiEdgeGeometryEdge
 from .hkaiEdgeGeometryFace import hkaiEdgeGeometryFace
-from .common import any
 
 
 class FaceFlagBits(Enum):
@@ -15,13 +16,22 @@ class FaceFlagBits(Enum):
 
 
 class hkaiEdgeGeometry(hkReferencedObject):
-    edges: hkaiEdgeGeometryEdge
-    faces: hkaiEdgeGeometryFace
-    vertices: any
+    edges: List[hkaiEdgeGeometryEdge]
+    faces: List[hkaiEdgeGeometryFace]
+    vertices: List[vector4]
     zeroFace: hkaiEdgeGeometryFace
 
     def __init__(self, infile):
-        self.edges = hkaiEdgeGeometryEdge(infile)  # TYPE_ARRAY
-        self.faces = hkaiEdgeGeometryFace(infile)  # TYPE_ARRAY
-        self.vertices = any(infile)  # TYPE_ARRAY
-        self.zeroFace = hkaiEdgeGeometryFace(infile)  # TYPE_STRUCT
+        self.edges = get_array(infile, hkaiEdgeGeometryEdge, 0)  # TYPE_ARRAY:TYPE_STRUCT
+        self.faces = get_array(infile, hkaiEdgeGeometryFace, 0)  # TYPE_ARRAY:TYPE_STRUCT
+        self.vertices = get_array(infile, vector4, 16)  # TYPE_ARRAY:TYPE_VECTOR4
+        self.zeroFace = hkaiEdgeGeometryFace(infile)  # TYPE_STRUCT:TYPE_VOID
+
+    def __repr__(self):
+        return "<{class_name} edges=[{edges}], faces=[{faces}], vertices=[{vertices}], zeroFace={zeroFace}>".format(**{
+            "class_name": self.__class__.__name__,
+            "edges": self.edges,
+            "faces": self.faces,
+            "vertices": self.vertices,
+            "zeroFace": self.zeroFace,
+        })
