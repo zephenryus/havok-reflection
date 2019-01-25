@@ -1,6 +1,7 @@
 from .hkReferencedObject import hkReferencedObject
 from enum import Enum
 from .common import vector4, any
+import struct
 from .hkaiStreamingCollection import hkaiStreamingCollection
 from .hkaiNavMeshCutter import hkaiNavMeshCutter
 from .hkaiNavMeshClearanceCacheManager import hkaiNavMeshClearanceCacheManager
@@ -59,3 +60,33 @@ class hkaiWorld(hkReferencedObject):
     maxPathSearchPointsOut: int
     defaultPathfindingInput: hkaiPathfindingUtilFindPathInput
     defaultVolumePathfindingInput: hkaiVolumePathfindingUtilFindPathInput
+
+    def __init__(self, infile):
+        self.up = struct.unpack('>4f', infile.read(16))
+        self.streamingCollection = hkaiStreamingCollection(infile)  # TYPE_POINTER
+        self.cutter = hkaiNavMeshCutter(infile)  # TYPE_POINTER
+        self.clearanceCacheManager = hkaiNavMeshClearanceCacheManager(infile)  # TYPE_POINTER
+        self.performValidationChecks = struct.unpack('>?', infile.read(1))
+        self.dynamicNavMeshMediator = hkaiDynamicNavMeshQueryMediator(infile)  # TYPE_POINTER
+        self.dynamicNavVolumeMediator = hkaiDynamicNavVolumeMediator(infile)  # TYPE_POINTER
+        self.overlapManager = hkaiOverlapManager(infile)  # TYPE_POINTER
+        self.silhouetteGenerationParameters = hkaiSilhouetteGenerationParameters(infile)  # TYPE_STRUCT
+        self.silhouetteExtrusion = struct.unpack('>f', infile.read(4))
+        self.forceSilhouetteUpdates = struct.unpack('>?', infile.read(1))
+        self.listeners = any(infile)  # TYPE_ARRAY
+        self.silhouetteGenerators = hkaiSilhouetteGenerator(infile)  # TYPE_ARRAY
+        self.obstacleGenerators = hkaiObstacleGenerator(infile)  # TYPE_ARRAY
+        self.avoidancePairProps = hkaiAvoidancePairProperties(infile)  # TYPE_POINTER
+        self.navMeshPathRequests = any(infile)  # TYPE_ARRAY
+        self.navVolumePathRequests = any(infile)  # TYPE_ARRAY
+        self.isPathRequestArrayLocked = struct.unpack('>?', infile.read(1))
+        self.maxRequestsPerStep = struct.unpack('>i', infile.read(4))
+        self.maxEstimatedIterationsPerStep = struct.unpack('>i', infile.read(4))
+        self.priorityThreshold = struct.unpack('>i', infile.read(4))
+        self.numPathRequestsPerTask = struct.unpack('>i', infile.read(4))
+        self.numBehaviorUpdatesPerTask = struct.unpack('>i', infile.read(4))
+        self.numCharactersPerAvoidanceTask = struct.unpack('>i', infile.read(4))
+        self.maxPathSearchEdgesOut = struct.unpack('>i', infile.read(4))
+        self.maxPathSearchPointsOut = struct.unpack('>i', infile.read(4))
+        self.defaultPathfindingInput = hkaiPathfindingUtilFindPathInput(infile)  # TYPE_STRUCT
+        self.defaultVolumePathfindingInput = hkaiVolumePathfindingUtilFindPathInput(infile)  # TYPE_STRUCT

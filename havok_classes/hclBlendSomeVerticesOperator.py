@@ -1,6 +1,7 @@
 from .hclOperator import hclOperator
 from enum import Enum
 from .hclBlendSomeVerticesOperatorBlendEntry import hclBlendSomeVerticesOperatorBlendEntry
+import struct
 
 
 class VectorContext(Enum):
@@ -16,3 +17,12 @@ class hclBlendSomeVerticesOperator(hclOperator):
     blendNormals: bool
     blendTangents: bool
     blendBitangents: bool
+
+    def __init__(self, infile):
+        self.blendEntries = hclBlendSomeVerticesOperatorBlendEntry(infile)  # TYPE_ARRAY
+        self.bufferIdx_A = struct.unpack('>I', infile.read(4))
+        self.bufferIdx_B = struct.unpack('>I', infile.read(4))
+        self.bufferIdx_C = struct.unpack('>I', infile.read(4))
+        self.blendNormals = struct.unpack('>?', infile.read(1))
+        self.blendTangents = struct.unpack('>?', infile.read(1))
+        self.blendBitangents = struct.unpack('>?', infile.read(1))

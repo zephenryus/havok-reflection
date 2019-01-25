@@ -2,6 +2,7 @@ from .hkcdPlanarEntity import hkcdPlanarEntity
 from enum import Enum
 from .hkcdPlanarSolidNodeStorage import hkcdPlanarSolidNodeStorage
 from .hkcdPlanarGeometryPlanesCollection import hkcdPlanarGeometryPlanesCollection
+import struct
 
 
 class BuildResult(Enum):
@@ -24,3 +25,8 @@ class hkcdPlanarSolid(hkcdPlanarEntity):
     nodes: hkcdPlanarSolidNodeStorage
     planes: hkcdPlanarGeometryPlanesCollection
     rootNodeId: int
+
+    def __init__(self, infile):
+        self.nodes = hkcdPlanarSolidNodeStorage(infile)  # TYPE_POINTER
+        self.planes = hkcdPlanarGeometryPlanesCollection(infile)  # TYPE_POINTER
+        self.rootNodeId = struct.unpack('>I', infile.read(4))

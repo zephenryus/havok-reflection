@@ -10,3 +10,6 @@ class Type(Enum):
 
 class hkpRackAndPinionConstraintData(hkpConstraintData):
     atoms: hkpRackAndPinionConstraintDataAtoms
+
+    def __init__(self, infile):
+        self.atoms = hkpRackAndPinionConstraintDataAtoms(infile)  # TYPE_STRUCT

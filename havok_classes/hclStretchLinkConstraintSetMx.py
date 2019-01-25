@@ -6,3 +6,7 @@ from .hclStretchLinkConstraintSetMxSingle import hclStretchLinkConstraintSetMxSi
 class hclStretchLinkConstraintSetMx(hclConstraintSet):
     batches: hclStretchLinkConstraintSetMxBatch
     singles: hclStretchLinkConstraintSetMxSingle
+
+    def __init__(self, infile):
+        self.batches = hclStretchLinkConstraintSetMxBatch(infile)  # TYPE_ARRAY
+        self.singles = hclStretchLinkConstraintSetMxSingle(infile)  # TYPE_ARRAY

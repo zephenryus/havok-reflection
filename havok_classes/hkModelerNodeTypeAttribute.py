@@ -9,3 +9,6 @@ class ModelerType(Enum):
 
 class hkModelerNodeTypeAttribute(object):
     type: ModelerType
+
+    def __init__(self, infile):
+        self.type = ModelerType(infile)  # TYPE_ENUM

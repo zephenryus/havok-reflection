@@ -21,3 +21,11 @@ class hkxMaterialShader(hkReferencedObject):
     geomEntryName: str
     pixelEntryName: str
     data: any
+
+    def __init__(self, infile):
+        self.name = struct.unpack('>s', infile.read(0))
+        self.type = ShaderType(infile)  # TYPE_ENUM
+        self.vertexEntryName = struct.unpack('>s', infile.read(0))
+        self.geomEntryName = struct.unpack('>s', infile.read(0))
+        self.pixelEntryName = struct.unpack('>s', infile.read(0))
+        self.data = any(infile)  # TYPE_ARRAY

@@ -12,3 +12,6 @@ class MotorIndex(Enum):
 
 class hkpRagdollConstraintData(hkpConstraintData):
     atoms: hkpRagdollConstraintDataAtoms
+
+    def __init__(self, infile):
+        self.atoms = hkpRagdollConstraintDataAtoms(infile)  # TYPE_STRUCT

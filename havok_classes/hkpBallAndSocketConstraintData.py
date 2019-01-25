@@ -4,3 +4,6 @@ from .hkpBallAndSocketConstraintDataAtoms import hkpBallAndSocketConstraintDataA
 
 class hkpBallAndSocketConstraintData(hkpConstraintData):
     atoms: hkpBallAndSocketConstraintDataAtoms
+
+    def __init__(self, infile):
+        self.atoms = hkpBallAndSocketConstraintDataAtoms(infile)  # TYPE_STRUCT

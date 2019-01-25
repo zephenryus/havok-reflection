@@ -1,6 +1,7 @@
 from .hkReferencedObject import hkReferencedObject
 from enum import Enum
 from .common import any
+import struct
 from .hkaiNavMesh import hkaiNavMesh
 from .hkaiReferenceFrame import hkaiReferenceFrame
 from .hkaiNavMeshFace import hkaiNavMeshFace
@@ -44,3 +45,31 @@ class hkaiNavMeshInstance(hkReferencedObject):
     runtimeId: int
     layer: int
     clearanceCaches: hkaiNavMeshClearanceCache
+
+    def __init__(self, infile):
+        self.originalFaces = any(infile)  # TYPE_SIMPLEARRAY
+        self.originalEdges = any(infile)  # TYPE_SIMPLEARRAY
+        self.originalVertices = any(infile)  # TYPE_SIMPLEARRAY
+        self.originalFaceData = any(infile)  # TYPE_POINTER
+        self.faceDataStriding = struct.unpack('>i', infile.read(4))
+        self.originalEdgeData = any(infile)  # TYPE_POINTER
+        self.edgeDataStriding = struct.unpack('>i', infile.read(4))
+        self.originalMesh = hkaiNavMesh(infile)  # TYPE_POINTER
+        self.referenceFrame = hkaiReferenceFrame(infile)  # TYPE_STRUCT
+        self.edgeMap = any(infile)  # TYPE_ARRAY
+        self.faceMap = any(infile)  # TYPE_ARRAY
+        self.instancedFaces = hkaiNavMeshFace(infile)  # TYPE_ARRAY
+        self.instancedEdges = hkaiNavMeshEdge(infile)  # TYPE_ARRAY
+        self.ownedFaces = hkaiNavMeshFace(infile)  # TYPE_ARRAY
+        self.ownedEdges = hkaiNavMeshEdge(infile)  # TYPE_ARRAY
+        self.ownedVertices = any(infile)  # TYPE_ARRAY
+        self.faceFlags = any(infile)  # TYPE_ARRAY
+        self.cuttingInfo = any(infile)  # TYPE_ARRAY
+        self.instancedFaceData = any(infile)  # TYPE_ARRAY
+        self.instancedEdgeData = any(infile)  # TYPE_ARRAY
+        self.ownedFaceData = any(infile)  # TYPE_ARRAY
+        self.ownedEdgeData = any(infile)  # TYPE_ARRAY
+        self.sectionUid = struct.unpack('>I', infile.read(4))
+        self.runtimeId = struct.unpack('>i', infile.read(4))
+        self.layer = struct.unpack('>I', infile.read(4))
+        self.clearanceCaches = hkaiNavMeshClearanceCache(infile)  # TYPE_ARRAY

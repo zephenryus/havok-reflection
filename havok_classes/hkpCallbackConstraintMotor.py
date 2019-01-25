@@ -2,6 +2,7 @@ from .hkpLimitedForceConstraintMotor import hkpLimitedForceConstraintMotor
 from enum import Enum
 from .common import any
 from .enums import CallbackType
+import struct
 
 
 class CallbackType(Enum):
@@ -18,3 +19,10 @@ class hkpCallbackConstraintMotor(hkpLimitedForceConstraintMotor):
     userData0: int
     userData1: int
     userData2: int
+
+    def __init__(self, infile):
+        self.callbackFunc = any(infile)  # TYPE_POINTER
+        self.callbackType = CallbackType(infile)  # TYPE_ENUM
+        self.userData0 = struct.unpack('>L', infile.read(8))
+        self.userData1 = struct.unpack('>L', infile.read(8))
+        self.userData2 = struct.unpack('>L', infile.read(8))

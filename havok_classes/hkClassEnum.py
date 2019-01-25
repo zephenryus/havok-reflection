@@ -13,3 +13,9 @@ class hkClassEnum(object):
     items: hkClassEnumItem
     attributes: hkCustomAttributes
     flags: any
+
+    def __init__(self, infile):
+        self.name = str(infile)  # TYPE_CSTRING
+        self.items = hkClassEnumItem(infile)  # TYPE_SIMPLEARRAY
+        self.attributes = hkCustomAttributes(infile)  # TYPE_POINTER
+        self.flags = any(infile)  # TYPE_FLAGS

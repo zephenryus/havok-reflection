@@ -1,6 +1,7 @@
 from enum import Enum
 from .hclBufferLayoutBufferElement import hclBufferLayoutBufferElement
 from .hclBufferLayoutSlot import hclBufferLayoutSlot
+import struct
 from .enums import TriangleFormat
 
 
@@ -21,3 +22,9 @@ class hclBufferLayout(object):
     slots: hclBufferLayoutSlot
     numSlots: int
     triangleFormat: TriangleFormat
+
+    def __init__(self, infile):
+        self.elementsLayout = hclBufferLayoutBufferElement(infile)  # TYPE_STRUCT
+        self.slots = hclBufferLayoutSlot(infile)  # TYPE_STRUCT
+        self.numSlots = struct.unpack('>B', infile.read(1))
+        self.triangleFormat = TriangleFormat(infile)  # TYPE_ENUM

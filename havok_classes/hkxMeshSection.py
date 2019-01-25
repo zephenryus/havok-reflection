@@ -15,3 +15,12 @@ class hkxMeshSection(hkReferencedObject):
     vertexAnimations: hkxVertexAnimation
     linearKeyFrameHints: any
     boneMatrixMap: hkMeshBoneIndexMapping
+
+    def __init__(self, infile):
+        self.vertexBuffer = hkxVertexBuffer(infile)  # TYPE_POINTER
+        self.indexBuffers = hkxIndexBuffer(infile)  # TYPE_ARRAY
+        self.material = hkxMaterial(infile)  # TYPE_POINTER
+        self.userChannels = hkReferencedObject(infile)  # TYPE_ARRAY
+        self.vertexAnimations = hkxVertexAnimation(infile)  # TYPE_ARRAY
+        self.linearKeyFrameHints = any(infile)  # TYPE_ARRAY
+        self.boneMatrixMap = hkMeshBoneIndexMapping(infile)  # TYPE_ARRAY

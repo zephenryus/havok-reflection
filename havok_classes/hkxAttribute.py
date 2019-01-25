@@ -14,3 +14,7 @@ class Hint(Enum):
 class hkxAttribute(object):
     name: str
     value: hkReferencedObject
+
+    def __init__(self, infile):
+        self.name = struct.unpack('>s', infile.read(0))
+        self.value = hkReferencedObject(infile)  # TYPE_POINTER

@@ -12,3 +12,7 @@ class VertexSelectionType(Enum):
 class hclVertexSelectionInput(object):
     type: VertexSelectionType
     channelName: str
+
+    def __init__(self, infile):
+        self.type = VertexSelectionType(infile)  # TYPE_ENUM
+        self.channelName = struct.unpack('>s', infile.read(0))

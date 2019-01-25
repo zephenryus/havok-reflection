@@ -1,4 +1,5 @@
 from enum import Enum
+import struct
 from .enums import SearchStatus, TerminationCause
 
 
@@ -25,3 +26,10 @@ class hkaiAstarOutputParameters(object):
     pathLength: float
     status: SearchStatus
     terminationCause: TerminationCause
+
+    def __init__(self, infile):
+        self.numIterations = struct.unpack('>i', infile.read(4))
+        self.goalIndex = struct.unpack('>i', infile.read(4))
+        self.pathLength = struct.unpack('>f', infile.read(4))
+        self.status = SearchStatus(infile)  # TYPE_ENUM
+        self.terminationCause = TerminationCause(infile)  # TYPE_ENUM

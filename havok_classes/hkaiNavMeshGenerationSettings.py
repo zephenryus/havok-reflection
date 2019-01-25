@@ -1,5 +1,6 @@
 from .hkReferencedObject import hkReferencedObject
 from enum import Enum
+import struct
 from .common import vector4, any
 from .enums import TriangleWinding, EdgeMatchingMetric, CharacterWidthUsage
 from .hkaiNavMeshEdgeMatchingParameters import hkaiNavMeshEdgeMatchingParameters
@@ -71,3 +72,39 @@ class hkaiNavMeshGenerationSettings(hkReferencedObject):
     saveInputSnapshot: bool
     snapshotFilename: str
     overrideSettings: hkaiNavMeshGenerationSettingsOverrideSettings
+
+    def __init__(self, infile):
+        self.characterHeight = struct.unpack('>f', infile.read(4))
+        self.up = struct.unpack('>4f', infile.read(16))
+        self.quantizationGridSize = struct.unpack('>f', infile.read(4))
+        self.maxWalkableSlope = struct.unpack('>f', infile.read(4))
+        self.triangleWinding = TriangleWinding(infile)  # TYPE_ENUM
+        self.degenerateAreaThreshold = struct.unpack('>f', infile.read(4))
+        self.degenerateWidthThreshold = struct.unpack('>f', infile.read(4))
+        self.convexThreshold = struct.unpack('>f', infile.read(4))
+        self.maxNumEdgesPerFace = struct.unpack('>i', infile.read(4))
+        self.edgeMatchingParams = hkaiNavMeshEdgeMatchingParameters(infile)  # TYPE_STRUCT
+        self.edgeMatchingMetric = EdgeMatchingMetric(infile)  # TYPE_ENUM
+        self.edgeConnectionIterations = struct.unpack('>i', infile.read(4))
+        self.regionPruningSettings = hkaiNavMeshGenerationSettingsRegionPruningSettings(infile)  # TYPE_STRUCT
+        self.wallClimbingSettings = hkaiNavMeshGenerationSettingsWallClimbingSettings(infile)  # TYPE_STRUCT
+        self.boundsAabb = hkAabb(infile)  # TYPE_STRUCT
+        self.carvers = hkaiCarver(infile)  # TYPE_ARRAY
+        self.painters = hkaiMaterialPainter(infile)  # TYPE_ARRAY
+        self.painterOverlapCallback = any(infile)  # TYPE_POINTER
+        self.defaultConstructionProperties = any(infile)  # TYPE_FLAGS
+        self.materialMap = hkaiNavMeshGenerationSettingsMaterialConstructionPair(infile)  # TYPE_ARRAY
+        self.fixupOverlappingTriangles = struct.unpack('>?', infile.read(1))
+        self.overlappingTrianglesSettings = hkaiOverlappingTrianglesSettings(infile)  # TYPE_STRUCT
+        self.weldInputVertices = struct.unpack('>?', infile.read(1))
+        self.weldThreshold = struct.unpack('>f', infile.read(4))
+        self.minCharacterWidth = struct.unpack('>f', infile.read(4))
+        self.characterWidthUsage = CharacterWidthUsage(infile)  # TYPE_ENUM
+        self.enableSimplification = struct.unpack('>?', infile.read(1))
+        self.simplificationSettings = hkaiNavMeshSimplificationUtilsSettings(infile)  # TYPE_STRUCT
+        self.carvedMaterialDeprecated = struct.unpack('>i', infile.read(4))
+        self.carvedCuttingMaterialDeprecated = struct.unpack('>i', infile.read(4))
+        self.checkEdgeGeometryConsistency = struct.unpack('>?', infile.read(1))
+        self.saveInputSnapshot = struct.unpack('>?', infile.read(1))
+        self.snapshotFilename = struct.unpack('>s', infile.read(0))
+        self.overrideSettings = hkaiNavMeshGenerationSettingsOverrideSettings(infile)  # TYPE_ARRAY

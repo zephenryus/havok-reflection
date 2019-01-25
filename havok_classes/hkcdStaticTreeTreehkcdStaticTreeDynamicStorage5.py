@@ -4,3 +4,6 @@ from .hkAabb import hkAabb
 
 class hkcdStaticTreeTreehkcdStaticTreeDynamicStorage5(hkcdStaticTreeDynamicStorage5):
     domain: hkAabb
+
+    def __init__(self, infile):
+        self.domain = hkAabb(infile)  # TYPE_STRUCT

@@ -11,3 +11,7 @@ class FlagBits(Enum):
 class hkaiCarver(hkReferencedObject):
     volume: hkaiVolume
     flags: any
+
+    def __init__(self, infile):
+        self.volume = hkaiVolume(infile)  # TYPE_POINTER
+        self.flags = any(infile)  # TYPE_FLAGS

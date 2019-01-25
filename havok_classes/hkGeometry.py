@@ -12,3 +12,7 @@ class GeometryType(Enum):
 class hkGeometry(hkReferencedObject):
     vertices: any
     triangles: hkGeometryTriangle
+
+    def __init__(self, infile):
+        self.vertices = any(infile)  # TYPE_ARRAY
+        self.triangles = hkGeometryTriangle(infile)  # TYPE_ARRAY

@@ -2,6 +2,7 @@ from enum import Enum
 from .hkClass import hkClass
 from .hkClassEnum import hkClassEnum
 from .enums import Type
+import struct
 from .common import any
 from .hkCustomAttributes import hkCustomAttributes
 
@@ -74,3 +75,14 @@ class hkClassMember(object):
     flags: any
     offset: int
     attributes: hkCustomAttributes
+
+    def __init__(self, infile):
+        self.name = str(infile)  # TYPE_CSTRING
+        self.class = hkClass(infile)  # TYPE_POINTER
+        self.enum = hkClassEnum(infile)  # TYPE_POINTER
+        self.type = Type(infile)  # TYPE_ENUM
+        self.subtype = Type(infile)  # TYPE_ENUM
+        self.cArraySize = struct.unpack('>h', infile.read(2))
+        self.flags = any(infile)  # TYPE_FLAGS
+        self.offset = struct.unpack('>H', infile.read(2))
+        self.attributes = hkCustomAttributes(infile)  # TYPE_POINTER

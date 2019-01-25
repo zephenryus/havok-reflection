@@ -23,3 +23,8 @@ class hkaiNavMeshClearanceCacheManager(hkReferencedObject):
     registrations: hkaiNavMeshClearanceCacheManagerRegistration
     cacheInfos: hkaiNavMeshClearanceCacheManagerCacheInfo
     defaultOption: DefaultCachingOption
+
+    def __init__(self, infile):
+        self.registrations = hkaiNavMeshClearanceCacheManagerRegistration(infile)  # TYPE_ARRAY
+        self.cacheInfos = hkaiNavMeshClearanceCacheManagerCacheInfo(infile)  # TYPE_ARRAY
+        self.defaultOption = DefaultCachingOption(infile)  # TYPE_ENUM

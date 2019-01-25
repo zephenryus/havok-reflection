@@ -18,3 +18,11 @@ class hkaAnimationBinding(hkReferencedObject):
     floatTrackToFloatSlotIndices: any
     partitionIndices: any
     blendHint: BlendHint
+
+    def __init__(self, infile):
+        self.originalSkeletonName = struct.unpack('>s', infile.read(0))
+        self.animation = hkaAnimation(infile)  # TYPE_POINTER
+        self.transformTrackToBoneIndices = any(infile)  # TYPE_ARRAY
+        self.floatTrackToFloatSlotIndices = any(infile)  # TYPE_ARRAY
+        self.partitionIndices = any(infile)  # TYPE_ARRAY
+        self.blendHint = BlendHint(infile)  # TYPE_ENUM

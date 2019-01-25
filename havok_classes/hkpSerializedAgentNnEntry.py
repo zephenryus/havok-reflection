@@ -1,6 +1,7 @@
 from .hkReferencedObject import hkReferencedObject
 from enum import Enum
 from .hkpEntity import hkpEntity
+import struct
 from .enums import SerializedAgentType
 from .hkpSimpleContactConstraintAtom import hkpSimpleContactConstraintAtom
 from .common import any
@@ -36,3 +37,19 @@ class hkpSerializedAgentNnEntry(hkReferencedObject):
     trackInfo: hkpSerializedTrack1nInfo
     endianCheckBuffer: int
     version: int
+
+    def __init__(self, infile):
+        self.bodyA = hkpEntity(infile)  # TYPE_POINTER
+        self.bodyB = hkpEntity(infile)  # TYPE_POINTER
+        self.bodyAId = struct.unpack('>L', infile.read(8))
+        self.bodyBId = struct.unpack('>L', infile.read(8))
+        self.useEntityIds = struct.unpack('>?', infile.read(1))
+        self.agentType = SerializedAgentType(infile)  # TYPE_ENUM
+        self.atom = hkpSimpleContactConstraintAtom(infile)  # TYPE_STRUCT
+        self.propertiesStream = any(infile)  # TYPE_ARRAY
+        self.contactPoints = hkContactPoint(infile)  # TYPE_ARRAY
+        self.cpIdMgr = any(infile)  # TYPE_ARRAY
+        self.nnEntryData = struct.unpack('>B', infile.read(1))
+        self.trackInfo = hkpSerializedTrack1nInfo(infile)  # TYPE_STRUCT
+        self.endianCheckBuffer = struct.unpack('>B', infile.read(1))
+        self.version = struct.unpack('>I', infile.read(4))

@@ -15,3 +15,13 @@ class hclSceneDataSetupMesh(hclSetupMesh):
     triangleChannels: any
     edgeChannels: any
     meshBufferInterfaces: hclSceneDataSetupMeshSection
+
+    def __init__(self, infile):
+        self.node = hkxNode(infile)  # TYPE_POINTER
+        self.worldFromMesh = any(infile)  # TYPE_MATRIX4
+        self.mesh = hkxMesh(infile)  # TYPE_POINTER
+        self.skinBinding = hkxSkinBinding(infile)  # TYPE_POINTER
+        self.vertexChannels = any(infile)  # TYPE_ARRAY
+        self.triangleChannels = any(infile)  # TYPE_ARRAY
+        self.edgeChannels = any(infile)  # TYPE_ARRAY
+        self.meshBufferInterfaces = hclSceneDataSetupMeshSection(infile)  # TYPE_ARRAY

@@ -1,4 +1,5 @@
 from enum import Enum
+import struct
 
 
 class Type(Enum):
@@ -11,3 +12,6 @@ class Type(Enum):
 
 class hkcdStaticMeshTreeBasePrimitive(object):
     indices: int
+
+    def __init__(self, infile):
+        self.indices = struct.unpack('>B', infile.read(1))

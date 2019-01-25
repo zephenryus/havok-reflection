@@ -1,4 +1,5 @@
 from enum import Enum
+import struct
 from .hkUFloat8 import hkUFloat8
 
 
@@ -15,3 +16,10 @@ class hkContactPointMaterial(object):
     restitution: int
     maxImpulse: hkUFloat8
     flags: int
+
+    def __init__(self, infile):
+        self.userData = struct.unpack('>L', infile.read(8))
+        self.friction = hkUFloat8(infile)  # TYPE_STRUCT
+        self.restitution = struct.unpack('>B', infile.read(1))
+        self.maxImpulse = hkUFloat8(infile)  # TYPE_STRUCT
+        self.flags = struct.unpack('>B', infile.read(1))

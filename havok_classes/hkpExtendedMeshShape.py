@@ -2,6 +2,7 @@ from .hkpShapeCollection import hkpShapeCollection
 from enum import Enum
 from .hkpExtendedMeshShapeTrianglesSubpart import hkpExtendedMeshShapeTrianglesSubpart
 from .common import vector4, any
+import struct
 from .hkpExtendedMeshShapeShapesSubpart import hkpExtendedMeshShapeShapesSubpart
 from .enums import WeldingType
 
@@ -49,3 +50,18 @@ class hkpExtendedMeshShape(hkpShapeCollection):
     cachedNumChildShapes: int
     triangleRadius: float
     padding: int
+
+    def __init__(self, infile):
+        self.embeddedTrianglesSubpart = hkpExtendedMeshShapeTrianglesSubpart(infile)  # TYPE_STRUCT
+        self.aabbHalfExtents = struct.unpack('>4f', infile.read(16))
+        self.aabbCenter = struct.unpack('>4f', infile.read(16))
+        self.materialClass = any(infile)  # TYPE_POINTER
+        self.numBitsForSubpartIndex = struct.unpack('>i', infile.read(4))
+        self.trianglesSubparts = hkpExtendedMeshShapeTrianglesSubpart(infile)  # TYPE_ARRAY
+        self.shapesSubparts = hkpExtendedMeshShapeShapesSubpart(infile)  # TYPE_ARRAY
+        self.weldingInfo = any(infile)  # TYPE_ARRAY
+        self.weldingType = WeldingType(infile)  # TYPE_ENUM
+        self.defaultCollisionFilterInfo = struct.unpack('>I', infile.read(4))
+        self.cachedNumChildShapes = struct.unpack('>i', infile.read(4))
+        self.triangleRadius = struct.unpack('>f', infile.read(4))
+        self.padding = struct.unpack('>i', infile.read(4))

@@ -4,3 +4,6 @@ from .hkpSerializedDisplayRbTransformsDisplayTransformPair import hkpSerializedD
 
 class hkpSerializedDisplayRbTransforms(hkReferencedObject):
     transforms: hkpSerializedDisplayRbTransformsDisplayTransformPair
+
+    def __init__(self, infile):
+        self.transforms = hkpSerializedDisplayRbTransformsDisplayTransformPair(infile)  # TYPE_ARRAY

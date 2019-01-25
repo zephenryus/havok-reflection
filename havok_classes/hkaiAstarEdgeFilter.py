@@ -10,3 +10,6 @@ class EdgeFilterType(Enum):
 
 class hkaiAstarEdgeFilter(hkReferencedObject):
     type: EdgeFilterType
+
+    def __init__(self, infile):
+        self.type = EdgeFilterType(infile)  # TYPE_ENUM

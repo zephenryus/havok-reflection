@@ -12,3 +12,7 @@ class EdgeSelectionType(Enum):
 class hclEdgeSelectionInput(object):
     type: EdgeSelectionType
     channelName: str
+
+    def __init__(self, infile):
+        self.type = EdgeSelectionType(infile)  # TYPE_ENUM
+        self.channelName = struct.unpack('>s', infile.read(0))

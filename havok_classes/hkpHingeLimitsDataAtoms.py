@@ -14,3 +14,8 @@ class hkpHingeLimitsDataAtoms(object):
     rotations: hkpSetLocalRotationsConstraintAtom
     angLimit: hkpAngLimitConstraintAtom
     2dAng: hkp2dAngConstraintAtom
+
+    def __init__(self, infile):
+        self.rotations = hkpSetLocalRotationsConstraintAtom(infile)  # TYPE_STRUCT
+        self.angLimit = hkpAngLimitConstraintAtom(infile)  # TYPE_STRUCT
+        self.2dAng = hkp2dAngConstraintAtom(infile)  # TYPE_STRUCT

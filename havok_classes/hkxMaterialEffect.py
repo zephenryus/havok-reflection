@@ -18,3 +18,8 @@ class hkxMaterialEffect(hkReferencedObject):
     name: str
     type: EffectType
     data: any
+
+    def __init__(self, infile):
+        self.name = struct.unpack('>s', infile.read(0))
+        self.type = EffectType(infile)  # TYPE_ENUM
+        self.data = any(infile)  # TYPE_ARRAY

@@ -1,6 +1,7 @@
 from .hkReferencedObject import hkReferencedObject
 from enum import Enum
 from .enums import MotionType
+import struct
 from .hkMotionState import hkMotionState
 from .common import vector4
 from .hkpMaxSizeMotion import hkpMaxSizeMotion
@@ -31,3 +32,17 @@ class hkpMotion(hkReferencedObject):
     savedMotion: hkpMaxSizeMotion
     savedQualityTypeIndex: int
     gravityFactor: int
+
+    def __init__(self, infile):
+        self.type = MotionType(infile)  # TYPE_ENUM
+        self.deactivationIntegrateCounter = struct.unpack('>B', infile.read(1))
+        self.deactivationNumInactiveFrames = struct.unpack('>H', infile.read(2))
+        self.motionState = hkMotionState(infile)  # TYPE_STRUCT
+        self.inertiaAndMassInv = struct.unpack('>4f', infile.read(16))
+        self.linearVelocity = struct.unpack('>4f', infile.read(16))
+        self.angularVelocity = struct.unpack('>4f', infile.read(16))
+        self.deactivationRefPosition = struct.unpack('>4f', infile.read(16))
+        self.deactivationRefOrientation = struct.unpack('>I', infile.read(4))
+        self.savedMotion = hkpMaxSizeMotion(infile)  # TYPE_POINTER
+        self.savedQualityTypeIndex = struct.unpack('>H', infile.read(2))
+        self.gravityFactor = struct.unpack('>h', infile.read(2))

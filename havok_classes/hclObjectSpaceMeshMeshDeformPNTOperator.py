@@ -6,3 +6,7 @@ from .hclObjectSpaceDeformerLocalBlockUnpackedPNT import hclObjectSpaceDeformerL
 class hclObjectSpaceMeshMeshDeformPNTOperator(hclObjectSpaceMeshMeshDeformOperator):
     localPNTs: hclObjectSpaceDeformerLocalBlockPNT
     localUnpackedPNTs: hclObjectSpaceDeformerLocalBlockUnpackedPNT
+
+    def __init__(self, infile):
+        self.localPNTs = hclObjectSpaceDeformerLocalBlockPNT(infile)  # TYPE_ARRAY
+        self.localUnpackedPNTs = hclObjectSpaceDeformerLocalBlockUnpackedPNT(infile)  # TYPE_ARRAY

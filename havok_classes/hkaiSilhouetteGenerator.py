@@ -1,5 +1,6 @@
 from .hkReferencedObject import hkReferencedObject
 from enum import Enum
+import struct
 from .enums import GeneratorType
 from .hkaiConvexSilhouetteSet import hkaiConvexSilhouetteSet
 from .hkQTransform import hkQTransform
@@ -38,3 +39,12 @@ class hkaiSilhouetteGenerator(hkReferencedObject):
     materialId: int
     cachedSilhouettes: hkaiConvexSilhouetteSet
     transform: hkQTransform
+
+    def __init__(self, infile):
+        self.userData = struct.unpack('>L', infile.read(8))
+        self.lazyRecomputeDisplacementThreshold = struct.unpack('>f', infile.read(4))
+        self.type = GeneratorType(infile)  # TYPE_ENUM
+        self.forceGenerateOntoPpu = struct.unpack('>B', infile.read(1))
+        self.materialId = struct.unpack('>i', infile.read(4))
+        self.cachedSilhouettes = hkaiConvexSilhouetteSet(infile)  # TYPE_POINTER
+        self.transform = hkQTransform(infile)  # TYPE_STRUCT

@@ -1,4 +1,5 @@
 from .hkaiSingleCharacterBehavior import hkaiSingleCharacterBehavior
+import struct
 from .hkaiGateFollowingBehaviorRequestedGoalPoint import hkaiGateFollowingBehaviorRequestedGoalPoint
 from .hkaiGatePath import hkaiGatePath
 from .hkaiGatePathTraversalState import hkaiGatePathTraversalState
@@ -14,3 +15,12 @@ class hkaiGateFollowingBehavior(hkaiSingleCharacterBehavior):
     pathFollowingProperties: hkaiPathFollowingProperties
     newCharacterState: State
     savedCharacterState: State
+
+    def __init__(self, infile):
+        self.updateQuerySize = struct.unpack('>f', infile.read(4))
+        self.requestedGoalPoints = hkaiGateFollowingBehaviorRequestedGoalPoint(infile)  # TYPE_ARRAY
+        self.gatePath = hkaiGatePath(infile)  # TYPE_POINTER
+        self.traversalState = hkaiGatePathTraversalState(infile)  # TYPE_STRUCT
+        self.pathFollowingProperties = hkaiPathFollowingProperties(infile)  # TYPE_POINTER
+        self.newCharacterState = State(infile)  # TYPE_ENUM
+        self.savedCharacterState = State(infile)  # TYPE_ENUM

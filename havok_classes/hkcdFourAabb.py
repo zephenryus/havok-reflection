@@ -1,5 +1,6 @@
 from enum import Enum
 from .common import vector4
+import struct
 
 
 class BoundIndex(Enum):
@@ -18,3 +19,11 @@ class hkcdFourAabb(object):
     hy: vector4
     lz: vector4
     hz: vector4
+
+    def __init__(self, infile):
+        self.lx = struct.unpack('>4f', infile.read(16))
+        self.hx = struct.unpack('>4f', infile.read(16))
+        self.ly = struct.unpack('>4f', infile.read(16))
+        self.hy = struct.unpack('>4f', infile.read(16))
+        self.lz = struct.unpack('>4f', infile.read(16))
+        self.hz = struct.unpack('>4f', infile.read(16))

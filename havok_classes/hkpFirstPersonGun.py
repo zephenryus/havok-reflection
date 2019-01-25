@@ -38,3 +38,9 @@ class hkpFirstPersonGun(hkReferencedObject):
     name: str
     keyboardKey: KeyboardKey
     listeners: any
+
+    def __init__(self, infile):
+        self.type = enumerate(infile)  # TYPE_ENUM
+        self.name = struct.unpack('>s', infile.read(0))
+        self.keyboardKey = KeyboardKey(infile)  # TYPE_ENUM
+        self.listeners = any(infile)  # TYPE_ARRAY

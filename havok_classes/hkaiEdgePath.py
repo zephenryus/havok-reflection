@@ -2,6 +2,7 @@ from .hkReferencedObject import hkReferencedObject
 from enum import Enum
 from .hkaiEdgePathEdge import hkaiEdgePathEdge
 from .common import any
+import struct
 
 
 class PpivResult(Enum):
@@ -17,3 +18,11 @@ class hkaiEdgePath(hkReferencedObject):
     leftTurnRadius: float
     rightTurnRadius: float
     characterRadius: float
+
+    def __init__(self, infile):
+        self.edges = hkaiEdgePathEdge(infile)  # TYPE_ARRAY
+        self.edgeData = any(infile)  # TYPE_ARRAY
+        self.edgeDataStriding = struct.unpack('>i', infile.read(4))
+        self.leftTurnRadius = struct.unpack('>f', infile.read(4))
+        self.rightTurnRadius = struct.unpack('>f', infile.read(4))
+        self.characterRadius = struct.unpack('>f', infile.read(4))

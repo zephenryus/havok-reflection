@@ -4,3 +4,6 @@ from .hkpWheelFrictionConstraintDataAtoms import hkpWheelFrictionConstraintDataA
 
 class hkpWheelFrictionConstraintData(hkpConstraintData):
     atoms: hkpWheelFrictionConstraintDataAtoms
+
+    def __init__(self, infile):
+        self.atoms = hkpWheelFrictionConstraintDataAtoms(infile)  # TYPE_STRUCT

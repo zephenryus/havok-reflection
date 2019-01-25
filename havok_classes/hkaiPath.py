@@ -20,3 +20,7 @@ class ReferenceFrame(Enum):
 class hkaiPath(hkReferencedObject):
     points: hkaiPathPathPoint
     referenceFrame: ReferenceFrame
+
+    def __init__(self, infile):
+        self.points = hkaiPathPathPoint(infile)  # TYPE_ARRAY
+        self.referenceFrame = ReferenceFrame(infile)  # TYPE_ENUM

@@ -1,5 +1,6 @@
 from .hkReferencedObject import hkReferencedObject
 from enum import Enum
+import struct
 from .hkpWorld import hkpWorld
 from .enums import LastProcessingStep
 
@@ -31,3 +32,14 @@ class hkpSimulation(hkReferencedObject):
     simulateUntilTime: float
     frameMarkerPsiSnap: float
     previousStepResult: int
+
+    def __init__(self, infile):
+        self.determinismCheckFrameCounter = struct.unpack('>I', infile.read(4))
+        self.world = hkpWorld(infile)  # TYPE_POINTER
+        self.lastProcessingStep = LastProcessingStep(infile)  # TYPE_ENUM
+        self.currentTime = struct.unpack('>f', infile.read(4))
+        self.currentPsiTime = struct.unpack('>f', infile.read(4))
+        self.physicsDeltaTime = struct.unpack('>f', infile.read(4))
+        self.simulateUntilTime = struct.unpack('>f', infile.read(4))
+        self.frameMarkerPsiSnap = struct.unpack('>f', infile.read(4))
+        self.previousStepResult = struct.unpack('>I', infile.read(4))

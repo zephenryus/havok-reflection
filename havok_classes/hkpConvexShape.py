@@ -1,5 +1,6 @@
 from .hkpSphereRepShape import hkpSphereRepShape
 from enum import Enum
+import struct
 
 
 class WeldResult(Enum):
@@ -10,3 +11,6 @@ class WeldResult(Enum):
 
 class hkpConvexShape(hkpSphereRepShape):
     radius: float
+
+    def __init__(self, infile):
+        self.radius = struct.unpack('>f', infile.read(4))

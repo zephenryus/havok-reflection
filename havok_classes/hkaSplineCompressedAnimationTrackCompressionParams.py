@@ -1,4 +1,5 @@
 from enum import Enum
+import struct
 from .enums import RotationQuantization, ScalarQuantization
 
 
@@ -29,3 +30,17 @@ class hkaSplineCompressedAnimationTrackCompressionParams(object):
     translationQuantizationType: ScalarQuantization
     scaleQuantizationType: ScalarQuantization
     floatQuantizationType: ScalarQuantization
+
+    def __init__(self, infile):
+        self.rotationTolerance = struct.unpack('>f', infile.read(4))
+        self.translationTolerance = struct.unpack('>f', infile.read(4))
+        self.scaleTolerance = struct.unpack('>f', infile.read(4))
+        self.floatingTolerance = struct.unpack('>f', infile.read(4))
+        self.rotationDegree = struct.unpack('>H', infile.read(2))
+        self.translationDegree = struct.unpack('>H', infile.read(2))
+        self.scaleDegree = struct.unpack('>H', infile.read(2))
+        self.floatingDegree = struct.unpack('>H', infile.read(2))
+        self.rotationQuantizationType = RotationQuantization(infile)  # TYPE_ENUM
+        self.translationQuantizationType = ScalarQuantization(infile)  # TYPE_ENUM
+        self.scaleQuantizationType = ScalarQuantization(infile)  # TYPE_ENUM
+        self.floatQuantizationType = ScalarQuantization(infile)  # TYPE_ENUM

@@ -5,6 +5,7 @@ from .hkaiNavVolumeEdge import hkaiNavVolumeEdge
 from .hkaiStreamingSet import hkaiStreamingSet
 from .hkAabb import hkAabb
 from .common import vector4
+import struct
 
 
 class Constants(Enum):
@@ -25,3 +26,13 @@ class hkaiNavVolume(hkReferencedObject):
     quantizationOffset: vector4
     res: int
     userData: int
+
+    def __init__(self, infile):
+        self.cells = hkaiNavVolumeCell(infile)  # TYPE_ARRAY
+        self.edges = hkaiNavVolumeEdge(infile)  # TYPE_ARRAY
+        self.streamingSets = hkaiStreamingSet(infile)  # TYPE_ARRAY
+        self.aabb = hkAabb(infile)  # TYPE_STRUCT
+        self.quantizationScale = struct.unpack('>4f', infile.read(16))
+        self.quantizationOffset = struct.unpack('>4f', infile.read(16))
+        self.res = struct.unpack('>i', infile.read(4))
+        self.userData = struct.unpack('>L', infile.read(8))

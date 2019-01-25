@@ -1,5 +1,6 @@
 from enum import Enum
 from .enums import ResponseType
+import struct
 
 
 class ResponseType(Enum):
@@ -15,3 +16,9 @@ class hkpMaterial(object):
     rollingFrictionMultiplier: int
     friction: float
     restitution: float
+
+    def __init__(self, infile):
+        self.responseType = ResponseType(infile)  # TYPE_ENUM
+        self.rollingFrictionMultiplier = struct.unpack('>h', infile.read(2))
+        self.friction = struct.unpack('>f', infile.read(4))
+        self.restitution = struct.unpack('>f', infile.read(4))

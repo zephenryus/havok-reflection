@@ -13,3 +13,8 @@ class hkcdStaticMeshTreehkcdStaticMeshTreeCommonConfigunsignedintunsignedlonglon
     packedVertices: any
     sharedVertices: any
     primitiveDataRuns: hkpBvCompressedMeshShapeTreeDataRun
+
+    def __init__(self, infile):
+        self.packedVertices = any(infile)  # TYPE_ARRAY
+        self.sharedVertices = any(infile)  # TYPE_ARRAY
+        self.primitiveDataRuns = hkpBvCompressedMeshShapeTreeDataRun(infile)  # TYPE_ARRAY

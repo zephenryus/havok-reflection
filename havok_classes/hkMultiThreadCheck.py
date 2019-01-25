@@ -1,4 +1,5 @@
 from enum import Enum
+import struct
 
 
 class AccessType(Enum):
@@ -17,3 +18,9 @@ class hkMultiThreadCheck(object):
     stackTraceId: int
     markCount: int
     markBitStack: int
+
+    def __init__(self, infile):
+        self.threadId = struct.unpack('>I', infile.read(4))
+        self.stackTraceId = struct.unpack('>i', infile.read(4))
+        self.markCount = struct.unpack('>H', infile.read(2))
+        self.markBitStack = struct.unpack('>H', infile.read(2))

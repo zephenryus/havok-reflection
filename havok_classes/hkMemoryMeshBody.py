@@ -11,3 +11,10 @@ class hkMemoryMeshBody(hkMeshBody):
     shape: hkMeshShape
     vertexBuffers: hkMeshVertexBuffer
     name: str
+
+    def __init__(self, infile):
+        self.transform = any(infile)  # TYPE_MATRIX4
+        self.transformSet = hkIndexedTransformSet(infile)  # TYPE_POINTER
+        self.shape = hkMeshShape(infile)  # TYPE_POINTER
+        self.vertexBuffers = hkMeshVertexBuffer(infile)  # TYPE_ARRAY
+        self.name = struct.unpack('>s', infile.read(0))

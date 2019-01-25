@@ -14,3 +14,6 @@ class MotorType(Enum):
 
 class hkpConstraintMotor(hkReferencedObject):
     type: MotorType
+
+    def __init__(self, infile):
+        self.type = MotorType(infile)  # TYPE_ENUM

@@ -14,3 +14,6 @@ class BvTreeType(Enum):
 
 class hkpBvTreeShape(hkpShape):
     bvTreeType: BvTreeType
+
+    def __init__(self, infile):
+        self.bvTreeType = BvTreeType(infile)  # TYPE_ENUM

@@ -25,3 +25,6 @@ class DataUsage(Enum):
 
 class hkxVertexDescription(object):
     decls: hkxVertexDescriptionElementDecl
+
+    def __init__(self, infile):
+        self.decls = hkxVertexDescriptionElementDecl(infile)  # TYPE_ARRAY

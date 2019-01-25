@@ -12,3 +12,10 @@ class hkaAnimationContainer(hkReferencedObject):
     bindings: hkaAnimationBinding
     attachments: hkaBoneAttachment
     skins: hkaMeshBinding
+
+    def __init__(self, infile):
+        self.skeletons = hkaSkeleton(infile)  # TYPE_ARRAY
+        self.animations = hkaAnimation(infile)  # TYPE_ARRAY
+        self.bindings = hkaAnimationBinding(infile)  # TYPE_ARRAY
+        self.attachments = hkaBoneAttachment(infile)  # TYPE_ARRAY
+        self.skins = hkaMeshBinding(infile)  # TYPE_ARRAY

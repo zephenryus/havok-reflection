@@ -1,6 +1,7 @@
 from .hclConstraintSet import hclConstraintSet
 from enum import Enum
 from .hclLocalRangeConstraintSetLocalConstraint import hclLocalRangeConstraintSetLocalConstraint
+import struct
 from .enums import ShapeType
 
 
@@ -19,3 +20,10 @@ class hclLocalRangeConstraintSet(hclConstraintSet):
     stiffness: float
     shapeType: ShapeType
     applyNormalComponent: bool
+
+    def __init__(self, infile):
+        self.localConstraints = hclLocalRangeConstraintSetLocalConstraint(infile)  # TYPE_ARRAY
+        self.referenceMeshBufferIdx = struct.unpack('>I', infile.read(4))
+        self.stiffness = struct.unpack('>f', infile.read(4))
+        self.shapeType = ShapeType(infile)  # TYPE_ENUM
+        self.applyNormalComponent = struct.unpack('>?', infile.read(1))

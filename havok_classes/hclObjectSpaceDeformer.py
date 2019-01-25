@@ -8,6 +8,7 @@ from .hclObjectSpaceDeformerThreeBlendEntryBlock import hclObjectSpaceDeformerTh
 from .hclObjectSpaceDeformerTwoBlendEntryBlock import hclObjectSpaceDeformerTwoBlendEntryBlock
 from .hclObjectSpaceDeformerOneBlendEntryBlock import hclObjectSpaceDeformerOneBlendEntryBlock
 from .common import any
+import struct
 
 
 class ControlByte(Enum):
@@ -36,3 +37,18 @@ class hclObjectSpaceDeformer(object):
     endVertexIndex: int
     batchSizeSpu: int
     partialWrite: bool
+
+    def __init__(self, infile):
+        self.eightBlendEntries = hclObjectSpaceDeformerEightBlendEntryBlock(infile)  # TYPE_ARRAY
+        self.sevenBlendEntries = hclObjectSpaceDeformerSevenBlendEntryBlock(infile)  # TYPE_ARRAY
+        self.sixBlendEntries = hclObjectSpaceDeformerSixBlendEntryBlock(infile)  # TYPE_ARRAY
+        self.fiveBlendEntries = hclObjectSpaceDeformerFiveBlendEntryBlock(infile)  # TYPE_ARRAY
+        self.fourBlendEntries = hclObjectSpaceDeformerFourBlendEntryBlock(infile)  # TYPE_ARRAY
+        self.threeBlendEntries = hclObjectSpaceDeformerThreeBlendEntryBlock(infile)  # TYPE_ARRAY
+        self.twoBlendEntries = hclObjectSpaceDeformerTwoBlendEntryBlock(infile)  # TYPE_ARRAY
+        self.oneBlendEntries = hclObjectSpaceDeformerOneBlendEntryBlock(infile)  # TYPE_ARRAY
+        self.controlBytes = any(infile)  # TYPE_ARRAY
+        self.startVertexIndex = struct.unpack('>H', infile.read(2))
+        self.endVertexIndex = struct.unpack('>H', infile.read(2))
+        self.batchSizeSpu = struct.unpack('>H', infile.read(2))
+        self.partialWrite = struct.unpack('>?', infile.read(1))

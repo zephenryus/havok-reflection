@@ -1,4 +1,5 @@
 from enum import Enum
+import struct
 
 
 class Component(Enum):
@@ -19,3 +20,7 @@ class InternalFlags(Enum):
 class hclBufferUsage(object):
     perComponentFlags: int
     trianglesRead: bool
+
+    def __init__(self, infile):
+        self.perComponentFlags = struct.unpack('>B', infile.read(1))
+        self.trianglesRead = struct.unpack('>?', infile.read(1))

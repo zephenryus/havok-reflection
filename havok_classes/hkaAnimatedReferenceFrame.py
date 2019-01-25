@@ -10,3 +10,6 @@ class hkaReferenceFrameTypeEnum(Enum):
 
 class hkaAnimatedReferenceFrame(hkReferencedObject):
     frameType: enumerate
+
+    def __init__(self, infile):
+        self.frameType = enumerate(infile)  # TYPE_ENUM

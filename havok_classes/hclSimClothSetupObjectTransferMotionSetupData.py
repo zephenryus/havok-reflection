@@ -1,4 +1,5 @@
 from .hclTransformSetSetupObject import hclTransformSetSetupObject
+import struct
 
 
 class hclSimClothSetupObjectTransferMotionSetupData(object):
@@ -14,3 +15,17 @@ class hclSimClothSetupObjectTransferMotionSetupData(object):
     maxRotationSpeed: float
     minRotationBlend: float
     maxRotationBlend: float
+
+    def __init__(self, infile):
+        self.transferMotionTransformSetSetup = hclTransformSetSetupObject(infile)  # TYPE_POINTER
+        self.transferMotionTransformName = struct.unpack('>s', infile.read(0))
+        self.transferTranslationMotion = struct.unpack('>?', infile.read(1))
+        self.minTranslationSpeed = struct.unpack('>f', infile.read(4))
+        self.maxTranslationSpeed = struct.unpack('>f', infile.read(4))
+        self.minTranslationBlend = struct.unpack('>f', infile.read(4))
+        self.maxTranslationBlend = struct.unpack('>f', infile.read(4))
+        self.transferRotationMotion = struct.unpack('>?', infile.read(1))
+        self.minRotationSpeed = struct.unpack('>f', infile.read(4))
+        self.maxRotationSpeed = struct.unpack('>f', infile.read(4))
+        self.minRotationBlend = struct.unpack('>f', infile.read(4))
+        self.maxRotationBlend = struct.unpack('>f', infile.read(4))

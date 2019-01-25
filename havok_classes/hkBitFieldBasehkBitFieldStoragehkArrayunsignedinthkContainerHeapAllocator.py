@@ -3,3 +3,6 @@ from .hkBitFieldStoragehkArrayunsignedinthkContainerHeapAllocator import hkBitFi
 
 class hkBitFieldBasehkBitFieldStoragehkArrayunsignedinthkContainerHeapAllocator(object):
     storage: hkBitFieldStoragehkArrayunsignedinthkContainerHeapAllocator
+
+    def __init__(self, infile):
+        self.storage = hkBitFieldStoragehkArrayunsignedinthkContainerHeapAllocator(infile)  # TYPE_STRUCT

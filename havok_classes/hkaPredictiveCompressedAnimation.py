@@ -1,6 +1,7 @@
 from .hkaAnimation import hkaAnimation
 from enum import Enum
 from .common import any
+import struct
 
 
 class StorageClass(Enum):
@@ -42,3 +43,16 @@ class hkaPredictiveCompressedAnimation(hkaAnimation):
     firstFloatBlockScaleAndOffsetIndex: int
     skeleton: any
     maxCompressedBytesPerFrame: int
+
+    def __init__(self, infile):
+        self.compressedData = any(infile)  # TYPE_ARRAY
+        self.intData = any(infile)  # TYPE_ARRAY
+        self.intArrayOffsets = struct.unpack('>i', infile.read(4))
+        self.floatData = any(infile)  # TYPE_ARRAY
+        self.floatArrayOffsets = struct.unpack('>i', infile.read(4))
+        self.numBones = struct.unpack('>i', infile.read(4))
+        self.numFloatSlots = struct.unpack('>i', infile.read(4))
+        self.numFrames = struct.unpack('>i', infile.read(4))
+        self.firstFloatBlockScaleAndOffsetIndex = struct.unpack('>i', infile.read(4))
+        self.skeleton = any(infile)  # TYPE_POINTER
+        self.maxCompressedBytesPerFrame = struct.unpack('>i', infile.read(4))

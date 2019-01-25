@@ -1,5 +1,6 @@
 from .hkpBvTreeShape import hkpBvTreeShape
 from enum import Enum
+import struct
 from .enums import WeldingType
 from .common import any
 from .hkpBvCompressedMeshShapeTree import hkpBvCompressedMeshShapeTree
@@ -35,3 +36,13 @@ class hkpBvCompressedMeshShape(hkpBvTreeShape):
     userDataPalette: any
     userStringPalette: any
     tree: hkpBvCompressedMeshShapeTree
+
+    def __init__(self, infile):
+        self.convexRadius = struct.unpack('>f', infile.read(4))
+        self.weldingType = WeldingType(infile)  # TYPE_ENUM
+        self.hasPerPrimitiveCollisionFilterInfo = struct.unpack('>?', infile.read(1))
+        self.hasPerPrimitiveUserData = struct.unpack('>?', infile.read(1))
+        self.collisionFilterInfoPalette = any(infile)  # TYPE_ARRAY
+        self.userDataPalette = any(infile)  # TYPE_ARRAY
+        self.userStringPalette = any(infile)  # TYPE_ARRAY
+        self.tree = hkpBvCompressedMeshShapeTree(infile)  # TYPE_STRUCT

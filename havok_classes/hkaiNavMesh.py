@@ -4,6 +4,7 @@ from .hkaiNavMeshFace import hkaiNavMeshFace
 from .hkaiNavMeshEdge import hkaiNavMeshEdge
 from .common import any
 from .hkaiStreamingSet import hkaiStreamingSet
+import struct
 from .hkAabb import hkAabb
 
 
@@ -50,3 +51,17 @@ class hkaiNavMesh(hkReferencedObject):
     aabb: hkAabb
     erosionRadius: float
     userData: int
+
+    def __init__(self, infile):
+        self.faces = hkaiNavMeshFace(infile)  # TYPE_ARRAY
+        self.edges = hkaiNavMeshEdge(infile)  # TYPE_ARRAY
+        self.vertices = any(infile)  # TYPE_ARRAY
+        self.streamingSets = hkaiStreamingSet(infile)  # TYPE_ARRAY
+        self.faceData = any(infile)  # TYPE_ARRAY
+        self.edgeData = any(infile)  # TYPE_ARRAY
+        self.faceDataStriding = struct.unpack('>i', infile.read(4))
+        self.edgeDataStriding = struct.unpack('>i', infile.read(4))
+        self.flags = struct.unpack('>B', infile.read(1))
+        self.aabb = hkAabb(infile)  # TYPE_STRUCT
+        self.erosionRadius = struct.unpack('>f', infile.read(4))
+        self.userData = struct.unpack('>L', infile.read(8))

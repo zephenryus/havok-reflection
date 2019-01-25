@@ -19,3 +19,9 @@ class hkaiEdgeGeometry(hkReferencedObject):
     faces: hkaiEdgeGeometryFace
     vertices: any
     zeroFace: hkaiEdgeGeometryFace
+
+    def __init__(self, infile):
+        self.edges = hkaiEdgeGeometryEdge(infile)  # TYPE_ARRAY
+        self.faces = hkaiEdgeGeometryFace(infile)  # TYPE_ARRAY
+        self.vertices = any(infile)  # TYPE_ARRAY
+        self.zeroFace = hkaiEdgeGeometryFace(infile)  # TYPE_STRUCT

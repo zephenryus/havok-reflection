@@ -6,3 +6,7 @@ from .hclBoneSpaceDeformerLocalBlockUnpackedPNT import hclBoneSpaceDeformerLocal
 class hclBoneSpaceSkinPNTOperator(hclBoneSpaceSkinOperator):
     localPNTs: hclBoneSpaceDeformerLocalBlockPNT
     localUnpackedPNTs: hclBoneSpaceDeformerLocalBlockUnpackedPNT
+
+    def __init__(self, infile):
+        self.localPNTs = hclBoneSpaceDeformerLocalBlockPNT(infile)  # TYPE_ARRAY
+        self.localUnpackedPNTs = hclBoneSpaceDeformerLocalBlockUnpackedPNT(infile)  # TYPE_ARRAY

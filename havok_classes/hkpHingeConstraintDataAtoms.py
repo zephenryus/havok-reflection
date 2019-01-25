@@ -14,3 +14,9 @@ class hkpHingeConstraintDataAtoms(object):
     setupStabilization: hkpSetupStabilizationAtom
     2dAng: hkp2dAngConstraintAtom
     ballSocket: hkpBallSocketConstraintAtom
+
+    def __init__(self, infile):
+        self.transforms = hkpSetLocalTransformsConstraintAtom(infile)  # TYPE_STRUCT
+        self.setupStabilization = hkpSetupStabilizationAtom(infile)  # TYPE_STRUCT
+        self.2dAng = hkp2dAngConstraintAtom(infile)  # TYPE_STRUCT
+        self.ballSocket = hkpBallSocketConstraintAtom(infile)  # TYPE_STRUCT

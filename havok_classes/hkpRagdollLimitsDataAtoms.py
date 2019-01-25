@@ -15,3 +15,9 @@ class hkpRagdollLimitsDataAtoms(object):
     twistLimit: hkpTwistLimitConstraintAtom
     coneLimit: hkpConeLimitConstraintAtom
     planesLimit: hkpConeLimitConstraintAtom
+
+    def __init__(self, infile):
+        self.rotations = hkpSetLocalRotationsConstraintAtom(infile)  # TYPE_STRUCT
+        self.twistLimit = hkpTwistLimitConstraintAtom(infile)  # TYPE_STRUCT
+        self.coneLimit = hkpConeLimitConstraintAtom(infile)  # TYPE_STRUCT
+        self.planesLimit = hkpConeLimitConstraintAtom(infile)  # TYPE_STRUCT

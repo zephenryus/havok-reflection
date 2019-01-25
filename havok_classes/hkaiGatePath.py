@@ -2,6 +2,7 @@ from .hkReferencedObject import hkReferencedObject
 from enum import Enum
 from .hkaiGatePathPathGate import hkaiGatePathPathGate
 from .common import vector4
+import struct
 from .hkaiGatePathUtilExponentialSchedule import hkaiGatePathUtilExponentialSchedule
 
 
@@ -23,3 +24,9 @@ class hkaiGatePath(hkReferencedObject):
     startPoint: vector4
     schedule: hkaiGatePathUtilExponentialSchedule
     needsInitialSmooth: bool
+
+    def __init__(self, infile):
+        self.gates = hkaiGatePathPathGate(infile)  # TYPE_ARRAY
+        self.startPoint = struct.unpack('>4f', infile.read(16))
+        self.schedule = hkaiGatePathUtilExponentialSchedule(infile)  # TYPE_STRUCT
+        self.needsInitialSmooth = struct.unpack('>?', infile.read(1))

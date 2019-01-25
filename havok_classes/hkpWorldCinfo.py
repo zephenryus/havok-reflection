@@ -1,6 +1,7 @@
 from .hkReferencedObject import hkReferencedObject
 from enum import Enum
 from .common import vector4
+import struct
 from .enums import BroadPhaseType, BroadPhaseBorderBehaviour, ContactPointGeneration, SimulationType
 from .hkAabb import hkAabb
 from .hkpCollisionFilter import hkpCollisionFilter
@@ -103,3 +104,59 @@ class hkpWorldCinfo(hkReferencedObject):
     allowIntegrationOfIslandsWithoutConstraintsInASeparateJob: bool
     frameMarkerPsiSnap: float
     fireCollisionCallbacks: bool
+
+    def __init__(self, infile):
+        self.gravity = struct.unpack('>4f', infile.read(16))
+        self.broadPhaseQuerySize = struct.unpack('>i', infile.read(4))
+        self.contactRestingVelocity = struct.unpack('>f', infile.read(4))
+        self.broadPhaseType = BroadPhaseType(infile)  # TYPE_ENUM
+        self.broadPhaseBorderBehaviour = BroadPhaseBorderBehaviour(infile)  # TYPE_ENUM
+        self.mtPostponeAndSortBroadPhaseBorderCallbacks = struct.unpack('>?', infile.read(1))
+        self.broadPhaseWorldAabb = hkAabb(infile)  # TYPE_STRUCT
+        self.collisionTolerance = struct.unpack('>f', infile.read(4))
+        self.collisionFilter = hkpCollisionFilter(infile)  # TYPE_POINTER
+        self.convexListFilter = hkpConvexListFilter(infile)  # TYPE_POINTER
+        self.expectedMaxLinearVelocity = struct.unpack('>f', infile.read(4))
+        self.sizeOfToiEventQueue = struct.unpack('>i', infile.read(4))
+        self.expectedMinPsiDeltaTime = struct.unpack('>f', infile.read(4))
+        self.memoryWatchDog = hkWorldMemoryAvailableWatchDog(infile)  # TYPE_POINTER
+        self.broadPhaseNumMarkers = struct.unpack('>i', infile.read(4))
+        self.contactPointGeneration = ContactPointGeneration(infile)  # TYPE_ENUM
+        self.allowToSkipConfirmedCallbacks = struct.unpack('>?', infile.read(1))
+        self.solverTau = struct.unpack('>f', infile.read(4))
+        self.solverDamp = struct.unpack('>f', infile.read(4))
+        self.solverIterations = struct.unpack('>i', infile.read(4))
+        self.solverMicrosteps = struct.unpack('>i', infile.read(4))
+        self.maxConstraintViolation = struct.unpack('>f', infile.read(4))
+        self.forceCoherentConstraintOrderingInSolver = struct.unpack('>?', infile.read(1))
+        self.snapCollisionToConvexEdgeThreshold = struct.unpack('>f', infile.read(4))
+        self.snapCollisionToConcaveEdgeThreshold = struct.unpack('>f', infile.read(4))
+        self.enableToiWeldRejection = struct.unpack('>?', infile.read(1))
+        self.enableDeprecatedWelding = struct.unpack('>?', infile.read(1))
+        self.iterativeLinearCastEarlyOutDistance = struct.unpack('>f', infile.read(4))
+        self.iterativeLinearCastMaxIterations = struct.unpack('>i', infile.read(4))
+        self.deactivationNumInactiveFramesSelectFlag0 = struct.unpack('>B', infile.read(1))
+        self.deactivationNumInactiveFramesSelectFlag1 = struct.unpack('>B', infile.read(1))
+        self.deactivationIntegrateCounter = struct.unpack('>B', infile.read(1))
+        self.shouldActivateOnRigidBodyTransformChange = struct.unpack('>?', infile.read(1))
+        self.deactivationReferenceDistance = struct.unpack('>f', infile.read(4))
+        self.toiCollisionResponseRotateNormal = struct.unpack('>f', infile.read(4))
+        self.useCompoundSpuElf = struct.unpack('>?', infile.read(1))
+        self.maxSectorsPerMidphaseCollideTask = struct.unpack('>i', infile.read(4))
+        self.maxSectorsPerNarrowphaseCollideTask = struct.unpack('>i', infile.read(4))
+        self.processToisMultithreaded = struct.unpack('>?', infile.read(1))
+        self.maxEntriesPerToiMidphaseCollideTask = struct.unpack('>i', infile.read(4))
+        self.maxEntriesPerToiNarrowphaseCollideTask = struct.unpack('>i', infile.read(4))
+        self.maxNumToiCollisionPairsSinglethreaded = struct.unpack('>i', infile.read(4))
+        self.numToisTillAllowedPenetrationSimplifiedToi = struct.unpack('>f', infile.read(4))
+        self.numToisTillAllowedPenetrationToi = struct.unpack('>f', infile.read(4))
+        self.numToisTillAllowedPenetrationToiHigher = struct.unpack('>f', infile.read(4))
+        self.numToisTillAllowedPenetrationToiForced = struct.unpack('>f', infile.read(4))
+        self.enableDeactivation = struct.unpack('>?', infile.read(1))
+        self.simulationType = SimulationType(infile)  # TYPE_ENUM
+        self.enableSimulationIslands = struct.unpack('>?', infile.read(1))
+        self.minDesiredIslandSize = struct.unpack('>I', infile.read(4))
+        self.processActionsInSingleThread = struct.unpack('>?', infile.read(1))
+        self.allowIntegrationOfIslandsWithoutConstraintsInASeparateJob = struct.unpack('>?', infile.read(1))
+        self.frameMarkerPsiSnap = struct.unpack('>f', infile.read(4))
+        self.fireCollisionCallbacks = struct.unpack('>?', infile.read(1))

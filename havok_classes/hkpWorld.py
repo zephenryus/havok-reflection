@@ -2,6 +2,7 @@ from .hkReferencedObject import hkReferencedObject
 from enum import Enum
 from .hkpSimulation import hkpSimulation
 from .common import vector4, any
+import struct
 from .hkpRigidBody import hkpRigidBody
 from .hkMultiThreadCheck import hkMultiThreadCheck
 from .hkpPhantom import hkpPhantom
@@ -111,3 +112,91 @@ class hkpWorld(hkReferencedObject):
     broadPhaseUpdateSize: int
     contactPointGeneration: enumerate
     useCompoundSpuElf: bool
+
+    def __init__(self, infile):
+        self.simulation = hkpSimulation(infile)  # TYPE_POINTER
+        self.gravity = struct.unpack('>4f', infile.read(16))
+        self.fixedIsland = any(infile)  # TYPE_POINTER
+        self.fixedRigidBody = hkpRigidBody(infile)  # TYPE_POINTER
+        self.activeSimulationIslands = any(infile)  # TYPE_ARRAY
+        self.inactiveSimulationIslands = any(infile)  # TYPE_ARRAY
+        self.dirtySimulationIslands = any(infile)  # TYPE_ARRAY
+        self.maintenanceMgr = any(infile)  # TYPE_POINTER
+        self.memoryWatchDog = any(infile)  # TYPE_POINTER
+        self.assertOnRunningOutOfSolverMemory = struct.unpack('>?', infile.read(1))
+        self.broadPhaseType = enumerate(infile)  # TYPE_ENUM
+        self.broadPhase = any(infile)  # TYPE_POINTER
+        self.broadPhaseDispatcher = any(infile)  # TYPE_POINTER
+        self.phantomBroadPhaseListener = any(infile)  # TYPE_POINTER
+        self.entityEntityBroadPhaseListener = any(infile)  # TYPE_POINTER
+        self.broadPhaseBorderListener = any(infile)  # TYPE_POINTER
+        self.multithreadedSimulationJobData = any(infile)  # TYPE_POINTER
+        self.collisionInput = any(infile)  # TYPE_POINTER
+        self.collisionFilter = any(infile)  # TYPE_POINTER
+        self.collisionDispatcher = any(infile)  # TYPE_POINTER
+        self.convexListFilter = any(infile)  # TYPE_POINTER
+        self.pendingOperations = any(infile)  # TYPE_POINTER
+        self.pendingOperationsCount = struct.unpack('>i', infile.read(4))
+        self.pendingBodyOperationsCount = struct.unpack('>i', infile.read(4))
+        self.criticalOperationsLockCount = struct.unpack('>i', infile.read(4))
+        self.criticalOperationsLockCountForPhantoms = struct.unpack('>i', infile.read(4))
+        self.blockExecutingPendingOperations = struct.unpack('>?', infile.read(1))
+        self.criticalOperationsAllowed = struct.unpack('>?', infile.read(1))
+        self.pendingOperationQueues = any(infile)  # TYPE_POINTER
+        self.pendingOperationQueueCount = struct.unpack('>i', infile.read(4))
+        self.multiThreadCheck = hkMultiThreadCheck(infile)  # TYPE_STRUCT
+        self.processActionsInSingleThread = struct.unpack('>?', infile.read(1))
+        self.allowIntegrationOfIslandsWithoutConstraintsInASeparateJob = struct.unpack('>?', infile.read(1))
+        self.minDesiredIslandSize = struct.unpack('>I', infile.read(4))
+        self.modifyConstraintCriticalSection = any(infile)  # TYPE_POINTER
+        self.isLocked = struct.unpack('>i', infile.read(4))
+        self.islandDirtyListCriticalSection = any(infile)  # TYPE_POINTER
+        self.propertyMasterLock = any(infile)  # TYPE_POINTER
+        self.wantSimulationIslands = struct.unpack('>?', infile.read(1))
+        self.snapCollisionToConvexEdgeThreshold = struct.unpack('>f', infile.read(4))
+        self.snapCollisionToConcaveEdgeThreshold = struct.unpack('>f', infile.read(4))
+        self.enableToiWeldRejection = struct.unpack('>?', infile.read(1))
+        self.wantDeactivation = struct.unpack('>?', infile.read(1))
+        self.shouldActivateOnRigidBodyTransformChange = struct.unpack('>?', infile.read(1))
+        self.deactivationReferenceDistance = struct.unpack('>f', infile.read(4))
+        self.toiCollisionResponseRotateNormal = struct.unpack('>f', infile.read(4))
+        self.maxSectorsPerMidphaseCollideTask = struct.unpack('>i', infile.read(4))
+        self.maxSectorsPerNarrowphaseCollideTask = struct.unpack('>i', infile.read(4))
+        self.processToisMultithreaded = struct.unpack('>?', infile.read(1))
+        self.maxEntriesPerToiMidphaseCollideTask = struct.unpack('>i', infile.read(4))
+        self.maxEntriesPerToiNarrowphaseCollideTask = struct.unpack('>i', infile.read(4))
+        self.maxNumToiCollisionPairsSinglethreaded = struct.unpack('>i', infile.read(4))
+        self.simulationType = enumerate(infile)  # TYPE_ENUM
+        self.numToisTillAllowedPenetrationSimplifiedToi = struct.unpack('>f', infile.read(4))
+        self.numToisTillAllowedPenetrationToi = struct.unpack('>f', infile.read(4))
+        self.numToisTillAllowedPenetrationToiHigher = struct.unpack('>f', infile.read(4))
+        self.numToisTillAllowedPenetrationToiForced = struct.unpack('>f', infile.read(4))
+        self.lastEntityUid = struct.unpack('>I', infile.read(4))
+        self.lastIslandUid = struct.unpack('>I', infile.read(4))
+        self.lastConstraintUid = struct.unpack('>I', infile.read(4))
+        self.phantoms = hkpPhantom(infile)  # TYPE_ARRAY
+        self.actionListeners = any(infile)  # TYPE_ARRAY
+        self.entityListeners = any(infile)  # TYPE_ARRAY
+        self.phantomListeners = any(infile)  # TYPE_ARRAY
+        self.constraintListeners = any(infile)  # TYPE_ARRAY
+        self.worldDeletionListeners = any(infile)  # TYPE_ARRAY
+        self.islandActivationListeners = any(infile)  # TYPE_ARRAY
+        self.worldPostSimulationListeners = any(infile)  # TYPE_ARRAY
+        self.worldPostIntegrateListeners = any(infile)  # TYPE_ARRAY
+        self.worldPostCollideListeners = any(infile)  # TYPE_ARRAY
+        self.islandPostIntegrateListeners = any(infile)  # TYPE_ARRAY
+        self.islandPostCollideListeners = any(infile)  # TYPE_ARRAY
+        self.contactListeners = any(infile)  # TYPE_ARRAY
+        self.contactImpulseLimitBreachedListeners = any(infile)  # TYPE_ARRAY
+        self.worldExtensions = any(infile)  # TYPE_ARRAY
+        self.violatedConstraintArray = any(infile)  # TYPE_POINTER
+        self.broadPhaseBorder = any(infile)  # TYPE_POINTER
+        self.destructionWorld = any(infile)  # TYPE_POINTER
+        self.npWorld = any(infile)  # TYPE_POINTER
+        self.broadPhaseExtents = struct.unpack('>4f', infile.read(16))
+        self.broadPhaseNumMarkers = struct.unpack('>i', infile.read(4))
+        self.sizeOfToiEventQueue = struct.unpack('>i', infile.read(4))
+        self.broadPhaseQuerySize = struct.unpack('>i', infile.read(4))
+        self.broadPhaseUpdateSize = struct.unpack('>i', infile.read(4))
+        self.contactPointGeneration = enumerate(infile)  # TYPE_ENUM
+        self.useCompoundSpuElf = struct.unpack('>?', infile.read(1))

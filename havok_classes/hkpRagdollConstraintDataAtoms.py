@@ -23,3 +23,13 @@ class hkpRagdollConstraintDataAtoms(object):
     coneLimit: hkpConeLimitConstraintAtom
     planesLimit: hkpConeLimitConstraintAtom
     ballSocket: hkpBallSocketConstraintAtom
+
+    def __init__(self, infile):
+        self.transforms = hkpSetLocalTransformsConstraintAtom(infile)  # TYPE_STRUCT
+        self.setupStabilization = hkpSetupStabilizationAtom(infile)  # TYPE_STRUCT
+        self.ragdollMotors = hkpRagdollMotorConstraintAtom(infile)  # TYPE_STRUCT
+        self.angFriction = hkpAngFrictionConstraintAtom(infile)  # TYPE_STRUCT
+        self.twistLimit = hkpTwistLimitConstraintAtom(infile)  # TYPE_STRUCT
+        self.coneLimit = hkpConeLimitConstraintAtom(infile)  # TYPE_STRUCT
+        self.planesLimit = hkpConeLimitConstraintAtom(infile)  # TYPE_STRUCT
+        self.ballSocket = hkpBallSocketConstraintAtom(infile)  # TYPE_STRUCT

@@ -1,5 +1,6 @@
 from .hkpShape import hkpShape
 from enum import Enum
+import struct
 from .enums import CollectionType
 
 
@@ -17,3 +18,7 @@ class CollectionType(Enum):
 class hkpShapeCollection(hkpShape):
     disableWelding: bool
     collectionType: CollectionType
+
+    def __init__(self, infile):
+        self.disableWelding = struct.unpack('>?', infile.read(1))
+        self.collectionType = CollectionType(infile)  # TYPE_ENUM

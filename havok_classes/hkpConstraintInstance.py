@@ -5,6 +5,7 @@ from .hkpConstraintData import hkpConstraintData
 from .hkpModifierConstraintAtom import hkpModifierConstraintAtom
 from .hkpEntity import hkpEntity
 from .enums import ConstraintPriority, OnDestructionRemapInfo
+import struct
 from .hkpConstraintInstanceSmallArraySerializeOverrideType import hkpConstraintInstanceSmallArraySerializeOverrideType
 
 
@@ -54,3 +55,17 @@ class hkpConstraintInstance(hkReferencedObject):
     userData: int
     internal: any
     uid: int
+
+    def __init__(self, infile):
+        self.owner = any(infile)  # TYPE_POINTER
+        self.data = hkpConstraintData(infile)  # TYPE_POINTER
+        self.constraintModifiers = hkpModifierConstraintAtom(infile)  # TYPE_POINTER
+        self.entities = hkpEntity(infile)  # TYPE_POINTER
+        self.priority = ConstraintPriority(infile)  # TYPE_ENUM
+        self.wantRuntime = struct.unpack('>?', infile.read(1))
+        self.destructionRemapInfo = OnDestructionRemapInfo(infile)  # TYPE_ENUM
+        self.listeners = hkpConstraintInstanceSmallArraySerializeOverrideType(infile)  # TYPE_STRUCT
+        self.name = struct.unpack('>s', infile.read(0))
+        self.userData = struct.unpack('>L', infile.read(8))
+        self.internal = any(infile)  # TYPE_POINTER
+        self.uid = struct.unpack('>I', infile.read(4))

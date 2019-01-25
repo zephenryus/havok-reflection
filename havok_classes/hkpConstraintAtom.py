@@ -60,3 +60,6 @@ class SolvingMethod(Enum):
 
 class hkpConstraintAtom(object):
     type: AtomType
+
+    def __init__(self, infile):
+        self.type = AtomType(infile)  # TYPE_ENUM

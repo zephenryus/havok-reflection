@@ -1,5 +1,6 @@
 from .hkpConvexShape import hkpConvexShape
 from enum import Enum
+import struct
 from .common import vector4
 
 
@@ -18,3 +19,11 @@ class hkpCylinderShape(hkpConvexShape):
     vertexB: vector4
     perpendicular1: vector4
     perpendicular2: vector4
+
+    def __init__(self, infile):
+        self.cylRadius = struct.unpack('>f', infile.read(4))
+        self.cylBaseRadiusFactorForHeightFieldCollisions = struct.unpack('>f', infile.read(4))
+        self.vertexA = struct.unpack('>4f', infile.read(16))
+        self.vertexB = struct.unpack('>4f', infile.read(16))
+        self.perpendicular1 = struct.unpack('>4f', infile.read(16))
+        self.perpendicular2 = struct.unpack('>4f', infile.read(16))

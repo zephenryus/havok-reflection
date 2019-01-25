@@ -1,5 +1,6 @@
 from .hkReferencedObject import hkReferencedObject
 from enum import Enum
+import struct
 
 
 class ConstraintType(Enum):
@@ -36,3 +37,6 @@ class ConstraintType(Enum):
 
 class hkpConstraintData(hkReferencedObject):
     userData: int
+
+    def __init__(self, infile):
+        self.userData = struct.unpack('>L', infile.read(8))

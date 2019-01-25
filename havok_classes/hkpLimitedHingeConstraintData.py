@@ -4,3 +4,6 @@ from .hkpLimitedHingeConstraintDataAtoms import hkpLimitedHingeConstraintDataAto
 
 class hkpLimitedHingeConstraintData(hkpConstraintData):
     atoms: hkpLimitedHingeConstraintDataAtoms
+
+    def __init__(self, infile):
+        self.atoms = hkpLimitedHingeConstraintDataAtoms(infile)  # TYPE_STRUCT

@@ -40,3 +40,13 @@ class hclClothData(hkReferencedObject):
     clothStateDatas: hclClothState
     actions: hclAction
     targetPlatform: Platform
+
+    def __init__(self, infile):
+        self.name = struct.unpack('>s', infile.read(0))
+        self.simClothDatas = hclSimClothData(infile)  # TYPE_ARRAY
+        self.bufferDefinitions = hclBufferDefinition(infile)  # TYPE_ARRAY
+        self.transformSetDefinitions = hclTransformSetDefinition(infile)  # TYPE_ARRAY
+        self.operators = hclOperator(infile)  # TYPE_ARRAY
+        self.clothStateDatas = hclClothState(infile)  # TYPE_ARRAY
+        self.actions = hclAction(infile)  # TYPE_ARRAY
+        self.targetPlatform = Platform(infile)  # TYPE_ENUM

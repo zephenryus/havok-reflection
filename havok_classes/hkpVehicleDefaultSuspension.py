@@ -4,3 +4,6 @@ from .hkpVehicleDefaultSuspensionWheelSpringSuspensionParameters import hkpVehic
 
 class hkpVehicleDefaultSuspension(hkpVehicleSuspension):
     wheelSpringParams: hkpVehicleDefaultSuspensionWheelSpringSuspensionParameters
+
+    def __init__(self, infile):
+        self.wheelSpringParams = hkpVehicleDefaultSuspensionWheelSpringSuspensionParameters(infile)  # TYPE_ARRAY

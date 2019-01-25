@@ -2,6 +2,7 @@ from .hkReferencedObject import hkReferencedObject
 from enum import Enum
 from .hkpRigidBody import hkpRigidBody
 from .hkpTriggerVolumeEventInfo import hkpTriggerVolumeEventInfo
+import struct
 from .common import any
 
 
@@ -26,3 +27,11 @@ class hkpTriggerVolume(hkReferencedObject):
     sequenceNumber: int
     isProcessingBodyOverlaps: bool
     newOverlappingBodies: any
+
+    def __init__(self, infile):
+        self.overlappingBodies = hkpRigidBody(infile)  # TYPE_ARRAY
+        self.eventQueue = hkpTriggerVolumeEventInfo(infile)  # TYPE_ARRAY
+        self.triggerBody = hkpRigidBody(infile)  # TYPE_POINTER
+        self.sequenceNumber = struct.unpack('>I', infile.read(4))
+        self.isProcessingBodyOverlaps = struct.unpack('>?', infile.read(1))
+        self.newOverlappingBodies = any(infile)  # TYPE_ARRAY

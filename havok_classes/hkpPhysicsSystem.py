@@ -4,6 +4,7 @@ from .hkpRigidBody import hkpRigidBody
 from .hkpConstraintInstance import hkpConstraintInstance
 from .hkpAction import hkpAction
 from .hkpPhantom import hkpPhantom
+import struct
 
 
 class CloneConstraintMode(Enum):
@@ -21,3 +22,12 @@ class hkpPhysicsSystem(hkReferencedObject):
     name: str
     userData: int
     active: bool
+
+    def __init__(self, infile):
+        self.rigidBodies = hkpRigidBody(infile)  # TYPE_ARRAY
+        self.constraints = hkpConstraintInstance(infile)  # TYPE_ARRAY
+        self.actions = hkpAction(infile)  # TYPE_ARRAY
+        self.phantoms = hkpPhantom(infile)  # TYPE_ARRAY
+        self.name = struct.unpack('>s', infile.read(0))
+        self.userData = struct.unpack('>L', infile.read(8))
+        self.active = struct.unpack('>?', infile.read(1))

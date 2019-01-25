@@ -4,6 +4,7 @@ from .hclBoneSpaceDeformerThreeBlendEntryBlock import hclBoneSpaceDeformerThreeB
 from .hclBoneSpaceDeformerTwoBlendEntryBlock import hclBoneSpaceDeformerTwoBlendEntryBlock
 from .hclBoneSpaceDeformerOneBlendEntryBlock import hclBoneSpaceDeformerOneBlendEntryBlock
 from .common import any
+import struct
 
 
 class ControlByte(Enum):
@@ -24,3 +25,14 @@ class hclBoneSpaceDeformer(object):
     endVertexIndex: int
     batchSizeSpu: int
     partialWrite: bool
+
+    def __init__(self, infile):
+        self.fourBlendEntries = hclBoneSpaceDeformerFourBlendEntryBlock(infile)  # TYPE_ARRAY
+        self.threeBlendEntries = hclBoneSpaceDeformerThreeBlendEntryBlock(infile)  # TYPE_ARRAY
+        self.twoBlendEntries = hclBoneSpaceDeformerTwoBlendEntryBlock(infile)  # TYPE_ARRAY
+        self.oneBlendEntries = hclBoneSpaceDeformerOneBlendEntryBlock(infile)  # TYPE_ARRAY
+        self.controlBytes = any(infile)  # TYPE_ARRAY
+        self.startVertexIndex = struct.unpack('>H', infile.read(2))
+        self.endVertexIndex = struct.unpack('>H', infile.read(2))
+        self.batchSizeSpu = struct.unpack('>H', infile.read(2))
+        self.partialWrite = struct.unpack('>?', infile.read(1))

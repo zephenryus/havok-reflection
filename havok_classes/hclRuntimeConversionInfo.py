@@ -1,6 +1,7 @@
 from enum import Enum
 from .hclRuntimeConversionInfoSlotConversion import hclRuntimeConversionInfoSlotConversion
 from .hclRuntimeConversionInfoElementConversion import hclRuntimeConversionInfoElementConversion
+import struct
 
 
 class VectorConversion(Enum):
@@ -22,3 +23,9 @@ class hclRuntimeConversionInfo(object):
     elementConversions: hclRuntimeConversionInfoElementConversion
     numSlotsConverted: int
     numElementsConverted: int
+
+    def __init__(self, infile):
+        self.slotConversions = hclRuntimeConversionInfoSlotConversion(infile)  # TYPE_STRUCT
+        self.elementConversions = hclRuntimeConversionInfoElementConversion(infile)  # TYPE_STRUCT
+        self.numSlotsConverted = struct.unpack('>B', infile.read(1))
+        self.numElementsConverted = struct.unpack('>B', infile.read(1))

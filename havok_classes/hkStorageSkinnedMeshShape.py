@@ -11,3 +11,10 @@ class hkStorageSkinnedMeshShape(hkSkinnedMeshShape):
     boneSections: hkSkinnedMeshShapeBoneSection
     parts: hkSkinnedMeshShapePart
     name: str
+
+    def __init__(self, infile):
+        self.bonesBuffer = any(infile)  # TYPE_ARRAY
+        self.boneSets = hkSkinnedMeshShapeBoneSet(infile)  # TYPE_ARRAY
+        self.boneSections = hkSkinnedMeshShapeBoneSection(infile)  # TYPE_ARRAY
+        self.parts = hkSkinnedMeshShapePart(infile)  # TYPE_ARRAY
+        self.name = struct.unpack('>s', infile.read(0))

@@ -4,3 +4,6 @@ from .hkaiAvoidancePairPropertiesPairData import hkaiAvoidancePairPropertiesPair
 
 class hkaiAvoidancePairProperties(hkReferencedObject):
     avoidancePairDataMap: hkaiAvoidancePairPropertiesPairData
+
+    def __init__(self, infile):
+        self.avoidancePairDataMap = hkaiAvoidancePairPropertiesPairData(infile)  # TYPE_ARRAY

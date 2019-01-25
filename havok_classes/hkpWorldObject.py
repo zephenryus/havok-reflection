@@ -1,6 +1,7 @@
 from .hkReferencedObject import hkReferencedObject
 from enum import Enum
 from .common import any
+import struct
 from .hkpLinkedCollidable import hkpLinkedCollidable
 from .hkMultiThreadCheck import hkMultiThreadCheck
 from .hkSimpleProperty import hkSimpleProperty
@@ -26,3 +27,11 @@ class hkpWorldObject(hkReferencedObject):
     multiThreadCheck: hkMultiThreadCheck
     name: str
     properties: hkSimpleProperty
+
+    def __init__(self, infile):
+        self.world = any(infile)  # TYPE_POINTER
+        self.userData = struct.unpack('>L', infile.read(8))
+        self.collidable = hkpLinkedCollidable(infile)  # TYPE_STRUCT
+        self.multiThreadCheck = hkMultiThreadCheck(infile)  # TYPE_STRUCT
+        self.name = struct.unpack('>s', infile.read(0))
+        self.properties = hkSimpleProperty(infile)  # TYPE_ARRAY

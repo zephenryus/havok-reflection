@@ -8,3 +8,9 @@ class hkSkinnedRefMeshShape(hkMeshShape):
     bones: any
     localFromRootTransforms: any
     name: str
+
+    def __init__(self, infile):
+        self.skinnedMeshShape = hkSkinnedMeshShape(infile)  # TYPE_POINTER
+        self.bones = any(infile)  # TYPE_ARRAY
+        self.localFromRootTransforms = any(infile)  # TYPE_ARRAY
+        self.name = struct.unpack('>s', infile.read(0))

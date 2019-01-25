@@ -1,5 +1,6 @@
 from .hkpShapeCollection import hkpShapeCollection
 from enum import Enum
+import struct
 from .enums import WeldingType, MaterialType
 from .common import any
 from .hkpCompressedMeshShapeBigTriangle import hkpCompressedMeshShapeBigTriangle
@@ -40,3 +41,27 @@ class hkpCompressedMeshShape(hkpShapeCollection):
     materialStriding: int
     numMaterials: int
     namedMaterials: hkpNamedMeshMaterial
+
+    def __init__(self, infile):
+        self.bitsPerIndex = struct.unpack('>i', infile.read(4))
+        self.bitsPerWIndex = struct.unpack('>i', infile.read(4))
+        self.wIndexMask = struct.unpack('>i', infile.read(4))
+        self.indexMask = struct.unpack('>i', infile.read(4))
+        self.radius = struct.unpack('>f', infile.read(4))
+        self.weldingType = WeldingType(infile)  # TYPE_ENUM
+        self.materialType = MaterialType(infile)  # TYPE_ENUM
+        self.materials = any(infile)  # TYPE_ARRAY
+        self.materials16 = any(infile)  # TYPE_ARRAY
+        self.materials8 = any(infile)  # TYPE_ARRAY
+        self.transforms = any(infile)  # TYPE_ARRAY
+        self.bigVertices = any(infile)  # TYPE_ARRAY
+        self.bigTriangles = hkpCompressedMeshShapeBigTriangle(infile)  # TYPE_ARRAY
+        self.chunks = hkpCompressedMeshShapeChunk(infile)  # TYPE_ARRAY
+        self.convexPieces = hkpCompressedMeshShapeConvexPiece(infile)  # TYPE_ARRAY
+        self.error = struct.unpack('>f', infile.read(4))
+        self.bounds = hkAabb(infile)  # TYPE_STRUCT
+        self.defaultCollisionFilterInfo = struct.unpack('>I', infile.read(4))
+        self.meshMaterials = any(infile)  # TYPE_POINTER
+        self.materialStriding = struct.unpack('>H', infile.read(2))
+        self.numMaterials = struct.unpack('>H', infile.read(2))
+        self.namedMaterials = hkpNamedMeshMaterial(infile)  # TYPE_ARRAY

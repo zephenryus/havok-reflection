@@ -14,3 +14,8 @@ class hclSimClothBufferSetupObject(hclBufferSetupObject):
     type: Type
     name: str
     simClothSetupObject: hclSimClothSetupObject
+
+    def __init__(self, infile):
+        self.type = Type(infile)  # TYPE_ENUM
+        self.name = struct.unpack('>s', infile.read(0))
+        self.simClothSetupObject = hclSimClothSetupObject(infile)  # TYPE_POINTER

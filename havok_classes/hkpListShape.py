@@ -1,6 +1,7 @@
 from .hkpShapeCollection import hkpShapeCollection
 from enum import Enum
 from .hkpListShapeChildInfo import hkpListShapeChildInfo
+import struct
 from .common import vector4
 
 
@@ -16,3 +17,11 @@ class hkpListShape(hkpShapeCollection):
     aabbHalfExtents: vector4
     aabbCenter: vector4
     enabledChildren: int
+
+    def __init__(self, infile):
+        self.childInfo = hkpListShapeChildInfo(infile)  # TYPE_ARRAY
+        self.flags = struct.unpack('>H', infile.read(2))
+        self.numDisabledChildren = struct.unpack('>H', infile.read(2))
+        self.aabbHalfExtents = struct.unpack('>4f', infile.read(16))
+        self.aabbCenter = struct.unpack('>4f', infile.read(16))
+        self.enabledChildren = struct.unpack('>I', infile.read(4))

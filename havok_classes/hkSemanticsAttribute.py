@@ -13,3 +13,6 @@ class Semantics(Enum):
 
 class hkSemanticsAttribute(object):
     type: Semantics
+
+    def __init__(self, infile):
+        self.type = Semantics(infile)  # TYPE_ENUM

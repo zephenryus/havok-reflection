@@ -10,3 +10,6 @@ class ArrayType(Enum):
 
 class hkArrayTypeAttribute(object):
     type: ArrayType
+
+    def __init__(self, infile):
+        self.type = ArrayType(infile)  # TYPE_ENUM

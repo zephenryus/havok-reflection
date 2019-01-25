@@ -1,5 +1,6 @@
 from .hkReferencedObject import hkReferencedObject
 from enum import Enum
+import struct
 from .enums import hkpFilterType
 
 
@@ -17,3 +18,8 @@ class hkpCollisionFilter(hkReferencedObject):
     prepad: int
     type: hkpFilterType
     postpad: int
+
+    def __init__(self, infile):
+        self.prepad = struct.unpack('>I', infile.read(4))
+        self.type = hkpFilterType(infile)  # TYPE_ENUM
+        self.postpad = struct.unpack('>I', infile.read(4))

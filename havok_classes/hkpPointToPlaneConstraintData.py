@@ -4,3 +4,6 @@ from .hkpPointToPlaneConstraintDataAtoms import hkpPointToPlaneConstraintDataAto
 
 class hkpPointToPlaneConstraintData(hkpConstraintData):
     atoms: hkpPointToPlaneConstraintDataAtoms
+
+    def __init__(self, infile):
+        self.atoms = hkpPointToPlaneConstraintDataAtoms(infile)  # TYPE_STRUCT

@@ -6,3 +6,7 @@ from .hclStandardLinkConstraintSetMxSingle import hclStandardLinkConstraintSetMx
 class hclStandardLinkConstraintSetMx(hclConstraintSet):
     batches: hclStandardLinkConstraintSetMxBatch
     singles: hclStandardLinkConstraintSetMxSingle
+
+    def __init__(self, infile):
+        self.batches = hclStandardLinkConstraintSetMxBatch(infile)  # TYPE_ARRAY
+        self.singles = hclStandardLinkConstraintSetMxSingle(infile)  # TYPE_ARRAY

@@ -1,5 +1,6 @@
 from .hclOperator import hclOperator
 from enum import Enum
+import struct
 from .enums import ScaleNormalBehaviour
 from .common import any
 from .hclBoneSpaceDeformer import hclBoneSpaceDeformer
@@ -17,3 +18,10 @@ class hclBoneSpaceMeshMeshDeformOperator(hclOperator):
     scaleNormalBehaviour: ScaleNormalBehaviour
     inputTrianglesSubset: any
     boneSpaceDeformer: hclBoneSpaceDeformer
+
+    def __init__(self, infile):
+        self.inputBufferIdx = struct.unpack('>I', infile.read(4))
+        self.outputBufferIdx = struct.unpack('>I', infile.read(4))
+        self.scaleNormalBehaviour = ScaleNormalBehaviour(infile)  # TYPE_ENUM
+        self.inputTrianglesSubset = any(infile)  # TYPE_ARRAY
+        self.boneSpaceDeformer = hclBoneSpaceDeformer(infile)  # TYPE_STRUCT

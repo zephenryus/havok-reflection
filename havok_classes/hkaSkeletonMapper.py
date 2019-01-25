@@ -11,3 +11,6 @@ class ConstraintSource(Enum):
 
 class hkaSkeletonMapper(hkReferencedObject):
     mapping: hkaSkeletonMapperData
+
+    def __init__(self, infile):
+        self.mapping = hkaSkeletonMapperData(infile)  # TYPE_STRUCT

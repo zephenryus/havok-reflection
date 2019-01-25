@@ -1,5 +1,6 @@
 from .hkReferencedObject import hkReferencedObject
 from enum import Enum
+import struct
 
 
 class WheelCollideType(Enum):
@@ -16,3 +17,7 @@ class WheelCollideType(Enum):
 class hkpVehicleWheelCollide(hkReferencedObject):
     alreadyUsed: bool
     type: enumerate
+
+    def __init__(self, infile):
+        self.alreadyUsed = struct.unpack('>?', infile.read(1))
+        self.type = enumerate(infile)  # TYPE_ENUM

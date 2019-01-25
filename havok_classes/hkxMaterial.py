@@ -2,6 +2,7 @@ from .hkxAttributeHolder import hkxAttributeHolder
 from enum import Enum
 from .hkxMaterialTextureStage import hkxMaterialTextureStage
 from .common import vector4
+import struct
 from .hkxMaterial import hkxMaterial
 from .hkReferencedObject import hkReferencedObject
 from .enums import UVMappingAlgorithm, Transparency
@@ -79,3 +80,22 @@ class hkxMaterial(hkxAttributeHolder):
     transparency: Transparency
     userData: int
     properties: hkxMaterialProperty
+
+    def __init__(self, infile):
+        self.name = struct.unpack('>s', infile.read(0))
+        self.stages = hkxMaterialTextureStage(infile)  # TYPE_ARRAY
+        self.diffuseColor = struct.unpack('>4f', infile.read(16))
+        self.ambientColor = struct.unpack('>4f', infile.read(16))
+        self.specularColor = struct.unpack('>4f', infile.read(16))
+        self.emissiveColor = struct.unpack('>4f', infile.read(16))
+        self.subMaterials = hkxMaterial(infile)  # TYPE_ARRAY
+        self.extraData = hkReferencedObject(infile)  # TYPE_POINTER
+        self.uvMapScale = struct.unpack('>f', infile.read(4))
+        self.uvMapOffset = struct.unpack('>f', infile.read(4))
+        self.uvMapRotation = struct.unpack('>f', infile.read(4))
+        self.uvMapAlgorithm = UVMappingAlgorithm(infile)  # TYPE_ENUM
+        self.specularMultiplier = struct.unpack('>f', infile.read(4))
+        self.specularExponent = struct.unpack('>f', infile.read(4))
+        self.transparency = Transparency(infile)  # TYPE_ENUM
+        self.userData = struct.unpack('>L', infile.read(8))
+        self.properties = hkxMaterialProperty(infile)  # TYPE_ARRAY

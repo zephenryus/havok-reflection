@@ -22,3 +22,12 @@ class hkpWheelConstraintDataAtoms(object):
     lin2: hkpLinConstraintAtom
     steeringBase: hkpSetLocalRotationsConstraintAtom
     2dAng: hkp2dAngConstraintAtom
+
+    def __init__(self, infile):
+        self.suspensionBase = hkpSetLocalTransformsConstraintAtom(infile)  # TYPE_STRUCT
+        self.lin0Limit = hkpLinLimitConstraintAtom(infile)  # TYPE_STRUCT
+        self.lin0Soft = hkpLinSoftConstraintAtom(infile)  # TYPE_STRUCT
+        self.lin1 = hkpLinConstraintAtom(infile)  # TYPE_STRUCT
+        self.lin2 = hkpLinConstraintAtom(infile)  # TYPE_STRUCT
+        self.steeringBase = hkpSetLocalRotationsConstraintAtom(infile)  # TYPE_STRUCT
+        self.2dAng = hkp2dAngConstraintAtom(infile)  # TYPE_STRUCT

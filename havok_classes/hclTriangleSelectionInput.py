@@ -12,3 +12,7 @@ class TriangleSelectionType(Enum):
 class hclTriangleSelectionInput(object):
     type: TriangleSelectionType
     channelName: str
+
+    def __init__(self, infile):
+        self.type = TriangleSelectionType(infile)  # TYPE_ENUM
+        self.channelName = struct.unpack('>s', infile.read(0))

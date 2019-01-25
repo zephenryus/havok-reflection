@@ -1,5 +1,6 @@
 from enum import Enum
 from .enums import PrimitiveType, MeshSectionIndexType
+import struct
 from .common import any
 from .hkMeshVertexBuffer import hkMeshVertexBuffer
 from .hkMeshMaterial import hkMeshMaterial
@@ -32,3 +33,16 @@ class hkMeshSection(object):
     material: hkMeshMaterial
     boneMatrixMap: hkMeshBoneIndexMapping
     sectionIndex: int
+
+    def __init__(self, infile):
+        self.primitiveType = PrimitiveType(infile)  # TYPE_ENUM
+        self.numPrimitives = struct.unpack('>i', infile.read(4))
+        self.numIndices = struct.unpack('>i', infile.read(4))
+        self.vertexStartIndex = struct.unpack('>i', infile.read(4))
+        self.transformIndex = struct.unpack('>i', infile.read(4))
+        self.indexType = MeshSectionIndexType(infile)  # TYPE_ENUM
+        self.indices = any(infile)  # TYPE_POINTER
+        self.vertexBuffer = hkMeshVertexBuffer(infile)  # TYPE_POINTER
+        self.material = hkMeshMaterial(infile)  # TYPE_POINTER
+        self.boneMatrixMap = hkMeshBoneIndexMapping(infile)  # TYPE_POINTER
+        self.sectionIndex = struct.unpack('>i', infile.read(4))

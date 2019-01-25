@@ -14,3 +14,6 @@ class Link(Enum):
 
 class hkLinkAttribute(object):
     type: Link
+
+    def __init__(self, infile):
+        self.type = Link(infile)  # TYPE_ENUM

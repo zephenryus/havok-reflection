@@ -11,3 +11,6 @@ class Type(Enum):
 
 class hkpLinearClearanceConstraintData(hkpConstraintData):
     atoms: hkpLinearClearanceConstraintDataAtoms
+
+    def __init__(self, infile):
+        self.atoms = hkpLinearClearanceConstraintDataAtoms(infile)  # TYPE_STRUCT

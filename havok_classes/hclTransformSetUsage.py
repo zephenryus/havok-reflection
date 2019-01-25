@@ -1,4 +1,5 @@
 from enum import Enum
+import struct
 from .hclTransformSetUsageTransformTracker import hclTransformSetUsageTransformTracker
 
 
@@ -19,3 +20,7 @@ class InternalFlags(Enum):
 class hclTransformSetUsage(object):
     perComponentFlags: int
     perComponentTransformTrackers: hclTransformSetUsageTransformTracker
+
+    def __init__(self, infile):
+        self.perComponentFlags = struct.unpack('>B', infile.read(1))
+        self.perComponentTransformTrackers = hclTransformSetUsageTransformTracker(infile)  # TYPE_ARRAY

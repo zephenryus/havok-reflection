@@ -13,3 +13,7 @@ class ParameterType(Enum):
 class hkaParameterizedAnimationReferenceFrame(hkaDefaultAnimatedReferenceFrame):
     parameterValues: any
     parameterTypes: any
+
+    def __init__(self, infile):
+        self.parameterValues = any(infile)  # TYPE_ARRAY
+        self.parameterTypes = any(infile)  # TYPE_ARRAY

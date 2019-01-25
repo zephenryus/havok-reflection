@@ -1,5 +1,6 @@
 from enum import Enum
 from .hkVertexFormatElement import hkVertexFormatElement
+import struct
 
 
 class ComponentType(Enum):
@@ -50,3 +51,7 @@ class SharingType(Enum):
 class hkVertexFormat(object):
     elements: hkVertexFormatElement
     numElements: int
+
+    def __init__(self, infile):
+        self.elements = hkVertexFormatElement(infile)  # TYPE_STRUCT
+        self.numElements = struct.unpack('>i', infile.read(4))

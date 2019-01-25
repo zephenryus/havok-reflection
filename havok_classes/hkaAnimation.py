@@ -1,6 +1,7 @@
 from .hkReferencedObject import hkReferencedObject
 from enum import Enum
 from .enums import AnimationType
+import struct
 from .hkaAnimatedReferenceFrame import hkaAnimatedReferenceFrame
 from .hkaAnnotationTrack import hkaAnnotationTrack
 
@@ -22,3 +23,11 @@ class hkaAnimation(hkReferencedObject):
     numberOfFloatTracks: int
     extractedMotion: hkaAnimatedReferenceFrame
     annotationTracks: hkaAnnotationTrack
+
+    def __init__(self, infile):
+        self.type = AnimationType(infile)  # TYPE_ENUM
+        self.duration = struct.unpack('>f', infile.read(4))
+        self.numberOfTransformTracks = struct.unpack('>i', infile.read(4))
+        self.numberOfFloatTracks = struct.unpack('>i', infile.read(4))
+        self.extractedMotion = hkaAnimatedReferenceFrame(infile)  # TYPE_POINTER
+        self.annotationTracks = hkaAnnotationTrack(infile)  # TYPE_ARRAY

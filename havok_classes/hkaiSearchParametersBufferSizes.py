@@ -1,4 +1,5 @@
 from enum import Enum
+import struct
 
 
 class ThreadingType(Enum):
@@ -14,3 +15,7 @@ class SearchType(Enum):
 class hkaiSearchParametersBufferSizes(object):
     maxOpenSetSizeBytes: int
     maxSearchStateSizeBytes: int
+
+    def __init__(self, infile):
+        self.maxOpenSetSizeBytes = struct.unpack('>i', infile.read(4))
+        self.maxSearchStateSizeBytes = struct.unpack('>i', infile.read(4))

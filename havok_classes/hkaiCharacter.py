@@ -1,5 +1,6 @@
 from .hkReferencedObject import hkReferencedObject
 from enum import Enum
+import struct
 from .common import vector4, any
 from .hkaiAdaptiveRanger import hkaiAdaptiveRanger
 from .hkaiAstarCostModifier import hkaiAstarCostModifier
@@ -56,3 +57,28 @@ class hkaiCharacter(hkReferencedObject):
     state: State
     behaviorListeners: any
     layer: int
+
+    def __init__(self, infile):
+        self.userData = struct.unpack('>L', infile.read(8))
+        self.position = struct.unpack('>4f', infile.read(16))
+        self.forward = struct.unpack('>4f', infile.read(16))
+        self.velocity = struct.unpack('>4f', infile.read(16))
+        self.up = struct.unpack('>4f', infile.read(16))
+        self.currentNavMeshFace = struct.unpack('>I', infile.read(4))
+        self.currentNavVolumeCell = struct.unpack('>I', infile.read(4))
+        self.radius = struct.unpack('>f', infile.read(4))
+        self.desiredSpeed = struct.unpack('>f', infile.read(4))
+        self.adaptiveRanger = hkaiAdaptiveRanger(infile)  # TYPE_STRUCT
+        self.costModifier = hkaiAstarCostModifier(infile)  # TYPE_POINTER
+        self.edgeFilter = hkaiAstarEdgeFilter(infile)  # TYPE_POINTER
+        self.hitFilter = any(infile)  # TYPE_POINTER
+        self.steeringFilter = any(infile)  # TYPE_POINTER
+        self.agentFilterInfo = struct.unpack('>I', infile.read(4))
+        self.avoidanceProperties = hkaiAvoidanceProperties(infile)  # TYPE_POINTER
+        self.avoidanceState = struct.unpack('>f', infile.read(4))
+        self.agentPriority = struct.unpack('>I', infile.read(4))
+        self.avoidanceType = struct.unpack('>H', infile.read(2))
+        self.avoidanceEnabledMask = any(infile)  # TYPE_FLAGS
+        self.state = State(infile)  # TYPE_ENUM
+        self.behaviorListeners = any(infile)  # TYPE_ARRAY
+        self.layer = struct.unpack('>I', infile.read(4))

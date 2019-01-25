@@ -9,3 +9,6 @@ class ReferenceCountHandling(Enum):
 
 class hkRefCountedProperties(object):
     entries: hkRefCountedPropertiesEntry
+
+    def __init__(self, infile):
+        self.entries = hkRefCountedPropertiesEntry(infile)  # TYPE_ARRAY

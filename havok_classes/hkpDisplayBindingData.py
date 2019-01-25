@@ -6,3 +6,7 @@ from .hkpDisplayBindingDataPhysicsSystem import hkpDisplayBindingDataPhysicsSyst
 class hkpDisplayBindingData(hkReferencedObject):
     rigidBodyBindings: hkpDisplayBindingDataRigidBody
     physicsSystemBindings: hkpDisplayBindingDataPhysicsSystem
+
+    def __init__(self, infile):
+        self.rigidBodyBindings = hkpDisplayBindingDataRigidBody(infile)  # TYPE_ARRAY
+        self.physicsSystemBindings = hkpDisplayBindingDataPhysicsSystem(infile)  # TYPE_ARRAY

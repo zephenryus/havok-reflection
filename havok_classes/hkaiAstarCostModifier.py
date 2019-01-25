@@ -10,3 +10,6 @@ class CostModifierType(Enum):
 
 class hkaiAstarCostModifier(hkReferencedObject):
     type: CostModifierType
+
+    def __init__(self, infile):
+        self.type = CostModifierType(infile)  # TYPE_ENUM
